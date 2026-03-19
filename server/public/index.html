@@ -529,7 +529,11 @@
         if (data.type === 'slot_assigned') {
             const dev = devices.find(d => d.deviceId === data.deviceId);
             if (dev) {
-                devices.forEach(d => { if (d.slotId === data.slotId) d.slotId = null; });
+                // Với slot thường (bàn/ghế), chỉ một device/slot → clear slot cũ.
+                // Với 'arena', cho phép nhiều device cùng lúc, không clear các device khác.
+                if (data.slotId !== 'arena') {
+                    devices.forEach(d => { if (d.slotId === data.slotId) d.slotId = null; });
+                }
                 dev.slotId = data.slotId;
                 scheduleRender();
             }
@@ -568,7 +572,7 @@
 		const createCard = (d, onMap = false) => {
 		const isDisc = d.status === 'disconnected';
 		const isWarn = d.status === 'warning';
-		const rs = d.rssi || -100;
+		const rs = typeof d.rssi === 'number' ? d.rssi : -100;
 		const rssiIcon = rs > -60 ? '🟢' : (rs > -80 ? '🟡' : '🔴');
 		const styleIfMap = onMap ? `left: ${d.seatLayout?.x || 0}px; top: ${d.seatLayout?.y || 0}px;` : '';
         
@@ -587,7 +591,11 @@
 					<span style="color:${isDisc ? '#666' : 'inherit'}; display:flex; align-items:center;">
 						${isDisc ? '[OFFLINE] ' : ''}${d.deviceName || d.deviceId.slice(-5)} ${ftpIcon}
 					</span>
-					<span>${isDisc ? '' : rssiIcon} ${isDisc ? '--' : (d.isCharging ? '⚡' : '') + d.battery + '%'}</span>
+					<span>
+                        ${isDisc ? '' : `${rssiIcon} ${rs}dBm`}
+                        ${isDisc ? '' : ' · '}
+                        ${isDisc ? '--' : (d.isCharging ? '⚡' : '') + d.battery + '%'}
+                    </span>
 				</div>
 				
 				<div class="dev-sub">
@@ -720,9 +728,11 @@ if (currentAlerts && currentAlerts.length > 0) {
 
     // Drag & Drop
     let dragOffset = {x: 0, y: 0};
+    let dragFromArena = false;
     function startDrag(e, did, onMap) { 
         e.dataTransfer.setData("text/did", did); 
         e.target.style.opacity = "0.4"; 
+        dragFromArena = !!onMap;
         if (onMap) {
             const rect = e.target.getBoundingClientRect();
             dragOffset.x = e.clientX - rect.left;
@@ -731,7 +741,7 @@ if (currentAlerts && currentAlerts.length > 0) {
             dragOffset = {x: 60, y: 25}; // center the drop for new items
         }
     }
-    function endDrag(e) { e.target.style.opacity = "1"; }
+    function endDrag(e) { if (e && e.target) e.target.style.opacity = "1"; }
     
     function allowDrop(e) { e.preventDefault(); }
     
@@ -752,8 +762,11 @@ if (currentAlerts && currentAlerts.length > 0) {
         // Tính toán để thẻ rớt xuống nằm chính giữa con chuột trừ đi điểm lúc ta cầm click
         let dropX = e.clientX - arenaRect.left - dragOffset.x;
         let dropY = e.clientY - arenaRect.top - dragOffset.y;
-        
-        safeSend({ type: 'assign_slot', deviceId: did, slotId: 'arena' });
+
+        // Nếu đang kéo từ arena → chỉ đổi vị trí, không gửi assign_slot nữa để tránh đụng thiết bị khác.
+        if (!dragFromArena) {
+            safeSend({ type: 'assign_slot', deviceId: did, slotId: 'arena' });
+        }
         safeSend({ type: 'update_seat_layout', deviceId: did, seatLayout: { x: dropX, y: dropY } });
         
         // Optimistic UI Update for smoothness

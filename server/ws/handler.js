@@ -5,7 +5,9 @@ const WHITELIST_APPS = [
     'com.dts.freefiremax',
     'com.android.chrome',
     'com.ops.tournamentmonitor',
-    'com.sec.android.app.launcher', //launcher samsung
+    'com.sec.android.app.launcher',
+	'com.garena.game.fcmobilevn',
+//launcher samsung
     '',
 ];
 const NOISE_PACKAGES = [
@@ -151,9 +153,13 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
                 if (data.type === 'assign_slot') {
                     const dev = store.devices.find((d) => d.deviceId === data.deviceId);
                     if (dev) {
-                        store.devices.forEach((d) => {
-                            if (d.slotId === data.slotId) d.slotId = null;
-                        });
+                        // Với slot thông thường (bàn/ghế), mỗi slot chỉ 1 thiết bị → clear thiết bị cũ.
+                        // Riêng slot 'arena' là bản đồ tự do, cho phép nhiều thiết bị cùng lúc.
+                        if (data.slotId !== 'arena') {
+                            store.devices.forEach((d) => {
+                                if (d.slotId === data.slotId) d.slotId = null;
+                            });
+                        }
                         dev.slotId = data.slotId;
                         broadcast.broadcast({ type: 'slot_assigned', deviceId: data.deviceId, slotId: data.slotId });
                     }
