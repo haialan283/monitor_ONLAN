@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng nhập — ALAN Monitor</title>
+    <style>
+        :root { --bg: #050505; --panel: #0a0a0f; --accent: #00f2ff; --warn: #ff003c; }
+        * { box-sizing: border-box; }
+        body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--accent); font-family: 'Segoe UI', sans-serif; display: flex; align-items: center; justify-content: center; }
+        .box { background: var(--panel); border: 1px solid rgba(0,242,255,0.3); border-radius: 8px; padding: 2rem; width: 100%; max-width: 320px; }
+        h1 { margin: 0 0 1rem; font-size: 1.1rem; letter-spacing: 2px; }
+        input { width: 100%; padding: 10px; background: #111; border: 1px solid #333; color: var(--accent); border-radius: 4px; margin-bottom: 1rem; font-size: 1rem; }
+        input:focus { outline: none; border-color: var(--accent); }
+        button { width: 100%; padding: 10px; background: var(--accent); color: #000; border: none; font-weight: bold; cursor: pointer; border-radius: 4px; }
+        button:hover { opacity: 0.9; }
+        .err { color: var(--warn); font-size: 0.9rem; margin-top: 0.5rem; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>ALAN MONITOR</h1>
+        <p style="margin:0 0 1rem; color:#888; font-size:0.9rem;">Nhập PIN để truy cập dashboard.</p>
+        <form id="f" method="post" action="/api/auth/login">
+            <input type="password" name="pin" id="pin" placeholder="PIN" autocomplete="current-password" autofocus>
+            <button type="submit">Đăng nhập</button>
+        </form>
+        <div class="err" id="err"></div>
+    </div>
+    <script>
+        document.getElementById('f').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const pin = document.getElementById('pin').value;
+            const err = document.getElementById('err');
+            err.textContent = '';
+            const res = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ pin: pin })
+            });
+            const data = await res.json().catch(() => ({}));
+            if (res.ok && data.ok) {
+                window.location.href = '/';
+                return;
+            }
+            err.textContent = data.error || 'Đăng nhập thất bại.';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>ALAN - MONITOR SYSTEM</title>
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12,1L3,5v6c0,5.55 3.84,10.74 9,12c5.16-1.26 9-6.45 9-12V5L12,1z' fill='rgba(0,242,255,0.1)'/><path d='M12,1L3,5v6c0,5.55 3.84,10.74 9,12c5.16-1.26 9-6.45 9-12V5L12,1z' stroke='%2300F2FF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M7,12h2l1-3l2,6l1-3h2' stroke='%2300F2FF' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>">
+    <style>
+        :root {
+            --bg: #050505; --panel: #0a0a0f; --accent: #00f2ff;
+            --safe: #39ff14; --warn: #ff003c; --lock: #444; --text: #00f2ff;
+            --neon-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+        }
+        * { box-sizing: border-box; font-family: 'Segoe UI', sans-serif; transition: 0.2s; }
+        body { 
+			margin: 0; 
+			background: var(--bg); 
+			color: var(--text); 
+			height: 100vh; 
+			width: 100vw;
+			overflow: hidden; 
+			display: flex; 
+			flex-direction: column; 
+		}
+
+        header { 
+            height: 65px; background: #000; border-bottom: 2px solid var(--accent); 
+            display: flex; align-items: center; padding: 0 20px; justify-content: space-between;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.3); z-index: 1000;
+        }
+
+        .net-monitor { 
+            display: flex; align-items: center; gap: 8px; 
+            background: rgba(15, 15, 21, 0.8); padding: 5px 10px; border-radius: 5px; border: 1px solid #1a1a25; 
+        }
+        .net-monitor input { background: #000; border: 1px solid #333; color: var(--accent); font-size: 10px; padding: 4px; border-radius: 3px; outline: none; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: #222; }
+        .dot.on { background: var(--safe); box-shadow: 0 0 10px var(--safe); }
+        #net-graph { width: 100px; height: 25px; background: rgba(0,0,0,0.5); border: 1px solid #111; }
+
+        .main-title { font-size: 18px; font-weight: 900; letter-spacing: 4px; color: var(--accent); text-shadow: var(--neon-shadow); text-transform: uppercase; }
+
+		#container { 
+			display: flex; 
+			flex: 1; 
+			overflow: hidden; 
+			width: 100%;
+			height: calc(100vh - 65px); /* Trừ đi chiều cao của header */
+		}
+
+        .side-panel { width: 260px; background: var(--panel); border-right: 1px solid #1a1a25; display: flex; flex-direction: column; transition: 0.3s; }
+        .side-panel.hidden { width: 0; opacity: 0; pointer-events: none; }
+        #log-panel { border-right: none; border-left: 1px solid #1a1a25; width: 320px; }
+		
+		#monitor-arena { 
+			flex: 1; 
+			display: block; 
+			position: relative;
+			overflow: hidden; 
+			background: #000;
+			background-image: radial-gradient(rgba(0, 242, 255, 0.1) 1px, transparent 1px);
+			background-size: 20px 20px; /* Grid background */
+		}
+
+		.line-group { 
+			flex: 1; 
+			min-width: 200px; 
+			display: flex; 
+			flex-direction: column; 
+			gap: 10px;
+			height: 100%; 
+		}
+        
+		.walk-line { 
+			width: 30px; 
+			display: flex; 
+			align-items: center; 
+			justify-content: center; 
+			font-size: 12px; 
+			writing-mode: vertical-lr; 
+			letter-spacing: 8px; 
+			color: var(--accent);
+			opacity: 0.5;
+			background: linear-gradient(to bottom, #000, #111, #000);
+			height: 100%;
+		}	
+
+		.table-box { 
+			flex: 1; 
+			display: flex; 
+			flex-direction: column; 
+			gap: 2px; /* Khoảng cách nhỏ giữa các slot */
+			background: var(--panel); 
+			padding: 6px;
+			border: 1px solid #1a1a25;
+			border-top: 3px solid var(--accent);
+		}
+
+        .table-title-input { background: transparent; border: none; color: #aaa; text-align: center; width: 100%; font-weight: bold; font-size: 10px; outline: none; margin-bottom: 5px; }
+
+		.slot-row { 
+			flex: 1; 
+			min-height: 45px; 
+			border: 1px solid rgba(255,255,255,0.05); 
+			margin: 2px 0; 
+			display: flex; 
+			align-items: stretch; /* Ép phần tử con (device-card) phải giãn cao bằng nó */
+			justify-content: center;
+			background: rgba(0,0,0,0.2);
+			border-radius: 4px;
+			overflow: hidden; /* Tránh card tràn ra ngoài bo góc */
+		}
+
+        .slot-row.drag-over { background: rgba(0, 242, 255, 0.1); border: 1px dashed var(--accent); }
+		/* CSS cho phần Log mở rộng */
+		.log-group {
+			border: 1px solid #1a1a25;
+			margin-bottom: 8px;
+			background: rgba(10, 10, 15, 0.8);
+			border-radius: 4px;
+			overflow: hidden;
+		}
+		.log-group.is-disconnected {
+			opacity: 0.5;
+			filter: grayscale(1);
+			border-left: 3px solid #222 !important;
+		}
+		.log-group.is-disconnected .status-indicator {
+			background: #444 !important;
+		}
+		.log-header {
+			padding: 10px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			cursor: pointer;
+			background: rgba(20, 20, 30, 0.9);
+		}
+		.log-header:hover { background: rgba(30, 30, 45, 1); }
+		.log-details {
+			display: none; /* Mặc định ẩn */
+			padding: 5px 10px 10px 25px;
+			background: rgba(0, 0, 0, 0.3);
+			border-top: 1px solid #1a1a25;
+		}
+		.log-details.show { display: block; }
+		.sub-log-item {
+			font-size: 9px;
+			padding: 4px 0;
+			border-bottom: 1px solid rgba(255,255,255,0.05);
+			display: flex;
+			justify-content: space-between;
+		}
+		.status-indicator { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+
+		.dev-info { 
+			display: flex; 
+			justify-content: space-between; 
+			align-items: flex-start;
+			font-weight: bold; 
+			font-size: 11px; 
+			pointer-events: none;
+			width: 100%; /* Đảm bảo chiếm hết chiều ngang card */
+		}
+		.dev-sub span:first-child {
+			flex: 1;
+			word-break: break-all;
+			line-height: 1.2;
+		}
+		.status-col {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end; /* Căn lề phải cho Pin và RAM */
+			gap: 2px;
+		}
+		/* Thêm mới đoạn này để RAM có màu xanh Neon đặc trưng của bạn */
+		.ram-tag { 
+			color: var(--accent); 
+			font-size: 10px; 
+			font-family: monospace;
+			background: rgba(0, 242, 255, 0.3);
+			padding: 10px 20px;
+			border-radius: 2px;
+			margin-left: 30px; /* Khoảng cách với tên App */
+			margin-right:0px;
+		}
+		.device-card { 
+			width: 250px;
+			min-height: 55px;
+			margin: 0;
+			padding: 4px 8px;
+			display: flex; 
+			flex-direction: column; 
+			justify-content: center;
+			cursor: grab;
+			transition: all 0.2s;
+			background: rgba(10, 10, 15, 0.9);
+			border: 1px solid #1a1a25;
+			border-radius: 4px;
+			color: #fff;
+		}
+		
+		/* Khi thẻ nằm trên bản đồ */
+		.device-card.on-map {
+		    position: absolute;
+		    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+		}
+
+        .device-card.online { border-left: 4px solid var(--safe); color: var(--safe); background: rgba(0,120,60,0.3);}
+        .device-card.warning { border-left: 4px solid var(--warn); color: #fff; background: rgba(255,0,60,0.2); animation: blink 0.6s infinite alternate; }
+        .device-card.lock { border-left: 4px solid var(--lock); color: #555; }
+        /* CSS cho thiết bị mất kết nối */
+		.status-disconnected { 
+			background: rgba(20, 20, 20, 0.8) !important; 
+			border-left: 4px solid #333 !important; 
+			opacity: 0.5; 
+			filter: grayscale(1);
+			cursor: not-allowed;
+		}
+
+		/* Hiệu ứng highlight cho dòng log đang active */
+		.sub-log-item.active-log {
+			background: rgba(255, 0, 60, 0.1);
+			border-radius: 2px;
+			font-weight: bold;
+		}
+        @keyframes blink { from { opacity: 1; } to { opacity: 0.5; } }
+
+        .dev-sub { font-size: 9px; opacity: 0.8; margin-top: 2px; pointer-events: none; display: flex;
+    justify-content: space-between; /* Đẩy App Name sang trái, RAM sang phải */
+    align-items: flex-start;}
+
+        .cyber-btn { background: #000; border: 1px solid var(--accent); color: var(--accent); padding: 5px 10px; cursor: pointer; font-size: 10px; font-weight: bold; }
+        .cyber-btn:hover { background: var(--accent); color: #000; }
+        
+        .log-item {
+            margin-bottom: 8px; padding: 10px; background: rgba(20, 20, 30, 0.6); 
+            border-left: 3px solid var(--warn); border-radius: 2px;
+        }
+
+        /* Modal File Explorer - LAN DEPLOYER */
+        #file-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(4px); z-index: 9999;
+            justify-content: center; align-items: center;
+        }
+        .file-explorer {
+            width: 720px; min-height: 520px; max-height: 85vh;
+            background: linear-gradient(180deg, #0c0c12 0%, #08080d 100%);
+            border: 1px solid #1a1a28; border-radius: 10px;
+            display: flex; flex-direction: column;
+            box-shadow: 0 0 0 1px rgba(0, 242, 255, 0.15), 0 20px 50px rgba(0,0,0,0.6), 0 0 40px rgba(0, 242, 255, 0.08);
+        }
+        .explorer-header {
+            padding: 14px 18px; background: rgba(0,0,0,0.5);
+            border-bottom: 1px solid #1a1a28; border-radius: 10px 10px 0 0;
+            display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+        }
+        .explorer-title-wrap {
+            display: flex; align-items: center; gap: 10px; min-width: 0;
+        }
+        .explorer-title-wrap .explorer-badge {
+            font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: var(--accent);
+            background: rgba(0, 242, 255, 0.08); padding: 6px 12px; border-radius: 4px;
+            border: 1px solid rgba(0, 242, 255, 0.25); white-space: nowrap;
+        }
+        .explorer-title-wrap .explorer-device {
+            font-size: 13px; font-weight: 700; color: var(--accent);
+            font-family: 'Segoe UI', sans-serif; letter-spacing: 0.5px;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+            text-shadow: 0 0 12px rgba(0, 242, 255, 0.4);
+            padding: 4px 0;
+        }
+        .explorer-path-wrap {
+            flex: 1; min-width: 180px; display: flex; align-items: center; gap: 8px;
+        }
+        .explorer-path {
+            font-family: 'Consolas', 'Monaco', monospace; color: var(--safe);
+            font-size: 11px; flex: 1; background: #0a0a0f; padding: 8px 12px;
+            border-radius: 4px; border: 1px solid #1a1a28; outline: none;
+        }
+        .explorer-path:focus { border-color: rgba(0, 242, 255, 0.4); box-shadow: 0 0 0 2px rgba(0, 242, 255, 0.1); }
+        .explorer-actions {
+            display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+        }
+        .upload-btn {
+            background: linear-gradient(180deg, #2dd32d 0%, #1a9e1a 100%); color: #000;
+            font-weight: 700; font-size: 10px; letter-spacing: 0.5px;
+            border: none; padding: 8px 14px; border-radius: 4px; cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        .upload-btn:hover { filter: brightness(1.15); }
+        .explorer-body {
+            flex: 1; overflow-y: auto; padding: 16px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px;
+            align-content: start; min-height: 200px;
+        }
+        .file-item {
+            text-align: center; cursor: pointer; padding: 12px 8px; border-radius: 6px;
+            background: rgba(255,255,255,0.03); border: 1px solid transparent;
+            transition: background 0.15s, border-color 0.15s, transform 0.1s;
+        }
+        .file-item:hover {
+            background: rgba(0, 242, 255, 0.06); border-color: rgba(0, 242, 255, 0.2);
+            transform: translateY(-1px);
+        }
+        .file-item:active { transform: translateY(0); }
+        .file-icon { font-size: 28px; margin-bottom: 6px; line-height: 1; }
+        .file-name { font-size: 10px; word-break: break-all; max-height: 32px; overflow: hidden; color: #b0b0b0; line-height: 1.3; }
+        .file-item:hover .file-name { color: #e0e0e0; }
+        .explorer-close-btn {
+            background: transparent; border: 1px solid rgba(255, 0, 60, 0.5); color: var(--warn);
+            padding: 8px 14px; border-radius: 4px; cursor: pointer; font-size: 10px; font-weight: 700;
+        }
+        .explorer-close-btn:hover { background: rgba(255, 0, 60, 0.15); }
+        .file-item.file-item-back { background: rgba(0, 242, 255, 0.05); border-color: rgba(0, 242, 255, 0.15); }
+        .file-item.file-item-back .file-name { color: var(--accent); }
+        .explorer-status { grid-column: 1 / -1; padding: 12px; text-align: center; color: #888; font-size: 11px; }
+        .explorer-status.error { color: var(--warn); text-align: left; }
+        .ws-status { font-size: 10px; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
+        .ws-status-connecting { background: rgba(255,193,7,0.2); color: #ffc107; }
+        .ws-status-connected { background: rgba(57,255,20,0.2); color: var(--safe); }
+        .ws-status-disconnected { background: rgba(255,0,60,0.2); color: var(--warn); }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="display:flex; gap:100px;">
+        <button class="cyber-btn" onclick="toggleSide('sidebar')">DEVICES</button>
+        <div class="net-monitor">
+            <input type="text" id="net-dns" placeholder="IP/Host">
+            <input type="number" id="net-port" placeholder="Port">
+            <button class="cyber-btn" style="padding: 2px 5px;" onclick="saveNet()">SET</button>
+            <div class="dot" id="dot-dns"></div>
+            <div class="dot" id="dot-tcp"></div>
+            <canvas id="net-graph"></canvas>
+            <span id="net-latency" style="font-size:9px; font-family:monospace;">0ms</span>
+        </div>
+    </div>
+    <div class="main-title">ALAN MONITOR SYSTEM</div>
+    <div style="display:flex; align-items:center; gap:8px;">
+        <span id="ws-status" class="ws-status ws-status-connecting" title="Trạng thái kết nối">Đang kết nối…</span>
+        <button class="cyber-btn" onclick="exportLogsToCSV()">Download LOGS</button>
+    </div>
+</header>
+
+<div id="container">
+    <div id="sidebar" class="side-panel">
+        <div style="padding:15px; font-size:11px; font-weight:bold; border-bottom:1px solid #222;">WAITING LIST (<span id="count-wait">0</span>)</div>
+        <div id="waiting-list" style="padding: 10px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; align-items: stretch; align-content: flex-start;" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'wait')"></div>
+    </div>
+
+    <div id="monitor-arena" ondrop="handleDropArena(event)" ondragover="allowDrop(event)">
+        <!-- Đã dọn dẹp các script vẽ Table tĩnh cũ để dùng vị trí tuyệt đối x, y -->
+        <div style="position: absolute; top: 10px; left: 10px; color: #555; font-size: 12px; pointer-events: none;">INTERACTIVE STAGE MAP (Kéo thả thiết bị vào đây)</div>
+    </div>
+
+    <div id="log-panel" class="side-panel">
+        <div style="padding:15px; font-size:11px; font-weight:bold; border-bottom:1px solid #222; display:flex; justify-content:space-between;">
+            VIOLATION LOGS <span onclick="clearLogs()" style="color:var(--warn); cursor:pointer;">CLEAR</span>
+        </div>
+        <div id="log-list" style="padding:10px; overflow-y:auto; flex: 1; font-size:10px;"></div>
+    </div>
+</div>
+
+<!-- FILE EXPLORER MODAL - LAN DEPLOYER -->
+<div id="file-modal">
+    <div class="file-explorer">
+        <div class="explorer-header">
+            <div class="explorer-title-wrap">
+                <span class="explorer-badge">LAN DEPLOYER</span>
+                <span class="explorer-device" id="explorer-device-label">—</span>
+            </div>
+            <div class="explorer-path-wrap">
+                <input type="text" class="explorer-path" id="current-path" value="/storage/emulated/0" readonly title="Đường dẫn hiện tại">
+            </div>
+            <div class="explorer-actions">
+                <button class="upload-btn" onclick="document.getElementById('upload-input').click()">⬆ UPLOAD</button>
+                <input type="file" id="upload-input" style="display:none" onchange="uploadFile(event)">
+                <button class="explorer-close-btn" onclick="closeExplorer()">CLOSE</button>
+            </div>
+        </div>
+        <div class="explorer-body" id="explorer-content">
+            <!-- Files injected here -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- WEB CRYPTO API ---
+    async function decryptPayload(text) {
+        const parts = text.split(':');
+        const ivHex = parts.shift();
+        const b64 = parts.join(':');
+        const ivArray = new Uint8Array(ivHex.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+        const encBytes = atob(b64);
+        const encArray = new Uint8Array(encBytes.length);
+        for(let i=0; i<encBytes.length; i++) encArray[i] = encBytes.charCodeAt(i);
+
+        const enc = new TextEncoder();
+        const keyMat = await crypto.subtle.digest("SHA-256", enc.encode("MonitorTournamentSecretKey2026!"));
+        const key = await crypto.subtle.importKey("raw", keyMat, { name: "AES-CBC" }, false, ["decrypt"]);
+        
+        const dec = await crypto.subtle.decrypt({ name: "AES-CBC", iv: ivArray }, key, encArray);
+        return JSON.parse(new TextDecoder().decode(dec));
+    }
+    
+    async function encryptPayload(dataObj) {
+        const enc = new TextEncoder();
+        const iv = crypto.getRandomValues(new Uint8Array(16));
+        const keyMat = await crypto.subtle.digest("SHA-256", enc.encode("MonitorTournamentSecretKey2026!"));
+        const key = await crypto.subtle.importKey("raw", keyMat, { name: "AES-CBC" }, false, ["encrypt"]);
+        
+        const encrypted = await crypto.subtle.encrypt({ name: "AES-CBC", iv: iv }, key, enc.encode(JSON.stringify(dataObj)));
+        const bin = String.fromCharCode.apply(null, new Uint8Array(encrypted));
+        const ivHex = Array.from(iv).map(b => b.toString(16).padStart(2, '0')).join('');
+        return ivHex + ":" + btoa(bin);
+    }
+    
+    let socket = null;
+    const WS_STATUS = { CONNECTING: 'connecting', CONNECTED: 'connected', DISCONNECTED: 'disconnected' };
+    let wsState = WS_STATUS.DISCONNECTED;
+    let reconnectDelay = 1000;
+    const RECONNECT_MAX = 30000;
+    let reconnectTimer = null;
+
+    function setWsStatus(state) {
+        wsState = state;
+        const el = document.getElementById('ws-status');
+        if (!el) return;
+        el.className = 'ws-status ws-status-' + state;
+        el.textContent = state === WS_STATUS.CONNECTED ? 'Đã kết nối' : state === WS_STATUS.CONNECTING ? 'Đang kết nối…' : 'Mất kết nối';
+    }
+
+    function connect() {
+        if (socket && socket.readyState === WebSocket.OPEN) return;
+        setWsStatus(WS_STATUS.CONNECTING);
+        const url = (window.location.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host;
+        socket = new WebSocket(url);
+
+        socket.onopen = () => {
+            reconnectDelay = 1000;
+            setWsStatus(WS_STATUS.CONNECTED);
+        };
+        socket.onclose = () => {
+            setWsStatus(WS_STATUS.DISCONNECTED);
+            if (reconnectTimer) clearTimeout(reconnectTimer);
+            reconnectTimer = setTimeout(() => {
+                connect();
+                reconnectDelay = Math.min(reconnectDelay * 2, RECONNECT_MAX);
+            }, reconnectDelay);
+        };
+        socket.onerror = () => { setWsStatus(WS_STATUS.DISCONNECTED); };
+        socket.onmessage = onWsMessage;
+    }
+
+    async function safeSend(dataObj) {
+        if (!socket || socket.readyState !== WebSocket.OPEN) {
+            console.warn('WebSocket chưa kết nối, bỏ qua gửi.');
+            return;
+        }
+        const payload = await encryptPayload(dataObj);
+        socket.send(payload);
+    }
+
+	let expandedDeviceId = null;
+
+	function toggleLog(did) {
+		expandedDeviceId = (expandedDeviceId === did) ? null : did;
+		render();
+	}
+    let devices = [], tableNames = {}, currentAlerts = [], currentNetLogs = [], historyData = [];
+    const canvas = document.getElementById('net-graph');
+    const ctx = canvas.getContext('2d');
+
+    function toggleSide(id) { document.getElementById(id).classList.toggle('hidden'); }
+
+    let renderTimer = null;
+    function scheduleRender() {
+        if (renderTimer) clearTimeout(renderTimer);
+        renderTimer = setTimeout(function() { renderTimer = null; render(); }, 150);
+    }
+
+    let decryptErrorShown = false;
+    async function onWsMessage(e) {
+    if (!e.data || e.data === "undefined") return;
+    try {
+        const data = await decryptPayload(e.data);
+        if (decryptErrorShown && document.getElementById('ws-decrypt-err')) {
+            document.getElementById('ws-decrypt-err').remove();
+            decryptErrorShown = false;
+        }
+        if(data.type === 'net_status') {
+            document.getElementById('dot-dns').className = 'dot ' + (data.dns ? 'on' : '');
+            document.getElementById('dot-tcp').className = 'dot ' + (data.tcp ? 'on' : '');
+            document.getElementById('net-latency').innerText = (data.latency || 0) + 'ms';
+            historyData = data.history || [];
+            if (data.netLogs) currentNetLogs = data.netLogs;
+            drawGraph();
+        }
+
+        if (data.type === 'init' || data.type === 'update_all') {
+            devices = Array.isArray(data.devices) ? data.devices : [];
+            tableNames = data.tableNames && typeof data.tableNames === 'object' ? data.tableNames : tableNames;
+            currentAlerts = Array.isArray(data.alerts) ? data.alerts : [];
+            if (data.type === 'init' && data.netConfig) {
+                const dnsInput = document.getElementById('net-dns');
+                const portInput = document.getElementById('net-port');
+                if (document.activeElement !== dnsInput) dnsInput.value = data.netConfig.dns || '';
+                if (document.activeElement !== portInput) portInput.value = data.netConfig.port || '';
+            }
+            if (data.netLogs) currentNetLogs = data.netLogs;
+            render();
+        }
+        if (data.type === 'device_updated') {
+            const idx = devices.findIndex(d => d.deviceId === data.device.deviceId);
+            if (idx !== -1) devices[idx] = data.device;
+            else devices.push(data.device);
+            scheduleRender();
+        }
+        if (data.type === 'alerts_updated') {
+            currentAlerts = data.alerts || [];
+            scheduleRender();
+        }
+        if (data.type === 'alerts_cleared') {
+            currentAlerts = [];
+            scheduleRender();
+        }
+        if (data.type === 'slot_assigned') {
+            const dev = devices.find(d => d.deviceId === data.deviceId);
+            if (dev) {
+                devices.forEach(d => { if (d.slotId === data.slotId) d.slotId = null; });
+                dev.slotId = data.slotId;
+                scheduleRender();
+            }
+        }
+        if (data.type === 'seat_layout_updated') {
+            const dev = devices.find(d => d.deviceId === data.deviceId);
+            if (dev) {
+                dev.seatLayout = { ...dev.seatLayout, ...data.seatLayout };
+                scheduleRender();
+            }
+        }
+        if (data.type === 'table_name_updated') {
+            tableNames = data.tableNames || tableNames;
+            scheduleRender();
+        }
+    } catch (err) {
+        console.error("Decoyment Error:", err);
+        if (!decryptErrorShown) {
+            decryptErrorShown = true;
+            const banner = document.createElement('div');
+            banner.id = 'ws-decrypt-err';
+            banner.style.cssText = 'position:fixed;top:70px;left:50%;transform:translateX(-50%);background:var(--warn);color:#000;padding:10px 20px;border-radius:6px;font-size:12px;z-index:9998;box-shadow:0 4px 12px rgba(0,0,0,0.4);';
+            banner.textContent = 'Lỗi giải mã dữ liệu. Kiểm tra SECRET_KEY trong server/.env phải trùng với key trong trang (MonitorTournamentSecretKey2026!).';
+            document.body.appendChild(banner);
+            setTimeout(() => banner.remove(), 8000);
+        }
+    }
+    }
+
+    function render() {
+        for (let tid in tableNames) {
+            const el = document.getElementById(`name-${tid}`);
+            if (el && document.activeElement !== el) el.value = tableNames[tid];
+        }
+
+		const createCard = (d, onMap = false) => {
+		const isDisc = d.status === 'disconnected';
+		const isWarn = d.status === 'warning';
+		const rs = d.rssi || -100;
+		const rssiIcon = rs > -60 ? '🟢' : (rs > -80 ? '🟡' : '🔴');
+		const styleIfMap = onMap ? `left: ${d.seatLayout?.x || 0}px; top: ${d.seatLayout?.y || 0}px;` : '';
+        
+        // Icon FTP (thư mục) sẽ nhấp nháy / sáng liên tục nếu `isFtpOpen = true`
+        const ftpIcon = (!isDisc && d.isFtpOpen) 
+            ? `<span style="cursor:pointer; font-size:14px; margin-left:5px; animation: blink 1s infinite; pointer-events: auto;" onclick="openExplorer('${d.ipAddress}', '${d.deviceName}')" title="Mở File Upload">📁</span>` 
+            : `<span style="font-size:14px; margin-left:5px; opacity:0.1; pointer-events: none;" title="FTP Đang Đóng">📁</span>`;
+
+		return `
+			<div class="device-card ${d.status} ${isDisc ? 'status-disconnected' : ''} ${onMap ? 'on-map' : ''}" 
+				 style="${styleIfMap}"
+				 draggable="true" 
+				 ondragstart="startDrag(event, '${d.deviceId}', ${onMap})" ondragend="endDrag(event)">
+				
+				<div class="dev-info">
+					<span style="color:${isDisc ? '#666' : 'inherit'}; display:flex; align-items:center;">
+						${isDisc ? '[OFFLINE] ' : ''}${d.deviceName || d.deviceId.slice(-5)} ${ftpIcon}
+					</span>
+					<span>${isDisc ? '' : rssiIcon} ${isDisc ? '--' : (d.isCharging ? '⚡' : '') + d.battery + '%'}</span>
+				</div>
+				
+				<div class="dev-sub">
+					<span style="color:${isDisc ? '#444' : (isWarn ? 'var(--warn)' : 'inherit')}">
+						${isDisc ? 'Lost Signal' : (d.status === 'lock' ? 'SECURED' : (d.currentApp || 'IDLE'))}
+					</span>
+					<span class="ram-tag" style="${isDisc ? 'opacity: 0.3;' : ''}">
+						${isDisc ? 'N/A' : (d.ramInfo || '0/0')}
+					</span>
+				</div>
+			</div>`;
+	    };
+
+        const waiters = devices.filter(d => !d.slotId || d.slotId === 'wait')
+                       .sort((a, b) => {
+                           if (a.status === 'disconnected' && b.status !== 'disconnected') return 1;
+                           if (a.status !== 'disconnected' && b.status === 'disconnected') return -1;
+                           return 0;
+                       });
+		document.getElementById('waiting-list').innerHTML = waiters.map(d => createCard(d, false)).join('');
+		document.getElementById('count-wait').innerText = waiters.length;
+
+        const onMapDevices = devices.filter(d => d.slotId === 'arena');
+        // Render devices on map, keeping only the absolute label inside the arena
+        document.getElementById('monitor-arena').innerHTML = `
+            <div style="position: absolute; top: 10px; left: 10px; color: #555; font-size: 12px; pointer-events: none;">INTERACTIVE STAGE MAP (Kéo từ Waiting List qua đây. Cầm kéo để đổi vị trí)</div>
+            ${onMapDevices.map(d => createCard(d, true)).join('')}
+        `;
+
+// HIỂN THỊ LOGS
+		const logContainer = document.getElementById('log-list');
+if (currentAlerts && currentAlerts.length > 0) {
+    const groups = {};
+    currentAlerts.forEach(a => {
+        if (!groups[a.deviceId]) groups[a.deviceId] = { 
+            name: a.deviceName, 
+            logs: [], 
+            hasActive: false 
+        };
+        groups[a.deviceId].logs.push(a);
+        if (!a.endTime) groups[a.deviceId].hasActive = true;
+    });
+
+    // Sắp xếp: Ưu tiên thiết bị ĐANG VI PHẠM lên đầu danh sách log
+    const sortedGroups = Object.keys(groups).sort((a, b) => {
+        if (groups[a].hasActive && !groups[b].hasActive) return -1;
+        if (!groups[a].hasActive && groups[b].hasActive) return 1;
+        return 0;
+    });
+
+    logContainer.innerHTML = sortedGroups.map(did => {
+    const group = groups[did];
+    const isExpanded = (expandedDeviceId === did);
+    const sortedLogs = [...group.logs].reverse();
+    const isNetError = did === 'SYSTEM_NET';
+
+    // KIỂM TRA TRẠNG THÁI KẾT NỐI THỰC TẾ
+    const deviceData = devices.find(d => d.deviceId === did);
+    const isOffline = deviceData && deviceData.status === 'disconnected';
+
+    return `
+        <div class="log-group ${isOffline ? 'is-disconnected' : ''}" 
+             style="border-left: 3px solid ${group.hasActive ? 'var(--warn)' : 'var(--safe)'}">
+            <div class="log-header" onclick="toggleLog('${did}')" style="${isExpanded ? 'background:rgba(0,242,255,0.1);' : ''}">
+                <div>
+                    <span class="status-indicator" style="background: ${isOffline ? '#444' : (group.hasActive ? 'var(--warn)' : 'var(--safe)')}"></span>
+                    <b style="color: ${isOffline ? '#666' : (group.hasActive ? (isNetError ? '#ff003c' : 'var(--accent)') : (isExpanded ? '#fff' : '#888'))}">
+                        ${isOffline ? '[OFFLINE] ' : ''}${group.name}
+                    </b>
+                </div>
+                <span style="font-size:10px; color:#555;">${isExpanded ? '▲ Thu gọn' : '▼ Xem (' + group.logs.length + ')'}</span>
+            </div>
+            <div class="log-details ${isExpanded ? 'show' : ''}">
+                ${sortedLogs.map(l => `
+                    <div class="sub-log-item ${!l.endTime ? 'active-log' : ''}" style="color: ${!l.endTime ? '#fff' : '#777'}">
+                        <span style="max-width: 60%; overflow: hidden; text-overflow: ellipsis;">• ${l.app}</span>
+                        <span style="font-family: monospace;">${l.startTime} ${l.endTime ? '→ ' + l.endTime : '<b style="color:var(--warn)">● ACTIVE</b>'}</span>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}).join('');
+} else {
+    logContainer.innerHTML = `<div style="text-align:center; color:#333; padding:20px;">No logs recorded</div>`;
+}
+    }
+
+    // Canvas Draw
+    function drawGraph() {
+        if(!ctx) return;
+        ctx.clearRect(0,0,canvas.width, canvas.height);
+        ctx.strokeStyle = '#00f2ff'; ctx.lineWidth = 1.5; ctx.beginPath();
+        const step = canvas.width / 20;
+        historyData.forEach((v, i) => {
+            const x = i * step;
+            const y = canvas.height - (Math.min(v, 200) / 200 * canvas.height);
+            i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        });
+        ctx.stroke();
+    }
+
+    // Actions
+    function saveNet() {
+        const dns = document.getElementById('net-dns').value;
+        const port = document.getElementById('net-port').value;
+        safeSend({ type: 'update_net_config', dns, port });
+    }
+
+	function exportLogsToCSV() {
+		if (currentAlerts.length === 0 && currentNetLogs.length === 0) {
+			return alert("No data to export file.");
+		}
+		
+		// Header cho phần App Violation
+		let csv = "\uFEFF--- APP VIOLATION LOGS ---\n";
+		csv += "Start Time,End Time,Device Name,App Package\n";
+		currentAlerts.forEach(a => {
+			csv += `"${a.startTime}","${a.endTime || 'Playing...'}","${a.deviceName}","${a.app}"\n`;
+		});
+
+		const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+		const link = document.createElement("a");
+		const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+		
+		link.href = URL.createObjectURL(blob);
+		link.download = `Alan_System_Report_${timestamp}.csv`;
+		link.click();
+	}
+
+    // Drag & Drop
+    let dragOffset = {x: 0, y: 0};
+    function startDrag(e, did, onMap) { 
+        e.dataTransfer.setData("text/did", did); 
+        e.target.style.opacity = "0.4"; 
+        if (onMap) {
+            const rect = e.target.getBoundingClientRect();
+            dragOffset.x = e.clientX - rect.left;
+            dragOffset.y = e.clientY - rect.top;
+        } else {
+            dragOffset = {x: 60, y: 25}; // center the drop for new items
+        }
+    }
+    function endDrag(e) { e.target.style.opacity = "1"; }
+    
+    function allowDrop(e) { e.preventDefault(); }
+    
+    function handleDrop(e, sid) {
+        e.preventDefault();
+        const did = e.dataTransfer.getData("text/did");
+        if (did) {
+            safeSend({ type: 'assign_slot', deviceId: did, slotId: sid });
+        }
+    }
+
+    function handleDropArena(e) {
+        e.preventDefault();
+        const did = e.dataTransfer.getData("text/did");
+        if (!did) return;
+        
+        const arenaRect = document.getElementById('monitor-arena').getBoundingClientRect();
+        // Tính toán để thẻ rớt xuống nằm chính giữa con chuột trừ đi điểm lúc ta cầm click
+        let dropX = e.clientX - arenaRect.left - dragOffset.x;
+        let dropY = e.clientY - arenaRect.top - dragOffset.y;
+        
+        safeSend({ type: 'assign_slot', deviceId: did, slotId: 'arena' });
+        safeSend({ type: 'update_seat_layout', deviceId: did, seatLayout: { x: dropX, y: dropY } });
+        
+        // Optimistic UI Update for smoothness
+        const dev = devices.find(d => d.deviceId === did);
+        if (dev) { dev.slotId = 'arena'; dev.seatLayout = {x: dropX, y: dropY}; render(); }
+    }
+
+    function clearLogs() { if(confirm("Clear all log?")) safeSend({ type: 'clear_logs' }); }
+    
+    // --- FILE EXPLORER LOGIC ---
+    let explorerIp = '';
+    let currentPath = '/storage/emulated/0';
+    
+    function openExplorer(ip, devName) {
+        if (!ip) return alert("Không xác định được IP LAN của thiết bị này.");
+        explorerIp = ip;
+        currentPath = '/storage/emulated/0'; // Default
+        document.getElementById('file-modal').style.display = 'flex';
+        document.getElementById('explorer-device-label').textContent = `${devName || 'Device'} · ${ip}`;
+        document.getElementById('current-path').value = currentPath;
+        loadDir(currentPath);
+    }
+    
+    function closeExplorer() { document.getElementById('file-modal').style.display = 'none'; explorerIp = ''; }
+    
+    async function loadDir(path) {
+        currentPath = path;
+        document.getElementById('current-path').value = path;
+        const container = document.getElementById('explorer-content');
+        container.innerHTML = `<div class="explorer-status">Đang tải danh sách từ ${explorerIp}…</div>`;
+        
+        try {
+            const res = await fetch(`/api/adb/list?ip=${explorerIp}&dir=${encodeURIComponent(path)}`);
+            const files = await res.json();
+            
+            let html = '';
+            // Nút Go Back
+            if (path !== '/storage/emulated/0' && path.includes('/')) {
+                const parent = path.substring(0, path.lastIndexOf('/')) || '/storage/emulated/0';
+                html += `<div class="file-item file-item-back" onclick="loadDir('${parent}')">
+                            <div class="file-icon">↩</div><div class="file-name">Thư mục cha</div>
+                         </div>`;
+            }
+            
+            files.forEach(f => {
+                const icon = f.isDir ? '📁' : '📄';
+                const action = f.isDir ? `loadDir('${f.path}')` : `downloadFile('${f.path}')`;
+                html += `<div class="file-item" onclick="${action}">
+                            <div class="file-icon">${icon}</div><div class="file-name">${f.name}</div>
+                         </div>`;
+            });
+            container.innerHTML = html;
+        } catch(e) {
+            let hint = `Không thể kết nối ADB đến thiết bị (${e.message}).<br>Đang gọi tới IP: <b>${explorerIp}:5555</b><br><br>`;
+            hint += `Hãy chắc chắn điện thoại đã bật <b>Gỡ lỗi Không dây</b> hoặc đã được cắm cáp gõ lệnh <b>adb tcpip 5555</b>.`;
+            container.innerHTML = `<div class="explorer-status error">${hint}</div>`;
+        }
+    }
+    
+    function downloadFile(filePath) {
+        window.open(`/api/adb/download?ip=${explorerIp}&file=${encodeURIComponent(filePath)}`, '_blank');
+    }
+    
+    async function uploadFile(e) {
+        if (!e.target.files.length || !explorerIp) return;
+        const file = e.target.files[0];
+        
+        const form = new FormData();
+        form.append("file", file);
+        form.append("ip", explorerIp);
+        form.append("dir", currentPath);
+        
+        document.getElementById('current-path').value = "ĐANG UPLOAD: " + file.name + "...";
+        
+        try {
+            const res = await fetch(`/api/adb/upload`, {
+                method: 'POST',
+                body: form
+            });
+            const data = await res.json();
+            if(data.status === 'success') {
+                alert("Đã đẩy file thành công vào máy con!");
+                loadDir(currentPath); // Refresh
+            }
+        } catch(e) {
+            alert("Lỗi Upload: " + e.message);
+        }
+        document.getElementById('upload-input').value = '';
+    }
+
+    window.onload = () => {
+        canvas.width = 100;
+        canvas.height = 25;
+        connect();
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+## Node
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+## Env / secrets
+**/.env
+**/.env.*
+!.env.example
+
+## Runtime data
+server/data/
+server/db.json
+server/uploads/
+
+## Large / local-only bundles
+platform-tools/
+server.rar
+*.rar
+
+## Android signing keys (do NOT commit)
+key_apk/
+key_apk
+**/*.jks
+**/*.keystore
+**/*.p12
+**/*.pem
+
+## Android / Gradle
+**/.gradle/
+**/build/
+app/release/
+**/*.apk
+**/*.aab
+**/*.dm
+**/.idea/
+**/*.iml
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+
+## OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
