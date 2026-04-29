@@ -10,12 +10,19 @@ const WHITELIST_APPS = [
 //launcher samsung
     '',
 ];
+
+// Whitelist cho các app "overlay/pip" (draw-over) mà bạn muốn coi là hợp lệ.
+// Ví dụ: Samsung Deskin (tên package thực tế có thể là một biến thể khác tùy ROM/model).
+// Nếu overlay app thuộc danh sách này thì sẽ KHÔNG ghi vi phạm overlay.
+const OVERLAY_WHITELIST_APPS = [
+];
 const NOISE_PACKAGES = [
     // Chỉ lọc "noise" thực sự (System UI, dịch vụ nền).
     // Không lọc theo vendor/launcher (oppo/samsung/miui/...) vì khi người dùng thoát app whitelist
     // về launcher, ta muốn coi đó là "đã rời whitelist" => warning.
     'com.android.systemui',
     'com.google.android.permissioncontroller',
+	'com.asus.launcher',
     'com.android.permissioncontroller',
 ];
 
@@ -38,8 +45,13 @@ function normalizePackageName(input) {
  * Gắn xử lý WebSocket: init khi kết nối, xử lý message (hb, assign_slot, ...).
  * onViolation(deviceName, app) được gọi khi có vi phạm mới (để gửi Discord, v.v.).
  */
-function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, onViolation) {
-    wss.on('connection', (ws) => {
+function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, onViolation, getRoleFromReq, runNetworkCheckNow) {
+    const scheduleNetCheck = typeof runNetworkCheckNow === 'function' ? runNetworkCheckNow : () => {};
+    wss.on('connection', (ws, req) => {
+        const reqUrl = (req && req.url) ? String(req.url) : '/';
+        const isPlainWs = reqUrl.includes('enc=0');
+        ws._alanPlainWs = isPlainWs;
+        ws._alanRole = typeof getRoleFromReq === 'function' ? (getRoleFromReq(req) || null) : null;
         try {
             const initData = {
                 type: 'init',
@@ -47,16 +59,32 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
                 alerts: store.getAlerts(),
                 tableNames: store.getTableNames(),
                 netConfig: store.getNetConfig(),
+                netConfigRemote: store.getNetConfigRemote(),
             };
-            ws.send(encryptPayload(initData));
+            ws.send(isPlainWs ? JSON.stringify(initData) : encryptPayload(initData));
         } catch (e) {
             console.error('Init Send Error:', e);
         }
 
         ws.on('message', (message) => {
             try {
-                const data = decryptPayload(message.toString());
-                const timeNow = new Date().toLocaleTimeString('vi-VN');
+                const raw = message.toString();
+                const data = isPlainWs ? JSON.parse(raw) : decryptPayload(raw);
+                const writeTypes = new Set([
+                    'update_net_config',
+                    'update_net_config_remote',
+                    'update_net_config_both',
+                    'assign_slot',
+                    'update_seat_layout',
+                    'update_table_name',
+                    'backup_stage_state',
+                    'restore_stage_state',
+                    'clear_logs',
+                ]);
+                if (data && writeTypes.has(data.type) && ws._alanRole !== 'admin') {
+                    return;
+                }
+                const serverTimeNowStr = new Date().toLocaleTimeString('vi-VN');
                 let deviceInfo = null;
                 let alertsChanged = false;
 
@@ -71,22 +99,64 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
                         ramInfo,
                         rssi,
                         isFtpOpen,
+                        netTransport,
+                        dataBytesDelta,
+                        clientTimeMs,
+                        foregroundApp,
+                        overlayApp,
                         seatLayout: dataSeatLayout,
                     } = data;
-                    const rawApp = normalizePackageName(currentApp);
-                    const cleanApp = NOISE_PACKAGES.some((p) => rawApp.includes(p.toLowerCase())) ? '' : rawApp;
+
+                    const currentAppStr = typeof currentApp === 'string' ? currentApp : '';
+                    const hasOverlayPrefix = /^overlay\s*:\s*/i.test(currentAppStr);
+                    const overlayFallback = hasOverlayPrefix ? normalizePackageName(currentAppStr) : '';
+                    const foregroundFallback = !hasOverlayPrefix ? normalizePackageName(currentAppStr) : '';
+
+                    const rawForegroundApp = normalizePackageName(foregroundApp || foregroundFallback || '');
+                    const cleanForegroundApp = NOISE_PACKAGES.some((p) => rawForegroundApp.includes(p.toLowerCase())) ? '' : rawForegroundApp;
+
+                    const overlayNormalized = normalizePackageName(overlayApp || overlayFallback || '');
+                    const isOverlayViolation = !!overlayNormalized && !OVERLAY_WHITELIST_APPS.includes(overlayNormalized);
+
+                    const isForegroundViolation =
+                        cleanForegroundApp !== '' && !WHITELIST_APPS.includes(cleanForegroundApp);
+                    const isForegroundWhitelisted =
+                        cleanForegroundApp !== '' && WHITELIST_APPS.includes(cleanForegroundApp);
+
+                    // App keys dùng cho violation logs (có thể lưu đồng thời cả overlay và foreground).
+                    const overlayAppKey = isOverlayViolation ? `OVERLAY:${overlayNormalized}` : null;
+                    const foregroundAppKey = isForegroundViolation ? cleanForegroundApp : null;
+
+                    // Giá trị hiển thị cho dashboard:
+                    // - currentApp: foreground app (để operator biết user đang mở gì)
+                    // - overlayApp: chỉ hiển thị khi overlay thực sự bị coi là vi phạm
+                    const foregroundAppDisplay = cleanForegroundApp || '';
+                    const overlayAppDisplay = isOverlayViolation ? overlayNormalized : '';
+
+                    // Dùng timestamp từ client nếu có để ghi log đúng mốc thời gian
+                    const hbTimeNowStr =
+                        typeof clientTimeMs === 'number' ? new Date(clientTimeMs).toLocaleTimeString('vi-VN') : serverTimeNowStr;
 
                     let status = 'online';
                     if (!isScreenOn) status = 'lock';
-                    else if (cleanApp !== '' && !WHITELIST_APPS.includes(cleanApp)) status = 'warning';
+                    else if (isOverlayViolation && isForegroundViolation) status = 'warning'; // đỏ: cả 2 đều vi phạm
+                    else if (isOverlayViolation || isForegroundViolation) status = 'partial_warning'; // vàng: chỉ 1 trong 2 vi phạm
                     if (process.env.DEBUG_HB === '1') {
                         console.log('[HB]', deviceName || deviceId, {
                             currentApp,
-                            rawApp,
-                            cleanApp,
+                            rawForegroundApp,
+                            cleanForegroundApp,
+                            overlayApp,
+                            isOverlayViolation,
+                            isForegroundViolation,
+                            isForegroundWhitelisted,
+                            overlayAppKey,
+                            foregroundAppKey,
+                            foregroundAppDisplay,
+                            overlayAppDisplay,
                             isScreenOn,
                             status,
-                            isWhitelisted: cleanApp !== '' && WHITELIST_APPS.includes(cleanApp),
+                            isWhitelisted: !isOverlayViolation && isForegroundWhitelisted,
                         });
                     }
 
@@ -97,46 +167,126 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
 
                     const idx = store.devices.findIndex((d) => d.deviceId === deviceId);
                     const prev = idx !== -1 ? store.devices[idx] : null;
+                    const persisted = typeof store.getStageStateForDevice === 'function'
+                        ? store.getStageStateForDevice(deviceId)
+                        : null;
+
+                    const deltaBytes = typeof dataBytesDelta === 'number' ? dataBytesDelta : 0;
+                    const transport = typeof netTransport === 'string' ? netTransport : 'UNKNOWN';
+                    const prevMobileBytesTotal = prev && typeof prev.mobileBytesTotal === 'number' ? prev.mobileBytesTotal : 0;
+                    const prevWifiBytesTotal = prev && typeof prev.wifiBytesTotal === 'number' ? prev.wifiBytesTotal : 0;
+
+                    let mobileBytesTotal = prevMobileBytesTotal;
+                    let wifiBytesTotal = prevWifiBytesTotal;
+                    if (transport === 'CELLULAR') mobileBytesTotal += deltaBytes;
+                    if (transport === 'WIFI') wifiBytesTotal += deltaBytes;
+
                     deviceInfo = {
                         deviceId,
                         deviceName: deviceName || deviceId,
                         battery,
                         isCharging,
                         status,
-                        currentApp: cleanApp,
+                        currentApp: foregroundAppDisplay,
+                        overlayApp: overlayAppDisplay,
+                        foregroundViolation: isForegroundViolation,
+                        overlayViolation: isOverlayViolation,
+                        foregroundIsWhitelisted: isForegroundWhitelisted,
                         ramInfo: ramInfo || 'N/A',
                         rssi: rssi ?? -100,
                         isFtpOpen: isFtpOpen || false,
                         ipAddress,
-                        slotId: prev ? prev.slotId : null,
-                        seatLayout: { x: 0, y: 0, w: 1, ...(prev ? prev.seatLayout : {}), ...(dataSeatLayout || {}) },
+                        netTransport: transport,
+                        mobileBytesTotal,
+                        wifiBytesTotal,
+                        slotId: prev ? prev.slotId : (persisted ? persisted.slotId : null),
+                        seatLayout: {
+                            x: 0,
+                            y: 0,
+                            w: 1,
+                            ...(persisted && persisted.seatLayout ? persisted.seatLayout : {}),
+                            ...(prev ? prev.seatLayout : {}),
+                            ...(dataSeatLayout || {}),
+                        },
                         lastSeen: Date.now(),
                     };
                     if (idx !== -1) store.devices[idx] = deviceInfo;
                     else store.devices.push(deviceInfo);
 
                     const alerts = store.getAlerts();
-                    let openAlert = alerts.find((a) => a.deviceId === deviceId && !a.endTime);
+                    let modified = false;
 
-                    if (status === 'warning') {
-                        if (!openAlert || openAlert.app !== cleanApp) {
-                            if (openAlert) openAlert.endTime = timeNow;
-                            store.updateAlerts((arr) => {
-                                arr.push({
-                                    deviceId,
-                                    deviceName: deviceInfo.deviceName,
-                                    app: cleanApp,
-                                    startTime: timeNow,
-                                    endTime: null,
-                                });
-                            });
-                            alertsChanged = true;
-                            if (typeof onViolation === 'function') {
-                                onViolation(deviceInfo.deviceName, cleanApp);
+                    const overlayOpenAlerts = alerts.filter(
+                        (a) => a.deviceId === deviceId && !a.endTime && typeof a.app === 'string' && a.app.startsWith('OVERLAY:')
+                    );
+                    const fgOpenAlerts = alerts.filter(
+                        (a) =>
+                            a.deviceId === deviceId &&
+                            !a.endTime &&
+                            typeof a.app === 'string' &&
+                            !a.app.startsWith('OVERLAY:') &&
+                            !a.app.startsWith('DISCONNECTED')
+                    );
+
+                    // Overlay alerts
+                    if (!isOverlayViolation) {
+                        overlayOpenAlerts.forEach((a) => {
+                            a.endTime = hbTimeNowStr;
+                            modified = true;
+                        });
+                    } else {
+                        overlayOpenAlerts.forEach((a) => {
+                            if (a.app !== overlayAppKey) {
+                                a.endTime = hbTimeNowStr;
+                                modified = true;
                             }
+                        });
+                        const overlayAlreadyOpen = alerts.find(
+                            (a) => a.deviceId === deviceId && a.app === overlayAppKey && !a.endTime
+                        );
+                        if (!overlayAlreadyOpen) {
+                            alerts.push({
+                                deviceId,
+                                deviceName: deviceInfo.deviceName,
+                                app: overlayAppKey,
+                                startTime: hbTimeNowStr,
+                                endTime: null,
+                            });
+                            modified = true;
+                            if (typeof onViolation === 'function') onViolation(deviceInfo.deviceName, overlayAppKey);
                         }
-                    } else if (openAlert) {
-                        openAlert.endTime = timeNow;
+                    }
+
+                    // Foreground alerts
+                    if (!isForegroundViolation) {
+                        fgOpenAlerts.forEach((a) => {
+                            a.endTime = hbTimeNowStr;
+                            modified = true;
+                        });
+                    } else {
+                        fgOpenAlerts.forEach((a) => {
+                            if (a.app !== foregroundAppKey) {
+                                a.endTime = hbTimeNowStr;
+                                modified = true;
+                            }
+                        });
+                        const fgAlreadyOpen = alerts.find(
+                            (a) => a.deviceId === deviceId && a.app === foregroundAppKey && !a.endTime
+                        );
+                        if (!fgAlreadyOpen) {
+                            alerts.push({
+                                deviceId,
+                                deviceName: deviceInfo.deviceName,
+                                app: foregroundAppKey,
+                                startTime: hbTimeNowStr,
+                                endTime: null,
+                            });
+                            modified = true;
+                            if (typeof onViolation === 'function') onViolation(deviceInfo.deviceName, foregroundAppKey);
+                        }
+                    }
+
+                    if (modified) {
                         store.setAlerts(alerts);
                         alertsChanged = true;
                     }
@@ -146,9 +296,46 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
                     if (store.getAlerts().length !== beforeTrim) alertsChanged = true;
                 }
 
+                // Khi app reconnect sau disconnect tạm thời, nó có thể gửi 1 sự kiện tổng hợp.
+                if (data.type === 'net_event' && data.eventType === 'disconnect_summary') {
+                    const deviceId = data.deviceId;
+                    if (deviceId) {
+                        const deviceName = data.deviceName || deviceId;
+                        const intent = data.intent || 'unknown';
+                        const startMs = typeof data.startTimeMs === 'number' ? data.startTimeMs : Date.now();
+                        const endMs = typeof data.endTimeMs === 'number' ? data.endTimeMs : Date.now();
+
+                        store.updateAlerts((arr) => {
+                            arr.push({
+                                deviceId,
+                                deviceName,
+                                app: `DISCONNECTED (${intent})`,
+                                startTime: new Date(startMs).toLocaleTimeString('vi-VN'),
+                                endTime: new Date(endMs).toLocaleTimeString('vi-VN'),
+                            });
+                        });
+                        store.trimAlertsIfNeeded();
+                        broadcast.broadcast({ type: 'alerts_updated', alerts: store.getAlerts() });
+                    }
+                }
+
                 if (data.type === 'update_net_config') {
-                    const nc = { dns: data.dns, port: parseInt(data.port, 10) || 0 };
+                    const nc = { dns: String(data.dns || '').trim(), port: parseInt(data.port, 10) || 0 };
                     store.setNetConfig(nc);
+                    scheduleNetCheck();
+                }
+                if (data.type === 'update_net_config_remote') {
+                    const nc = { dns: String(data.dns || '').trim(), port: parseInt(data.port, 10) || 0 };
+                    store.setNetConfigRemote(nc);
+                    scheduleNetCheck();
+                }
+                if (data.type === 'update_net_config_both') {
+                    store.setNetConfig({ dns: String(data.dns || '').trim(), port: parseInt(data.port, 10) || 0 });
+                    store.setNetConfigRemote({
+                        dns: String(data.dnsRemote || '').trim(),
+                        port: parseInt(data.portRemote, 10) || 0,
+                    });
+                    scheduleNetCheck();
                 }
                 if (data.type === 'assign_slot') {
                     const dev = store.devices.find((d) => d.deviceId === data.deviceId);
@@ -161,6 +348,9 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
                             });
                         }
                         dev.slotId = data.slotId;
+                        if (typeof store.setDeviceSlot === 'function') {
+                            store.setDeviceSlot(data.deviceId, data.slotId);
+                        }
                         broadcast.broadcast({ type: 'slot_assigned', deviceId: data.deviceId, slotId: data.slotId });
                     }
                 }
@@ -168,6 +358,9 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
                     const dev = store.devices.find((d) => d.deviceId === data.deviceId);
                     if (dev) {
                         dev.seatLayout = { ...dev.seatLayout, ...data.seatLayout };
+                        if (typeof store.setDeviceSeatLayout === 'function') {
+                            store.setDeviceSeatLayout(data.deviceId, data.seatLayout);
+                        }
                         broadcast.broadcast({ type: 'seat_layout_updated', deviceId: data.deviceId, seatLayout: dev.seatLayout });
                     }
                 }
@@ -176,6 +369,31 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
                         names[data.tableId] = data.name;
                     });
                     broadcast.broadcast({ type: 'table_name_updated', tableNames: store.getTableNames() });
+                }
+                if (data.type === 'backup_stage_state') {
+                    if (typeof store.backupStageState === 'function') store.backupStageState();
+                }
+                if (data.type === 'restore_stage_state') {
+                    const ok = typeof store.restoreStageStateBackup === 'function' ? store.restoreStageStateBackup() : false;
+                    if (ok) {
+                        const s = typeof store.getStageState === 'function' ? store.getStageState() : {};
+                        store.devices.forEach((d) => {
+                            const st = s && d && d.deviceId ? s[d.deviceId] : null;
+                            if (!st) return;
+                            if (typeof st.slotId !== 'undefined') d.slotId = st.slotId;
+                            if (st.seatLayout && typeof st.seatLayout === 'object') {
+                                d.seatLayout = { ...(d.seatLayout || {}), ...st.seatLayout };
+                            }
+                        });
+                        broadcast.broadcast({
+                            type: 'update_all',
+                            devices: store.devices,
+                            alerts: store.getAlerts(),
+                            tableNames: store.getTableNames(),
+                            netConfig: store.getNetConfig(),
+                            netConfigRemote: store.getNetConfigRemote(),
+                        });
+                    }
                 }
                 if (data.type === 'clear_logs') {
                     store.setAlerts([]);

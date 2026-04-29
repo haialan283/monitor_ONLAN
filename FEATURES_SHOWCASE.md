@@ -61,7 +61,6 @@
 ## 6. Tích hợp Discord
 
 - **Webhook Discord:** Khi có **vi phạm** hoặc **mất kết nối**, server gửi embed vào kênh Discord (cấu hình `DISCORD_WEBHOOK_URL`). Trọng tài nhận thông báo ngay trên Discord.
-- **Bot thoại (TTS):** Chạy thêm `npm run voice-bot` (process riêng); bot vào kênh thoại Discord và **đọc TTS** khi có vi phạm/mất kết nối. Trọng tài không cần nhìn màn hình. Cấu hình: `DISCORD_BOT_TOKEN`, `DISCORD_VOICE_CHANNEL_ID`, `DISCORD_VOICE_BOT_URL` + secret từ server chính.
 
 ---
 
@@ -69,7 +68,7 @@
 
 - **Mã hóa WebSocket:** Payload AES-256-CBC (key từ `SECRET_KEY` env). App và server dùng chung secret.
 - **Bảo vệ dashboard:** `DASHBOARD_PIN` → đăng nhập bằng PIN; session cookie (ví dụ 24h).
-- **Cấu hình linh hoạt:** Port/Host, chu kỳ kiểm tra mạng (`NET_CHECK_INTERVAL_MS`), Discord webhook/bot qua biến môi trường hoặc `.env` (có `.env.example` mẫu).
+- **Cấu hình linh hoạt:** Port/Host, chu kỳ kiểm tra mạng (`NET_CHECK_INTERVAL_MS`), Discord webhook qua biến môi trường hoặc `.env` (có `.env.example` mẫu).
 
 ---
 

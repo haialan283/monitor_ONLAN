@@ -9,9 +9,12 @@ const WebSocket = require('ws');
 function createBroadcast(wss, encryptPayload, getState) {
     function broadcast(data) {
         try {
-            const msg = encryptPayload(data);
+            const msgEncrypted = encryptPayload(data);
+            const msgPlain = JSON.stringify(data);
             wss.clients.forEach(c => {
-                if (c.readyState === WebSocket.OPEN) c.send(msg);
+                if (c.readyState !== WebSocket.OPEN) return;
+                if (c._alanPlainWs === true) c.send(msgPlain);
+                else c.send(msgEncrypted);
             });
         } catch (e) {
             console.error('Broadcast encryption error:', e);

@@ -6,13 +6,13 @@ const express = require('express');
 const WebSocket = require('ws');
 
 const config = require('./config');
-const { requireAuth, loginRoute } = require('./middleware/auth');
+const { requireAuth, loginRoute, meRoute, getRoleFromRequest } = require('./middleware/auth');
 const { createCrypto } = require('./lib/crypto');
 const store = require('./db/store');
 const { createBroadcast } = require('./services/broadcast');
 const { startNetworkCheck } = require('./services/networkCheck');
 const { startDisconnectCheck } = require('./services/disconnectCheck');
-const { notifyViolation: discordNotifyViolation, notifyDisconnect: discordNotifyDisconnect, announceToVoiceBot } = require('./services/discordNotify');
+const { notifyViolation: discordNotifyViolation, notifyDisconnect: discordNotifyDisconnect } = require('./services/discordNotify');
 const { createAdbRouter } = require('./routes/adb');
 const { attachWsHandler } = require('./ws/handler');
 
@@ -36,30 +36,48 @@ const getState = () => ({
 const broadcast = createBroadcast(wss, encryptPayload, getState);
 
 app.use(express.json());
-app.post('/api/auth/login', loginRoute(config.getDashboardPin));
-app.use(requireAuth(config.getDashboardPin));
+app.post('/api/auth/login', loginRoute(config.getAuthPins));
+app.use(requireAuth(config.getAuthPins));
+app.get('/api/auth/me', meRoute(config.getAuthPins));
+
+app.get('/api/client-config', (_req, res) => {
+    res.json({
+        wsSecretKey: config.getSecretKey(),
+    });
+});
+
+const uploadDir = path.join(__dirname, 'uploads');
+// Prefer project-local platform-tools/adb.exe if present (portable host machines).
+const localAdb = path.join(__dirname, '..', 'platform-tools', 'adb.exe');
+const adbPath = process.env.ADB_PATH
+    ? process.env.ADB_PATH
+    : require('fs').existsSync(localAdb)
+        ? localAdb
+        : process.env.LOCALAPPDATA
+            ? path.join(process.env.LOCALAPPDATA, 'Android', 'Sdk', 'platform-tools', 'adb.exe')
+            : 'adb';
+app.use('/api/adb', createAdbRouter(uploadDir, adbPath));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-const uploadDir = path.join(__dirname, 'uploads');
-const adbPath = process.env.LOCALAPPDATA
-    ? path.join(process.env.LOCALAPPDATA, 'Android', 'Sdk', 'platform-tools', 'adb.exe')
-    : 'adb';
-app.use('/api/adb', createAdbRouter(uploadDir, adbPath));
-
 const discordWebhookUrl = config.getDiscordWebhookUrl();
-const voiceBotUrl = config.getDiscordVoiceBotUrl();
-const voiceBotSecret = config.getDiscordVoiceBotSecret();
 const onViolation = (deviceName, app) => {
     discordNotifyViolation(discordWebhookUrl, deviceName, app);
-    announceToVoiceBot(voiceBotUrl, voiceBotSecret, 'violation', deviceName, app);
 };
-attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, onViolation);
-
 const networkCheck = startNetworkCheck(store, broadcast);
+
+attachWsHandler(
+    wss,
+    store,
+    broadcast,
+    decryptPayload,
+    encryptPayload,
+    onViolation,
+    (req) => getRoleFromRequest(req, config.getAuthPins),
+    networkCheck.runNow
+);
 const onDisconnect = (deviceName) => {
     discordNotifyDisconnect(discordWebhookUrl, deviceName);
-    announceToVoiceBot(voiceBotUrl, voiceBotSecret, 'disconnect', deviceName);
 };
 const disconnectCheck = startDisconnectCheck(store, broadcast, onDisconnect);
 

@@ -2,12 +2,13 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>ALAN - MONITOR SYSTEM</title>
 	<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12,1L3,5v6c0,5.55 3.84,10.74 9,12c5.16-1.26 9-6.45 9-12V5L12,1z' fill='rgba(0,242,255,0.1)'/><path d='M12,1L3,5v6c0,5.55 3.84,10.74 9,12c5.16-1.26 9-6.45 9-12V5L12,1z' stroke='%2300F2FF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M7,12h2l1-3l2,6l1-3h2' stroke='%2300F2FF' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>">
     <style>
         :root {
             --bg: #050505; --panel: #0a0a0f; --accent: #00f2ff;
-            --safe: #39ff14; --warn: #ff003c; --lock: #444; --text: #00f2ff;
+            --safe: #39ff14; --warn: #ff003c; --midwarn: #ffc107; --lock: #444; --text: #00f2ff;
             --neon-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
         }
         * { box-sizing: border-box; font-family: 'Segoe UI', sans-serif; transition: 0.2s; }
@@ -22,37 +23,184 @@
 			flex-direction: column; 
 		}
 
-        header { 
-            height: 65px; background: #000; border-bottom: 2px solid var(--accent); 
-            display: flex; align-items: center; padding: 0 20px; justify-content: space-between;
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.3); z-index: 1000;
+        .site-header {
+            background: #000;
+            border-bottom: 2px solid var(--accent);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+            z-index: 1000;
+            flex-shrink: 0;
+            padding: 5px 14px 6px;
         }
-
-        .net-monitor { 
-            display: flex; align-items: center; gap: 8px; 
-            background: rgba(15, 15, 21, 0.8); padding: 5px 10px; border-radius: 5px; border: 1px solid #1a1a25; 
+        .header-main-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            flex-wrap: wrap;
+            min-width: 0;
         }
-        .net-monitor input { background: #000; border: 1px solid #333; color: var(--accent); font-size: 10px; padding: 4px; border-radius: 3px; outline: none; }
-        .dot { width: 8px; height: 8px; border-radius: 50%; background: #222; }
-        .dot.on { background: var(--safe); box-shadow: 0 0 10px var(--safe); }
-        #net-graph { width: 100px; height: 25px; background: rgba(0,0,0,0.5); border: 1px solid #111; }
-
-        .main-title { font-size: 18px; font-weight: 900; letter-spacing: 4px; color: var(--accent); text-shadow: var(--neon-shadow); text-transform: uppercase; }
+        .header-main-row .main-title {
+            font-size: 17px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: var(--accent);
+            text-shadow: var(--neon-shadow);
+            text-transform: uppercase;
+            flex: 1 1 160px;
+            min-width: 0;
+            text-align: center;
+            margin: 0;
+            line-height: 1.15;
+        }
+        /* Thanh NET nhỏ, cạnh DEVICES — ưu tiên vùng monitor devices */
+        .header-net-wrap {
+            flex: 0 1 auto;
+            min-width: 0;
+            max-width: min(400px, 38vw);
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+        .net-monitor-panel {
+            width: max-content;
+            min-width: min(100%, 360px);
+            background: rgba(12, 12, 18, 0.95);
+            padding: 3px 6px 4px;
+            border-radius: 4px;
+            border: 1px solid #1a1a25;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            box-sizing: border-box;
+        }
+        .net-monitor-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            padding-bottom: 2px;
+            margin-bottom: 1px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .net-monitor-panel-title {
+            font-size: 7px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            color: #555;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .net-monitor-set {
+            padding: 1px 7px !important;
+            font-size: 8px !important;
+            line-height: 1.3 !important;
+            flex-shrink: 0;
+        }
+        .net-monitor-row {
+            display: grid;
+            grid-template-columns: 26px minmax(56px, 1fr) 36px 20px 52px 34px;
+            align-items: center;
+            gap: 4px 5px;
+            min-width: 300px;
+            min-height: 20px;
+        }
+        .net-monitor-title {
+            font-size: 7px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            color: #5c5c6c;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+        .net-host-input {
+            min-width: 0;
+            width: 100%;
+            background: #000;
+            border: 1px solid #2a2a32;
+            color: var(--accent);
+            font-size: 9px;
+            padding: 2px 4px;
+            border-radius: 2px;
+            outline: none;
+            box-sizing: border-box;
+        }
+        .net-port-input {
+            width: 100%;
+            max-width: 36px;
+            justify-self: start;
+            background: #000;
+            border: 1px solid #2a2a32;
+            color: var(--accent);
+            font-size: 9px;
+            padding: 2px 3px;
+            border-radius: 2px;
+            outline: none;
+            box-sizing: border-box;
+        }
+        .net-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+        }
+        .net-latency-txt {
+            font-size: 8px;
+            font-family: monospace;
+            text-align: right;
+            color: #8aa;
+            white-space: nowrap;
+        }
+        .dot { width: 6px; height: 6px; border-radius: 50%; background: #222; }
+        .dot.on { background: var(--safe); box-shadow: 0 0 6px var(--safe); }
+        .net-graph-canvas {
+            width: 52px;
+            height: 14px;
+            background: rgba(0,0,0,0.45);
+            border: 1px solid #151518;
+            display: block;
+            justify-self: start;
+        }
 
 		#container { 
 			display: flex; 
 			flex: 1; 
+			min-height: 0;
 			overflow: hidden; 
 			width: 100%;
-			height: calc(100vh - 65px); /* Trừ đi chiều cao của header */
 		}
 
-        .side-panel { width: 260px; background: var(--panel); border-right: 1px solid #1a1a25; display: flex; flex-direction: column; transition: 0.3s; }
-        .side-panel.hidden { width: 0; opacity: 0; pointer-events: none; }
-        #log-panel { border-right: none; border-left: 1px solid #1a1a25; width: 320px; }
+        .side-panel {
+            width: 260px;
+            background: var(--panel);
+            border-right: 1px solid #1a1a25;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            transition: opacity 0.18s ease;
+        }
+        /* Thu gọn hẳn khỏi flex row — #log-panel có width cố định nên cần !important */
+        .side-panel.hidden {
+            width: 0 !important;
+            min-width: 0 !important;
+            max-width: 0 !important;
+            flex: 0 0 0 !important;
+            opacity: 0;
+            pointer-events: none;
+            overflow: hidden !important;
+            border-width: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        #log-panel {
+            border-right: none;
+            border-left: 1px solid #1a1a25;
+            width: 320px;
+            max-width: min(320px, 100%);
+        }
 		
 		#monitor-arena { 
-			flex: 1; 
+			flex: 1 1 0%;
+			min-width: 0;
 			display: block; 
 			position: relative;
 			overflow: hidden; 
@@ -60,6 +208,36 @@
 			background-image: radial-gradient(rgba(0, 242, 255, 0.1) 1px, transparent 1px);
 			background-size: 20px 20px; /* Grid background */
 		}
+        /* Màn nhỏ hoặc chiều cao ít (landscape phone): cuộn pan stage */
+        @media (max-width: 1024px), (max-height: 520px) {
+            #monitor-arena {
+                overflow: auto;
+                -webkit-overflow-scrolling: touch;
+                overscroll-behavior: contain;
+                touch-action: pan-x pan-y;
+            }
+        }
+        .arena-scroll-surface {
+            position: relative;
+            box-sizing: border-box;
+            background: #000;
+            background-image: radial-gradient(rgba(0, 242, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .arena-map-hint {
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            margin: 0;
+            padding: 8px 10px;
+            width: fit-content;
+            max-width: 100%;
+            font-size: 11px;
+            color: #666;
+            pointer-events: none;
+            background: linear-gradient(180deg, rgba(0,0,0,0.92) 60%, transparent);
+        }
 
 		.line-group { 
 			flex: 1; 
@@ -127,14 +305,31 @@
 		.log-group.is-disconnected .status-indicator {
 			background: #444 !important;
 		}
-		.log-header {
-			padding: 10px;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			cursor: pointer;
-			background: rgba(20, 20, 30, 0.9);
-		}
+        .log-panel-toolbar {
+            padding: 10px 12px;
+            font-size: 11px;
+            font-weight: bold;
+            border-bottom: 1px solid #222;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .log-panel-toolbar .log-panel-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .log-header {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: rgba(20, 20, 30, 0.9);
+        }
 		.log-header:hover { background: rgba(30, 30, 45, 1); }
 		.log-details {
 			display: none; /* Mặc định ẩn */
@@ -178,16 +373,17 @@
 			font-size: 10px; 
 			font-family: monospace;
 			background: rgba(0, 242, 255, 0.3);
-			padding: 10px 20px;
+			padding: 4px 8px;
 			border-radius: 2px;
-			margin-left: 30px; /* Khoảng cách với tên App */
+			margin-left: 10px; /* Khoảng cách với tên App */
 			margin-right:0px;
 		}
 		.device-card { 
-			width: 250px;
-			min-height: 55px;
+			width: 290px;
+			min-height: 72px;
 			margin: 0;
-			padding: 4px 8px;
+			padding: 6px 10px;
+            position: relative;
 			display: flex; 
 			flex-direction: column; 
 			justify-content: center;
@@ -197,7 +393,10 @@
 			border: 1px solid #1a1a25;
 			border-radius: 4px;
 			color: #fff;
+			box-shadow: 0 10px 26px rgba(0,0,0,0.35);
+			z-index: 1; /* Ensure cards render above team frames */
 		}
+        /* Push multi devices modal selection uses checkboxes, not inline badges. */
 		
 		/* Khi thẻ nằm trên bản đồ */
 		.device-card.on-map {
@@ -207,6 +406,7 @@
 
         .device-card.online { border-left: 4px solid var(--safe); color: var(--safe); background: rgba(0,120,60,0.3);}
         .device-card.warning { border-left: 4px solid var(--warn); color: #fff; background: rgba(255,0,60,0.2); animation: blink 0.6s infinite alternate; }
+        .device-card.partial_warning { border-left: 4px solid var(--midwarn); color: #000; background: rgba(255,193,7,0.2); }
         .device-card.lock { border-left: 4px solid var(--lock); color: #555; }
         /* CSS cho thiết bị mất kết nối */
 		.status-disconnected { 
@@ -225,12 +425,58 @@
 		}
         @keyframes blink { from { opacity: 1; } to { opacity: 0.5; } }
 
-        .dev-sub { font-size: 9px; opacity: 0.8; margin-top: 2px; pointer-events: none; display: flex;
-    justify-content: space-between; /* Đẩy App Name sang trái, RAM sang phải */
-    align-items: flex-start;}
+        .dev-sub { 
+            font-size: 9px; 
+            opacity: 0.86; 
+            margin-top: 2px; 
+            pointer-events: none; 
+            display: flex;
+            justify-content: space-between; /* Đẩy App Name sang trái, RAM sang phải */
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .dev-sub-main { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start; 
+            gap: 2px;
+            line-height: 1.2;
+        }
+        .dev-sub-top { 
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.2px;
+        }
+        .dev-sub-meta { 
+            font-size: 9.5px; 
+            opacity: 0.8; 
+            font-family: monospace; 
+            line-height: 1.1;
+        }
+        .dev-ip {
+            font-size: 9px;
+            font-family: monospace;
+            opacity: 0.78;
+            margin-top: 3px;
+            letter-spacing: 0.02em;
+        }
 
         .cyber-btn { background: #000; border: 1px solid var(--accent); color: var(--accent); padding: 5px 10px; cursor: pointer; font-size: 10px; font-weight: bold; }
         .cyber-btn:hover { background: var(--accent); color: #000; }
+        .header-action { padding: 3px 8px; font-size: 10px; }
+        .header-action.secondary { border-color: rgba(255,255,255,0.18); color: #cfcfcf; }
+        .header-action.secondary:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+        /* PUSH MULTI DEVICES MODAL - styling */
+        #push-multi-modal .push-multi-body { display: flex; flex-direction: column; gap: 12px; }
+        #push-multi-modal .push-multi-row { display: flex; gap: 10px; align-items: center; }
+        #push-multi-modal .push-multi-label { color:#aaa; font-size:10px; margin-bottom:4px; font-weight:700; }
+        #push-multi-modal .push-multi-panel { border:1px solid #1a1a28; border-radius:8px; padding:10px; background: rgba(0,0,0,0.25); }
+        #push-multi-modal .push-multi-subtitle { color:#aaa; font-size:10px; font-weight:700; margin-bottom:8px; }
+        #push-multi-modal .push-multi-checkbox-label { display:flex; align-items:center; gap:8px; margin-bottom:8px; font-size:10px; color:#b0b0b0; }
+        #push-multi-modal .push-multi-device-list { max-height: 320px; overflow:auto; display:flex; flex-direction:column; gap:8px; }
+        #push-multi-modal .push-multi-result { color:#b0b0b0; font-size:11px; }
+        #push-multi-modal .push-multi-footer { padding:12px 18px; display:flex; justify-content:flex-end; gap:10px; border-top:1px solid #1a1a28; background: rgba(0,0,0,0.35); border-radius:0 0 10px 10px; }
         
         .log-item {
             margin-bottom: 8px; padding: 10px; background: rgba(20, 20, 30, 0.6); 
@@ -316,48 +562,222 @@
         .file-item.file-item-back .file-name { color: var(--accent); }
         .explorer-status { grid-column: 1 / -1; padding: 12px; text-align: center; color: #888; font-size: 11px; }
         .explorer-status.error { color: var(--warn); text-align: left; }
+        .file-context-menu {
+            display: none;
+            position: fixed;
+            z-index: 10050;
+            min-width: 140px;
+            padding: 4px 0;
+            background: linear-gradient(180deg, #12121a 0%, #0a0a10 100%);
+            border: 1px solid rgba(0, 242, 255, 0.25);
+            border-radius: 6px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.55), 0 0 0 1px rgba(0,0,0,0.4);
+        }
+        .file-context-menu-item {
+            display: block;
+            width: 100%;
+            margin: 0;
+            padding: 10px 14px;
+            border: none;
+            background: transparent;
+            color: #e8e8e8;
+            font-size: 11px;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+        }
+        .file-context-menu-item:hover { background: rgba(255, 0, 60, 0.12); color: var(--warn); }
+        .file-context-menu-item:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
         .ws-status { font-size: 10px; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
         .ws-status-connecting { background: rgba(255,193,7,0.2); color: #ffc107; }
         .ws-status-connected { background: rgba(57,255,20,0.2); color: var(--safe); }
         .ws-status-disconnected { background: rgba(255,0,60,0.2); color: var(--warn); }
+
+        /* Header: không dùng gap cố định lớn trên màn nhỏ */
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: clamp(6px, 1.2vw, 14px);
+            flex-wrap: wrap;
+            min-width: 0;
+            flex: 0 1 auto;
+            max-width: min(100%, 520px);
+        }
+        .header-right { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; min-width: 0; }
+        .btn-toggle-label-long { display: inline; }
+        .btn-toggle-label-short { display: none; }
+        .btn-reopen-label-long { display: inline; }
+        .btn-reopen-label-short { display: none; }
+
+        @media (max-width: 1200px) {
+            .side-panel { width: 220px; }
+            #log-panel { width: 260px; }
+            .device-card { width: min(290px, 100%); max-width: 100%; }
+        }
+        @media (max-width: 900px) {
+            .site-header { padding: 6px 10px; }
+            .header-main-row .header-left {
+                order: 1;
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+            .header-net-wrap { max-width: 100%; }
+            .header-main-row .header-right { order: 2; flex: 1 1 auto; justify-content: flex-end; }
+            .header-main-row .main-title {
+                order: 3;
+                flex: 1 1 100%;
+                font-size: 13px;
+                letter-spacing: 2px;
+                margin-top: 2px;
+            }
+            .net-monitor-panel { min-width: 0; width: 100%; }
+            .net-monitor-row {
+                min-width: 0;
+                grid-template-columns: 26px minmax(0, 1fr) 36px 20px 48px 32px;
+            }
+            .net-graph-canvas { width: 48px; height: 13px; }
+            .net-latency-txt { font-size: 7px; }
+            .line-group { min-width: 140px; }
+            .walk-line { width: 22px; font-size: 10px; letter-spacing: 4px; }
+        }
+        @media (max-width: 640px) {
+            .btn-toggle-label-long { display: none; }
+            .btn-toggle-label-short { display: inline; }
+            .btn-reopen-label-long { display: none; }
+            .btn-reopen-label-short { display: inline; }
+            .cyber-btn { padding: 4px 8px; font-size: 9px; }
+            .header-action { padding: 3px 6px; font-size: 9px; }
+            #container {
+                flex-direction: column;
+                height: auto;
+                min-height: 0;
+                flex: 1;
+                overflow: auto;
+            }
+            #monitor-arena {
+                order: 1;
+                flex: 1;
+                flex-shrink: 0;
+                min-height: min(50vh, 420px);
+                width: 100%;
+                overflow: auto;
+                -webkit-overflow-scrolling: touch;
+                overscroll-behavior: contain;
+                touch-action: pan-x pan-y;
+            }
+            #sidebar {
+                order: 2;
+                width: 100% !important;
+                max-height: 36vh;
+                border-right: none;
+                border-bottom: 1px solid #1a1a25;
+            }
+            #log-panel {
+                order: 3;
+                width: 100% !important;
+                max-height: 40vh;
+                border-left: none;
+                border-top: 1px solid #1a1a25;
+            }
+            .side-panel.hidden {
+                display: none !important;
+                width: 0 !important;
+                max-height: 0 !important;
+                min-height: 0 !important;
+                overflow: hidden !important;
+                border: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .slot-row { min-height: 40px; }
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <div style="display:flex; gap:100px;">
-        <button class="cyber-btn" onclick="toggleSide('sidebar')">DEVICES</button>
-        <div class="net-monitor">
-            <input type="text" id="net-dns" placeholder="IP/Host">
-            <input type="number" id="net-port" placeholder="Port">
-            <button class="cyber-btn" style="padding: 2px 5px;" onclick="saveNet()">SET</button>
-            <div class="dot" id="dot-dns"></div>
-            <div class="dot" id="dot-tcp"></div>
-            <canvas id="net-graph"></canvas>
-            <span id="net-latency" style="font-size:9px; font-family:monospace;">0ms</span>
+<header class="site-header">
+    <div class="header-main-row">
+        <div class="header-left">
+            <button class="cyber-btn" onclick="toggleSide('sidebar')">DEVICES</button>
+            <div class="header-net-wrap">
+                <div class="net-monitor-panel" title="DNS + TCP từ máy chủ. SET = lưu cả hai dòng.">
+                    <div class="net-monitor-head">
+                        <span class="net-monitor-panel-title">Net</span>
+                        <button type="button" id="btn-set-net" class="cyber-btn net-monitor-set" onclick="saveNetAll()">SET</button>
+                    </div>
+                    <div class="net-monitor-row" title="Nội bộ / LAN">
+                        <span class="net-monitor-title">LAN</span>
+                        <input type="text" id="net-dns" class="net-host-input" placeholder="Host" autocomplete="off">
+                        <input type="number" id="net-port" class="net-port-input" placeholder="Pt" autocomplete="off">
+                        <div class="net-dots" title="DNS · TCP">
+                            <div class="dot" id="dot-dns"></div>
+                            <div class="dot" id="dot-tcp"></div>
+                        </div>
+                        <canvas id="net-graph" class="net-graph-canvas" aria-hidden="true"></canvas>
+                        <span id="net-latency" class="net-latency-txt">0ms</span>
+                    </div>
+                    <div class="net-monitor-row" title="Internet">
+                        <span class="net-monitor-title">WAN</span>
+                        <input type="text" id="net-dns-remote" class="net-host-input" placeholder="Host" autocomplete="off">
+                        <input type="number" id="net-port-remote" class="net-port-input" placeholder="Pt" autocomplete="off">
+                        <div class="net-dots" title="DNS · TCP">
+                            <div class="dot" id="dot-dns-remote"></div>
+                            <div class="dot" id="dot-tcp-remote"></div>
+                        </div>
+                        <canvas id="net-graph-remote" class="net-graph-canvas" aria-hidden="true"></canvas>
+                        <span id="net-latency-remote" class="net-latency-txt">—</span>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="main-title">ALAN MONITOR SYSTEM</div>
-    <div style="display:flex; align-items:center; gap:8px;">
-        <span id="ws-status" class="ws-status ws-status-connecting" title="Trạng thái kết nối">Đang kết nối…</span>
-        <button class="cyber-btn" onclick="exportLogsToCSV()">Download LOGS</button>
+        <h1 class="main-title">ALAN MONITOR SYSTEM</h1>
+        <div class="header-right">
+            <span id="ws-status" class="ws-status ws-status-connecting" title="Trạng thái kết nối">Đang kết nối…</span>
+            <span id="role-badge" class="ws-status ws-status-connected" title="Quyền tài khoản">admin</span>
+            <button id="btn-align-stage" class="cyber-btn header-action secondary" onclick="arrangeArenaGrid()" title="Xếp các máy trên Stage Map ngay hàng theo lưới">
+                Align Stage
+            </button>
+            <button id="btn-template-stage" class="cyber-btn header-action secondary" onclick="arrangeArenaTemplate()" title="Xếp Stage Map theo layout template (BH/TDE/ANT/TLE/...)">
+                Template Stage
+            </button>
+            <button type="button" id="btn-restore-stage" class="cyber-btn header-action secondary" onclick="restoreStageLayout()" title="Khôi phục Stage Map từ backup gần nhất">
+                Restore Stage
+            </button>
+            <button type="button" id="btn-reopen-violation-logs" class="cyber-btn header-action secondary" onclick="toggleSide('log-panel')" style="display:none" title="Hiện lại Violation Logs" aria-pressed="false">
+                <span class="btn-reopen-label-long">SHOW LOGS</span><span class="btn-reopen-label-short">LOGS</span>
+            </button>
+            <button class="cyber-btn" onclick="exportLogsToCSV()">Download LOGS</button>
+        </div>
     </div>
 </header>
 
 <div id="container">
     <div id="sidebar" class="side-panel">
-        <div style="padding:15px; font-size:11px; font-weight:bold; border-bottom:1px solid #222;">WAITING LIST (<span id="count-wait">0</span>)</div>
+        <div style="padding:15px; font-size:11px; font-weight:bold; border-bottom:1px solid #222; display:flex; align-items:center; justify-content:space-between; gap:12px;">
+            <span>WAITING LIST (<span id="count-wait">0</span>)</span>
+            <button id="btn-push-multi" class="cyber-btn header-action" onclick="openPushMultiModal()">Push multi devices</button>
+        </div>
         <div id="waiting-list" style="padding: 10px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; align-items: stretch; align-content: flex-start;" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'wait')"></div>
     </div>
 
     <div id="monitor-arena" ondrop="handleDropArena(event)" ondragover="allowDrop(event)">
-        <!-- Đã dọn dẹp các script vẽ Table tĩnh cũ để dùng vị trí tuyệt đối x, y -->
-        <div style="position: absolute; top: 10px; left: 10px; color: #555; font-size: 12px; pointer-events: none;">INTERACTIVE STAGE MAP (Kéo thả thiết bị vào đây)</div>
+        <!-- Nội dung stage do render() vẽ (có vùng cuộn trên màn nhỏ) -->
     </div>
 
     <div id="log-panel" class="side-panel">
-        <div style="padding:15px; font-size:11px; font-weight:bold; border-bottom:1px solid #222; display:flex; justify-content:space-between;">
-            VIOLATION LOGS <span onclick="clearLogs()" style="color:var(--warn); cursor:pointer;">CLEAR</span>
+        <div class="log-panel-toolbar">
+            <span>VIOLATION LOGS</span>
+            <div class="log-panel-actions">
+                <button type="button" id="btn-toggle-side-violations" class="cyber-btn header-action secondary" onclick="toggleSide('log-panel')" title="Ẩn Violation Logs — stage map rộng toàn phần còn lại" aria-pressed="true">
+                    <span class="btn-toggle-label-long">FULL STAGE</span><span class="btn-toggle-label-short">STAGE</span>
+                </button>
+                <span id="btn-clear-logs" onclick="clearLogs()" style="color:var(--warn); cursor:pointer; font-size:10px; font-weight:800;">CLEAR</span>
+            </div>
         </div>
         <div id="log-list" style="padding:10px; overflow-y:auto; flex: 1; font-size:10px;"></div>
     </div>
@@ -375,7 +795,7 @@
                 <input type="text" class="explorer-path" id="current-path" value="/storage/emulated/0" readonly title="Đường dẫn hiện tại">
             </div>
             <div class="explorer-actions">
-                <button class="upload-btn" onclick="document.getElementById('upload-input').click()">⬆ UPLOAD</button>
+                <button id="btn-upload-file" class="upload-btn" onclick="openUploadPicker()">⬆ UPLOAD</button>
                 <input type="file" id="upload-input" style="display:none" onchange="uploadFile(event)">
                 <button class="explorer-close-btn" onclick="closeExplorer()">CLOSE</button>
             </div>
@@ -383,23 +803,119 @@
         <div class="explorer-body" id="explorer-content">
             <!-- Files injected here -->
         </div>
+        <div id="file-context-menu" class="file-context-menu" aria-hidden="true">
+            <button type="button" class="file-context-menu-item" id="file-context-delete-btn">Xóa</button>
+        </div>
+    </div>
+</div>
+
+<!-- PUSH MULTI DEVICES MODAL - LAN DEPLOYER -->
+<div id="push-multi-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); backdrop-filter: blur(4px); z-index: 10000; justify-content:center; align-items:center;">
+    <div class="file-explorer" style="width:900px; max-width:95vw;">
+        <div class="explorer-header">
+            <div class="explorer-title-wrap">
+                <span class="explorer-badge">PUSH MULTI DEVICES</span>
+                <span class="explorer-device" id="push-multi-device-count">0 devices</span>
+            </div>
+            <div class="explorer-actions">
+                <button class="explorer-close-btn" onclick="closePushMultiModal()">CLOSE</button>
+            </div>
+        </div>
+        <div class="explorer-body push-multi-body">
+            <div class="push-multi-row">
+                <div style="flex:1; min-width: 240px;">
+                    <div class="push-multi-label">Target directory</div>
+                    <input type="text" class="explorer-path" id="push-multi-dir" value="/storage/emulated/0">
+                </div>
+                <div style="flex:1; min-width: 240px;">
+                    <div class="push-multi-label">Choose file (local)</div>
+                    <input type="file" id="push-multi-file" />
+                </div>
+            </div>
+
+            <div class="push-multi-panel">
+                <div class="push-multi-subtitle">Select devices</div>
+                <label class="push-multi-checkbox-label">
+                    <input id="push-multi-select-all" type="checkbox" onchange="togglePushMultiSelectAll(this.checked)" />
+                    Select all
+                </label>
+                <div id="push-multi-device-list" class="push-multi-device-list"></div>
+            </div>
+
+            <div id="push-multi-result" class="push-multi-result"></div>
+        </div>
+
+        <div class="push-multi-footer">
+            <button class="upload-btn" onclick="submitPushMulti()">SUBMIT</button>
+        </div>
     </div>
 </div>
 
 <script>
     // --- WEB CRYPTO API ---
+    let wsSecretKey = 'MonitorTournamentSecretKey2026!';
+    let wsCryptoKeyPromise = null;
+    const wsCanEncrypt = !!(window.crypto && window.crypto.subtle);
+
+    async function loadClientConfig() {
+        try {
+            const res = await fetch('/api/client-config', { cache: 'no-store' });
+            if (!res.ok) return;
+            const cfg = await res.json();
+            if (cfg && typeof cfg.wsSecretKey === 'string' && cfg.wsSecretKey.trim()) {
+                wsSecretKey = cfg.wsSecretKey.trim();
+                wsCryptoKeyPromise = null;
+            }
+        } catch (_) {
+            // Keep fallback key to avoid blocking UI if config API fails.
+        }
+    }
+
+    async function getWsCryptoKey() {
+        if (!wsCanEncrypt) {
+            throw new Error('WebCrypto not available in this browser/context');
+        }
+        if (!wsCryptoKeyPromise) {
+            const enc = new TextEncoder();
+            wsCryptoKeyPromise = crypto.subtle
+                .digest("SHA-256", enc.encode(wsSecretKey))
+                .then((keyMat) => crypto.subtle.importKey("raw", keyMat, { name: "AES-CBC" }, false, ["encrypt", "decrypt"]));
+        }
+        return wsCryptoKeyPromise;
+    }
+
+    function isEncryptedFrameText(text) {
+        if (typeof text !== 'string' || !text) return false;
+        const sep = text.indexOf(':');
+        if (sep <= 0) return false;
+        const ivHex = text.slice(0, sep);
+        const b64 = text.slice(sep + 1);
+        return /^[0-9a-fA-F]{32}$/.test(ivHex) && b64.length > 0;
+    }
+
+    async function wsDataToText(raw) {
+        if (typeof raw === 'string') return raw;
+        if (raw instanceof Blob) return await raw.text();
+        if (raw instanceof ArrayBuffer) return new TextDecoder().decode(new Uint8Array(raw));
+        return '';
+    }
+
     async function decryptPayload(text) {
-        const parts = text.split(':');
+        const payloadText = typeof text === 'string' ? text : '';
+        if (!isEncryptedFrameText(payloadText)) {
+            throw new Error('WS payload is not encrypted frame format');
+        }
+        const parts = payloadText.split(':');
         const ivHex = parts.shift();
         const b64 = parts.join(':');
-        const ivArray = new Uint8Array(ivHex.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+        const ivPairs = ivHex.match(/.{1,2}/g) || [];
+        if (!ivPairs.length) throw new Error('Invalid IV format');
+        const ivArray = new Uint8Array(ivPairs.map(byte => parseInt(byte, 16)));
         const encBytes = atob(b64);
         const encArray = new Uint8Array(encBytes.length);
         for(let i=0; i<encBytes.length; i++) encArray[i] = encBytes.charCodeAt(i);
 
-        const enc = new TextEncoder();
-        const keyMat = await crypto.subtle.digest("SHA-256", enc.encode("MonitorTournamentSecretKey2026!"));
-        const key = await crypto.subtle.importKey("raw", keyMat, { name: "AES-CBC" }, false, ["decrypt"]);
+        const key = await getWsCryptoKey();
         
         const dec = await crypto.subtle.decrypt({ name: "AES-CBC", iv: ivArray }, key, encArray);
         return JSON.parse(new TextDecoder().decode(dec));
@@ -408,8 +924,7 @@
     async function encryptPayload(dataObj) {
         const enc = new TextEncoder();
         const iv = crypto.getRandomValues(new Uint8Array(16));
-        const keyMat = await crypto.subtle.digest("SHA-256", enc.encode("MonitorTournamentSecretKey2026!"));
-        const key = await crypto.subtle.importKey("raw", keyMat, { name: "AES-CBC" }, false, ["encrypt"]);
+        const key = await getWsCryptoKey();
         
         const encrypted = await crypto.subtle.encrypt({ name: "AES-CBC", iv: iv }, key, enc.encode(JSON.stringify(dataObj)));
         const bin = String.fromCharCode.apply(null, new Uint8Array(encrypted));
@@ -423,6 +938,61 @@
     let reconnectDelay = 1000;
     const RECONNECT_MAX = 30000;
     let reconnectTimer = null;
+    let currentUserRole = 'admin';
+
+    function isEditorRole() {
+        return currentUserRole === 'admin';
+    }
+
+    function ensureEditor(actionName) {
+        if (isEditorRole()) return true;
+        alert(`Viewer mode: không được phép ${actionName || 'chỉnh sửa'}.`);
+        return false;
+    }
+
+    function applyRoleUi() {
+        const badge = document.getElementById('role-badge');
+        if (badge) {
+            badge.textContent = currentUserRole === 'admin' ? 'admin' : 'viewer';
+            badge.className = `ws-status ${currentUserRole === 'admin' ? 'ws-status-connected' : 'ws-status-connecting'}`;
+        }
+        const disabledIds = [
+            'btn-set-net',
+            'btn-align-stage',
+            'btn-template-stage',
+            'btn-restore-stage',
+            'btn-push-multi',
+            'btn-upload-file',
+        ];
+        disabledIds.forEach((id) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.disabled = !isEditorRole();
+            el.style.opacity = isEditorRole() ? '1' : '0.45';
+            el.style.cursor = isEditorRole() ? 'pointer' : 'not-allowed';
+        });
+        const clearEl = document.getElementById('btn-clear-logs');
+        if (clearEl) {
+            clearEl.style.pointerEvents = isEditorRole() ? 'auto' : 'none';
+            clearEl.style.opacity = isEditorRole() ? '1' : '0.45';
+        }
+    }
+
+    async function loadAuthMe() {
+        try {
+            const res = await fetch('/api/auth/me', { cache: 'no-store' });
+            if (res.status === 401) {
+                window.location.href = '/login.html';
+                return;
+            }
+            const data = await res.json().catch(() => ({}));
+            currentUserRole = data && data.role === 'viewer' ? 'viewer' : 'admin';
+        } catch (_) {
+            // Keep admin by default if auth endpoint is unavailable.
+            currentUserRole = 'admin';
+        }
+        applyRoleUi();
+    }
 
     function setWsStatus(state) {
         wsState = state;
@@ -435,7 +1005,9 @@
     function connect() {
         if (socket && socket.readyState === WebSocket.OPEN) return;
         setWsStatus(WS_STATUS.CONNECTING);
-        const url = (window.location.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host;
+        const wsProto = (window.location.protocol === 'https:' ? 'wss:' : 'ws:');
+        const modeQs = wsCanEncrypt ? '?enc=1' : '?enc=0';
+        const url = `${wsProto}//${window.location.host}/${modeQs}`;
         socket = new WebSocket(url);
 
         socket.onopen = () => {
@@ -459,57 +1031,363 @@
             console.warn('WebSocket chưa kết nối, bỏ qua gửi.');
             return;
         }
-        const payload = await encryptPayload(dataObj);
-        socket.send(payload);
+        if (wsCanEncrypt) {
+            const payload = await encryptPayload(dataObj);
+            socket.send(payload);
+        } else {
+            socket.send(JSON.stringify(dataObj));
+        }
+    }
+
+    async function safeSendEditor(dataObj, actionName) {
+        if (!ensureEditor(actionName)) return;
+        return safeSend(dataObj);
     }
 
 	let expandedDeviceId = null;
+    // Multi-select devices for batch ADB push (LAN Deployer).
+    // Dùng checkbox trong modal "push multi devices".
+    let selectedDeviceIds = new Set();
+
+    function getSelectableDeviceIds() {
+        const ids = [];
+        devices.forEach((d) => {
+            if (!d || !d.deviceId) return;
+            if (d.status === 'disconnected') return;
+            if (!d.ipAddress) return;
+            ids.push(d.deviceId);
+        });
+        return Array.from(new Set(ids));
+    }
+
+    function updatePushMultiSelectAllCheckbox() {
+        const el = document.getElementById('push-multi-select-all');
+        if (!el) return;
+        const allIds = getSelectableDeviceIds();
+        el.checked = allIds.length > 0 && allIds.every((id) => selectedDeviceIds.has(id));
+    }
+
+    function togglePushMultiSelectAll(checked) {
+        if (checked) {
+            selectedDeviceIds = new Set(getSelectableDeviceIds());
+        } else {
+            selectedDeviceIds.clear();
+        }
+        document.getElementById('push-multi-device-count').textContent = `${selectedDeviceIds.size} devices`;
+        renderPushMultiDeviceList();
+        updatePushMultiSelectAllCheckbox();
+    }
+
+    function openPushMultiModal() {
+        if (!ensureEditor('push file hàng loạt')) return;
+        selectedDeviceIds.clear();
+        document.getElementById('push-multi-result').textContent = '';
+        renderPushMultiDeviceList();
+        document.getElementById('push-multi-device-count').textContent = '0 devices';
+        const el = document.getElementById('push-multi-select-all');
+        if (el) el.checked = false;
+        document.getElementById('push-multi-modal').style.display = 'flex';
+        // reset file input
+        const f = document.getElementById('push-multi-file');
+        if (f) f.value = '';
+    }
+
+    function closePushMultiModal() {
+        document.getElementById('push-multi-modal').style.display = 'none';
+    }
+
+    function renderPushMultiDeviceList() {
+        const listEl = document.getElementById('push-multi-device-list');
+        if (!listEl) return;
+        listEl.innerHTML = '';
+
+        devices.forEach((d) => {
+            if (!d || !d.deviceId) return;
+            if (d.status === 'disconnected') return;
+            const ip = d.ipAddress || '';
+            const checked = selectedDeviceIds.has(d.deviceId);
+            const row = document.createElement('label');
+            row.style.display = 'flex';
+            row.style.alignItems = 'center';
+            row.style.gap = '10px';
+            row.style.padding = '6px 8px';
+            row.style.border = '1px solid rgba(255,255,255,0.06)';
+            row.style.borderRadius = '8px';
+            row.style.background = 'rgba(255,255,255,0.02)';
+
+            const cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.checked = checked;
+            cb.onchange = () => {
+                if (cb.checked) selectedDeviceIds.add(d.deviceId);
+                else selectedDeviceIds.delete(d.deviceId);
+                document.getElementById('push-multi-device-count').textContent =
+                    `${selectedDeviceIds.size} devices`;
+                updatePushMultiSelectAllCheckbox();
+            };
+
+            const meta = document.createElement('div');
+            meta.style.display = 'flex';
+            meta.style.flexDirection = 'column';
+            meta.style.gap = '1px';
+            const name = document.createElement('div');
+            name.textContent = d.deviceName || d.deviceId.slice(-6);
+            name.style.fontWeight = '700';
+            const ipEl = document.createElement('div');
+            ipEl.textContent = ip ? `IP: ${ip}` : 'IP: (unknown)';
+            ipEl.style.fontSize = '10px';
+            ipEl.style.opacity = '0.8';
+            meta.appendChild(name);
+            meta.appendChild(ipEl);
+
+            row.appendChild(cb);
+            row.appendChild(meta);
+            listEl.appendChild(row);
+        });
+        updatePushMultiSelectAllCheckbox();
+    }
+
+    async function submitPushMulti() {
+        if (!ensureEditor('push file hàng loạt')) return;
+        const fInput = document.getElementById('push-multi-file');
+        if (!fInput || !fInput.files || !fInput.files.length) {
+            alert('Please choose a local file first.');
+            return;
+        }
+        const file = fInput.files[0];
+        const dir = document.getElementById('push-multi-dir')?.value || '/storage/emulated/0';
+        if (!selectedDeviceIds.size) {
+            alert('No device selected.');
+            return;
+        }
+
+        const resultsEl = document.getElementById('push-multi-result');
+        resultsEl.textContent = 'Uploading...';
+        resultsEl.style.color = '#b0b0b0';
+
+        const results = [];
+        async function checkDirExists(ip, dir) {
+            try {
+                const r = await fetch(
+                    `/api/adb/check-dir?ip=${encodeURIComponent(ip)}&dir=${encodeURIComponent(dir)}`
+                );
+                if (!r.ok) return false;
+                const j = await r.json().catch(() => ({}));
+                return { exists: !!j.exists, detail: j.detail || j.error || '' };
+            } catch (_) {
+                return { exists: false, detail: '' };
+            }
+        }
+        // Tuần tự để tránh spam server/adb.
+        for (const did of selectedDeviceIds) {
+            const dev = devices.find((d) => d.deviceId === did);
+            const ip = dev?.ipAddress;
+            if (!dev || !ip) {
+                results.push({ deviceName: dev?.deviceName || did, ip: ip || '', ok: false, message: 'Missing IP' });
+                continue;
+            }
+
+            const dirRes = await checkDirExists(ip, dir);
+            if (!dirRes.exists) {
+                results.push({
+                    deviceName: dev.deviceName || did,
+                    ip,
+                    ok: false,
+                    message: `Directory not found: ${dir}${dirRes.detail ? ' (' + dirRes.detail + ')' : ''}`
+                });
+                continue;
+            }
+
+            const form = new FormData();
+            form.append('file', file);
+            form.append('ip', ip);
+            form.append('dir', dir);
+
+            try {
+                const res = await fetch('/api/adb/upload', { method: 'POST', body: form });
+                let data = {};
+                try { data = await res.json(); } catch (_) {}
+                if (res.ok && data.status === 'success') {
+                    results.push({ deviceName: dev.deviceName || did, ip, ok: true, message: 'success' });
+                } else {
+                    results.push({
+                        deviceName: dev.deviceName || did,
+                        ip,
+                        ok: false,
+                        message: data.message || data.error || `HTTP ${res.status}`
+                    });
+                }
+            } catch (e) {
+                results.push({ deviceName: dev.deviceName || did, ip, ok: false, message: e.message || String(e) });
+            }
+        }
+
+        const okCount = results.filter(r => r.ok).length;
+        resultsEl.innerHTML = `
+            <div style="font-weight:700; margin-bottom:6px;">Done: ${okCount}/${results.length} success</div>
+            ${results.map(r => `
+                <div style="margin:4px 0; font-size:11px; opacity:0.9; color:${r.ok ? '#39ff14' : 'var(--warn)'};">
+                    ${r.deviceName} (${r.ip || 'no-ip'}): ${r.ok ? 'OK' : r.message}
+                </div>
+            `).join('')}
+        `;
+    }
 
 	function toggleLog(did) {
 		expandedDeviceId = (expandedDeviceId === did) ? null : did;
 		render();
 	}
-    let devices = [], tableNames = {}, currentAlerts = [], currentNetLogs = [], historyData = [];
-    const canvas = document.getElementById('net-graph');
-    const ctx = canvas.getContext('2d');
+    let devices = [], tableNames = {}, currentAlerts = [], currentNetLogs = [], historyData = [], historyDataRemote = [];
 
-    function toggleSide(id) { document.getElementById(id).classList.toggle('hidden'); }
+    function csvEscapeCell(val) {
+        const s = val == null ? '' : String(val);
+        if (/[",\n\r]/.test(s)) return `"${s.replace(/"/g, '""')}"`;
+        return s;
+    }
+
+    function escapeHtml(s) {
+        if (s == null) return '';
+        return String(s)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    // Stage map transform (fit + center cards in one view)
+    let arenaTransform = { scale: 1, tx: 0, ty: 0 };
+    let stageTemplateCache = null;
+
+    const canvas = document.getElementById('net-graph');
+    const ctx = canvas && canvas.getContext('2d');
+    const canvasRemote = document.getElementById('net-graph-remote');
+    const ctxRemote = canvasRemote && canvasRemote.getContext('2d');
+
+    function syncLogPanelToggleButton() {
+        const btn = document.getElementById('btn-toggle-side-violations');
+        const reopen = document.getElementById('btn-reopen-violation-logs');
+        const panel = document.getElementById('log-panel');
+        if (!panel) return;
+        const logsVisible = !panel.classList.contains('hidden');
+        if (btn) {
+            btn.setAttribute('aria-pressed', logsVisible ? 'true' : 'false');
+            const longEl = btn.querySelector('.btn-toggle-label-long');
+            const shortEl = btn.querySelector('.btn-toggle-label-short');
+            if (longEl && shortEl) {
+                longEl.textContent = 'FULL STAGE';
+                shortEl.textContent = 'STAGE';
+            }
+            btn.title = 'Ẩn Violation Logs — stage map dùng hết chiều ngang còn lại';
+        }
+        if (reopen) {
+            reopen.style.display = logsVisible ? 'none' : '';
+            reopen.setAttribute('aria-pressed', logsVisible ? 'false' : 'true');
+            reopen.title = 'Hiện lại Violation Logs';
+        }
+    }
+
+    function toggleSide(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.toggle('hidden');
+        if (id === 'log-panel') syncLogPanelToggleButton();
+        // Refit stage immediately when panels change width
+        scheduleRender();
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                scheduleRender();
+            });
+        });
+    }
 
     let renderTimer = null;
     function scheduleRender() {
         if (renderTimer) clearTimeout(renderTimer);
-        renderTimer = setTimeout(function() { renderTimer = null; render(); }, 150);
+        renderTimer = setTimeout(function() {
+            renderTimer = null;
+            render();
+        }, 150);
     }
 
     let decryptErrorShown = false;
     async function onWsMessage(e) {
-    if (!e.data || e.data === "undefined") return;
+    const rawText = await wsDataToText(e && e.data);
+    if (!rawText || rawText === "undefined") return;
     try {
-        const data = await decryptPayload(e.data);
+        let data;
+        if (wsCanEncrypt) {
+            try {
+                data = await decryptPayload(rawText);
+            } catch (firstErr) {
+                // Key may have changed on server; reload runtime config then retry once.
+                await loadClientConfig();
+                wsCryptoKeyPromise = null;
+                data = await decryptPayload(rawText);
+            }
+        } else {
+            data = JSON.parse(rawText);
+        }
         if (decryptErrorShown && document.getElementById('ws-decrypt-err')) {
             document.getElementById('ws-decrypt-err').remove();
             decryptErrorShown = false;
         }
         if(data.type === 'net_status') {
-            document.getElementById('dot-dns').className = 'dot ' + (data.dns ? 'on' : '');
-            document.getElementById('dot-tcp').className = 'dot ' + (data.tcp ? 'on' : '');
+            const dDns = document.getElementById('dot-dns');
+            const dTcp = document.getElementById('dot-tcp');
+            if (dDns) {
+                dDns.className = 'dot ' + (data.dns ? 'on' : '');
+                dDns.title = data.dns
+                    ? 'DNS OK' + (data.dnsDetail ? ' — ' + data.dnsDetail : '')
+                    : 'DNS FAIL — ' + (data.dnsDetail || '(no detail)');
+            }
+            if (dTcp) {
+                dTcp.className = 'dot ' + (data.tcp ? 'on' : '');
+                dTcp.title = data.tcp
+                    ? 'TCP OK' + (data.tcpDetail ? ' — ' + data.tcpDetail : '')
+                    : 'TCP FAIL — ' + (data.tcpDetail || '(no detail)');
+            }
             document.getElementById('net-latency').innerText = (data.latency || 0) + 'ms';
             historyData = data.history || [];
             if (data.netLogs) currentNetLogs = data.netLogs;
-            drawGraph();
+            drawGraph(ctx, canvas, historyData);
+        }
+        if (data.type === 'net_status_remote') {
+            const dd = document.getElementById('dot-dns-remote');
+            const dt = document.getElementById('dot-tcp-remote');
+            const latEl = document.getElementById('net-latency-remote');
+            if (dd) {
+                dd.className = 'dot ' + (data.dns ? 'on' : '');
+                dd.title = data.dns
+                    ? 'DNS OK' + (data.dnsDetail ? ' — ' + data.dnsDetail : '')
+                    : 'DNS FAIL — ' + (data.dnsDetail || '(no detail)');
+            }
+            if (dt) {
+                dt.className = 'dot ' + (data.tcp ? 'on' : '');
+                dt.title = data.tcp
+                    ? 'TCP OK' + (data.tcpDetail ? ' — ' + data.tcpDetail : '')
+                    : 'TCP FAIL — ' + (data.tcpDetail || '(no detail)');
+            }
+            if (latEl) latEl.innerText = (data.latency || 0) + 'ms';
+            historyDataRemote = data.history || [];
+            drawGraph(ctxRemote, canvasRemote, historyDataRemote);
         }
 
         if (data.type === 'init' || data.type === 'update_all') {
             devices = Array.isArray(data.devices) ? data.devices : [];
             tableNames = data.tableNames && typeof data.tableNames === 'object' ? data.tableNames : tableNames;
             currentAlerts = Array.isArray(data.alerts) ? data.alerts : [];
-            if (data.type === 'init' && data.netConfig) {
+            if ((data.type === 'init' || data.type === 'update_all') && data.netConfig) {
                 const dnsInput = document.getElementById('net-dns');
                 const portInput = document.getElementById('net-port');
-                if (document.activeElement !== dnsInput) dnsInput.value = data.netConfig.dns || '';
-                if (document.activeElement !== portInput) portInput.value = data.netConfig.port || '';
+                if (dnsInput && document.activeElement !== dnsInput) dnsInput.value = data.netConfig.dns || '';
+                if (portInput && document.activeElement !== portInput) portInput.value = data.netConfig.port || '';
             }
-            if (data.netLogs) currentNetLogs = data.netLogs;
+            if ((data.type === 'init' || data.type === 'update_all') && data.netConfigRemote) {
+                const dnsR = document.getElementById('net-dns-remote');
+                const portR = document.getElementById('net-port-remote');
+                if (dnsR && document.activeElement !== dnsR) dnsR.value = data.netConfigRemote.dns || '';
+                if (portR && document.activeElement !== portR) portR.value = data.netConfigRemote.port || '';
+            }
             render();
         }
         if (data.type === 'device_updated') {
@@ -551,12 +1429,16 @@
         }
     } catch (err) {
         console.error("Decoyment Error:", err);
+        // Ignore non-encrypted WS frames quietly (proxy/noise), show banner only for real encrypted-frame decrypt failures.
+        if (wsCanEncrypt && !isEncryptedFrameText(rawText)) return;
         if (!decryptErrorShown) {
             decryptErrorShown = true;
             const banner = document.createElement('div');
             banner.id = 'ws-decrypt-err';
             banner.style.cssText = 'position:fixed;top:70px;left:50%;transform:translateX(-50%);background:var(--warn);color:#000;padding:10px 20px;border-radius:6px;font-size:12px;z-index:9998;box-shadow:0 4px 12px rgba(0,0,0,0.4);';
-            banner.textContent = 'Lỗi giải mã dữ liệu. Kiểm tra SECRET_KEY trong server/.env phải trùng với key trong trang (MonitorTournamentSecretKey2026!).';
+            banner.textContent = wsCanEncrypt
+                ? 'Lỗi giải mã dữ liệu. Hãy restart server để nạp SECRET_KEY mới và refresh trình duyệt (Ctrl+F5).'
+                : 'Trình duyệt không hỗ trợ WebCrypto trong ngữ cảnh hiện tại. Dashboard đã tự chuyển qua plaintext mode.';
             document.body.appendChild(banner);
             setTimeout(() => banner.remove(), 8000);
         }
@@ -569,11 +1451,31 @@
             if (el && document.activeElement !== el) el.value = tableNames[tid];
         }
 
-		const createCard = (d, onMap = false) => {
+		const createCard = (d, onMap = false, teamIndex = null, teamColor = null) => {
 		const isDisc = d.status === 'disconnected';
 		const isWarn = d.status === 'warning';
+        const isPartialWarn = d.status === 'partial_warning';
+        const overlayApp = d.overlayApp || '';
+        const fgApp = d.currentApp || 'IDLE';
 		const rs = typeof d.rssi === 'number' ? d.rssi : -100;
 		const rssiIcon = rs > -60 ? '🟢' : (rs > -80 ? '🟡' : '🔴');
+        const formatBytes = (bytes) => {
+            if (typeof bytes !== 'number' || !isFinite(bytes) || bytes < 0) return '0B';
+            const units = ['B','KB','MB','GB','TB'];
+            let v = bytes;
+            let i = 0;
+            while (v >= 1024 && i < units.length - 1) { v /= 1024; i++; }
+            const fixed = i <= 1 ? 0 : 1;
+            return `${v.toFixed(fixed)}${units[i]}`;
+        };
+        const netTransport = d.netTransport || 'UNKNOWN';
+        const mobileBytesTotal = d.mobileBytesTotal || 0;
+        const wifiBytesTotal = d.wifiBytesTotal || 0;
+        // Theo yêu cầu:
+        // netTransport=WIFI -> 🛜
+        // netTransport=CELLULAR -> 📶
+        // UNKNOWN -> ❓
+        const transportIcon = netTransport === 'WIFI' ? '🛜' : (netTransport === 'CELLULAR' ? '📶' : '❓');
 		const styleIfMap = onMap ? `left: ${d.seatLayout?.x || 0}px; top: ${d.seatLayout?.y || 0}px;` : '';
         
         // Icon FTP (thư mục) sẽ nhấp nháy / sáng liên tục nếu `isFtpOpen = true`
@@ -590,6 +1492,7 @@
 				<div class="dev-info">
 					<span style="color:${isDisc ? '#666' : 'inherit'}; display:flex; align-items:center;">
 						${isDisc ? '[OFFLINE] ' : ''}${d.deviceName || d.deviceId.slice(-5)} ${ftpIcon}
+                        ${isDisc ? '' : `<span style="margin-left:6px; font-size:12px; opacity:0.9;" title="netTransport=${netTransport}\nwifiBytesTotal=${formatBytes(wifiBytesTotal)}\nmobileBytesTotal=${formatBytes(mobileBytesTotal)}">${transportIcon}</span>`}
 					</span>
 					<span>
                         ${isDisc ? '' : `${rssiIcon} ${rs}dBm`}
@@ -599,8 +1502,16 @@
 				</div>
 				
 				<div class="dev-sub">
-					<span style="color:${isDisc ? '#444' : (isWarn ? 'var(--warn)' : 'inherit')}">
-						${isDisc ? 'Lost Signal' : (d.status === 'lock' ? 'SECURED' : (d.currentApp || 'IDLE'))}
+					<span class="dev-sub-main" style="color:${isDisc ? '#444' : (isWarn ? 'var(--warn)' : (isPartialWarn ? 'var(--midwarn)' : 'inherit'))};">
+						<span class="dev-sub-top" style="color:${isDisc ? '#444' : (isWarn ? (d.foregroundViolation ? 'var(--warn)' : 'var(--safe)') : 'inherit')};">
+							${isDisc ? 'Lost Signal' : (d.status === 'lock' ? 'SECURED' : fgApp)}
+						</span>
+						<span class="dev-sub-meta" style="color:${isDisc ? 'inherit' : (isWarn && overlayApp ? 'var(--warn)' : 'inherit')};">
+							${isDisc ? '' : (overlayApp ? `OVERLAY: ${overlayApp}` : `mobileBytesTotal: ${formatBytes(mobileBytesTotal)}`)}
+						</span>
+						<span class="dev-ip" style="color:${isDisc ? '#444' : '#9ad'};">
+							IP: ${isDisc ? '—' : escapeHtml(d.ipAddress || '—')}
+						</span>
 					</span>
 					<span class="ram-tag" style="${isDisc ? 'opacity: 0.3;' : ''}">
 						${isDisc ? 'N/A' : (d.ramInfo || '0/0')}
@@ -619,11 +1530,74 @@
 		document.getElementById('count-wait').innerText = waiters.length;
 
         const onMapDevices = devices.filter(d => d.slotId === 'arena');
-        // Render devices on map, keeping only the absolute label inside the arena
-        document.getElementById('monitor-arena').innerHTML = `
-            <div style="position: absolute; top: 10px; left: 10px; color: #555; font-size: 12px; pointer-events: none;">INTERACTIVE STAGE MAP (Kéo từ Waiting List qua đây. Cầm kéo để đổi vị trí)</div>
-            ${onMapDevices.map(d => createCard(d, true)).join('')}
-        `;
+        const arenaEl = document.getElementById('monitor-arena');
+        if (arenaEl) {
+            const rect = arenaEl.getBoundingClientRect();
+            const arenaW = Math.max(0, Math.floor(rect.width));
+            const arenaH = Math.max(0, Math.floor(rect.height));
+
+            const CARD_W = 290;
+            const CARD_H = 92;
+            const PAD = 18;
+
+            const placed = onMapDevices.filter(d => d && d.seatLayout && typeof d.seatLayout.x === 'number' && typeof d.seatLayout.y === 'number');
+            const narrowArena = arenaW < 768 || arenaH < 420;
+            const minScale = narrowArena ? 0.14 : 0.5;
+
+            let uw = 520;
+            let uh = 400;
+            if (placed.length) {
+                let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+                placed.forEach((d) => {
+                    const x = d.seatLayout.x;
+                    const y = d.seatLayout.y;
+                    minX = Math.min(minX, x);
+                    minY = Math.min(minY, y);
+                    maxX = Math.max(maxX, x + CARD_W);
+                    maxY = Math.max(maxY, y + CARD_H);
+                });
+                const contentW = Math.max(1, (maxX - minX));
+                const contentH = Math.max(1, (maxY - minY));
+                const scaleW = (arenaW - PAD * 2) / contentW;
+                const scaleH = (arenaH - PAD * 2) / contentH;
+                const scale = Math.max(minScale, Math.min(1, scaleW, scaleH));
+
+                const tx = Math.max(0, Math.floor((arenaW - contentW * scale) / 2 - minX * scale));
+                const ty = Math.max(0, Math.floor((arenaH - contentH * scale) / 2 - minY * scale));
+                arenaTransform = { scale, tx, ty };
+                uw = Math.max(400, Math.ceil(maxX + PAD));
+                uh = Math.max(320, Math.ceil(maxY + PAD));
+            } else {
+                arenaTransform = { scale: 1, tx: 0, ty: 0 };
+                if (onMapDevices.length) {
+                    uw = 480;
+                    uh = 360;
+                }
+            }
+
+            const s = arenaTransform.scale;
+            const tx = arenaTransform.tx;
+            const ty = arenaTransform.ty;
+
+            const bboxRight = tx + uw * s;
+            const bboxBottom = ty + uh * s;
+            const scrollW = Math.max(arenaW, Math.ceil(bboxRight + PAD));
+            const scrollH = Math.max(arenaH, Math.ceil(bboxBottom + PAD));
+
+            const hintHtml = '<div class="arena-map-hint">STAGE MAP · Kéo thả thiết bị · Cuộn để xem hết trên màn nhỏ</div>';
+
+            if (!onMapDevices.length) {
+                arenaEl.innerHTML = hintHtml + `<div class="arena-scroll-surface" style="min-width:100%;min-height:${Math.max(arenaH, 200)}px;"></div>`;
+            } else {
+                arenaEl.innerHTML = `
+                <div class="arena-scroll-surface" style="min-width:${scrollW}px;min-height:${scrollH}px;">
+                    ${hintHtml}
+                    <div id="arena-layer" style="position:relative;width:${uw}px;height:${uh}px;transform:translate(${tx}px,${ty}px) scale(${s});transform-origin:0 0;">
+                        ${onMapDevices.map(d => createCard(d, true)).join('')}
+                    </div>
+                </div>`;
+            }
+        }
 
 // HIỂN THỊ LOGS
 		const logContainer = document.getElementById('log-list');
@@ -650,7 +1624,7 @@ if (currentAlerts && currentAlerts.length > 0) {
     const group = groups[did];
     const isExpanded = (expandedDeviceId === did);
     const sortedLogs = [...group.logs].reverse();
-    const isNetError = did === 'SYSTEM_NET';
+    const isNetError = did === 'SYSTEM_NET' || did === 'SYSTEM_NET_REMOTE';
 
     // KIỂM TRA TRẠNG THÁI KẾT NỐI THỰC TẾ
     const deviceData = devices.find(d => d.deviceId === did);
@@ -669,12 +1643,26 @@ if (currentAlerts && currentAlerts.length > 0) {
                 <span style="font-size:10px; color:#555;">${isExpanded ? '▲ Thu gọn' : '▼ Xem (' + group.logs.length + ')'}</span>
             </div>
             <div class="log-details ${isExpanded ? 'show' : ''}">
-                ${sortedLogs.map(l => `
-                    <div class="sub-log-item ${!l.endTime ? 'active-log' : ''}" style="color: ${!l.endTime ? '#fff' : '#777'}">
-                        <span style="max-width: 60%; overflow: hidden; text-overflow: ellipsis;">• ${l.app}</span>
-                        <span style="font-family: monospace;">${l.startTime} ${l.endTime ? '→ ' + l.endTime : '<b style="color:var(--warn)">● ACTIVE</b>'}</span>
-                    </div>
-                `).join('')}
+                ${sortedLogs.map((l) => {
+                    const appEsc = escapeHtml(String(l.app || ''));
+                    const dnsD = l.netDnsDetail ? escapeHtml(String(l.netDnsDetail)) : '';
+                    const tcpD = l.netTcpDetail ? escapeHtml(String(l.netTcpDetail)) : '';
+                    const netBlock =
+                        dnsD || tcpD
+                            ? `<div style="margin-top:3px;font-size:8px;line-height:1.25;opacity:0.92;color:#8ac;word-break:break-word;">
+                                ${dnsD ? `<div><b style="color:#6cf">DNS</b> ${dnsD}</div>` : ''}
+                                ${tcpD ? `<div><b style="color:#6cf">TCP</b> ${tcpD}</div>` : ''}
+                               </div>`
+                            : '';
+                    return `
+                    <div class="sub-log-item ${!l.endTime ? 'active-log' : ''}" style="color: ${!l.endTime ? '#fff' : '#777'}; flex-direction: column; align-items: stretch;">
+                        <div style="display:flex; justify-content: space-between; gap: 6px; width: 100%;">
+                            <span style="max-width: 60%; overflow: hidden; text-overflow: ellipsis;">• ${appEsc}</span>
+                            <span style="font-family: monospace; flex-shrink: 0;">${l.startTime} ${l.endTime ? '→ ' + l.endTime : '<b style="color:var(--warn)">● ACTIVE</b>'}</span>
+                        </div>
+                        ${netBlock}
+                    </div>`;
+                }).join('')}
             </div>
         </div>
     `;
@@ -685,46 +1673,352 @@ if (currentAlerts && currentAlerts.length > 0) {
     }
 
     // Canvas Draw
-    function drawGraph() {
-        if(!ctx) return;
-        ctx.clearRect(0,0,canvas.width, canvas.height);
-        ctx.strokeStyle = '#00f2ff'; ctx.lineWidth = 1.5; ctx.beginPath();
-        const step = canvas.width / 20;
-        historyData.forEach((v, i) => {
+    function drawGraph(c, cv, history) {
+        if (!c || !cv) return;
+        const hist = Array.isArray(history) ? history : [];
+        c.clearRect(0, 0, cv.width, cv.height);
+        c.strokeStyle = '#00f2ff';
+        c.lineWidth = 1.5;
+        c.beginPath();
+        const step = cv.width / 20;
+        hist.forEach((v, i) => {
             const x = i * step;
-            const y = canvas.height - (Math.min(v, 200) / 200 * canvas.height);
-            i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            const y = cv.height - (Math.min(v, 200) / 200 * cv.height);
+            i === 0 ? c.moveTo(x, y) : c.lineTo(x, y);
         });
-        ctx.stroke();
+        c.stroke();
     }
 
-    // Actions
-    function saveNet() {
-        const dns = document.getElementById('net-dns').value;
-        const port = document.getElementById('net-port').value;
-        safeSend({ type: 'update_net_config', dns, port });
+    // Một SET → một tin WS lưu cả hai + server chạy đo mạng ngay (runNow)
+    async function saveNetAll() {
+        if (!ensureEditor('lưu cấu hình monitor mạng')) return;
+        await safeSend({
+            type: 'update_net_config_both',
+            dns: document.getElementById('net-dns').value,
+            port: document.getElementById('net-port').value,
+            dnsRemote: document.getElementById('net-dns-remote').value,
+            portRemote: document.getElementById('net-port-remote').value,
+        });
     }
 
 	function exportLogsToCSV() {
-		if (currentAlerts.length === 0 && currentNetLogs.length === 0) {
-			return alert("No data to export file.");
-		}
-		
-		// Header cho phần App Violation
-		let csv = "\uFEFF--- APP VIOLATION LOGS ---\n";
-		csv += "Start Time,End Time,Device Name,App Package\n";
-		currentAlerts.forEach(a => {
-			csv += `"${a.startTime}","${a.endTime || 'Playing...'}","${a.deviceName}","${a.app}"\n`;
-		});
+        const hasViolations = currentAlerts.length > 0;
+        const hasNetLogsLegacy = currentNetLogs.length > 0;
+        if (!hasViolations && !hasNetLogsLegacy) {
+            return alert('No data to export file.');
+        }
 
-		const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-		const link = document.createElement("a");
-		const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
-		
-		link.href = URL.createObjectURL(blob);
-		link.download = `Alan_System_Report_${timestamp}.csv`;
-		link.click();
-	}
+        const exportedAtIso = new Date().toISOString();
+        const exportedAtLocal = new Date().toLocaleString('vi-VN');
+        const lanHost = (document.getElementById('net-dns') && document.getElementById('net-dns').value) || '';
+        const lanPort = (document.getElementById('net-port') && document.getElementById('net-port').value) || '';
+        const wanHost = (document.getElementById('net-dns-remote') && document.getElementById('net-dns-remote').value) || '';
+        const wanPort = (document.getElementById('net-port-remote') && document.getElementById('net-port-remote').value) || '';
+
+        let csv = '\uFEFF';
+        csv += '--- EXPORT META ---\n';
+        csv += [
+            'Field',
+            'Value',
+        ].join(',') + '\n';
+        csv += [
+            csvEscapeCell('exportedAt_ISO_UTC'),
+            csvEscapeCell(exportedAtIso),
+        ].join(',') + '\n';
+        csv += [
+            csvEscapeCell('exportedAt_local_VI'),
+            csvEscapeCell(exportedAtLocal),
+        ].join(',') + '\n';
+        csv += [
+            csvEscapeCell('note'),
+            csvEscapeCell('TCP fail = server could not complete TCP connect to host:port (refused, timeout 300ms, etc.). See DNS_error_detail / TCP_error_detail in network alerts when server provides them.'),
+        ].join(',') + '\n';
+
+        csv += '\n--- CURRENT NET TARGETS (form in header at export) ---\n';
+        csv += [
+            'LAN_host',
+            'LAN_port',
+            'WAN_host',
+            'WAN_port',
+        ].join(',') + '\n';
+        csv += [
+            csvEscapeCell(lanHost),
+            csvEscapeCell(lanPort),
+            csvEscapeCell(wanHost),
+            csvEscapeCell(wanPort),
+        ].join(',') + '\n';
+
+        const netAlertIds = new Set(['SYSTEM_NET', 'SYSTEM_NET_REMOTE']);
+        const netAlerts = currentAlerts.filter((a) => a && netAlertIds.has(a.deviceId));
+        const deviceAlerts = currentAlerts.filter((a) => a && !netAlertIds.has(a.deviceId));
+
+        csv += '\n--- NETWORK MONITOR ALERTS (DNS/TCP from server log store) ---\n';
+        csv += [
+            'Start Time',
+            'End Time',
+            'deviceId',
+            'Label',
+            'DNS_OK',
+            'TCP_OK',
+            'DNS_error_detail',
+            'TCP_error_detail',
+            'summary_line',
+        ].join(',') + '\n';
+        netAlerts.forEach((a) => {
+            const dnsOk = a.netDnsOk !== undefined ? !!a.netDnsOk : String(a.app || '').includes('DNS:OK');
+            const tcpOk = a.netTcpOk !== undefined ? !!a.netTcpOk : String(a.app || '').includes('TCP:OK');
+            csv += [
+                csvEscapeCell(a.startTime),
+                csvEscapeCell(a.endTime || 'ACTIVE'),
+                csvEscapeCell(a.deviceId),
+                csvEscapeCell(a.deviceName),
+                csvEscapeCell(dnsOk ? 'yes' : 'no'),
+                csvEscapeCell(tcpOk ? 'yes' : 'no'),
+                csvEscapeCell(a.netDnsDetail || ''),
+                csvEscapeCell(a.netTcpDetail || ''),
+                csvEscapeCell(a.app),
+            ].join(',') + '\n';
+        });
+
+        csv += '\n--- DEVICE APP VIOLATION LOGS ---\n';
+        csv += [
+            'Start Time',
+            'End Time',
+            'Device Name',
+            'deviceId',
+            'App / detail',
+        ].join(',') + '\n';
+        deviceAlerts.forEach((a) => {
+            csv += [
+                csvEscapeCell(a.startTime),
+                csvEscapeCell(a.endTime || 'Playing...'),
+                csvEscapeCell(a.deviceName),
+                csvEscapeCell(a.deviceId),
+                csvEscapeCell(a.app),
+            ].join(',') + '\n';
+        });
+
+        if (hasNetLogsLegacy) {
+            csv += '\n--- LEGACY NET LOGS (if sent by server) ---\n';
+            csv += csvEscapeCell(JSON.stringify(currentNetLogs)) + '\n';
+        }
+
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+
+        link.href = URL.createObjectURL(blob);
+        link.download = `Alan_System_Report_${timestamp}.csv`;
+        link.click();
+    }
+
+    function arrangeArenaGrid() {
+        if (!ensureEditor('xếp stage')) return;
+        // Backup current layout so we can restore quickly if needed.
+        safeSendEditor({ type: 'backup_stage_state' }, 'backup stage');
+
+        const arena = document.getElementById('monitor-arena');
+        if (!arena) return;
+
+        const rect = arena.getBoundingClientRect();
+        const arenaW = Math.max(0, Math.floor(rect.width));
+        const arenaH = Math.max(0, Math.floor(rect.height));
+
+        // Must match card sizing used in CSS.
+        const CARD_W = 290;
+        const CARD_H = 92; // approximate rendered height (avoid overlap)
+        const GAP_X = 14;
+        const GAP_Y = 12;
+        const MARGIN_X = 16;
+        const MARGIN_Y = 16;
+
+        const onMap = devices.filter((d) => d && d.deviceId && d.slotId === 'arena');
+        if (!onMap.length) return;
+
+        // Sort stable: deviceName then deviceId.
+        const sorted = onMap.slice().sort((a, b) => {
+            const an = (a.deviceName || '').toLowerCase();
+            const bn = (b.deviceName || '').toLowerCase();
+            if (an !== bn) return an.localeCompare(bn);
+            return String(a.deviceId).localeCompare(String(b.deviceId));
+        });
+
+        const usableW = Math.max(0, arenaW - MARGIN_X * 2);
+        const cols = Math.max(1, Math.floor((usableW + GAP_X) / (CARD_W + GAP_X)));
+        const rows = Math.ceil(sorted.length / cols);
+
+        sorted.forEach((d, idx) => {
+            const col = idx % cols;
+            const row = Math.floor(idx / cols);
+            const x = MARGIN_X + col * (CARD_W + GAP_X);
+            const y = MARGIN_Y + row * (CARD_H + GAP_Y);
+
+            d.seatLayout = { ...(d.seatLayout || {}), x, y };
+            safeSendEditor({ type: 'update_seat_layout', deviceId: d.deviceId, seatLayout: { x, y } }, 'xếp vị trí stage');
+        });
+
+        render();
+    }
+
+    function arrangeArenaTemplate() {
+        if (!ensureEditor('xếp stage theo template')) return;
+        // Backup current layout so we can restore quickly if needed.
+        safeSendEditor({ type: 'backup_stage_state' }, 'backup stage');
+
+        const arena = document.getElementById('monitor-arena');
+        if (!arena) return;
+
+        const rect = arena.getBoundingClientRect();
+        const arenaW = Math.max(0, Math.floor(rect.width));
+        const arenaH = Math.max(0, Math.floor(rect.height));
+
+        function defaultTemplate() {
+            return {
+                card: { w: 250, h: 76 },
+                spacing: { gapY: 12, gapCol: 14, gapBlock: 120, gapRow: 28, marginX: 16, marginY: 16 },
+                seatOrder: [4, 3, 2, 1],
+                rows: [
+                    [['BH', 'TDE'], ['ANT', 'TLE']],
+                    [['BV', 'LG'], ['AMF', 'PTE']],
+                    [['NVT', 'WAGA'], ['FL', 'CTGM']],
+                ],
+            };
+        }
+
+        async function getStageTemplate() {
+            try {
+                const res = await fetch('/templates/stage-template.json', { cache: 'no-store' });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const j = await res.json();
+                stageTemplateCache = j;
+                return j;
+            } catch (_) {
+                stageTemplateCache = defaultTemplate();
+                return stageTemplateCache;
+            }
+        }
+
+        const onMap = devices.filter((d) => d && d.deviceId && d.slotId === 'arena');
+        if (!onMap.length) return;
+
+        // Index devices by normalized name => device
+        const byName = new Map();
+        onMap.forEach((d) => {
+            const n = (d.deviceName || '').toString().trim().toUpperCase();
+            if (!n) return;
+            if (!byName.has(n)) byName.set(n, d);
+        });
+
+        const applyTemplate = (tpl) => {
+            const CARD_W = tpl?.card?.w ?? 290;
+            const CARD_H = tpl?.card?.h ?? 92;
+            const GAP_Y = tpl?.spacing?.gapY ?? 12;
+            const GAP_COL = tpl?.spacing?.gapCol ?? 14;
+            const GAP_BLOCK = tpl?.spacing?.gapBlock ?? 120;
+            const GAP_ROW = tpl?.spacing?.gapRow ?? 28;
+            const MARGIN_X = tpl?.spacing?.marginX ?? 16;
+            const MARGIN_Y = tpl?.spacing?.marginY ?? 16;
+            const seatOrderDefault = Array.isArray(tpl?.seatOrder) && tpl.seatOrder.length ? tpl.seatOrder : [4, 3, 2, 1];
+            const seatOrderByPrefix = (tpl?.seatOrderByPrefix && typeof tpl.seatOrderByPrefix === 'object') ? tpl.seatOrderByPrefix : {};
+            const spacingByPrefix = (tpl?.spacingByPrefix && typeof tpl.spacingByPrefix === 'object') ? tpl.spacingByPrefix : {};
+            const templateRows = Array.isArray(tpl?.rows) && tpl.rows.length ? tpl.rows : defaultTemplate().rows;
+
+            const seatName = (prefix, seatKey) => {
+                const p = String(prefix).toUpperCase();
+                if (typeof seatKey === 'number') return `${p}${seatKey}`;
+                const raw = String(seatKey).trim().toUpperCase();
+                if (!raw) return p;
+                // Accept both styles in template:
+                // - suffix only: "HLAN" -> "WAGA.HLAN"
+                // - full name:   "WAGA.HLAN" (or "WAGA. HLAN") -> "WAGA.HLAN"
+                const normalizedDot = raw.replace(/\s*\.\s*/g, '.');
+                if (normalizedDot.startsWith(`${p}.`)) return normalizedDot;
+                if (normalizedDot.includes('.')) return normalizedDot;
+                return `${p}.${normalizedDot}`;
+            };
+
+            const blocksPerRow = Math.max(1, templateRows[0]?.length || 2);
+            const blockW = (CARD_W * 2) + GAP_COL;
+            const totalW = MARGIN_X * 2 + (blockW * blocksPerRow) + (GAP_BLOCK * (blocksPerRow - 1));
+
+            let seatsPerBlock = seatOrderDefault.length;
+            templateRows.forEach((rowBlocks) => {
+                rowBlocks.forEach((block) => {
+                    block.forEach((prefix) => {
+                        const arr = seatOrderByPrefix[String(prefix).toUpperCase()];
+                        const n = Array.isArray(arr) ? arr.length : seatOrderDefault.length;
+                        seatsPerBlock = Math.max(seatsPerBlock, n);
+                    });
+                });
+            });
+            const blockH = (CARD_H * seatsPerBlock) + (GAP_Y * Math.max(0, seatsPerBlock - 1));
+            const totalH = MARGIN_Y * 2 + (blockH * templateRows.length) + (GAP_ROW * Math.max(0, templateRows.length - 1));
+
+            const placements = [];
+
+            templateRows.forEach((rowBlocks, rowIndex) => {
+                const y0 = MARGIN_Y + rowIndex * (blockH + GAP_ROW);
+                rowBlocks.forEach((block, blockIndex) => {
+                    const x0 = MARGIN_X + blockIndex * (blockW + GAP_BLOCK);
+                    const leftPrefix = block[0];
+                    const rightPrefix = block[1];
+
+                    const leftOrder = Array.isArray(seatOrderByPrefix[String(leftPrefix).toUpperCase()])
+                        ? seatOrderByPrefix[String(leftPrefix).toUpperCase()]
+                        : seatOrderDefault;
+                    const rightOrder = Array.isArray(seatOrderByPrefix[String(rightPrefix).toUpperCase()])
+                        ? seatOrderByPrefix[String(rightPrefix).toUpperCase()]
+                        : seatOrderDefault;
+
+                    const maxSeats = Math.max(leftOrder.length, rightOrder.length);
+                    for (let seatIdx = 0; seatIdx < maxSeats; seatIdx++) {
+                        const leftSeatKey = leftOrder[seatIdx];
+                        const rightSeatKey = rightOrder[seatIdx];
+                        const leftGapY = spacingByPrefix[String(leftPrefix).toUpperCase()]?.gapY;
+                        const rightGapY = spacingByPrefix[String(rightPrefix).toUpperCase()]?.gapY;
+                        const gapYBlock = Math.min(
+                            GAP_Y,
+                            (typeof leftGapY === 'number' ? leftGapY : GAP_Y),
+                            (typeof rightGapY === 'number' ? rightGapY : GAP_Y)
+                        );
+                        const y = y0 + seatIdx * (CARD_H + gapYBlock);
+                        const nLeft = typeof leftSeatKey === 'undefined' ? null : seatName(leftPrefix, leftSeatKey);
+                        const nRight = typeof rightSeatKey === 'undefined' ? null : seatName(rightPrefix, rightSeatKey);
+
+                        // Fallback:
+                        // If template uses PREFIX.<suffix> but you haven't filled/renamed devices yet,
+                        // try PREFIX<1..4> (no dot) using default numeric seatOrder.
+                        const fallbackNum = typeof seatOrderDefault[seatIdx] === 'number' ? seatOrderDefault[seatIdx] : null;
+                        const fallbackLeftName =
+                            fallbackNum !== null ? `${String(leftPrefix).toUpperCase()}${fallbackNum}` : null;
+                        const fallbackRightName =
+                            fallbackNum !== null ? `${String(rightPrefix).toUpperCase()}${fallbackNum}` : null;
+
+                        const dLeft = nLeft ? (byName.get(nLeft) || (fallbackLeftName ? byName.get(fallbackLeftName) : null)) : null;
+                        const dRight = nRight ? (byName.get(nRight) || (fallbackRightName ? byName.get(fallbackRightName) : null)) : null;
+
+                        if (dLeft) placements.push({ d: dLeft, x: x0, y });
+                        if (dRight) placements.push({ d: dRight, x: x0 + CARD_W + GAP_COL, y });
+                    }
+                });
+            });
+
+            placements.forEach(({ d, x, y }) => {
+                d.seatLayout = { ...(d.seatLayout || {}), x, y };
+                safeSendEditor({ type: 'update_seat_layout', deviceId: d.deviceId, seatLayout: { x, y } }, 'xếp vị trí template');
+            });
+
+            render();
+        };
+
+        getStageTemplate().then(applyTemplate);
+    }
+
+    function restoreStageLayout() {
+        if (!ensureEditor('restore stage')) return;
+        if (!confirm('Restore Stage layout from last backup?')) return;
+        safeSendEditor({ type: 'restore_stage_state' }, 'restore stage');
+    }
 
     // Drag & Drop
     let dragOffset = {x: 0, y: 0};
@@ -735,50 +2029,184 @@ if (currentAlerts && currentAlerts.length > 0) {
         dragFromArena = !!onMap;
         if (onMap) {
             const rect = e.target.getBoundingClientRect();
-            dragOffset.x = e.clientX - rect.left;
-            dragOffset.y = e.clientY - rect.top;
+            // Convert to unscaled coordinates if arena is transformed.
+            const s = (arenaTransform && arenaTransform.scale) ? arenaTransform.scale : 1;
+            dragOffset.x = (e.clientX - rect.left) / s;
+            dragOffset.y = (e.clientY - rect.top) / s;
         } else {
             dragOffset = {x: 60, y: 25}; // center the drop for new items
         }
     }
-    function endDrag(e) { if (e && e.target) e.target.style.opacity = "1"; }
+    function endDrag(e) {
+        if (e && e.target) e.target.style.opacity = "1";
+    }
     
     function allowDrop(e) { e.preventDefault(); }
     
     function handleDrop(e, sid) {
+        if (!ensureEditor('gán slot')) return;
         e.preventDefault();
         const did = e.dataTransfer.getData("text/did");
         if (did) {
-            safeSend({ type: 'assign_slot', deviceId: did, slotId: sid });
+            safeSendEditor({ type: 'assign_slot', deviceId: did, slotId: sid }, 'gán thiết bị');
         }
     }
 
     function handleDropArena(e) {
+        if (!ensureEditor('kéo thả stage')) return;
         e.preventDefault();
         const did = e.dataTransfer.getData("text/did");
         if (!did) return;
         
-        const arenaRect = document.getElementById('monitor-arena').getBoundingClientRect();
-        // Tính toán để thẻ rớt xuống nằm chính giữa con chuột trừ đi điểm lúc ta cầm click
-        let dropX = e.clientX - arenaRect.left - dragOffset.x;
-        let dropY = e.clientY - arenaRect.top - dragOffset.y;
+        const arena = document.getElementById('monitor-arena');
+        const arenaRect = arena.getBoundingClientRect();
+        const s = (arenaTransform && arenaTransform.scale) ? arenaTransform.scale : 1;
+        const tx = (arenaTransform && typeof arenaTransform.tx === 'number') ? arenaTransform.tx : 0;
+        const ty = (arenaTransform && typeof arenaTransform.ty === 'number') ? arenaTransform.ty : 0;
+        const relX = e.clientX - arenaRect.left + (arena.scrollLeft || 0);
+        const relY = e.clientY - arenaRect.top + (arena.scrollTop || 0);
+        let dropX = (relX - tx) / s - dragOffset.x;
+        let dropY = (relY - ty) / s - dragOffset.y;
 
         // Nếu đang kéo từ arena → chỉ đổi vị trí, không gửi assign_slot nữa để tránh đụng thiết bị khác.
         if (!dragFromArena) {
-            safeSend({ type: 'assign_slot', deviceId: did, slotId: 'arena' });
+            safeSendEditor({ type: 'assign_slot', deviceId: did, slotId: 'arena' }, 'gán thiết bị vào stage');
         }
-        safeSend({ type: 'update_seat_layout', deviceId: did, seatLayout: { x: dropX, y: dropY } });
-        
+
+        // Single device move
+        safeSendEditor({ type: 'update_seat_layout', deviceId: did, seatLayout: { x: dropX, y: dropY } }, 'kéo thả vị trí');
+
         // Optimistic UI Update for smoothness
         const dev = devices.find(d => d.deviceId === did);
-        if (dev) { dev.slotId = 'arena'; dev.seatLayout = {x: dropX, y: dropY}; render(); }
+        if (dev) {
+            dev.slotId = 'arena';
+            dev.seatLayout = { x: dropX, y: dropY };
+            render();
+        }
     }
 
-    function clearLogs() { if(confirm("Clear all log?")) safeSend({ type: 'clear_logs' }); }
+    function clearLogs() {
+        if (!ensureEditor('xóa logs')) return;
+        // Một số trình duyệt/thiết lập kiosk chặn `prompt()` làm người dùng tưởng nút không hoạt động.
+        // Dùng 2 bước xác nhận bằng confirm() để đảm bảo chạy được.
+        if (!confirm("Clear all violation logs?")) return;
+        if (!confirm("Are you sure? This cannot be undone.")) return;
+        safeSendEditor({ type: 'clear_logs' }, 'xóa logs');
+    }
     
     // --- FILE EXPLORER LOGIC ---
     let explorerIp = '';
     let currentPath = '/storage/emulated/0';
+    let fileContextTarget = { path: '', isDir: false };
+
+    function hideFileContextMenu() {
+        const menu = document.getElementById('file-context-menu');
+        if (!menu) return;
+        menu.style.display = 'none';
+        menu.setAttribute('aria-hidden', 'true');
+        fileContextTarget = { path: '', isDir: false };
+    }
+
+    function showFileContextMenu(clientX, clientY, path, isDir) {
+        const menu = document.getElementById('file-context-menu');
+        if (!menu) return;
+        fileContextTarget = { path, isDir: !!isDir };
+        menu.style.display = 'block';
+        menu.style.left = '0px';
+        menu.style.top = '0px';
+        const w = menu.offsetWidth || 140;
+        const h = menu.offsetHeight || 40;
+        const maxX = Math.max(8, window.innerWidth - w - 8);
+        const maxY = Math.max(8, window.innerHeight - h - 8);
+        menu.style.left = Math.min(Math.max(8, clientX), maxX) + 'px';
+        menu.style.top = Math.min(Math.max(8, clientY), maxY) + 'px';
+        menu.setAttribute('aria-hidden', 'false');
+    }
+
+    async function deleteRemotePath(filePath, isDir) {
+        if (!ensureEditor('xóa file trên thiết bị')) return;
+        if (!explorerIp || !filePath) return;
+        const kind = isDir ? 'thư mục (gồm mọi nội dung bên trong)' : 'file';
+        if (!confirm(`Xóa ${kind} trên thiết bị?\n\n${filePath}`)) return;
+        try {
+            const res = await fetch('/api/adb/delete', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    ip: explorerIp,
+                    path: filePath,
+                    isDir: isDir ? '1' : '0',
+                }),
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok) throw new Error(data.message || data.error || `HTTP ${res.status}`);
+            loadDir(currentPath);
+        } catch (err) {
+            alert('Lỗi xóa: ' + (err.message || String(err)));
+        }
+    }
+
+    function setupFileExplorerInteractions() {
+        const body = document.getElementById('explorer-content');
+        const delBtn = document.getElementById('file-context-delete-btn');
+        if (!body) return;
+
+        body.addEventListener('click', (e) => {
+            const item = e.target.closest('.file-item');
+            if (!item) return;
+            hideFileContextMenu();
+            if (item.classList.contains('file-item-back')) {
+                const enc = item.getAttribute('data-parent');
+                if (enc) loadDir(decodeURIComponent(enc));
+                return;
+            }
+            const enc = item.getAttribute('data-path');
+            if (!enc) return;
+            const p = decodeURIComponent(enc);
+            const isDir = item.getAttribute('data-isdir') === '1';
+            if (isDir) loadDir(p);
+            else downloadFile(p);
+        });
+
+        body.addEventListener('contextmenu', (e) => {
+            const item = e.target.closest('.file-item');
+            if (!item || item.classList.contains('file-item-back')) {
+                hideFileContextMenu();
+                return;
+            }
+            const enc = item.getAttribute('data-path');
+            if (!enc) {
+                hideFileContextMenu();
+                return;
+            }
+            if (!isEditorRole()) return;
+            e.preventDefault();
+            e.stopPropagation();
+            const p = decodeURIComponent(enc);
+            const isDir = item.getAttribute('data-isdir') === '1';
+            showFileContextMenu(e.clientX, e.clientY, p, isDir);
+        });
+
+        if (delBtn) {
+            delBtn.addEventListener('click', (ev) => {
+                ev.stopPropagation();
+                const { path, isDir } = fileContextTarget;
+                hideFileContextMenu();
+                if (path) deleteRemotePath(path, isDir);
+            });
+        }
+
+        document.addEventListener('click', (e) => {
+            const menu = document.getElementById('file-context-menu');
+            if (!menu || menu.style.display === 'none') return;
+            if (e.target.closest && e.target.closest('#file-context-menu')) return;
+            hideFileContextMenu();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') hideFileContextMenu();
+        });
+        body.addEventListener('scroll', () => hideFileContextMenu(), { passive: true });
+    }
     
     function openExplorer(ip, devName) {
         if (!ip) return alert("Không xác định được IP LAN của thiết bị này.");
@@ -790,7 +2218,16 @@ if (currentAlerts && currentAlerts.length > 0) {
         loadDir(currentPath);
     }
     
-    function closeExplorer() { document.getElementById('file-modal').style.display = 'none'; explorerIp = ''; }
+    function closeExplorer() {
+        hideFileContextMenu();
+        document.getElementById('file-modal').style.display = 'none';
+        explorerIp = '';
+    }
+
+    function openUploadPicker() {
+        if (!ensureEditor('upload file')) return;
+        document.getElementById('upload-input').click();
+    }
     
     async function loadDir(path) {
         currentPath = path;
@@ -800,22 +2237,32 @@ if (currentAlerts && currentAlerts.length > 0) {
         
         try {
             const res = await fetch(`/api/adb/list?ip=${explorerIp}&dir=${encodeURIComponent(path)}`);
-            const files = await res.json();
+            if (!res.ok) {
+                const txt = await res.text().catch(() => '');
+                throw new Error(txt || `ADB list failed (HTTP ${res.status})`);
+            }
+            const files = await res.json().catch(async () => {
+                const txt = await res.text().catch(() => '');
+                throw new Error(txt || 'Invalid JSON from /api/adb/list');
+            });
             
             let html = '';
             // Nút Go Back
             if (path !== '/storage/emulated/0' && path.includes('/')) {
                 const parent = path.substring(0, path.lastIndexOf('/')) || '/storage/emulated/0';
-                html += `<div class="file-item file-item-back" onclick="loadDir('${parent}')">
+                const parentEnc = encodeURIComponent(parent);
+                html += `<div class="file-item file-item-back" data-parent="${parentEnc}">
                             <div class="file-icon">↩</div><div class="file-name">Thư mục cha</div>
                          </div>`;
             }
-            
-            files.forEach(f => {
+
+            files.forEach((f) => {
                 const icon = f.isDir ? '📁' : '📄';
-                const action = f.isDir ? `loadDir('${f.path}')` : `downloadFile('${f.path}')`;
-                html += `<div class="file-item" onclick="${action}">
-                            <div class="file-icon">${icon}</div><div class="file-name">${f.name}</div>
+                const pathEnc = encodeURIComponent(f.path);
+                const isDirAttr = f.isDir ? '1' : '0';
+                const safeName = escapeHtml(f.name);
+                html += `<div class="file-item" data-path="${pathEnc}" data-isdir="${isDirAttr}">
+                            <div class="file-icon">${icon}</div><div class="file-name">${safeName}</div>
                          </div>`;
             });
             container.innerHTML = html;
@@ -831,6 +2278,10 @@ if (currentAlerts && currentAlerts.length > 0) {
     }
     
     async function uploadFile(e) {
+        if (!ensureEditor('upload file')) {
+            document.getElementById('upload-input').value = '';
+            return;
+        }
         if (!e.target.files.length || !explorerIp) return;
         const file = e.target.files[0];
         
@@ -840,8 +2291,15 @@ if (currentAlerts && currentAlerts.length > 0) {
         form.append("dir", currentPath);
         
         document.getElementById('current-path').value = "ĐANG UPLOAD: " + file.name + "...";
-        
+
         try {
+            const r = await fetch(`/api/adb/check-dir?ip=${encodeURIComponent(explorerIp)}&dir=${encodeURIComponent(currentPath)}`);
+            if (!r.ok) throw new Error('check-dir failed');
+            const j = await r.json().catch(() => ({}));
+            if (!j.exists) {
+                alert(`Target directory not found on device: ${currentPath}${j.detail ? ' (' + j.detail + ')' : ''}`);
+                return;
+            }
             const res = await fetch(`/api/adb/upload`, {
                 method: 'POST',
                 body: form
@@ -857,9 +2315,19 @@ if (currentAlerts && currentAlerts.length > 0) {
         document.getElementById('upload-input').value = '';
     }
 
-    window.onload = () => {
-        canvas.width = 100;
-        canvas.height = 25;
+    window.onload = async () => {
+        if (canvas) {
+            canvas.width = 52;
+            canvas.height = 14;
+        }
+        if (canvasRemote) {
+            canvasRemote.width = 52;
+            canvasRemote.height = 14;
+        }
+        syncLogPanelToggleButton();
+        await loadAuthMe();
+        await loadClientConfig();
+        setupFileExplorerInteractions();
         connect();
     };
 </script>

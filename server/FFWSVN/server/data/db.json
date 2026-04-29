@@ -1,0 +1,4248 @@
+{
+  "alerts": [
+    {
+      "deviceId": "255400624da5252f",
+      "deviceName": "ANT.SANJIDZ",
+      "app": "com.asus.filemanager",
+      "startTime": "14:51:23",
+      "endTime": "14:51:39"
+    },
+    {
+      "deviceId": "0184fa724240e488",
+      "deviceName": "PTE.DQHMEO",
+      "app": "com.asus.launcher",
+      "startTime": "14:51:23",
+      "endTime": "14:51:25"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.asus.launcher",
+      "startTime": "14:51:25",
+      "endTime": "14:51:27"
+    },
+    {
+      "deviceId": "c1127d588b355e1d",
+      "deviceName": "NVT.SMILE",
+      "app": "com.asus.launcher",
+      "startTime": "14:51:25",
+      "endTime": "14:51:31"
+    },
+    {
+      "deviceId": "10cbd162ebc9023b",
+      "deviceName": "FL.ABCD",
+      "app": "com.asus.filemanager",
+      "startTime": "14:51:25",
+      "endTime": "14:51:47"
+    },
+    {
+      "deviceId": "59c699fc026cb30f",
+      "deviceName": "TLE.KAN",
+      "app": "com.asus.filemanager",
+      "startTime": "14:51:28",
+      "endTime": "14:51:40"
+    },
+    {
+      "deviceId": "8b78ee19caab4e41",
+      "deviceName": "WAGA.SHIRYU",
+      "app": "com.asus.launcher",
+      "startTime": "14:51:30",
+      "endTime": "14:51:32"
+    },
+    {
+      "deviceId": "8d27d59dc2100d05",
+      "deviceName": "BH.GONHEO",
+      "app": "com.asus.launcher",
+      "startTime": "14:51:37",
+      "endTime": "14:51:39"
+    },
+    {
+      "deviceId": "d23d0f2665ea742a",
+      "deviceName": "TLE.TULET",
+      "app": "com.asus.launcher",
+      "startTime": "14:51:41",
+      "endTime": "14:52:11"
+    },
+    {
+      "deviceId": "59c699fc026cb30f",
+      "deviceName": "TLE.KAN",
+      "app": "com.asus.launcher",
+      "startTime": "14:51:40",
+      "endTime": "14:52:08"
+    },
+    {
+      "deviceId": "255400624da5252f",
+      "deviceName": "ANT.SANJIDZ",
+      "app": "com.asus.filemanager",
+      "startTime": "14:51:41",
+      "endTime": "14:51:43"
+    },
+    {
+      "deviceId": "6184192dc850f63e",
+      "deviceName": "CTGM.PREPARE",
+      "app": "com.asus.launcher",
+      "startTime": "14:51:42",
+      "endTime": "14:51:44"
+    },
+    {
+      "deviceId": "10cbd162ebc9023b",
+      "deviceName": "FL.ABCD",
+      "app": "com.asus.launcher",
+      "startTime": "14:51:47",
+      "endTime": "14:51:49"
+    },
+    {
+      "deviceId": "51b088d697de86ae",
+      "deviceName": "ANT.JONAH",
+      "app": "com.asus.launcher",
+      "startTime": "14:51:51",
+      "endTime": "14:51:53"
+    },
+    {
+      "deviceId": "f925db01841209d9",
+      "deviceName": "CTGM.YANBIN",
+      "app": "com.asus.launcher",
+      "startTime": "14:51:52",
+      "endTime": "14:51:54"
+    },
+    {
+      "deviceId": "b413c862bc04d6b4",
+      "deviceName": "TLE.B52",
+      "app": "com.asus.launcher",
+      "startTime": "14:51:52",
+      "endTime": "14:51:54"
+    },
+    {
+      "deviceId": "7fe85f8ecc51454a",
+      "deviceName": "CTGM.HTHAT",
+      "app": "com.asus.launcher",
+      "startTime": "14:51:55",
+      "endTime": "14:51:57"
+    },
+    {
+      "deviceId": "69696feeb0bda6d3",
+      "deviceName": "TLE.NOBIZZ",
+      "app": "com.asus.launcher",
+      "startTime": "14:51:59",
+      "endTime": "14:52:01"
+    },
+    {
+      "deviceId": "cd7f7f093096f18e",
+      "deviceName": "ANT.KANZU",
+      "app": "com.asus.launcher",
+      "startTime": "14:52:01",
+      "endTime": "14:52:03"
+    },
+    {
+      "deviceId": "69696feeb0bda6d3",
+      "deviceName": "TLE.NOBIZZ",
+      "app": "com.asus.launcher",
+      "startTime": "14:52:03",
+      "endTime": "14:52:05"
+    },
+    {
+      "deviceId": "c1127d588b355e1d",
+      "deviceName": "NVT.SMILE",
+      "app": "com.asus.launcher",
+      "startTime": "14:52:03",
+      "endTime": "14:52:05"
+    },
+    {
+      "deviceId": "c1127d588b355e1d",
+      "deviceName": "NVT.SMILE",
+      "app": "com.android.settings",
+      "startTime": "14:52:05",
+      "endTime": "14:52:07"
+    },
+    {
+      "deviceId": "c1127d588b355e1d",
+      "deviceName": "NVT.SMILE",
+      "app": "com.google.android.gms",
+      "startTime": "14:52:07",
+      "endTime": "14:52:18"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.asus.launcher",
+      "startTime": "14:52:15",
+      "endTime": "14:52:21"
+    },
+    {
+      "deviceId": "ee46b1793835307d",
+      "deviceName": "FL.THEGOD",
+      "app": "com.asus.launcher",
+      "startTime": "14:52:17",
+      "endTime": "14:52:19"
+    },
+    {
+      "deviceId": "ee46b1793835307d",
+      "deviceName": "FL.THEGOD",
+      "app": "com.asus.filemanager",
+      "startTime": "14:52:19",
+      "endTime": "14:52:35"
+    },
+    {
+      "deviceId": "8d27d59dc2100d05",
+      "deviceName": "BH.GONHEO",
+      "app": "com.asus.launcher",
+      "startTime": "14:52:23",
+      "endTime": "14:52:27"
+    },
+    {
+      "deviceId": "cd7f7f093096f18e",
+      "deviceName": "ANT.KANZU",
+      "app": "com.asus.launcher",
+      "startTime": "14:52:27",
+      "endTime": "14:52:31"
+    },
+    {
+      "deviceId": "51b088d697de86ae",
+      "deviceName": "ANT.JONAH",
+      "app": "com.asus.launcher",
+      "startTime": "14:52:36",
+      "endTime": "14:52:38"
+    },
+    {
+      "deviceId": "ee46b1793835307d",
+      "deviceName": "FL.THEGOD",
+      "app": "com.asus.launcher",
+      "startTime": "14:52:35",
+      "endTime": "14:52:37"
+    },
+    {
+      "deviceId": "255400624da5252f",
+      "deviceName": "ANT.SANJIDZ",
+      "app": "com.asus.launcher",
+      "startTime": "14:52:39",
+      "endTime": "14:52:43"
+    },
+    {
+      "deviceId": "d9c51fb7a76f5f76",
+      "deviceName": "FL.THEZOM",
+      "app": "com.asus.launcher",
+      "startTime": "14:52:40",
+      "endTime": "14:52:44"
+    },
+    {
+      "deviceId": "d9c51fb7a76f5f76",
+      "deviceName": "FL.THEZOM",
+      "app": "com.asus.filemanager",
+      "startTime": "14:52:44",
+      "endTime": "14:53:02"
+    },
+    {
+      "deviceId": "c333482abe5aaff3",
+      "deviceName": "ANT.WHUY",
+      "app": "com.asus.launcher",
+      "startTime": "14:52:44",
+      "endTime": "14:52:46"
+    },
+    {
+      "deviceId": "0184fa724240e488",
+      "deviceName": "PTE.DQHMEO",
+      "app": "com.asus.launcher",
+      "startTime": "14:52:52",
+      "endTime": "14:52:54"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.google.android.gms",
+      "startTime": "14:52:55",
+      "endTime": "14:53:23"
+    },
+    {
+      "deviceId": "d9c51fb7a76f5f76",
+      "deviceName": "FL.THEZOM",
+      "app": "com.asus.launcher",
+      "startTime": "14:53:02",
+      "endTime": "14:53:04"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.asus.launcher",
+      "startTime": "14:53:39",
+      "endTime": "14:53:44 (Lost)"
+    },
+    {
+      "deviceId": "537746b71ec1d0c9",
+      "deviceName": "PTE.NAOGB",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "14:53:37",
+      "endTime": "14:53:39"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "14:53:47",
+      "endTime": "14:53:49"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.asus.launcher",
+      "startTime": "14:53:47",
+      "endTime": "14:53:58"
+    },
+    {
+      "deviceId": "537746b71ec1d0c9",
+      "deviceName": "PTE.NAOGB",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "14:54:18",
+      "endTime": "14:54:20"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "14:54:25",
+      "endTime": "14:54:27"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.google.android.gms",
+      "startTime": "14:54:40",
+      "endTime": "14:54:44"
+    },
+    {
+      "deviceId": "45491909e2924485",
+      "deviceName": "NVT.TBINH",
+      "app": "com.asus.launcher",
+      "startTime": "14:54:54",
+      "endTime": "14:54:56"
+    },
+    {
+      "deviceId": "45491909e2924485",
+      "deviceName": "NVT.TBINH",
+      "app": "com.android.settings",
+      "startTime": "14:54:56",
+      "endTime": "14:54:58"
+    },
+    {
+      "deviceId": "45491909e2924485",
+      "deviceName": "NVT.TBINH",
+      "app": "com.google.android.gms",
+      "startTime": "14:54:58",
+      "endTime": "14:55:18"
+    },
+    {
+      "deviceId": "537746b71ec1d0c9",
+      "deviceName": "PTE.NAOGB",
+      "app": "com.asus.launcher",
+      "startTime": "14:55:05",
+      "endTime": "14:55:09"
+    },
+    {
+      "deviceId": "45491909e2924485",
+      "deviceName": "NVT.TBINH",
+      "app": "com.google.android.gms",
+      "startTime": "14:55:24",
+      "endTime": "14:55:27"
+    },
+    {
+      "deviceId": "45491909e2924485",
+      "deviceName": "NVT.TBINH",
+      "app": "com.google.android.gms",
+      "startTime": "14:55:47",
+      "endTime": "14:55:49"
+    },
+    {
+      "deviceId": "019866ab53420aef",
+      "deviceName": "LG.EMBI",
+      "app": "com.google.android.gms",
+      "startTime": "14:56:11",
+      "endTime": "14:56:13"
+    },
+    {
+      "deviceId": "537746b71ec1d0c9",
+      "deviceName": "PTE.NAOGB",
+      "app": "com.google.android.gms",
+      "startTime": "14:56:13",
+      "endTime": "14:56:27"
+    },
+    {
+      "deviceId": "8b78ee19caab4e41",
+      "deviceName": "WAGA.SHIRYU",
+      "app": "com.google.android.gms",
+      "startTime": "14:56:18",
+      "endTime": "14:56:20"
+    },
+    {
+      "deviceId": "d1ed2a841d59eccd",
+      "deviceName": "LG.HAZO",
+      "app": "com.google.android.gms",
+      "startTime": "14:56:23",
+      "endTime": "14:56:31"
+    },
+    {
+      "deviceId": "8b78ee19caab4e41",
+      "deviceName": "WAGA.SHIRYU",
+      "app": "com.google.android.gms",
+      "startTime": "14:56:34",
+      "endTime": "14:56:56"
+    },
+    {
+      "deviceId": "537746b71ec1d0c9",
+      "deviceName": "PTE.NAOGB",
+      "app": "com.google.android.gms",
+      "startTime": "14:56:45",
+      "endTime": "14:56:47"
+    },
+    {
+      "deviceId": "d1ed2a841d59eccd",
+      "deviceName": "LG.HAZO",
+      "app": "com.google.android.gms",
+      "startTime": "14:56:56",
+      "endTime": "14:56:58"
+    },
+    {
+      "deviceId": "59c699fc026cb30f",
+      "deviceName": "TLE.KAN",
+      "app": "com.google.android.gms",
+      "startTime": "14:57:14",
+      "endTime": "14:57:16"
+    },
+    {
+      "deviceId": "59c699fc026cb30f",
+      "deviceName": "TLE.KAN",
+      "app": "com.google.android.gms",
+      "startTime": "14:57:54",
+      "endTime": "14:57:56"
+    },
+    {
+      "deviceId": "59c699fc026cb30f",
+      "deviceName": "TLE.KAN",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "14:58:22",
+      "endTime": "14:58:24"
+    },
+    {
+      "deviceId": "7fe85f8ecc51454a",
+      "deviceName": "CTGM.HTHAT",
+      "app": "com.google.android.gms",
+      "startTime": "14:58:31",
+      "endTime": "14:58:33"
+    },
+    {
+      "deviceId": "7fe85f8ecc51454a",
+      "deviceName": "CTGM.HTHAT",
+      "app": "com.google.android.gms",
+      "startTime": "14:58:55",
+      "endTime": "14:58:57"
+    },
+    {
+      "deviceId": "7fe85f8ecc51454a",
+      "deviceName": "CTGM.HTHAT",
+      "app": "com.google.android.gms",
+      "startTime": "14:59:01",
+      "endTime": "14:59:03"
+    },
+    {
+      "deviceId": "59c699fc026cb30f",
+      "deviceName": "TLE.KAN",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "14:58:56",
+      "endTime": "14:59:02"
+    },
+    {
+      "deviceId": "05555a8dbd11082c",
+      "deviceName": "TDE.LEKHOA",
+      "app": "com.google.android.gms",
+      "startTime": "14:59:33",
+      "endTime": "14:59:39"
+    },
+    {
+      "deviceId": "59c699fc026cb30f",
+      "deviceName": "TLE.KAN",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "14:59:44",
+      "endTime": "14:59:46"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.google.android.gms",
+      "startTime": "14:59:49",
+      "endTime": "15:00:50"
+    },
+    {
+      "deviceId": "05555a8dbd11082c",
+      "deviceName": "TDE.LEKHOA",
+      "app": "com.google.android.gms",
+      "startTime": "14:59:59",
+      "endTime": "15:00:01"
+    },
+    {
+      "deviceId": "d9c51fb7a76f5f76",
+      "deviceName": "FL.THEZOM",
+      "app": "com.android.settings",
+      "startTime": "15:00:01",
+      "endTime": "15:00:03"
+    },
+    {
+      "deviceId": "d9c51fb7a76f5f76",
+      "deviceName": "FL.THEZOM",
+      "app": "com.asus.launcher",
+      "startTime": "15:00:03",
+      "endTime": "15:00:05"
+    },
+    {
+      "deviceId": "cd7f7f093096f18e",
+      "deviceName": "ANT.KANZU",
+      "app": "com.google.android.gms",
+      "startTime": "15:00:32",
+      "endTime": "15:00:42"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.google.android.gms",
+      "startTime": "15:00:52",
+      "endTime": "15:00:56"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.google.android.gms",
+      "startTime": "15:01:16",
+      "endTime": "15:01:18"
+    },
+    {
+      "deviceId": "cd7f7f093096f18e",
+      "deviceName": "ANT.KANZU",
+      "app": "com.google.android.gms",
+      "startTime": "15:01:17",
+      "endTime": "15:01:19"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.google.android.gms",
+      "startTime": "15:01:50",
+      "endTime": "15:02:02"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.google.android.gms",
+      "startTime": "15:02:37",
+      "endTime": "15:02:55"
+    },
+    {
+      "deviceId": "09eb5665f566e985",
+      "deviceName": "AMF.THANHNHA",
+      "app": "com.google.android.gms",
+      "startTime": "15:02:36",
+      "endTime": "15:03:34"
+    },
+    {
+      "deviceId": "c333482abe5aaff3",
+      "deviceName": "ANT.WHUY",
+      "app": "com.asus.launcher",
+      "startTime": "15:02:42",
+      "endTime": "15:02:46"
+    },
+    {
+      "deviceId": "537746b71ec1d0c9",
+      "deviceName": "PTE.NAOGB",
+      "app": "com.google.android.gms",
+      "startTime": "15:02:44",
+      "endTime": "15:02:46"
+    },
+    {
+      "deviceId": "255400624da5252f",
+      "deviceName": "ANT.SANJIDZ",
+      "app": "com.asus.launcher",
+      "startTime": "15:02:51",
+      "endTime": "15:02:53"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.asus.launcher",
+      "startTime": "15:02:55",
+      "endTime": "15:02:57"
+    },
+    {
+      "deviceId": "cd7f7f093096f18e",
+      "deviceName": "ANT.KANZU",
+      "app": "com.asus.launcher",
+      "startTime": "15:02:57",
+      "endTime": "15:02:59"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.asus.launcher",
+      "startTime": "15:03:07",
+      "endTime": "15:03:11"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.android.settings",
+      "startTime": "15:03:11",
+      "endTime": "15:03:27"
+    },
+    {
+      "deviceId": "c9d43328935a0da1",
+      "deviceName": "FL.MINKCUOG",
+      "app": "com.google.android.gms",
+      "startTime": "15:03:25",
+      "endTime": "15:04:16"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.google.android.gm",
+      "startTime": "15:03:27",
+      "endTime": "15:04:28"
+    },
+    {
+      "deviceId": "09eb5665f566e985",
+      "deviceName": "AMF.THANHNHA",
+      "app": "com.google.android.gms",
+      "startTime": "15:03:36",
+      "endTime": "15:03:38"
+    },
+    {
+      "deviceId": "537746b71ec1d0c9",
+      "deviceName": "PTE.NAOGB",
+      "app": "com.google.android.gms",
+      "startTime": "15:03:44",
+      "endTime": "15:03:46"
+    },
+    {
+      "deviceId": "b413c862bc04d6b4",
+      "deviceName": "TLE.B52",
+      "app": "com.google.android.gms",
+      "startTime": "15:03:52",
+      "endTime": "15:03:56"
+    },
+    {
+      "deviceId": "6184192dc850f63e",
+      "deviceName": "CTGM.PREPARE",
+      "app": "com.asus.launcher",
+      "startTime": "15:04:10",
+      "endTime": "15:04:12"
+    },
+    {
+      "deviceId": "c9d43328935a0da1",
+      "deviceName": "FL.MINKCUOG",
+      "app": "com.google.android.apps.restore",
+      "startTime": "15:04:16",
+      "endTime": "15:04:18"
+    },
+    {
+      "deviceId": "b413c862bc04d6b4",
+      "deviceName": "TLE.B52",
+      "app": "com.google.android.gms",
+      "startTime": "15:04:18",
+      "endTime": "15:04:22"
+    },
+    {
+      "deviceId": "c9d43328935a0da1",
+      "deviceName": "FL.MINKCUOG",
+      "app": "com.google.android.gms",
+      "startTime": "15:04:22",
+      "endTime": "15:04:24"
+    },
+    {
+      "deviceId": "fee4e0774d1f0601",
+      "deviceName": "BACKUP",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "15:04:25",
+      "endTime": "15:04:27"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "15:04:28",
+      "endTime": "15:04:30"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.google.android.gms",
+      "startTime": "15:04:32",
+      "endTime": "15:05:26"
+    },
+    {
+      "deviceId": "c1127d588b355e1d",
+      "deviceName": "NVT.SMILE",
+      "app": "com.asus.launcher",
+      "startTime": "15:05:02",
+      "endTime": "15:05:04"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.google.android.apps.restore",
+      "startTime": "15:05:26",
+      "endTime": "15:05:28"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.google.android.gms",
+      "startTime": "15:05:36",
+      "endTime": "15:05:40"
+    },
+    {
+      "deviceId": "c9d43328935a0da1",
+      "deviceName": "FL.MINKCUOG",
+      "app": "com.google.android.gms",
+      "startTime": "15:06:26",
+      "endTime": "15:06:28"
+    },
+    {
+      "deviceId": "8b78ee19caab4e41",
+      "deviceName": "WAGA.SHIRYU",
+      "app": "com.google.android.gms",
+      "startTime": "15:06:33",
+      "endTime": "15:06:35"
+    },
+    {
+      "deviceId": "8b78ee19caab4e41",
+      "deviceName": "WAGA.SHIRYU",
+      "app": "com.google.android.gms",
+      "startTime": "15:06:45",
+      "endTime": "15:06:47"
+    },
+    {
+      "deviceId": "10cbd162ebc9023b",
+      "deviceName": "FL.ABCD",
+      "app": "com.asus.launcher",
+      "startTime": "15:08:01",
+      "endTime": "15:08:03"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.google.android.gms",
+      "startTime": "15:08:28",
+      "endTime": "15:08:40"
+    },
+    {
+      "deviceId": "8d27d59dc2100d05",
+      "deviceName": "BH.GONHEO",
+      "app": "com.google.android.gms",
+      "startTime": "15:08:44",
+      "endTime": "15:09:15"
+    },
+    {
+      "deviceId": "ebe691c0a4c5e6bd",
+      "deviceName": "BH.HLOC0412",
+      "app": "com.google.android.gms",
+      "startTime": "15:08:56",
+      "endTime": "15:09:00"
+    },
+    {
+      "deviceId": "57cbcb458792e4ec",
+      "deviceName": "BH.XNGUYEN",
+      "app": "com.google.android.gms",
+      "startTime": "15:08:58",
+      "endTime": "15:09:26"
+    },
+    {
+      "deviceId": "ebe691c0a4c5e6bd",
+      "deviceName": "BH.HLOC0412",
+      "app": "com.google.android.gms",
+      "startTime": "15:09:31",
+      "endTime": "15:09:33"
+    },
+    {
+      "deviceId": "c1127d588b355e1d",
+      "deviceName": "NVT.SMILE",
+      "app": "com.google.android.gms",
+      "startTime": "15:09:44",
+      "endTime": "15:09:48"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "b413c862bc04d6b4",
+      "deviceName": "TLE.B52",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "59c699fc026cb30f",
+      "deviceName": "TLE.KAN",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "ee46b1793835307d",
+      "deviceName": "FL.THEGOD",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "255400624da5252f",
+      "deviceName": "ANT.SANJIDZ",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:25",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "10cbd162ebc9023b",
+      "deviceName": "FL.ABCD",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "d23d0f2665ea742a",
+      "deviceName": "TLE.TULET",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:26",
+      "endTime": "15:11:32"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:25",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "c1127d588b355e1d",
+      "deviceName": "NVT.SMILE",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:25",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "537746b71ec1d0c9",
+      "deviceName": "PTE.NAOGB",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "0184fa724240e488",
+      "deviceName": "PTE.DQHMEO",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "f925db01841209d9",
+      "deviceName": "CTGM.YANBIN",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:26",
+      "endTime": "15:11:32"
+    },
+    {
+      "deviceId": "d9c51fb7a76f5f76",
+      "deviceName": "FL.THEZOM",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "83336afc39c907a0",
+      "deviceName": "TDE.M10",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:25",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "6441540606c0657f",
+      "deviceName": "LG.CHL",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:26",
+      "endTime": "15:11:32"
+    },
+    {
+      "deviceId": "7fe85f8ecc51454a",
+      "deviceName": "CTGM.HTHAT",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:26",
+      "endTime": "15:11:32"
+    },
+    {
+      "deviceId": "45491909e2924485",
+      "deviceName": "NVT.TBINH",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:26",
+      "endTime": "15:11:32"
+    },
+    {
+      "deviceId": "d8f37110fb652618",
+      "deviceName": "NVT.EMVH",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:26",
+      "endTime": "15:11:32"
+    },
+    {
+      "deviceId": "d1ed2a841d59eccd",
+      "deviceName": "LG.HAZO",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:25",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "28e4f3ab2757350e",
+      "deviceName": "TDE.ZET7",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:25",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "ebe691c0a4c5e6bd",
+      "deviceName": "BH.HLOC0412",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "f49b62dd092818f1",
+      "deviceName": "TDE.DMH",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:26",
+      "endTime": "15:11:32"
+    },
+    {
+      "deviceId": "c9d43328935a0da1",
+      "deviceName": "FL.MINKCUOG",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:26",
+      "endTime": "15:11:32"
+    },
+    {
+      "deviceId": "164b0ada3fea9ddc",
+      "deviceName": "BV.NNHAT",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:25",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "6184192dc850f63e",
+      "deviceName": "CTGM.PREPARE",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "f0d2ff917e1e2129",
+      "deviceName": "PTE.FORTE",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:26",
+      "endTime": "15:11:32"
+    },
+    {
+      "deviceId": "d54df25f9e80220f",
+      "deviceName": "AMF.CWILL",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:25",
+      "endTime": "15:11:32"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "55524b4f9e970d13",
+      "deviceName": "PTE.HMT103",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "c333482abe5aaff3",
+      "deviceName": "ANT.WHUY",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "04323cb96334fa6a",
+      "deviceName": "CTGM.LEEHAO",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "05555a8dbd11082c",
+      "deviceName": "TDE.LEKHOA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:25",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "c75b8753984c2711",
+      "deviceName": "WAGA.HOANGM",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "019866ab53420aef",
+      "deviceName": "LG.EMBI",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "9ad3af952a339d1e",
+      "deviceName": "NVT.BIRDGOD",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:25",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "6acdbabf111cfb24",
+      "deviceName": "AMF.GOCU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:25",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "57d5c192b31e5a03",
+      "deviceName": "WAGA.NHAN7",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "10459d248497bc3c",
+      "deviceName": "WAGA.CTUAN",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:26",
+      "endTime": "15:11:32"
+    },
+    {
+      "deviceId": "fe2fee07729b0fd3",
+      "deviceName": "AMF.PCU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:25",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "8b78ee19caab4e41",
+      "deviceName": "WAGA.SHIRYU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "51b088d697de86ae",
+      "deviceName": "ANT.JONAH",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:26",
+      "endTime": "15:11:32"
+    },
+    {
+      "deviceId": "c719f0e4b62d5f0a",
+      "deviceName": "LG.QTHANH",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:25",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "cd7f7f093096f18e",
+      "deviceName": "ANT.KANZU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "8d27d59dc2100d05",
+      "deviceName": "BH.GONHEO",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:25",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "09eb5665f566e985",
+      "deviceName": "AMF.THANHNHA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "69696feeb0bda6d3",
+      "deviceName": "TLE.NOBIZZ",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:25",
+      "endTime": "15:11:31"
+    },
+    {
+      "deviceId": "57cbcb458792e4ec",
+      "deviceName": "BH.XNGUYEN",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:11:23",
+      "endTime": "15:11:29"
+    },
+    {
+      "deviceId": "57cbcb458792e4ec",
+      "deviceName": "BH.XNGUYEN",
+      "app": "com.google.android.gms",
+      "startTime": "15:11:29",
+      "endTime": "15:11:41"
+    },
+    {
+      "deviceId": "fee4e0774d1f0601",
+      "deviceName": "BACKUP",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "15:11:24",
+      "endTime": "15:11:30"
+    },
+    {
+      "deviceId": "ebe691c0a4c5e6bd",
+      "deviceName": "BH.HLOC0412",
+      "app": "com.google.android.gms",
+      "startTime": "15:11:48",
+      "endTime": "15:11:56"
+    },
+    {
+      "deviceId": "7fe85f8ecc51454a",
+      "deviceName": "CTGM.HTHAT",
+      "app": "com.google.android.gms",
+      "startTime": "15:12:08",
+      "endTime": "15:12:10"
+    },
+    {
+      "deviceId": "255400624da5252f",
+      "deviceName": "ANT.SANJIDZ",
+      "app": "com.google.android.gms",
+      "startTime": "15:12:19",
+      "endTime": "15:12:23"
+    },
+    {
+      "deviceId": "8d27d59dc2100d05",
+      "deviceName": "BH.GONHEO",
+      "app": "com.google.android.gms",
+      "startTime": "15:12:20",
+      "endTime": "15:13:47"
+    },
+    {
+      "deviceId": "7fe85f8ecc51454a",
+      "deviceName": "CTGM.HTHAT",
+      "app": "com.google.android.gms",
+      "startTime": "15:12:20",
+      "endTime": "15:12:40 (Lost)"
+    },
+    {
+      "deviceId": "7fe85f8ecc51454a",
+      "deviceName": "CTGM.HTHAT",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:13:14",
+      "endTime": "15:13:16"
+    },
+    {
+      "deviceId": "28e4f3ab2757350e",
+      "deviceName": "TDE.ZET7",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:13:28",
+      "endTime": "15:13:34"
+    },
+    {
+      "deviceId": "019866ab53420aef",
+      "deviceName": "LG.EMBI",
+      "app": "com.asus.filemanager",
+      "startTime": "15:13:43",
+      "endTime": "15:14:01"
+    },
+    {
+      "deviceId": "8d27d59dc2100d05",
+      "deviceName": "BH.GONHEO",
+      "app": "com.google.android.gms",
+      "startTime": "15:13:51",
+      "endTime": "15:13:55"
+    },
+    {
+      "deviceId": "c719f0e4b62d5f0a",
+      "deviceName": "LG.QTHANH",
+      "app": "com.asus.filemanager",
+      "startTime": "15:14:19",
+      "endTime": "15:14:36"
+    },
+    {
+      "deviceId": "7fe85f8ecc51454a",
+      "deviceName": "CTGM.HTHAT",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:14:19",
+      "endTime": "15:14:21"
+    },
+    {
+      "deviceId": "6184192dc850f63e",
+      "deviceName": "CTGM.PREPARE",
+      "app": "com.android.settings",
+      "startTime": "15:14:44",
+      "endTime": "15:14:52"
+    },
+    {
+      "deviceId": "6184192dc850f63e",
+      "deviceName": "CTGM.PREPARE",
+      "app": "com.android.settings.intelligence",
+      "startTime": "15:14:52",
+      "endTime": "15:15:02"
+    },
+    {
+      "deviceId": "d1ed2a841d59eccd",
+      "deviceName": "LG.HAZO",
+      "app": "com.asus.filemanager",
+      "startTime": "15:14:54",
+      "endTime": "15:15:25"
+    },
+    {
+      "deviceId": "04323cb96334fa6a",
+      "deviceName": "CTGM.LEEHAO",
+      "app": "com.google.android.gms",
+      "startTime": "15:14:56",
+      "endTime": "15:16:15"
+    },
+    {
+      "deviceId": "6184192dc850f63e",
+      "deviceName": "CTGM.PREPARE",
+      "app": "com.android.settings",
+      "startTime": "15:15:02",
+      "endTime": "15:16:15"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "15:15:14",
+      "endTime": "15:15:17"
+    },
+    {
+      "deviceId": "d1ed2a841d59eccd",
+      "deviceName": "LG.HAZO",
+      "app": "com.asus.filemanager",
+      "startTime": "15:15:39",
+      "endTime": "15:15:49"
+    },
+    {
+      "deviceId": "ebe691c0a4c5e6bd",
+      "deviceName": "BH.HLOC0412",
+      "app": "com.asus.filemanager",
+      "startTime": "15:15:51",
+      "endTime": "15:15:53"
+    },
+    {
+      "deviceId": "d1ed2a841d59eccd",
+      "deviceName": "LG.HAZO",
+      "app": "com.asus.filemanager",
+      "startTime": "15:16:07",
+      "endTime": "15:16:19"
+    },
+    {
+      "deviceId": "04323cb96334fa6a",
+      "deviceName": "CTGM.LEEHAO",
+      "app": "com.google.android.gms",
+      "startTime": "15:16:17",
+      "endTime": "15:16:21"
+    },
+    {
+      "deviceId": "6441540606c0657f",
+      "deviceName": "LG.CHL",
+      "app": "com.asus.filemanager",
+      "startTime": "15:17:05",
+      "endTime": "15:17:21"
+    },
+    {
+      "deviceId": "55524b4f9e970d13",
+      "deviceName": "PTE.HMT103",
+      "app": "com.android.settings",
+      "startTime": "15:17:37",
+      "endTime": "15:17:39"
+    },
+    {
+      "deviceId": "55524b4f9e970d13",
+      "deviceName": "PTE.HMT103",
+      "app": "com.android.settings.intelligence",
+      "startTime": "15:17:39",
+      "endTime": "15:17:51"
+    },
+    {
+      "deviceId": "0184fa724240e488",
+      "deviceName": "PTE.DQHMEO",
+      "app": "com.android.settings",
+      "startTime": "15:17:39",
+      "endTime": "15:17:43"
+    },
+    {
+      "deviceId": "0184fa724240e488",
+      "deviceName": "PTE.DQHMEO",
+      "app": "com.android.settings.intelligence",
+      "startTime": "15:17:43",
+      "endTime": "15:17:59"
+    },
+    {
+      "deviceId": "55524b4f9e970d13",
+      "deviceName": "PTE.HMT103",
+      "app": "com.android.settings",
+      "startTime": "15:17:51",
+      "endTime": "15:17:53"
+    },
+    {
+      "deviceId": "537746b71ec1d0c9",
+      "deviceName": "PTE.NAOGB",
+      "app": "com.android.settings.intelligence",
+      "startTime": "15:17:57",
+      "endTime": "15:18:06"
+    },
+    {
+      "deviceId": "0184fa724240e488",
+      "deviceName": "PTE.DQHMEO",
+      "app": "com.android.settings",
+      "startTime": "15:17:59",
+      "endTime": "15:18:01"
+    },
+    {
+      "deviceId": "0184fa724240e488",
+      "deviceName": "PTE.DQHMEO",
+      "app": "com.android.settings.intelligence",
+      "startTime": "15:18:01",
+      "endTime": "15:18:09"
+    },
+    {
+      "deviceId": "537746b71ec1d0c9",
+      "deviceName": "PTE.NAOGB",
+      "app": "com.android.settings",
+      "startTime": "15:18:06",
+      "endTime": "15:18:10"
+    },
+    {
+      "deviceId": "0184fa724240e488",
+      "deviceName": "PTE.DQHMEO",
+      "app": "com.android.settings",
+      "startTime": "15:18:09",
+      "endTime": "15:18:13"
+    },
+    {
+      "deviceId": "537746b71ec1d0c9",
+      "deviceName": "PTE.NAOGB",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:19:23",
+      "endTime": "15:19:25"
+    },
+    {
+      "deviceId": "255400624da5252f",
+      "deviceName": "ANT.SANJIDZ",
+      "app": "com.android.settings",
+      "startTime": "15:19:27",
+      "endTime": "15:19:29"
+    },
+    {
+      "deviceId": "255400624da5252f",
+      "deviceName": "ANT.SANJIDZ",
+      "app": "com.android.settings.intelligence",
+      "startTime": "15:19:29",
+      "endTime": "15:19:34"
+    },
+    {
+      "deviceId": "c1127d588b355e1d",
+      "deviceName": "NVT.SMILE",
+      "app": "com.android.settings",
+      "startTime": "15:19:34",
+      "endTime": "15:19:42"
+    },
+    {
+      "deviceId": "255400624da5252f",
+      "deviceName": "ANT.SANJIDZ",
+      "app": "com.android.settings",
+      "startTime": "15:19:34",
+      "endTime": "15:19:46"
+    },
+    {
+      "deviceId": "9ad3af952a339d1e",
+      "deviceName": "NVT.BIRDGOD",
+      "app": "com.android.settings",
+      "startTime": "15:19:47",
+      "endTime": "15:19:49"
+    },
+    {
+      "deviceId": "8b78ee19caab4e41",
+      "deviceName": "WAGA.SHIRYU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:19:44",
+      "endTime": "15:19:46"
+    },
+    {
+      "deviceId": "9ad3af952a339d1e",
+      "deviceName": "NVT.BIRDGOD",
+      "app": "com.android.settings.intelligence",
+      "startTime": "15:19:49",
+      "endTime": "15:20:01"
+    },
+    {
+      "deviceId": "9ad3af952a339d1e",
+      "deviceName": "NVT.BIRDGOD",
+      "app": "com.android.settings",
+      "startTime": "15:20:01",
+      "endTime": "15:20:13"
+    },
+    {
+      "deviceId": "9ad3af952a339d1e",
+      "deviceName": "NVT.BIRDGOD",
+      "app": "com.android.settings.intelligence",
+      "startTime": "15:20:13",
+      "endTime": "15:20:15"
+    },
+    {
+      "deviceId": "28e4f3ab2757350e",
+      "deviceName": "TDE.ZET7",
+      "app": "com.android.settings",
+      "startTime": "15:20:17",
+      "endTime": "15:20:19"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "com.google.android.gms",
+      "startTime": "15:20:17",
+      "endTime": "15:20:19"
+    },
+    {
+      "deviceId": "28e4f3ab2757350e",
+      "deviceName": "TDE.ZET7",
+      "app": "com.android.settings.intelligence",
+      "startTime": "15:20:19",
+      "endTime": "15:20:33"
+    },
+    {
+      "deviceId": "28e4f3ab2757350e",
+      "deviceName": "TDE.ZET7",
+      "app": "com.android.settings",
+      "startTime": "15:20:33",
+      "endTime": "15:20:35"
+    },
+    {
+      "deviceId": "8b78ee19caab4e41",
+      "deviceName": "WAGA.SHIRYU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:20:31",
+      "endTime": "15:20:33"
+    },
+    {
+      "deviceId": "fe2fee07729b0fd3",
+      "deviceName": "AMF.PCU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:20:44",
+      "endTime": "15:20:46"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "com.asus.filemanager",
+      "startTime": "15:20:54",
+      "endTime": "15:21:18"
+    },
+    {
+      "deviceId": "fe2fee07729b0fd3",
+      "deviceName": "AMF.PCU",
+      "app": "com.asus.filemanager",
+      "startTime": "15:21:24",
+      "endTime": "15:21:40"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "com.asus.filemanager",
+      "startTime": "15:21:36",
+      "endTime": "15:22:34"
+    },
+    {
+      "deviceId": "d8f37110fb652618",
+      "deviceName": "NVT.EMVH",
+      "app": "com.android.settings.intelligence",
+      "startTime": "15:21:44",
+      "endTime": "15:21:51"
+    },
+    {
+      "deviceId": "d8f37110fb652618",
+      "deviceName": "NVT.EMVH",
+      "app": "com.android.settings",
+      "startTime": "15:21:51",
+      "endTime": "15:21:53"
+    },
+    {
+      "deviceId": "fe2fee07729b0fd3",
+      "deviceName": "AMF.PCU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:21:59",
+      "endTime": "15:22:01"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "com.asus.filemanager",
+      "startTime": "15:22:57",
+      "endTime": "15:23:09"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.asus.themeapp",
+      "startTime": "15:23:04",
+      "endTime": "15:23:06"
+    },
+    {
+      "deviceId": "d23d0f2665ea742a",
+      "deviceName": "TLE.TULET",
+      "app": "com.facebook.katana",
+      "startTime": "15:23:15",
+      "endTime": "15:23:17"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.asus.filemanager",
+      "startTime": "15:23:18",
+      "endTime": "15:23:50"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "com.android.settings",
+      "startTime": "15:23:19",
+      "endTime": "15:23:21"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "com.android.settings",
+      "startTime": "15:23:23",
+      "endTime": "15:23:29"
+    },
+    {
+      "deviceId": "537746b71ec1d0c9",
+      "deviceName": "PTE.NAOGB",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:23:34",
+      "endTime": "15:23:36"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "com.google.android.packageinstaller",
+      "startTime": "15:23:39",
+      "endTime": "15:23:41"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "com.android.vending",
+      "startTime": "15:23:47",
+      "endTime": "15:24:09"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.google.android.packageinstaller",
+      "startTime": "15:24:24",
+      "endTime": "15:24:28"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.asus.contacts",
+      "startTime": "15:24:28",
+      "endTime": "15:24:30"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.android.vending",
+      "startTime": "15:24:30",
+      "endTime": "15:24:40"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.asus.contacts",
+      "startTime": "15:24:40",
+      "endTime": "15:25:05"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "com.asus.filemanager",
+      "startTime": "15:24:43",
+      "endTime": "15:24:55"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.android.vending",
+      "startTime": "15:25:05",
+      "endTime": "15:25:07"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "com.google.android.packageinstaller",
+      "startTime": "15:25:15",
+      "endTime": "15:25:17"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.android.vending",
+      "startTime": "15:25:17",
+      "endTime": "15:25:19"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "com.android.vending",
+      "startTime": "15:25:19",
+      "endTime": "15:25:58"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.android.vending",
+      "startTime": "15:25:41",
+      "endTime": "15:26:13"
+    },
+    {
+      "deviceId": "fee4e0774d1f0601",
+      "deviceName": "BACKUP",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "15:25:38",
+      "endTime": "15:25:47"
+    },
+    {
+      "deviceId": "ebe691c0a4c5e6bd",
+      "deviceName": "BH.HLOC0412",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:26:13",
+      "endTime": "15:26:15"
+    },
+    {
+      "deviceId": "f49b62dd092818f1",
+      "deviceName": "TDE.DMH",
+      "app": "com.android.settings",
+      "startTime": "15:26:19",
+      "endTime": "15:26:35"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "com.asus.filemanager",
+      "startTime": "15:26:30",
+      "endTime": "15:26:34"
+    },
+    {
+      "deviceId": "ebe691c0a4c5e6bd",
+      "deviceName": "BH.HLOC0412",
+      "app": "com.android.settings",
+      "startTime": "15:26:33",
+      "endTime": "15:26:39"
+    },
+    {
+      "deviceId": "83336afc39c907a0",
+      "deviceName": "TDE.M10",
+      "app": "com.android.settings",
+      "startTime": "15:26:35",
+      "endTime": "15:26:45"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.android.vending",
+      "startTime": "15:26:37",
+      "endTime": "15:26:41"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "com.google.android.gms",
+      "startTime": "15:26:50",
+      "endTime": "15:26:52"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "com.android.settings",
+      "startTime": "15:26:54",
+      "endTime": "15:27:05 (Lost)"
+    },
+    {
+      "deviceId": "57cbcb458792e4ec",
+      "deviceName": "BH.XNGUYEN",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:26:52",
+      "endTime": "15:26:54"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.google.android.packageinstaller",
+      "startTime": "15:26:55",
+      "endTime": "15:26:57"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "com.asus.filemanager",
+      "startTime": "15:26:56",
+      "endTime": "15:27:12"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.android.vending",
+      "startTime": "15:26:59",
+      "endTime": "15:27:32"
+    },
+    {
+      "deviceId": "f49b62dd092818f1",
+      "deviceName": "TDE.DMH",
+      "app": "com.android.settings",
+      "startTime": "15:27:03",
+      "endTime": "15:27:19"
+    },
+    {
+      "deviceId": "ebe691c0a4c5e6bd",
+      "deviceName": "BH.HLOC0412",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:27:03",
+      "endTime": "15:27:05"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:27:05",
+      "endTime": "15:27:07"
+    },
+    {
+      "deviceId": "57cbcb458792e4ec",
+      "deviceName": "BH.XNGUYEN",
+      "app": "com.android.settings",
+      "startTime": "15:27:27",
+      "endTime": "15:27:35"
+    },
+    {
+      "deviceId": "c9d43328935a0da1",
+      "deviceName": "FL.MINKCUOG",
+      "app": "com.asus.gamecenter",
+      "startTime": "15:27:34",
+      "endTime": "15:27:40"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "com.google.android.packageinstaller",
+      "startTime": "15:27:38",
+      "endTime": "15:27:40"
+    },
+    {
+      "deviceId": "d54df25f9e80220f",
+      "deviceName": "AMF.CWILL",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:27:41",
+      "endTime": "15:27:43"
+    },
+    {
+      "deviceId": "c9d43328935a0da1",
+      "deviceName": "FL.MINKCUOG",
+      "app": "com.asus.gamecenter",
+      "startTime": "15:27:46",
+      "endTime": "15:27:58"
+    },
+    {
+      "deviceId": "57cbcb458792e4ec",
+      "deviceName": "BH.XNGUYEN",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:27:46",
+      "endTime": "15:27:48"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "com.android.vending",
+      "startTime": "15:27:52",
+      "endTime": "15:28:17"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "com.google.android.gms",
+      "startTime": "15:27:59",
+      "endTime": "15:28:03"
+    },
+    {
+      "deviceId": "c9d43328935a0da1",
+      "deviceName": "FL.MINKCUOG",
+      "app": "com.asus.gamecenter",
+      "startTime": "15:28:00",
+      "endTime": "15:28:04"
+    },
+    {
+      "deviceId": "c9d43328935a0da1",
+      "deviceName": "FL.MINKCUOG",
+      "app": "com.asus.gamecenter",
+      "startTime": "15:28:11",
+      "endTime": "15:28:19"
+    },
+    {
+      "deviceId": "c9d43328935a0da1",
+      "deviceName": "FL.MINKCUOG",
+      "app": "com.asus.gamewidget",
+      "startTime": "15:28:19",
+      "endTime": "15:28:23"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "com.android.settings",
+      "startTime": "15:28:19",
+      "endTime": "15:28:29"
+    },
+    {
+      "deviceId": "d54df25f9e80220f",
+      "deviceName": "AMF.CWILL",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:28:19",
+      "endTime": "15:28:21"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:28:25",
+      "endTime": "15:28:27"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "com.android.settings",
+      "startTime": "15:28:33",
+      "endTime": "15:28:39"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:28:36",
+      "endTime": "15:28:38"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "com.android.settings",
+      "startTime": "15:28:45",
+      "endTime": "15:28:53"
+    },
+    {
+      "deviceId": "d1ed2a841d59eccd",
+      "deviceName": "LG.HAZO",
+      "app": "com.android.settings",
+      "startTime": "15:28:46",
+      "endTime": "15:28:50"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:28:46",
+      "endTime": "15:28:48"
+    },
+    {
+      "deviceId": "d1ed2a841d59eccd",
+      "deviceName": "LG.HAZO",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:28:48",
+      "endTime": "15:28:50"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:28:50",
+      "endTime": "15:28:52"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.android.settings",
+      "startTime": "15:28:52",
+      "endTime": "15:28:58"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:29:21",
+      "endTime": "15:29:23"
+    },
+    {
+      "deviceId": "10cbd162ebc9023b",
+      "deviceName": "FL.ABCD",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:29:41",
+      "endTime": "15:29:43"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.google.android.gms",
+      "startTime": "15:29:45",
+      "endTime": "15:30:07"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:30:22",
+      "endTime": "15:30:24"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "com.android.settings.intelligence",
+      "startTime": "15:30:30",
+      "endTime": "15:30:32"
+    },
+    {
+      "deviceId": "10cbd162ebc9023b",
+      "deviceName": "FL.ABCD",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:30:28",
+      "endTime": "15:30:30"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "com.android.settings.intelligence",
+      "startTime": "15:30:34",
+      "endTime": "15:30:36"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "com.android.settings",
+      "startTime": "15:30:36",
+      "endTime": "15:30:42"
+    },
+    {
+      "deviceId": "d9c51fb7a76f5f76",
+      "deviceName": "FL.THEZOM",
+      "app": "com.android.settings",
+      "startTime": "15:31:25",
+      "endTime": "15:31:37"
+    },
+    {
+      "deviceId": "7fe85f8ecc51454a",
+      "deviceName": "CTGM.HTHAT",
+      "app": "com.android.settings",
+      "startTime": "15:31:34",
+      "endTime": "15:31:38"
+    },
+    {
+      "deviceId": "7fe85f8ecc51454a",
+      "deviceName": "CTGM.HTHAT",
+      "app": "com.android.settings.intelligence",
+      "startTime": "15:31:38",
+      "endTime": "15:31:56"
+    },
+    {
+      "deviceId": "7fe85f8ecc51454a",
+      "deviceName": "CTGM.HTHAT",
+      "app": "com.android.settings",
+      "startTime": "15:31:56",
+      "endTime": "15:32:04"
+    },
+    {
+      "deviceId": "7fe85f8ecc51454a",
+      "deviceName": "CTGM.HTHAT",
+      "app": "com.android.settings.intelligence",
+      "startTime": "15:32:04",
+      "endTime": "15:32:08"
+    },
+    {
+      "deviceId": "7fe85f8ecc51454a",
+      "deviceName": "CTGM.HTHAT",
+      "app": "com.android.settings",
+      "startTime": "15:32:08",
+      "endTime": "15:32:14"
+    },
+    {
+      "deviceId": "55524b4f9e970d13",
+      "deviceName": "PTE.HMT103",
+      "app": "com.asus.filemanager",
+      "startTime": "15:32:08",
+      "endTime": "15:32:45"
+    },
+    {
+      "deviceId": "d1ed2a841d59eccd",
+      "deviceName": "LG.HAZO",
+      "app": "com.android.settings",
+      "startTime": "15:33:02",
+      "endTime": "15:33:06"
+    },
+    {
+      "deviceId": "d1ed2a841d59eccd",
+      "deviceName": "LG.HAZO",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:33:34",
+      "endTime": "15:33:36"
+    },
+    {
+      "deviceId": "04323cb96334fa6a",
+      "deviceName": "CTGM.PREPARE",
+      "app": "com.asus.filemanager",
+      "startTime": "15:33:37",
+      "endTime": "15:33:39"
+    },
+    {
+      "deviceId": "09eb5665f566e985",
+      "deviceName": "AMF.THANHNHA",
+      "app": "com.asus.filemanager",
+      "startTime": "15:33:46",
+      "endTime": "15:34:00"
+    },
+    {
+      "deviceId": "04323cb96334fa6a",
+      "deviceName": "CTGM.PREPARE",
+      "app": "com.android.settings",
+      "startTime": "15:33:57",
+      "endTime": "15:34:01"
+    },
+    {
+      "deviceId": "04323cb96334fa6a",
+      "deviceName": "CTGM.PREPARE",
+      "app": "com.android.settings.intelligence",
+      "startTime": "15:34:01",
+      "endTime": "15:34:07"
+    },
+    {
+      "deviceId": "04323cb96334fa6a",
+      "deviceName": "CTGM.PREPARE",
+      "app": "com.android.settings",
+      "startTime": "15:34:07",
+      "endTime": "15:34:11"
+    },
+    {
+      "deviceId": "05555a8dbd11082c",
+      "deviceName": "TDE.LEKHOA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:34:22",
+      "endTime": "15:34:24"
+    },
+    {
+      "deviceId": "fee4e0774d1f0601",
+      "deviceName": "BACKUP",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "15:34:25",
+      "endTime": "15:34:27"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "15:34:28",
+      "endTime": "15:34:30"
+    },
+    {
+      "deviceId": "05555a8dbd11082c",
+      "deviceName": "TDE.LEKHOA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:35:02",
+      "endTime": "15:35:04"
+    },
+    {
+      "deviceId": "09eb5665f566e985",
+      "deviceName": "AMF.THANHNHA",
+      "app": "com.google.android.gms",
+      "startTime": "15:35:04",
+      "endTime": "15:35:26"
+    },
+    {
+      "deviceId": "04323cb96334fa6a",
+      "deviceName": "CTGM.PREPARE",
+      "app": "com.asus.gamecenter",
+      "startTime": "15:35:16",
+      "endTime": "15:35:36"
+    },
+    {
+      "deviceId": "09eb5665f566e985",
+      "deviceName": "AMF.THANHNHA",
+      "app": "com.google.android.gms",
+      "startTime": "15:35:29",
+      "endTime": "15:36:11"
+    },
+    {
+      "deviceId": "09eb5665f566e985",
+      "deviceName": "AMF.THANHNHA",
+      "app": "com.google.android.gms",
+      "startTime": "15:36:13",
+      "endTime": "15:36:19"
+    },
+    {
+      "deviceId": "09eb5665f566e985",
+      "deviceName": "AMF.THANHNHA",
+      "app": "com.google.android.gms",
+      "startTime": "15:37:38",
+      "endTime": "15:39:43"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "15:39:29",
+      "endTime": "15:39:35"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "com.google.android.inputmethod.latin",
+      "startTime": "15:39:41",
+      "endTime": "15:39:43"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "15:40:11",
+      "endTime": "15:40:17"
+    },
+    {
+      "deviceId": "09eb5665f566e985",
+      "deviceName": "AMF.THANHNHA",
+      "app": "com.google.android.gms",
+      "startTime": "15:40:39",
+      "endTime": "15:41:26"
+    },
+    {
+      "deviceId": "09eb5665f566e985",
+      "deviceName": "AMF.THANHNHA",
+      "app": "com.google.android.gms",
+      "startTime": "15:41:32",
+      "endTime": "15:41:36"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "15:41:45",
+      "endTime": "15:41:47"
+    },
+    {
+      "deviceId": "09eb5665f566e985",
+      "deviceName": "AMF.THANHNHA",
+      "app": "com.google.android.gms",
+      "startTime": "15:42:14",
+      "endTime": "15:42:20"
+    },
+    {
+      "deviceId": "09eb5665f566e985",
+      "deviceName": "AMF.THANHNHA",
+      "app": "com.android.settings",
+      "startTime": "15:42:38",
+      "endTime": "15:42:46"
+    },
+    {
+      "deviceId": "09eb5665f566e985",
+      "deviceName": "AMF.THANHNHA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:42:41",
+      "endTime": "15:42:43"
+    },
+    {
+      "deviceId": "09eb5665f566e985",
+      "deviceName": "AMF.THANHNHA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:43:14",
+      "endTime": "15:43:16"
+    },
+    {
+      "deviceId": "fee4e0774d1f0601",
+      "deviceName": "BACKUP",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "15:44:27",
+      "endTime": "15:44:31"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.asus.gamewidget",
+      "startTime": "15:44:40",
+      "endTime": "15:44:42"
+    },
+    {
+      "deviceId": "fee4e0774d1f0601",
+      "deviceName": "BACKUP",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "15:45:00",
+      "endTime": "15:45:02"
+    },
+    {
+      "deviceId": "83336afc39c907a0",
+      "deviceName": "TDE.M10",
+      "app": "com.asus.gamecenter",
+      "startTime": "15:51:59",
+      "endTime": "15:52:25"
+    },
+    {
+      "deviceId": "05555a8dbd11082c",
+      "deviceName": "TDE.LEKHOA",
+      "app": "com.android.settings",
+      "startTime": "15:52:23",
+      "endTime": "15:52:36"
+    },
+    {
+      "deviceId": "ee46b1793835307d",
+      "deviceName": "FL.THEGOD",
+      "app": "com.android.settings",
+      "startTime": "15:57:49",
+      "endTime": "15:58:09"
+    },
+    {
+      "deviceId": "c333482abe5aaff3",
+      "deviceName": "ANT.WHUY",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "15:59:17",
+      "endTime": "15:59:23"
+    },
+    {
+      "deviceId": "c333482abe5aaff3",
+      "deviceName": "ANT.WHUY",
+      "app": "com.android.settings.intelligence",
+      "startTime": "16:00:44",
+      "endTime": "16:00:54"
+    },
+    {
+      "deviceId": "c333482abe5aaff3",
+      "deviceName": "ANT.WHUY",
+      "app": "com.android.settings",
+      "startTime": "16:00:54",
+      "endTime": "16:01:02"
+    },
+    {
+      "deviceId": "ebe691c0a4c5e6bd",
+      "deviceName": "BH.HLOC0412",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "16:01:42",
+      "endTime": "16:01:44"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "com.android.settings",
+      "startTime": "16:01:45",
+      "endTime": "16:01:47"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "com.android.settings.intelligence",
+      "startTime": "16:01:47",
+      "endTime": "16:01:57"
+    },
+    {
+      "deviceId": "fee4e0774d1f0601",
+      "deviceName": "BACKUP",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "16:01:51",
+      "endTime": "16:01:53"
+    },
+    {
+      "deviceId": "b579a0c0d2094bdb",
+      "deviceName": "BV.ZELDA",
+      "app": "com.android.settings",
+      "startTime": "16:01:57",
+      "endTime": "16:02:03"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "com.android.settings",
+      "startTime": "16:01:59",
+      "endTime": "16:02:01"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "com.android.settings.intelligence",
+      "startTime": "16:02:01",
+      "endTime": "16:02:05"
+    },
+    {
+      "deviceId": "333eabdb9a60ca82",
+      "deviceName": "BV.ERIC",
+      "app": "com.android.settings",
+      "startTime": "16:02:05",
+      "endTime": "16:02:09"
+    },
+    {
+      "deviceId": "ebe691c0a4c5e6bd",
+      "deviceName": "BH.HLOC0412",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "16:02:21",
+      "endTime": "16:02:23"
+    },
+    {
+      "deviceId": "d23d0f2665ea742a",
+      "deviceName": "TLE.TULET",
+      "app": "com.facebook.katana",
+      "startTime": "16:02:36",
+      "endTime": "16:02:42"
+    },
+    {
+      "deviceId": "ebe691c0a4c5e6bd",
+      "deviceName": "BH.HLOC0412",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "16:03:07",
+      "endTime": "16:03:09"
+    },
+    {
+      "deviceId": "ebe691c0a4c5e6bd",
+      "deviceName": "BH.HLOC0412",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "16:03:45",
+      "endTime": "16:03:47"
+    },
+    {
+      "deviceId": "8d27d59dc2100d05",
+      "deviceName": "BH.GONHEO",
+      "app": "com.android.settings",
+      "startTime": "16:03:59",
+      "endTime": "16:04:07"
+    },
+    {
+      "deviceId": "8d27d59dc2100d05",
+      "deviceName": "BH.GONHEO",
+      "app": "com.asus.dm",
+      "startTime": "16:04:07",
+      "endTime": "16:04:09"
+    },
+    {
+      "deviceId": "8d27d59dc2100d05",
+      "deviceName": "BH.GONHEO",
+      "app": "com.android.settings",
+      "startTime": "16:04:09",
+      "endTime": "16:04:18"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "16:04:28",
+      "endTime": "16:04:30"
+    },
+    {
+      "deviceId": "83336afc39c907a0",
+      "deviceName": "TDE.M10",
+      "app": "com.asus.filemanager",
+      "startTime": "16:06:33",
+      "endTime": "16:06:47"
+    },
+    {
+      "deviceId": "d9c51fb7a76f5f76",
+      "deviceName": "FL.THEZOM",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "16:07:07",
+      "endTime": "16:07:09"
+    },
+    {
+      "deviceId": "d9c51fb7a76f5f76",
+      "deviceName": "FL.THEZOM",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "16:07:44",
+      "endTime": "16:07:46"
+    },
+    {
+      "deviceId": "28e4f3ab2757350e",
+      "deviceName": "TDE.ZET7",
+      "app": "com.asus.dialer",
+      "startTime": "16:14:09",
+      "endTime": "16:14:15"
+    },
+    {
+      "deviceId": "28e4f3ab2757350e",
+      "deviceName": "TDE.ZET7",
+      "app": "com.asus.filemanager",
+      "startTime": "16:14:29",
+      "endTime": "16:14:47"
+    },
+    {
+      "deviceId": "f49b62dd092818f1",
+      "deviceName": "TDE.DMH",
+      "app": "com.asus.gamewidget",
+      "startTime": "16:14:47",
+      "endTime": "16:15:34"
+    },
+    {
+      "deviceId": "05555a8dbd11082c",
+      "deviceName": "TDE.LEKHOA",
+      "app": "com.asus.filemanager",
+      "startTime": "16:15:10",
+      "endTime": "16:15:28"
+    },
+    {
+      "deviceId": "f49b62dd092818f1",
+      "deviceName": "TDE.DMH",
+      "app": "com.asus.filemanager",
+      "startTime": "16:15:40",
+      "endTime": "16:15:58"
+    },
+    {
+      "deviceId": "c333482abe5aaff3",
+      "deviceName": "ANT.WHUY",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "16:16:19",
+      "endTime": "16:16:21"
+    },
+    {
+      "deviceId": "c333482abe5aaff3",
+      "deviceName": "ANT.WHUY",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "16:17:04",
+      "endTime": "16:17:06"
+    },
+    {
+      "deviceId": "45491909e2924485",
+      "deviceName": "NVT.TBINH",
+      "app": "com.google.android.gms",
+      "startTime": "16:18:04",
+      "endTime": "16:18:08"
+    },
+    {
+      "deviceId": "8d27d59dc2100d05",
+      "deviceName": "BH.GONHEO",
+      "app": "com.asus.filemanager",
+      "startTime": "16:18:21",
+      "endTime": "16:18:49"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.asus.filemanager",
+      "startTime": "16:18:36",
+      "endTime": "16:19:23"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.asus.filemanager",
+      "startTime": "16:19:25",
+      "endTime": "16:19:51"
+    },
+    {
+      "deviceId": "57cbcb458792e4ec",
+      "deviceName": "BH.XNGUYEN",
+      "app": "com.asus.filemanager",
+      "startTime": "16:19:23",
+      "endTime": "16:19:39"
+    },
+    {
+      "deviceId": "8d27d59dc2100d05",
+      "deviceName": "BH.GONHEO",
+      "app": "com.google.android.gms",
+      "startTime": "16:19:37",
+      "endTime": "16:19:39"
+    },
+    {
+      "deviceId": "daaced6314ad1506",
+      "deviceName": "BH.PIGH",
+      "app": "com.google.android.gms",
+      "startTime": "16:20:15",
+      "endTime": "16:20:19"
+    },
+    {
+      "deviceId": "ebe691c0a4c5e6bd",
+      "deviceName": "BH.HLOC0412",
+      "app": "com.asus.filemanager",
+      "startTime": "16:20:17",
+      "endTime": "16:20:34"
+    },
+    {
+      "deviceId": "45491909e2924485",
+      "deviceName": "NVT.TBINH",
+      "app": "com.google.android.gms",
+      "startTime": "16:22:01",
+      "endTime": "16:22:03"
+    },
+    {
+      "deviceId": "28e4f3ab2757350e",
+      "deviceName": "TDE.ZET7",
+      "app": "com.android.settings",
+      "startTime": "16:23:58",
+      "endTime": "16:24:00"
+    },
+    {
+      "deviceId": "28e4f3ab2757350e",
+      "deviceName": "TDE.ZET7",
+      "app": "com.android.settings.intelligence",
+      "startTime": "16:24:00",
+      "endTime": "16:24:14"
+    },
+    {
+      "deviceId": "28e4f3ab2757350e",
+      "deviceName": "TDE.ZET7",
+      "app": "com.android.settings",
+      "startTime": "16:24:14",
+      "endTime": "16:24:18"
+    },
+    {
+      "deviceId": "fee4e0774d1f0601",
+      "deviceName": "BACKUP",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "16:34:25",
+      "endTime": "16:34:27"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "16:34:28",
+      "endTime": "16:34:36"
+    },
+    {
+      "deviceId": "fee4e0774d1f0601",
+      "deviceName": "BACKUP",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "16:41:43",
+      "endTime": "16:41:45"
+    },
+    {
+      "deviceId": "6184192dc850f63e",
+      "deviceName": "CTGM.LOCY3S",
+      "app": "com.android.settings.intelligence",
+      "startTime": "16:49:27",
+      "endTime": "16:49:31"
+    },
+    {
+      "deviceId": "28e4f3ab2757350e",
+      "deviceName": "TDE.ZET7",
+      "app": "com.facebook.katana",
+      "startTime": "16:56:00",
+      "endTime": "16:56:06"
+    },
+    {
+      "deviceId": "28e4f3ab2757350e",
+      "deviceName": "TDE.ZET7",
+      "app": "com.google.android.youtube",
+      "startTime": "16:56:14",
+      "endTime": "16:58:28"
+    },
+    {
+      "deviceId": "83336afc39c907a0",
+      "deviceName": "TDE.M10",
+      "app": "com.google.android.gm",
+      "startTime": "16:58:48",
+      "endTime": "16:58:50"
+    },
+    {
+      "deviceId": "f925db01841209d9",
+      "deviceName": "CTGM.YANBIN",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "16:58:53",
+      "endTime": "16:58:55"
+    },
+    {
+      "deviceId": "10459d248497bc3c",
+      "deviceName": "WAGA.CTUAN",
+      "app": "com.asus.filemanager",
+      "startTime": "16:59:22",
+      "endTime": "16:59:48"
+    },
+    {
+      "deviceId": "f925db01841209d9",
+      "deviceName": "CTGM.YANBIN",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "16:59:31",
+      "endTime": "16:59:33"
+    },
+    {
+      "deviceId": "57d5c192b31e5a03",
+      "deviceName": "WAGA.NHAN7",
+      "app": "com.asus.filemanager",
+      "startTime": "17:00:07",
+      "endTime": "17:00:23"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "17:01:00",
+      "endTime": "17:01:02"
+    },
+    {
+      "deviceId": "fee4e0774d1f0601",
+      "deviceName": "BACKUP",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "17:02:00",
+      "endTime": "17:02:02"
+    },
+    {
+      "deviceId": "537746b71ec1d0c9",
+      "deviceName": "PTE.NAOGB",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "17:02:48",
+      "endTime": "17:02:50"
+    },
+    {
+      "deviceId": "55524b4f9e970d13",
+      "deviceName": "PTE.HMT103",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "17:03:37",
+      "endTime": "17:03:39"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "17:04:00",
+      "endTime": "17:04:02"
+    },
+    {
+      "deviceId": "537746b71ec1d0c9",
+      "deviceName": "PTE.NAOGB",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "17:04:19",
+      "endTime": "17:04:21"
+    },
+    {
+      "deviceId": "fee4e0774d1f0601",
+      "deviceName": "BACKUP",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "17:04:25",
+      "endTime": "17:04:27"
+    },
+    {
+      "deviceId": "fee4e0774d1f0601",
+      "deviceName": "BACKUP",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "17:05:00",
+      "endTime": "17:05:02"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "17:05:00",
+      "endTime": "17:05:02"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "17:08:00",
+      "endTime": "17:08:02"
+    },
+    {
+      "deviceId": "fee4e0774d1f0601",
+      "deviceName": "BACKUP",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "17:08:00",
+      "endTime": "17:08:06"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "17:09:00",
+      "endTime": "17:09:02"
+    },
+    {
+      "deviceId": "fee4e0774d1f0601",
+      "deviceName": "BACKUP",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "17:09:00",
+      "endTime": "17:09:05"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "17:10:22",
+      "endTime": "17:10:24"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "17:31:30",
+      "endTime": "17:31:38"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "17:32:00",
+      "endTime": "17:32:06"
+    },
+    {
+      "deviceId": "SYSTEM_NET_REMOTE",
+      "deviceName": "NETWORK REMOTE",
+      "app": "DNS:OK|TCP:FAIL",
+      "startTime": "17:34:57",
+      "endTime": "17:35:02"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "17:37:00",
+      "endTime": "17:37:02"
+    },
+    {
+      "deviceId": "SYSTEM_NET",
+      "deviceName": "NETWORK ERROR",
+      "app": "DNS:OK|TCP:FAIL",
+      "startTime": "17:37:02",
+      "endTime": "17:37:07"
+    },
+    {
+      "deviceId": "SYSTEM_NET_REMOTE",
+      "deviceName": "NETWORK REMOTE",
+      "app": "DNS:OK|TCP:FAIL",
+      "startTime": "17:38:17",
+      "endTime": "17:38:22"
+    },
+    {
+      "deviceId": "SYSTEM_NET",
+      "deviceName": "NETWORK ERROR",
+      "app": "DNS:OK|TCP:FAIL",
+      "startTime": "17:38:27",
+      "endTime": "17:38:32"
+    },
+    {
+      "deviceId": "SYSTEM_NET",
+      "deviceName": "NETWORK ERROR",
+      "app": "DNS:OK|TCP:FAIL",
+      "startTime": "17:38:42",
+      "endTime": "17:38:47"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "17:39:59",
+      "endTime": "17:40:01"
+    },
+    {
+      "deviceId": "SYSTEM_NET_REMOTE",
+      "deviceName": "NETWORK REMOTE",
+      "app": "DNS:OK|TCP:FAIL",
+      "startTime": "17:41:17",
+      "endTime": "17:41:22"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "17:41:45",
+      "endTime": "17:41:47"
+    },
+    {
+      "deviceId": "SYSTEM_NET",
+      "deviceName": "NETWORK ERROR",
+      "app": "DNS:OK|TCP:FAIL",
+      "startTime": "17:42:52",
+      "endTime": "17:42:57"
+    },
+    {
+      "deviceId": "b413c862bc04d6b4",
+      "deviceName": "TLE.B52",
+      "app": "com.asus.filemanager",
+      "startTime": "17:43:14",
+      "endTime": "17:43:32"
+    },
+    {
+      "deviceId": "69696feeb0bda6d3",
+      "deviceName": "TLE.NOBIZZ",
+      "app": "com.asus.filemanager",
+      "startTime": "17:43:43",
+      "endTime": "17:44:02"
+    },
+    {
+      "deviceId": "59c699fc026cb30f",
+      "deviceName": "TLE.KAN",
+      "app": "com.asus.filemanager",
+      "startTime": "17:44:21",
+      "endTime": "17:44:43"
+    },
+    {
+      "deviceId": "d23d0f2665ea742a",
+      "deviceName": "TLE.TULET",
+      "app": "com.asus.filemanager",
+      "startTime": "17:44:58",
+      "endTime": "17:45:22"
+    },
+    {
+      "deviceId": "f925db01841209d9",
+      "deviceName": "CTGM.YANBIN",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "17:47:24",
+      "endTime": "17:47:26"
+    },
+    {
+      "deviceId": "69696feeb0bda6d3",
+      "deviceName": "TLE.NOBIZZ",
+      "app": "com.google.android.gms",
+      "startTime": "17:47:57",
+      "endTime": "17:48:01"
+    },
+    {
+      "deviceId": "f925db01841209d9",
+      "deviceName": "CTGM.YANBIN",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "17:48:04",
+      "endTime": "17:48:06"
+    },
+    {
+      "deviceId": "69696feeb0bda6d3",
+      "deviceName": "TLE.NOBIZZ",
+      "app": "com.google.android.gms",
+      "startTime": "17:48:17",
+      "endTime": "17:48:29"
+    },
+    {
+      "deviceId": "6acdbabf111cfb24",
+      "deviceName": "AMF.GOCU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "17:49:42",
+      "endTime": "17:49:44"
+    },
+    {
+      "deviceId": "28e4f3ab2757350e",
+      "deviceName": "TDE.ZET7",
+      "app": "com.android.phone",
+      "startTime": "17:49:49",
+      "endTime": "17:49:55"
+    },
+    {
+      "deviceId": "8b78ee19caab4e41",
+      "deviceName": "WAGA.SHIRYU",
+      "app": "com.asus.filemanager",
+      "startTime": "17:50:01",
+      "endTime": "17:50:30"
+    },
+    {
+      "deviceId": "fe2fee07729b0fd3",
+      "deviceName": "AMF.PCU",
+      "app": "com.asus.gamecenter",
+      "startTime": "17:50:04",
+      "endTime": "17:50:10"
+    },
+    {
+      "deviceId": "6acdbabf111cfb24",
+      "deviceName": "AMF.GOCU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "17:50:17",
+      "endTime": "17:50:19"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "com.asus.gamecenter",
+      "startTime": "17:50:35",
+      "endTime": "17:50:41"
+    },
+    {
+      "deviceId": "57d5c192b31e5a03",
+      "deviceName": "WAGA.NHAN7",
+      "app": "com.asus.camera",
+      "startTime": "17:51:14",
+      "endTime": "17:51:18"
+    },
+    {
+      "deviceId": "c719f0e4b62d5f0a",
+      "deviceName": "LG.QTHANH",
+      "app": "com.asus.gamecenter",
+      "startTime": "17:51:46",
+      "endTime": "17:51:56"
+    },
+    {
+      "deviceId": "28e4f3ab2757350e",
+      "deviceName": "TDE.ZET7",
+      "app": "com.asus.gamecenter",
+      "startTime": "17:52:46",
+      "endTime": "17:53:50"
+    },
+    {
+      "deviceId": "d23d0f2665ea742a",
+      "deviceName": "TLE.TULET",
+      "app": "com.android.settings",
+      "startTime": "17:54:44",
+      "endTime": "17:54:56"
+    },
+    {
+      "deviceId": "59c699fc026cb30f",
+      "deviceName": "TLE.KAN",
+      "app": "com.android.settings",
+      "startTime": "17:55:03",
+      "endTime": "17:55:21"
+    },
+    {
+      "deviceId": "69696feeb0bda6d3",
+      "deviceName": "TLE.NOBIZZ",
+      "app": "com.android.settings",
+      "startTime": "17:55:12",
+      "endTime": "17:55:14"
+    },
+    {
+      "deviceId": "69696feeb0bda6d3",
+      "deviceName": "TLE.NOBIZZ",
+      "app": "com.android.settings.intelligence",
+      "startTime": "17:55:14",
+      "endTime": "17:55:20"
+    },
+    {
+      "deviceId": "69696feeb0bda6d3",
+      "deviceName": "TLE.NOBIZZ",
+      "app": "com.android.settings",
+      "startTime": "17:55:20",
+      "endTime": "17:55:24"
+    },
+    {
+      "deviceId": "6441540606c0657f",
+      "deviceName": "LG.CHL",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "17:59:25",
+      "endTime": "17:59:27"
+    },
+    {
+      "deviceId": "6441540606c0657f",
+      "deviceName": "LG.CHL",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:00:03",
+      "endTime": "18:00:05"
+    },
+    {
+      "deviceId": "6acdbabf111cfb24",
+      "deviceName": "AMF.GOCU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:03:07",
+      "endTime": "18:03:09"
+    },
+    {
+      "deviceId": "6acdbabf111cfb24",
+      "deviceName": "AMF.GOCU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:03:46",
+      "endTime": "18:03:48"
+    },
+    {
+      "deviceId": "6acdbabf111cfb24",
+      "deviceName": "AMF.GOCU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:04:13",
+      "endTime": "18:04:15"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "18:04:28",
+      "endTime": "18:04:30"
+    },
+    {
+      "deviceId": "6acdbabf111cfb24",
+      "deviceName": "AMF.GOCU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:05:08",
+      "endTime": "18:05:10"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "18:07:00",
+      "endTime": "18:07:02"
+    },
+    {
+      "deviceId": "04323cb96334fa6a",
+      "deviceName": "CTGM.PREPARE",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:21:32",
+      "endTime": "18:21:34"
+    },
+    {
+      "deviceId": "04323cb96334fa6a",
+      "deviceName": "CTGM.PREPARE",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:22:13",
+      "endTime": "18:22:15"
+    },
+    {
+      "deviceId": "6acdbabf111cfb24",
+      "deviceName": "AMF.GOCU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:23:03",
+      "endTime": "18:23:05"
+    },
+    {
+      "deviceId": "6acdbabf111cfb24",
+      "deviceName": "AMF.GOCU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:24:17",
+      "endTime": "18:24:19"
+    },
+    {
+      "deviceId": "55524b4f9e970d13",
+      "deviceName": "PTE.HMT103",
+      "app": "com.android.settings",
+      "startTime": "18:24:48",
+      "endTime": "18:26:13"
+    },
+    {
+      "deviceId": "55524b4f9e970d13",
+      "deviceName": "PTE.HMT103",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:26:33",
+      "endTime": "18:26:35"
+    },
+    {
+      "deviceId": "d23d0f2665ea742a",
+      "deviceName": "TLE.TULET",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:33:01",
+      "endTime": "18:33:03"
+    },
+    {
+      "deviceId": "d23d0f2665ea742a",
+      "deviceName": "TLE.TULET",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:33:39",
+      "endTime": "18:33:41"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "18:34:28",
+      "endTime": "18:34:31"
+    },
+    {
+      "deviceId": "b413c862bc04d6b4",
+      "deviceName": "TLE.B52",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:35:15",
+      "endTime": "18:35:17"
+    },
+    {
+      "deviceId": "b413c862bc04d6b4",
+      "deviceName": "TLE.B52",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:36:01",
+      "endTime": "18:36:03"
+    },
+    {
+      "deviceId": "b413c862bc04d6b4",
+      "deviceName": "TLE.B52",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:39:51",
+      "endTime": "18:39:53"
+    },
+    {
+      "deviceId": "b413c862bc04d6b4",
+      "deviceName": "TLE.B52",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:40:28",
+      "endTime": "18:40:30"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "18:41:45",
+      "endTime": "18:41:47"
+    },
+    {
+      "deviceId": "c75b8753984c2711",
+      "deviceName": "WAGA.HOANGM",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:42:02",
+      "endTime": "18:42:04"
+    },
+    {
+      "deviceId": "c75b8753984c2711",
+      "deviceName": "WAGA.HOANGM",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:43:04",
+      "endTime": "18:43:06"
+    },
+    {
+      "deviceId": "8b78ee19caab4e41",
+      "deviceName": "WAGA.SHIRYU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:50:08",
+      "endTime": "18:50:10"
+    },
+    {
+      "deviceId": "8b78ee19caab4e41",
+      "deviceName": "WAGA.SHIRYU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:50:51",
+      "endTime": "18:50:53"
+    },
+    {
+      "deviceId": "8b78ee19caab4e41",
+      "deviceName": "WAGA.SHIRYU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:51:09",
+      "endTime": "18:51:11"
+    },
+    {
+      "deviceId": "8b78ee19caab4e41",
+      "deviceName": "WAGA.SHIRYU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:51:47",
+      "endTime": "18:51:49"
+    },
+    {
+      "deviceId": "57d5c192b31e5a03",
+      "deviceName": "WAGA.NHAN7",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:53:20",
+      "endTime": "18:53:22"
+    },
+    {
+      "deviceId": "57d5c192b31e5a03",
+      "deviceName": "WAGA.NHAN7",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "18:54:00",
+      "endTime": "18:54:02"
+    },
+    {
+      "deviceId": "d23d0f2665ea742a",
+      "deviceName": "TLE.TULET",
+      "app": "com.facebook.katana",
+      "startTime": "18:56:10",
+      "endTime": "18:56:24"
+    },
+    {
+      "deviceId": "6184192dc850f63e",
+      "deviceName": "CTGM.LOCY3S",
+      "app": "com.google.android.gms",
+      "startTime": "18:58:38",
+      "endTime": "18:59:33"
+    },
+    {
+      "deviceId": "6184192dc850f63e",
+      "deviceName": "CTGM.LOCY3S",
+      "app": "com.google.android.gms",
+      "startTime": "18:59:37",
+      "endTime": "18:59:39"
+    },
+    {
+      "deviceId": "cd7f7f093096f18e",
+      "deviceName": "ANT.KANZU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "19:00:56",
+      "endTime": "19:00:58"
+    },
+    {
+      "deviceId": "cd7f7f093096f18e",
+      "deviceName": "ANT.KANZU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "19:01:34",
+      "endTime": "19:01:36"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "19:04:28",
+      "endTime": "19:04:34"
+    },
+    {
+      "deviceId": "6184192dc850f63e",
+      "deviceName": "CTGM.LEEHAO",
+      "app": "com.android.settings",
+      "startTime": "19:09:40",
+      "endTime": "19:09:54"
+    },
+    {
+      "deviceId": "6184192dc850f63e",
+      "deviceName": "CTGM.LEEHAO",
+      "app": "com.android.settings",
+      "startTime": "19:10:16",
+      "endTime": "19:10:20"
+    },
+    {
+      "deviceId": "6184192dc850f63e",
+      "deviceName": "CTGM.LEEHAO",
+      "app": "com.android.settings.intelligence",
+      "startTime": "19:10:20",
+      "endTime": "19:10:40"
+    },
+    {
+      "deviceId": "6184192dc850f63e",
+      "deviceName": "CTGM.LEEHAO",
+      "app": "com.android.settings",
+      "startTime": "19:10:40",
+      "endTime": "19:10:48"
+    },
+    {
+      "deviceId": "45491909e2924485",
+      "deviceName": "NVT.TBINH",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "19:26:31",
+      "endTime": "19:26:33"
+    },
+    {
+      "deviceId": "45491909e2924485",
+      "deviceName": "NVT.TBINH",
+      "app": "com.android.settings",
+      "startTime": "19:27:07",
+      "endTime": "19:27:17"
+    },
+    {
+      "deviceId": "45491909e2924485",
+      "deviceName": "NVT.TBINH",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "19:27:44",
+      "endTime": "19:27:46"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "19:34:28",
+      "endTime": "19:34:33"
+    },
+    {
+      "deviceId": "d54df25f9e80220f",
+      "deviceName": "AMF.CWILL",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "19:35:00",
+      "endTime": "19:35:02"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "19:35:00",
+      "endTime": "19:35:05"
+    },
+    {
+      "deviceId": "d54df25f9e80220f",
+      "deviceName": "AMF.CWILL",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "19:35:37",
+      "endTime": "19:35:39"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "19:37:37",
+      "endTime": "19:37:39"
+    },
+    {
+      "deviceId": "b60ef61aa68d973e",
+      "deviceName": "BV.DMT",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "19:38:15",
+      "endTime": "19:38:17"
+    },
+    {
+      "deviceId": "10459d248497bc3c",
+      "deviceName": "WAGA.CTUAN",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "19:41:22",
+      "endTime": "19:41:24"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "19:41:45",
+      "endTime": "19:41:47"
+    },
+    {
+      "deviceId": "10459d248497bc3c",
+      "deviceName": "WAGA.CTUAN",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "19:41:59",
+      "endTime": "19:42:01"
+    },
+    {
+      "deviceId": "d23d0f2665ea742a",
+      "deviceName": "TLE.TULET",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "19:49:37",
+      "endTime": "19:49:39"
+    },
+    {
+      "deviceId": "f0d2ff917e1e2129",
+      "deviceName": "PTE.FORTE",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "19:49:53",
+      "endTime": "19:49:55"
+    },
+    {
+      "deviceId": "d23d0f2665ea742a",
+      "deviceName": "TLE.TULET",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "19:50:27",
+      "endTime": "19:50:29"
+    },
+    {
+      "deviceId": "f0d2ff917e1e2129",
+      "deviceName": "PTE.FORTE",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "19:50:38",
+      "endTime": "19:50:40"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "20:04:28",
+      "endTime": "20:04:30"
+    },
+    {
+      "deviceId": "05555a8dbd11082c",
+      "deviceName": "TDE.LEKHOA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:20:10",
+      "endTime": "20:20:12"
+    },
+    {
+      "deviceId": "28e4f3ab2757350e",
+      "deviceName": "TDE.ZET7",
+      "app": "com.google.android.youtube",
+      "startTime": "20:20:14",
+      "endTime": "20:20:20"
+    },
+    {
+      "deviceId": "05555a8dbd11082c",
+      "deviceName": "TDE.LEKHOA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:20:48",
+      "endTime": "20:20:50"
+    },
+    {
+      "deviceId": "d8f37110fb652618",
+      "deviceName": "NVT.EMVH",
+      "app": "com.asus.calculator",
+      "startTime": "20:21:05",
+      "endTime": "20:21:13"
+    },
+    {
+      "deviceId": "8b78ee19caab4e41",
+      "deviceName": "WAGA.SHIRYU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:22:52",
+      "endTime": "20:22:54"
+    },
+    {
+      "deviceId": "10cbd162ebc9023b",
+      "deviceName": "FL.ABCD",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:22:59",
+      "endTime": "20:23:01"
+    },
+    {
+      "deviceId": "537746b71ec1d0c9",
+      "deviceName": "PTE.NAOGB",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:23:51",
+      "endTime": "20:23:53"
+    },
+    {
+      "deviceId": "57d5c192b31e5a03",
+      "deviceName": "WAGA.NHAN7",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:23:51",
+      "endTime": "20:23:53"
+    },
+    {
+      "deviceId": "b413c862bc04d6b4",
+      "deviceName": "TLE.B52",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:24:28",
+      "endTime": "20:24:30"
+    },
+    {
+      "deviceId": "10459d248497bc3c",
+      "deviceName": "WAGA.CTUAN",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:24:30",
+      "endTime": "20:24:32"
+    },
+    {
+      "deviceId": "c75b8753984c2711",
+      "deviceName": "WAGA.HOANGM",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:24:53",
+      "endTime": "20:24:55"
+    },
+    {
+      "deviceId": "59c699fc026cb30f",
+      "deviceName": "TLE.KAN",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:25:09",
+      "endTime": "20:25:11"
+    },
+    {
+      "deviceId": "69696feeb0bda6d3",
+      "deviceName": "TLE.NOBIZZ",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:25:43",
+      "endTime": "20:25:45"
+    },
+    {
+      "deviceId": "05555a8dbd11082c",
+      "deviceName": "TDE.LEKHOA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:25:49",
+      "endTime": "20:25:51"
+    },
+    {
+      "deviceId": "c333482abe5aaff3",
+      "deviceName": "ANT.WHUY",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:26:10",
+      "endTime": "20:26:12"
+    },
+    {
+      "deviceId": "f49b62dd092818f1",
+      "deviceName": "TDE.DMH",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:26:35",
+      "endTime": "20:26:37"
+    },
+    {
+      "deviceId": "255400624da5252f",
+      "deviceName": "ANT.PKHANG",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:26:37",
+      "endTime": "20:26:39"
+    },
+    {
+      "deviceId": "6441540606c0657f",
+      "deviceName": "LG.CHL",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:26:51",
+      "endTime": "20:26:53"
+    },
+    {
+      "deviceId": "09eb5665f566e985",
+      "deviceName": "AMF.THANHNHA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:27:00",
+      "endTime": "20:27:03"
+    },
+    {
+      "deviceId": "d1ed2a841d59eccd",
+      "deviceName": "LG.HAZO",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:27:13",
+      "endTime": "20:27:15"
+    },
+    {
+      "deviceId": "51b088d697de86ae",
+      "deviceName": "ANT.JONAH",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:27:43",
+      "endTime": "20:27:45"
+    },
+    {
+      "deviceId": "fe2fee07729b0fd3",
+      "deviceName": "AMF.PCU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:27:56",
+      "endTime": "20:27:58"
+    },
+    {
+      "deviceId": "019866ab53420aef",
+      "deviceName": "LG.EMBI",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:28:00",
+      "endTime": "20:28:02"
+    },
+    {
+      "deviceId": "cd7f7f093096f18e",
+      "deviceName": "ANT.KANZU",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "20:28:08",
+      "endTime": "20:28:10"
+    },
+    {
+      "deviceId": "2fafecdcff886fe8",
+      "deviceName": "BACKUP.5",
+      "app": "DISCONNECTED (unknown)",
+      "startTime": "20:29:07",
+      "endTime": "20:29:09"
+    }
+  ],
+  "tableNames": {},
+  "netConfig": {
+    "dns": "148.153.174.68",
+    "port": 39001
+  },
+  "stageState": {
+    "51b088d697de86ae": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 730,
+        "y": 120
+      }
+    },
+    "5f396d0444e0ed7d": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 16,
+        "y": 280
+      }
+    },
+    "fe2fee07729b0fd3": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 730,
+        "y": 760
+      }
+    },
+    "255400624da5252f": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 730,
+        "y": 224
+      }
+    },
+    "ee46b1793835307d": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 730,
+        "y": 1088
+      }
+    },
+    "c333482abe5aaff3": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 730,
+        "y": 328
+      }
+    },
+    "537746b71ec1d0c9": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 1034,
+        "y": 448
+      }
+    },
+    "c719f0e4b62d5f0a": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 320,
+        "y": 656
+      }
+    },
+    "7fe85f8ecc51454a": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 1034,
+        "y": 984
+      }
+    },
+    "83336afc39c907a0": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 320,
+        "y": 224
+      }
+    },
+    "05555a8dbd11082c": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 320,
+        "y": 328
+      }
+    },
+    "cd7f7f093096f18e": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 730,
+        "y": 16
+      }
+    },
+    "f49b62dd092818f1": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 320,
+        "y": 16
+      }
+    },
+    "c9d43328935a0da1": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 730,
+        "y": 880
+      }
+    },
+    "c75b8753984c2711": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 320,
+        "y": 978
+      }
+    },
+    "0184fa724240e488": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 1034,
+        "y": 552
+      }
+    },
+    "59c699fc026cb30f": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 1034,
+        "y": 120
+      }
+    },
+    "a64771943c1ae9e1": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 16,
+        "y": 648
+      }
+    },
+    "57cbcb458792e4ec": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 120
+      }
+    },
+    "57d5c192b31e5a03": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 320,
+        "y": 880
+      }
+    },
+    "f0d2ff917e1e2129": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 1034,
+        "y": 760
+      }
+    },
+    "f925db01841209d9": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 1034,
+        "y": 1088
+      }
+    },
+    "019866ab53420aef": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 320,
+        "y": 760
+      }
+    },
+    "6184192dc850f63e": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 1034,
+        "y": 880
+      }
+    },
+    "8b78ee19caab4e41": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 320,
+        "y": 1174
+      }
+    },
+    "d23d0f2665ea742a": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 1034,
+        "y": 16
+      }
+    },
+    "ebe691c0a4c5e6bd": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 328
+      }
+    },
+    "10459d248497bc3c": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 320,
+        "y": 1076
+      }
+    },
+    "6acdbabf111cfb24": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 730,
+        "y": 448
+      }
+    },
+    "b413c862bc04d6b4": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 1034,
+        "y": 224
+      }
+    },
+    "164b0ada3fea9ddc": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 552
+      }
+    },
+    "04323cb96334fa6a": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 1034,
+        "y": 1192
+      }
+    },
+    "daaced6314ad1506": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 16
+      }
+    },
+    "69696feeb0bda6d3": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 1034,
+        "y": 328
+      }
+    },
+    "10cbd162ebc9023b": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 730,
+        "y": 984
+      }
+    },
+    "55524b4f9e970d13": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 1034,
+        "y": 656
+      }
+    },
+    "b60ef61aa68d973e": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 448
+      }
+    },
+    "d9c51fb7a76f5f76": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 730,
+        "y": 1192
+      }
+    },
+    "d1ed2a841d59eccd": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 320,
+        "y": 552
+      }
+    },
+    "6441540606c0657f": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 320,
+        "y": 448
+      }
+    },
+    "28e4f3ab2757350e": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 320,
+        "y": 120
+      }
+    },
+    "09eb5665f566e985": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 730,
+        "y": 552
+      }
+    },
+    "c1127d588b355e1d": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 880
+      }
+    },
+    "45491909e2924485": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 1174
+      }
+    },
+    "d8f37110fb652618": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 978
+      }
+    },
+    "2fafecdcff886fe8": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": -342.9111630884285,
+        "y": 101.25787443615818
+      }
+    },
+    "333eabdb9a60ca82": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 760
+      }
+    },
+    "9ad3af952a339d1e": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 1076
+      }
+    },
+    "8d27d59dc2100d05": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 224
+      }
+    },
+    "d54df25f9e80220f": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 730,
+        "y": 656
+      }
+    },
+    "72bb72a2d0a79c08": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 16
+      }
+    },
+    "b579a0c0d2094bdb": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 656
+      }
+    }
+  },
+  "stageStateBackup": {
+    "savedAtMs": 1774782622391,
+    "stageState": {
+      "51b088d697de86ae": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 730,
+          "y": 120
+        }
+      },
+      "5f396d0444e0ed7d": {
+        "slotId": "wait",
+        "seatLayout": {
+          "x": 16,
+          "y": 280
+        }
+      },
+      "fe2fee07729b0fd3": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 730,
+          "y": 760
+        }
+      },
+      "255400624da5252f": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 730,
+          "y": 224
+        }
+      },
+      "ee46b1793835307d": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 730,
+          "y": 1088
+        }
+      },
+      "c333482abe5aaff3": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 730,
+          "y": 328
+        }
+      },
+      "537746b71ec1d0c9": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1034,
+          "y": 448
+        }
+      },
+      "c719f0e4b62d5f0a": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 320,
+          "y": 656
+        }
+      },
+      "7fe85f8ecc51454a": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1034,
+          "y": 984
+        }
+      },
+      "83336afc39c907a0": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 320,
+          "y": 224
+        }
+      },
+      "05555a8dbd11082c": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 320,
+          "y": 328
+        }
+      },
+      "cd7f7f093096f18e": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 730,
+          "y": 16
+        }
+      },
+      "f49b62dd092818f1": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 320,
+          "y": 16
+        }
+      },
+      "c9d43328935a0da1": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 730,
+          "y": 880
+        }
+      },
+      "c75b8753984c2711": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 320,
+          "y": 978
+        }
+      },
+      "0184fa724240e488": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1034,
+          "y": 552
+        }
+      },
+      "59c699fc026cb30f": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1034,
+          "y": 120
+        }
+      },
+      "a64771943c1ae9e1": {
+        "slotId": "wait",
+        "seatLayout": {
+          "x": 16,
+          "y": 648
+        }
+      },
+      "57cbcb458792e4ec": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 120
+        }
+      },
+      "57d5c192b31e5a03": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 320,
+          "y": 880
+        }
+      },
+      "f0d2ff917e1e2129": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1034,
+          "y": 760
+        }
+      },
+      "f925db01841209d9": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1034,
+          "y": 1088
+        }
+      },
+      "019866ab53420aef": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 320,
+          "y": 760
+        }
+      },
+      "6184192dc850f63e": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1034,
+          "y": 880
+        }
+      },
+      "8b78ee19caab4e41": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 320,
+          "y": 1174
+        }
+      },
+      "d23d0f2665ea742a": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1034,
+          "y": 16
+        }
+      },
+      "ebe691c0a4c5e6bd": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 328
+        }
+      },
+      "10459d248497bc3c": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 320,
+          "y": 1076
+        }
+      },
+      "6acdbabf111cfb24": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 730,
+          "y": 448
+        }
+      },
+      "b413c862bc04d6b4": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1034,
+          "y": 224
+        }
+      },
+      "164b0ada3fea9ddc": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 552
+        }
+      },
+      "04323cb96334fa6a": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1034,
+          "y": 1192
+        }
+      },
+      "daaced6314ad1506": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 16
+        }
+      },
+      "69696feeb0bda6d3": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1034,
+          "y": 328
+        }
+      },
+      "10cbd162ebc9023b": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 730,
+          "y": 984
+        }
+      },
+      "55524b4f9e970d13": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1034,
+          "y": 656
+        }
+      },
+      "b60ef61aa68d973e": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 448
+        }
+      },
+      "d9c51fb7a76f5f76": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 730,
+          "y": 1192
+        }
+      },
+      "d1ed2a841d59eccd": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 320,
+          "y": 552
+        }
+      },
+      "6441540606c0657f": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 320,
+          "y": 448
+        }
+      },
+      "28e4f3ab2757350e": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 320,
+          "y": 120
+        }
+      },
+      "09eb5665f566e985": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 730,
+          "y": 552
+        }
+      },
+      "c1127d588b355e1d": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 880
+        }
+      },
+      "45491909e2924485": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 1174
+        }
+      },
+      "d8f37110fb652618": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 978
+        }
+      },
+      "2fafecdcff886fe8": {
+        "slotId": "wait",
+        "seatLayout": {
+          "x": -342.9111630884285,
+          "y": 101.25787443615818
+        }
+      },
+      "333eabdb9a60ca82": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 760
+        }
+      },
+      "9ad3af952a339d1e": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 1076
+        }
+      },
+      "8d27d59dc2100d05": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 224
+        }
+      },
+      "d54df25f9e80220f": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 730,
+          "y": 656
+        }
+      },
+      "72bb72a2d0a79c08": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 16
+        }
+      },
+      "b579a0c0d2094bdb": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 656
+        }
+      }
+    }
+  },
+  "netConfigRemote": {
+    "dns": "8.8.8.8",
+    "port": 53
+  }
+}

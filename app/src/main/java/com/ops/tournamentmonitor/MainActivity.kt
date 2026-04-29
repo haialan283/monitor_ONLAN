@@ -88,6 +88,12 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
+        if (!hasOverlayPermission()) {
+            Toast.makeText(this, "Vui lòng cấp quyền hiển thị trên ứng dụng khác (Overlay)!", Toast.LENGTH_LONG).show()
+            requestOverlayPermission()
+            return
+        }
+
         // Khởi động Foreground Service
         val serviceIntent = Intent(this, HeartbeatService::class.java).apply {
             putExtra("DEVICE_NAME", name)
@@ -118,7 +124,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
         }
 
-        // 2. Quyền Thông báo (Dành cho Android 13+)
+        // 2. Quyền Overlay (Để mở danh sách app có thể vẽ đè)
+        if (!hasOverlayPermission()) {
+            requestOverlayPermission()
+        }
+
+        // 3. Quyền Thông báo (Dành cho Android 13+)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 101)
         }
@@ -140,6 +151,24 @@ class MainActivity : AppCompatActivity() {
             )
         }
         return mode == AppOpsManager.MODE_ALLOWED
+    }
+
+    private fun hasOverlayPermission(): Boolean {
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || Settings.canDrawOverlays(this)
+    }
+
+    private fun requestOverlayPermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return
+        val appIntent = Intent(
+            Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+            Uri.parse("package:$packageName")
+        )
+        val fallbackIntent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
+        try {
+            startActivity(appIntent)
+        } catch (_: Exception) {
+            startActivity(fallbackIntent)
+        }
     }
 
     // Tùy chọn: Thêm hàm để giải phóng nút Connect khi Service bị dừng (nếu cần)

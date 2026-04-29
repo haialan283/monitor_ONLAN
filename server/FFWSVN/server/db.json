@@ -1,0 +1,170 @@
+{
+  "alerts": [
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.android.vending",
+      "startTime": "16:32:35",
+      "endTime": "16:32:47"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.android.vending",
+      "startTime": "16:34:34",
+      "endTime": "16:34:40"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.android.vending",
+      "startTime": "16:34:54",
+      "endTime": "16:35:00"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.android.vending",
+      "startTime": "16:35:10",
+      "endTime": "16:35:14"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.google.android.gms",
+      "startTime": "16:35:22",
+      "endTime": "16:35:24"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.google.android.googlequicksearchbox",
+      "startTime": "16:35:40",
+      "endTime": "16:35:44"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.google.android.googlequicksearchbox",
+      "startTime": "16:38:46",
+      "endTime": "16:39:44"
+    },
+    {
+      "deviceId": "SYSTEM_NET",
+      "deviceName": "NETWORK ERROR",
+      "app": "DNS:OK|TCP:FAIL",
+      "startTime": "16:41:55",
+      "endTime": "16:42:00"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.google.android.googlequicksearchbox",
+      "startTime": "16:44:46",
+      "endTime": "16:44:50"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.google.android.googlequicksearchbox",
+      "startTime": "16:48:34",
+      "endTime": "16:48:44"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.google.android.googlequicksearchbox",
+      "startTime": "16:51:09",
+      "endTime": "16:52:09"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.google.android.googlequicksearchbox",
+      "startTime": "16:54:02",
+      "endTime": "16:54:08"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.android.vending",
+      "startTime": "16:54:14",
+      "endTime": "20:41:30"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.android.settings",
+      "startTime": "20:55:01",
+      "endTime": "20:55:10 (Lost)"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.garena.game.fcmobilevn",
+      "startTime": "10:29:35",
+      "endTime": "10:29:38"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.google.android.gms",
+      "startTime": "10:29:38",
+      "endTime": "10:29:53"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.garena.game.fcmobilevn",
+      "startTime": "10:29:53",
+      "endTime": "10:30:59"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.android.settings",
+      "startTime": "10:34:55",
+      "endTime": "10:35:49"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.sec.android.app.launcher",
+      "startTime": "10:36:04",
+      "endTime": "10:36:49"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.sec.android.app.launcher",
+      "startTime": "10:37:51",
+      "endTime": "10:39:16"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.sec.android.app.launcher",
+      "startTime": "10:39:29",
+      "endTime": "10:42:35"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.sec.android.app.launcher",
+      "startTime": "10:42:50",
+      "endTime": "10:44:13 (Lost)"
+    },
+    {
+      "deviceId": "72bb72a2d0a79c08",
+      "deviceName": "SS1",
+      "app": "com.sec.android.app.launcher",
+      "startTime": "10:44:20",
+      "endTime": "10:48:54"
+    }
+  ],
+  "tableNames": {},
+  "netConfig": {
+    "dns": "8.8.8.8",
+    "port": 53
+  }
+}

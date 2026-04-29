@@ -12,6 +12,10 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.os.*
 import android.provider.Settings
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.net.TrafficStats
+import android.os.Process
 import android.net.wifi.WifiInfo
 import android.net.wifi.WifiManager
 import android.util.Base64
@@ -26,6 +30,7 @@ import java.util.concurrent.TimeUnit
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
+import java.util.concurrent.ScheduledFuture
 
 class HeartbeatService : Service() {
 
@@ -33,7 +38,9 @@ class HeartbeatService : Service() {
         /** Key mã hóa WebSocket — phải trùng với SECRET_KEY trên server (.env). */
         private const val WS_SECRET_KEY = "MonitorTournamentSecretKey2026!"
         private const val LOCAL_IP_CACHE_MS = 20_000L
-        private const val RECONNECT_MAX_SEC = 30
+        // Giới hạn backoff reconnect để giảm thời gian server phát hiện re-connect.
+        private const val RECONNECT_MAX_SEC = 10
+        private const val OFFLINE_RECORD_WINDOW_MS = 120_000L // 2 phút
     }
 
     private var client: OkHttpClient? = null
@@ -66,6 +73,25 @@ class HeartbeatService : Service() {
     }
 
     private val scheduler = Executors.newSingleThreadScheduledExecutor()
+
+    private var heartbeatTask: ScheduledFuture<*>? = null
+    private var overlayTask: ScheduledFuture<*>? = null
+    private var installedAppsTask: ScheduledFuture<*>? = null
+    private var isWsConnected: Boolean = false
+
+    // Buffer các heartbeat đã mã hóa khi WebSocket mất kết nối.
+    // Khi reconnect thành công (trong vòng 2 phút) sẽ gửi lại để server có timeline đầy đủ.
+    private val offlineEncryptedQueue = ArrayList<String>(128)
+    private var recordingUntilMs: Long = 0L
+    private var disconnectStartMs: Long = 0L
+    private var disconnectIntent: String = "unknown" // ước lượng: intentional/accidental/unknown
+    private var reconnectEnabled: Boolean = true
+    private var hbLogCounter: Int = 0
+
+    // Delta bytes theo UID để ước lượng lượng dữ liệu app đang dùng (WiFi vs Cellular).
+    private var lastTxBytes: Long = -1L
+    private var lastRxBytes: Long = -1L
+    private var lastNetSampleMs: Long = 0L
 
     // --- Caching System Services ---
     private val activityManager by lazy { getSystemService(ActivityManager::class.java) }
@@ -107,7 +133,8 @@ class HeartbeatService : Service() {
 
             startForegroundService()
             connectWebSocket()
-            refreshInstalledAppsList() // Quét danh sách app 1 lần lúc bật
+            // Chỉ bắt đầu các job nặng (UsageStats/Overlay/App list) khi WebSocket đã connect.
+            // Tránh việc server tắt vẫn tốn tài nguyên thu thập dữ liệu.
             
             val filter = IntentFilter("com.ops.tournamentmonitor.ACTION_TOGGLE_FTP")
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -116,12 +143,126 @@ class HeartbeatService : Service() {
                 @Suppress("UnspecifiedRegisterReceiverFlag")
                 registerReceiver(ftpReceiver, filter)
             }
-
-            scheduler.scheduleWithFixedDelay({ sendHeartbeat() }, 0, 2, TimeUnit.SECONDS)
-            scheduler.scheduleWithFixedDelay({ checkActiveOverlayRoutine() }, 5, 15, TimeUnit.SECONDS)
-            scheduler.scheduleWithFixedDelay({ refreshInstalledAppsList() }, 5, 5, TimeUnit.MINUTES)
         }
         return START_STICKY
+    }
+
+    private fun stopHeartbeatJobs() {
+        heartbeatTask?.cancel(false)
+        overlayTask?.cancel(false)
+        installedAppsTask?.cancel(false)
+        heartbeatTask = null
+        overlayTask = null
+        installedAppsTask = null
+    }
+
+    private fun startHeartbeatJobs() {
+        // Reset job để tránh trùng lịch nếu onOpen được gọi lại.
+        stopHeartbeatJobs()
+
+        // Overlay check cần danh sách app đã filter.
+        refreshInstalledAppsList()
+
+        heartbeatTask = scheduler.scheduleWithFixedDelay({ sendHeartbeat() }, 0, 2, TimeUnit.SECONDS)
+        overlayTask = scheduler.scheduleWithFixedDelay({ checkActiveOverlayRoutine() }, 5, 15, TimeUnit.SECONDS)
+        installedAppsTask = scheduler.scheduleWithFixedDelay({ refreshInstalledAppsList() }, 5, 5, TimeUnit.MINUTES)
+    }
+
+    private fun areHeartbeatJobsRunning(): Boolean = heartbeatTask != null || overlayTask != null || installedAppsTask != null
+
+    private fun estimateDisconnectIntent(): String {
+        return try {
+            // Nếu bật chế độ máy bay thì coi như "cố ý" (heuristic).
+            val airplaneOn = Settings.Global.getInt(contentResolver, Settings.Global.AIRPLANE_MODE_ON, 0) == 1
+            if (airplaneOn) return "intentional"
+
+            // Kiểm tra transport/internet capability để suy đoán user có tắt WiFi hay không.
+            val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val nw = cm.activeNetwork
+            val caps = nw?.let { cm.getNetworkCapabilities(it) }
+
+            val hasInternet = caps?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
+            val hasWifiTransport = caps?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) == true
+            val hasCellTransport = caps?.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) == true
+
+            // Một số máy: wifiManager.isWifiEnabled không phản ánh kịp thời lúc mất kết nối,
+            // nên dùng thêm hasWifiTransport như fallback.
+            val wifiEnabled = try { wifiManager.isWifiEnabled } catch (_: Exception) { hasWifiTransport }
+
+            // Nếu WiFi bị tắt (radio) hoặc hệ thống không còn thấy WiFi transport,
+            // khả năng cao là user chủ động thao tác.
+            if (!wifiEnabled || !hasWifiTransport) {
+                return if (hasCellTransport) "likely_intentional" else "likely_intentional"
+            }
+
+            // WiFi vẫn bật nhưng không có internet: có thể do lỗi mạng/thoáng qua.
+            if (!hasInternet) return "accidental_or_unknown"
+
+            // Có internet nhưng vẫn disconnect → nhiều khả năng server unreachable hoặc tạm chặn.
+            "unknown"
+        } catch (_: Exception) {
+            "unknown"
+        }
+    }
+
+    private fun startOfflineRecording(nowMs: Long) {
+        if (!reconnectEnabled) return
+
+        // Nếu đang có recording khác chưa hết hạn thì không reset lại disconnectStartMs.
+        if (recordingUntilMs > nowMs) return
+
+        disconnectStartMs = nowMs
+        disconnectIntent = estimateDisconnectIntent()
+        recordingUntilMs = nowMs + OFFLINE_RECORD_WINDOW_MS
+
+        // Nếu chưa có job đang chạy (ví dụ mới vừa connect fail ngay), thì bật job để thu thập trong 2 phút.
+        if (!areHeartbeatJobsRunning()) startHeartbeatJobs()
+
+        // Hết 2 phút mà vẫn chưa reconnect được → ngừng thu thập + dừng reconnect.
+        scheduler.schedule({
+            val stillDisconnected = !isWsConnected
+            if (stillDisconnected) {
+                offlineEncryptedQueue.clear()
+                recordingUntilMs = 0L
+                disconnectStartMs = 0L
+                disconnectIntent = "unknown"
+                reconnectEnabled = false
+                stopHeartbeatJobs()
+                // Không thể kết nối lại sau 2 phút → ngừng service để tiết kiệm tài nguyên.
+                stopSelf()
+            }
+        }, OFFLINE_RECORD_WINDOW_MS, TimeUnit.MILLISECONDS)
+    }
+
+    private fun flushOfflineQueue() {
+        // Gửi tóm tắt disconnect (nếu có) + flush các hb buffered.
+        if (webSocket == null || !isWsConnected) return
+
+        val nowMs = System.currentTimeMillis()
+        if (disconnectStartMs > 0L) {
+            val evt = JSONObject().apply {
+                put("type", "net_event")
+                put("eventType", "disconnect_summary")
+                put("deviceId", deviceId)
+                put("deviceName", deviceName)
+                put("intent", disconnectIntent)
+                put("startTimeMs", disconnectStartMs)
+                put("endTimeMs", nowMs)
+            }
+            val enc = aesEncrypt(evt.toString())
+            if (enc.isNotEmpty()) webSocket?.send(enc)
+        }
+
+        for (payload in offlineEncryptedQueue) {
+            if (payload.isNotEmpty()) webSocket?.send(payload)
+        }
+        offlineEncryptedQueue.clear()
+
+        // Reset trạng thái recording.
+        recordingUntilMs = 0L
+        disconnectStartMs = 0L
+        disconnectIntent = "unknown"
+        reconnectEnabled = true
     }
 
     // Hàm lấy thông tin RAM (Free/Total)
@@ -135,9 +276,57 @@ class HeartbeatService : Service() {
         } catch (_: Exception) { "0/0" }
     }
 
+    private fun getNetworkTransportAndDataDelta(nowMs: Long): Pair<String, Long> {
+        return try {
+            val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val nw = cm.activeNetwork
+            val caps = nw?.let { cm.getNetworkCapabilities(it) }
+
+            val netTransport = when {
+                caps?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) == true -> "WIFI"
+                caps?.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) == true -> "CELLULAR"
+                else -> "UNKNOWN"
+            }
+
+            val uid = Process.myUid()
+            val tx = TrafficStats.getUidTxBytes(uid)
+            val rx = TrafficStats.getUidRxBytes(uid)
+
+            // TrafficStats có thể trả về -1 nếu chưa có dữ liệu.
+            if (tx < 0L || rx < 0L) {
+                if (lastNetSampleMs == 0L) {
+                    lastTxBytes = tx
+                    lastRxBytes = rx
+                    lastNetSampleMs = nowMs
+                }
+                return netTransport to 0L
+            }
+
+            if (lastNetSampleMs == 0L) {
+                lastTxBytes = tx
+                lastRxBytes = rx
+                lastNetSampleMs = nowMs
+                return netTransport to 0L
+            }
+
+            val dTx = (tx - lastTxBytes).coerceAtLeast(0L)
+            val dRx = (rx - lastRxBytes).coerceAtLeast(0L)
+
+            lastTxBytes = tx
+            lastRxBytes = rx
+            lastNetSampleMs = nowMs
+
+            netTransport to (dTx + dRx)
+        } catch (_: Exception) {
+            "UNKNOWN" to 0L
+        }
+    }
+
     private fun sendHeartbeat() {
         try {
             val now = System.currentTimeMillis()
+            val clientTimeMs = now
+            val (netTransport, dataBytesDelta) = getNetworkTransportAndDataDelta(now)
             val events = usageStatsManager.queryEvents(now - 15000, now)
             val event = UsageEvents.Event()
 
@@ -149,12 +338,20 @@ class HeartbeatService : Service() {
                 }
             }
 
-            val finalAppReport = if (cachedOverlayApp.isNotEmpty()) "OVERLAY: $cachedOverlayApp" else lastDetectedApp
+            val foregroundAppReport = lastDetectedApp
+            val overlayAppReport = cachedOverlayApp
+            val finalAppReport = if (overlayAppReport.isNotEmpty()) "OVERLAY: $overlayAppReport" else foregroundAppReport
 
             val json = JSONObject().apply {
                 put("type", "hb")
                 put("deviceId", deviceId)
                 put("deviceName", deviceName)
+                put("clientTimeMs", clientTimeMs)
+                put("netTransport", netTransport)
+                put("dataBytesDelta", dataBytesDelta)
+                // Tách bạch để server quyết định vi phạm overlay độc lập với foreground.
+                put("foregroundApp", foregroundAppReport)
+                put("overlayApp", overlayAppReport)
                 put("battery", getBatteryLevel())
                 put("isCharging", isDeviceCharging())
                 put("isScreenOn", isScreenOn())
@@ -164,10 +361,31 @@ class HeartbeatService : Service() {
                 put("isFtpOpen", isFtpOpen) // Đính kèm trạng thái FTP
                 put("localIp", getLocalIpAddressCached()) // IP nội bộ (cache 20s để giảm tải)
             }
-            
-            val encryptedPayload = aesEncrypt(json.toString())
+
+            // Kích thước JSON trước mã hóa + kích thước chuỗi đã mã hóa
+            // để ước lượng băng thông WebSocket.
+            val jsonStr = json.toString()
+            val jsonSizeBytes = jsonStr.toByteArray(Charsets.UTF_8).size
+
+            val encryptedPayload = aesEncrypt(jsonStr)
             if (encryptedPayload.isNotEmpty()) {
-                webSocket?.send(encryptedPayload)
+                val encryptedSizeBytes = encryptedPayload.toByteArray(Charsets.UTF_8).size
+                hbLogCounter += 1
+                if (hbLogCounter % 10 == 0) {
+                    Log.d(
+                        logTag,
+                        "HB sizes: json=${jsonSizeBytes}B encStr=${encryptedSizeBytes}B wsConnected=${
+                            isWsConnected
+                        } queue=${offlineEncryptedQueue.size}"
+                    )
+                }
+                if (isWsConnected && webSocket != null) {
+                    webSocket?.send(encryptedPayload)
+                } else {
+                    // Trong lúc mất kết nối: buffer để gửi lại khi reconnect (tối đa 2 phút).
+                    if (offlineEncryptedQueue.size > 200) offlineEncryptedQueue.removeAt(0)
+                    offlineEncryptedQueue.add(encryptedPayload)
+                }
             }
         } catch (e: Exception) { Log.e(logTag, "HB Error: ${e.message}") }
     }
@@ -250,13 +468,36 @@ class HeartbeatService : Service() {
     private var reconnectDelaySec = 2
 
     private fun connectWebSocket() {
+        if (!reconnectEnabled || isWsConnected) return
         client = OkHttpClient.Builder().readTimeout(0, TimeUnit.MILLISECONDS).build()
-        val request = Request.Builder().url("ws://$serverIp:$serverPort").build()
+        // Khi dùng ngrok/HTTPS (port 443) phải dùng wss://; LAN dùng ws://
+        val wsUrl = if (serverPort == "443") "wss://$serverIp" else "ws://$serverIp:$serverPort"
+        val request = Request.Builder().url(wsUrl).build()
         webSocket = client?.newWebSocket(request, object : WebSocketListener() {
             override fun onOpen(webSocket: WebSocket, response: Response) {
                 reconnectDelaySec = 2
+                isWsConnected = true
+                // Nếu đang trong offline recording thì job đã chạy sẵn.
+                if (!areHeartbeatJobsRunning()) startHeartbeatJobs()
+                flushOfflineQueue()
             }
             override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
+                isWsConnected = false
+                val nowMs = System.currentTimeMillis()
+                startOfflineRecording(nowMs)
+
+                if (!reconnectEnabled) return
+                val delay = reconnectDelaySec
+                scheduler.schedule({ connectWebSocket() }, delay.toLong(), TimeUnit.SECONDS)
+                if (reconnectDelaySec < RECONNECT_MAX_SEC) reconnectDelaySec = (reconnectDelaySec * 2).coerceAtMost(RECONNECT_MAX_SEC)
+            }
+
+            override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
+                isWsConnected = false
+                val nowMs = System.currentTimeMillis()
+                startOfflineRecording(nowMs)
+
+                if (!reconnectEnabled) return
                 val delay = reconnectDelaySec
                 scheduler.schedule({ connectWebSocket() }, delay.toLong(), TimeUnit.SECONDS)
                 if (reconnectDelaySec < RECONNECT_MAX_SEC) reconnectDelaySec = (reconnectDelaySec * 2).coerceAtMost(RECONNECT_MAX_SEC)

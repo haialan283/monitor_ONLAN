@@ -2,7 +2,9 @@
  * Định kỳ đánh dấu thiết bị mất kết nối (quá 7s không heartbeat) và broadcast.
  * onDisconnect(deviceName) được gọi cho mỗi thiết bị vừa mất kết nối (để gửi Discord, v.v.).
  */
-const DISCONNECT_MS = 7000;
+// Giảm thời gian chuyển sang trạng thái disconnected.
+// Với chu kỳ check 2s, ngưỡng 5000ms sẽ cho ra cảm giác ~6s phát hiện.
+const DISCONNECT_MS = 5000;
 const INTERVAL_MS = 2000;
 
 function startDisconnectCheck(store, broadcast, onDisconnect) {

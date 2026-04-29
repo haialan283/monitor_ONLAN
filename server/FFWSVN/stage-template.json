@@ -1,0 +1,29 @@
+{
+  "card": { "w": 290, "h": 92 },
+  "spacing": {
+    "gapY": 12,
+    "gapCol": 14,
+    "gapBlock": 120,
+    "gapRow": 28,
+    "marginX": 16,
+    "marginY": 16
+  },
+  "spacingByPrefix": {
+    "WAGA": { "gapY": 6 }
+  },
+  "seatOrder": [4, 3, 2, 1],
+  "seatOrderByPrefix": {
+"BH":["BH.PIGH","BH. XNGUYEN","BH.DUCLOCC","BH.HLOC0412"],	"TDE":["TDE.DMH","TDE.ZET7","TDE.M10","TDE.LEKHOA"],
+"BV":["BV.DMT","BV.NNHAT","BV.ZELDA","BV.ERIC"],	"LG":["LG.CHL","LG.HAZO","LG.QTHANH","LG.EMBI"],
+"NVT":["NVT.SMILE","NVT.EMVH","NVT.BIRDGOD","NVT.TBINH"],	"WAGA":["WAGA.NHAN7","WAGA.HOANGM","WAGA.CTUAN","WAGA.SHIRYU"],
+"ANT":["ANT.KANZU","ANT.JONAH","ANT.PKHANG","ANT.WHUY"],	"TLE":["TLE.TULET","TLE.KAN","TLE.B52","TLE.NOBIZZ"],
+"AMF":["AMF.GOCU","AMF.THANHNHA","AMF.CWILL","AMF.PCU"],	"PTE":["PTE.NAOGB","PTE.DQHMEO","PTE.HMT103","PTE.FORTE"],
+"FL":["FL.MINKCUOG","FL.ABCD","FL.THEGOD","FL.THEZOM"],	"CTGM":["CTGM.LOCY3S","CTGM.HTHAT","CTGM.YANBIN","CTGM.PREPARE"]
+  },
+  "rows": [
+    [["BH", "TDE"], ["ANT", "TLE"]],
+    [["BV", "LG"], ["AMF", "PTE"]],
+    [["NVT", "WAGA"], ["FL", "CTGM"]]
+  ]
+}
+

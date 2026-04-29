@@ -1,6 +1,8 @@
 const https = require('https');
 const http = require('http');
 
+const DISCORD_WEBHOOK_TIMEOUT_MS = parseInt(process.env.DISCORD_WEBHOOK_TIMEOUT_MS, 10) || 20000;
+
 /**
  * Gửi thông báo vi phạm lên Discord qua Webhook.
  * Khi có thiết bị vi phạm (app không trong whitelist), gọi hàm này để nhắc trọng tài trong kênh.
@@ -38,14 +40,19 @@ function notifyViolation(webhookUrl, deviceName, app) {
     };
 
     const req = (isHttps ? https : http).request(options, (res) => {
+        clearTimeout(timer);
+        res.resume();
         if (res.statusCode >= 400) {
             console.error('[Discord] Webhook error:', res.statusCode, res.statusMessage);
         }
     });
-    req.on('error', (err) => console.error('[Discord] Request error:', err.message));
-    req.setTimeout(5000, () => {
+    const timer = setTimeout(() => {
         req.destroy();
-        console.error('[Discord] Request timeout');
+        console.error('[Discord] Request timeout (webhook violation)');
+    }, DISCORD_WEBHOOK_TIMEOUT_MS);
+    req.on('error', (err) => {
+        clearTimeout(timer);
+        console.error('[Discord] Request error:', err.message);
     });
     req.write(payload);
     req.end();
@@ -84,47 +91,20 @@ function notifyDisconnect(webhookUrl, deviceName) {
     };
 
     const req = (isHttps ? https : http).request(options, (res) => {
+        clearTimeout(timer);
+        res.resume();
         if (res.statusCode >= 400) console.error('[Discord] Webhook error:', res.statusCode);
     });
-    req.on('error', (err) => console.error('[Discord] Request error:', err.message));
-    req.setTimeout(5000, () => { req.destroy(); });
-    req.write(payload);
-    req.end();
-}
-
-/**
- * Gửi yêu cầu đọc TTS tới Discord Voice Bot (bot vào kênh thoại và đọc).
- * @param {string} baseUrl - URL bot (vd. http://localhost:3001)
- * @param {string|null} secret - BOT_SECRET (header X-Bot-Secret), null = không gửi
- * @param {'violation'|'disconnect'} type
- * @param {string} deviceName
- * @param {string} [app] - Chỉ khi type === 'violation'
- */
-function announceToVoiceBot(baseUrl, secret, type, deviceName, app) {
-    if (!baseUrl || !baseUrl.startsWith('http')) return;
-
-    const url = new URL('/announce', baseUrl);
-    const payload = JSON.stringify({ type, deviceName, app: app || '' });
-    const options = {
-        hostname: url.hostname,
-        port: url.port || (url.protocol === 'https:' ? 443 : 80),
-        path: url.pathname,
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Content-Length': Buffer.byteLength(payload, 'utf8'),
-        },
-    };
-    if (secret) options.headers['X-Bot-Secret'] = secret;
-
-    const lib = url.protocol === 'https:' ? https : http;
-    const req = lib.request(options, (res) => {
-        if (res.statusCode >= 400) console.error('[VoiceBot] Error:', res.statusCode);
+    const timer = setTimeout(() => {
+        req.destroy();
+        console.error('[Discord] Request timeout (webhook disconnect)');
+    }, DISCORD_WEBHOOK_TIMEOUT_MS);
+    req.on('error', (err) => {
+        clearTimeout(timer);
+        console.error('[Discord] Request error:', err.message);
     });
-    req.on('error', (err) => console.error('[VoiceBot] Request error:', err.message));
-    req.setTimeout(5000, () => { req.destroy(); });
     req.write(payload);
     req.end();
 }
 
-module.exports = { notifyViolation, notifyDisconnect, announceToVoiceBot };
+module.exports = { notifyViolation, notifyDisconnect };
