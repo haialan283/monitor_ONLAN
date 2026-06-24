@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>ALAN - MONITOR SYSTEM</title>
+    <title>MONITOR SYSTEM</title>
 	<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12,1L3,5v6c0,5.55 3.84,10.74 9,12c5.16-1.26 9-6.45 9-12V5L12,1z' fill='rgba(0,242,255,0.1)'/><path d='M12,1L3,5v6c0,5.55 3.84,10.74 9,12c5.16-1.26 9-6.45 9-12V5L12,1z' stroke='%2300F2FF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M7,12h2l1-3l2,6l1-3h2' stroke='%2300F2FF' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>">
     <style>
         :root {
@@ -32,31 +32,32 @@
             padding: 5px 14px 6px;
         }
         .header-main-row {
-            display: flex;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
             align-items: center;
-            justify-content: space-between;
             gap: 8px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             min-width: 0;
         }
         .header-main-row .main-title {
-            font-size: 17px;
+            font-size: 23px;
             font-weight: 900;
             letter-spacing: 3px;
             color: var(--accent);
             text-shadow: var(--neon-shadow);
             text-transform: uppercase;
-            flex: 1 1 160px;
+            flex: 0 0 auto;
             min-width: 0;
             text-align: center;
+            justify-self: center;
             margin: 0;
             line-height: 1.15;
         }
-        /* Thanh NET nhỏ, cạnh DEVICES — ưu tiên vùng monitor devices */
+        /* Thanh NET cạnh DEVICES, được nới rộng về phía tiêu đề */
         .header-net-wrap {
-            flex: 0 1 auto;
+            flex: 1 1 auto;
             min-width: 0;
-            max-width: min(400px, 38vw);
+            max-width: none;
             overflow-x: auto;
             overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
@@ -98,7 +99,7 @@
         }
         .net-monitor-row {
             display: grid;
-            grid-template-columns: 26px minmax(56px, 1fr) 36px 20px 52px 34px;
+            grid-template-columns: 26px minmax(56px, 1fr) 52px 20px 300px 34px;
             align-items: center;
             gap: 4px 5px;
             min-width: 300px;
@@ -126,14 +127,14 @@
         }
         .net-port-input {
             width: 100%;
-            max-width: 36px;
+            max-width: 52px;
             justify-self: start;
             background: #000;
             border: 1px solid #2a2a32;
             color: var(--accent);
             font-size: 9px;
             padding: 2px 3px;
-            border-radius: 2px;
+            border-radius: 1px;
             outline: none;
             box-sizing: border-box;
         }
@@ -153,7 +154,7 @@
         .dot { width: 6px; height: 6px; border-radius: 50%; background: #222; }
         .dot.on { background: var(--safe); box-shadow: 0 0 6px var(--safe); }
         .net-graph-canvas {
-            width: 52px;
+            width: 300px;
             height: 14px;
             background: rgba(0,0,0,0.45);
             border: 1px solid #151518;
@@ -177,6 +178,108 @@
             flex-direction: column;
             flex-shrink: 0;
             transition: opacity 0.18s ease;
+        }
+        .waiting-toolbar {
+            padding: 10px 12px;
+            border-bottom: 1px solid #222;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            background: linear-gradient(180deg, rgba(18,18,26,0.95), rgba(8,8,12,0.95));
+        }
+        .waiting-title-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
+        }
+        .waiting-title {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.4px;
+            color: #d9f9ff;
+            white-space: nowrap;
+        }
+        .waiting-count-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 28px;
+            height: 18px;
+            padding: 0 6px;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 242, 255, 0.28);
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--accent);
+            font-size: 10px;
+            font-weight: 800;
+            font-family: Consolas, 'Monaco', monospace;
+            line-height: 1;
+        }
+        .waiting-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        #sidebar .header-action {
+            padding: 4px 8px;
+            min-height: 24px;
+            border-radius: 6px;
+            font-size: 9px;
+            letter-spacing: 0.25px;
+            text-transform: uppercase;
+        }
+        .waiting-list-body {
+            padding: 10px;
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: stretch;
+            align-content: flex-start;
+            background: linear-gradient(180deg, rgba(4, 4, 8, 0.45) 0%, rgba(0, 0, 0, 0.08) 100%);
+        }
+        .waiting-list-body::-webkit-scrollbar {
+            width: 8px;
+        }
+        .waiting-list-body::-webkit-scrollbar-thumb {
+            background: rgba(0, 242, 255, 0.22);
+            border-radius: 999px;
+            border: 1px solid rgba(0, 242, 255, 0.1);
+        }
+        .waiting-list-body::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 999px;
+        }
+        /* Thu gọn card trong Waiting List để không cần kéo ngang */
+        #waiting-list .device-card {
+            width: 100%;
+            min-height: 62px;
+            padding: 5px 8px;
+        }
+        #waiting-list .dev-info {
+            font-size: 10px;
+        }
+        #waiting-list .dev-sub {
+            font-size: 8px;
+            margin-top: 1px;
+            gap: 6px;
+        }
+        #waiting-list .dev-sub-top {
+            font-size: 10px;
+        }
+        #waiting-list .dev-sub-meta,
+        #waiting-list .dev-ip,
+        #waiting-list .ram-tag {
+            font-size: 8px;
+        }
+        #waiting-list .ram-tag {
+            padding: 3px 6px;
+            margin-left: 6px;
         }
         /* Thu gọn hẳn khỏi flex row — #log-panel có width cố định nên cần !important */
         .side-panel.hidden {
@@ -207,7 +310,10 @@
 			background: #000;
 			background-image: radial-gradient(rgba(0, 242, 255, 0.1) 1px, transparent 1px);
 			background-size: 20px 20px; /* Grid background */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge legacy */
 		}
+        #monitor-arena::-webkit-scrollbar { width: 0; height: 0; display: none; }
         /* Màn nhỏ hoặc chiều cao ít (landscape phone): cuộn pan stage */
         @media (max-width: 1024px), (max-height: 520px) {
             #monitor-arena {
@@ -224,21 +330,6 @@
             background-image: radial-gradient(rgba(0, 242, 255, 0.1) 1px, transparent 1px);
             background-size: 20px 20px;
         }
-        .arena-map-hint {
-            position: sticky;
-            top: 0;
-            left: 0;
-            z-index: 3;
-            margin: 0;
-            padding: 8px 10px;
-            width: fit-content;
-            max-width: 100%;
-            font-size: 11px;
-            color: #666;
-            pointer-events: none;
-            background: linear-gradient(180deg, rgba(0,0,0,0.92) 60%, transparent);
-        }
-
 		.line-group { 
 			flex: 1; 
 			min-width: 200px; 
@@ -402,7 +493,38 @@
 		.device-card.on-map {
 		    position: absolute;
 		    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            width: var(--stage-card-w, 290px);
+            min-height: var(--stage-card-h, 92px);
 		}
+        #arena-layer.arena-density-compact .device-card.on-map {
+            padding: 5px 8px;
+        }
+        #arena-layer.arena-density-ultra .device-card.on-map {
+            padding: 4px 7px;
+        }
+        #arena-layer.arena-density-compact .dev-info,
+        #arena-layer.arena-density-ultra .dev-info { font-size: 10px; }
+        #arena-layer.arena-density-ultra .dev-info { font-size: 9px; }
+        #arena-layer.arena-density-compact .dev-sub { font-size: 8px; }
+        #arena-layer.arena-density-ultra .dev-sub { font-size: 7.5px; }
+        #arena-layer.arena-density-compact .dev-sub-top { font-size: 10px; }
+        #arena-layer.arena-density-ultra .dev-sub-top { font-size: 9px; }
+        #arena-layer.arena-density-compact .dev-sub-meta,
+        #arena-layer.arena-density-compact .dev-ip,
+        #arena-layer.arena-density-compact .ram-tag { font-size: 8px; }
+        #arena-layer.arena-density-ultra .dev-sub-meta,
+        #arena-layer.arena-density-ultra .dev-ip,
+        #arena-layer.arena-density-ultra .ram-tag { font-size: 7px; }
+        .device-card.on-map.stage-ip-highlight {
+            z-index: 99;
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            box-shadow:
+                0 0 0 4px rgba(0, 242, 255, 0.2),
+                0 8px 28px rgba(0, 242, 255, 0.25),
+                0 4px 10px rgba(0, 0, 0, 0.55);
+            animation: none; /* không nháy theo blink của warning */
+        }
 
         .device-card.online { border-left: 4px solid var(--safe); color: var(--safe); background: rgba(0,120,60,0.3);}
         .device-card.warning { border-left: 4px solid var(--warn); color: #fff; background: rgba(255,0,60,0.2); animation: blink 0.6s infinite alternate; }
@@ -460,6 +582,11 @@
             margin-top: 3px;
             letter-spacing: 0.02em;
         }
+        .transport-icon-lan {
+            display: inline-block;
+            vertical-align: middle;
+            margin-bottom: 1px;
+        }
 
         .cyber-btn { background: #000; border: 1px solid var(--accent); color: var(--accent); padding: 5px 10px; cursor: pointer; font-size: 10px; font-weight: bold; }
         .cyber-btn:hover { background: var(--accent); color: #000; }
@@ -467,16 +594,16 @@
         .header-action.secondary { border-color: rgba(255,255,255,0.18); color: #cfcfcf; }
         .header-action.secondary:hover { background: rgba(255,255,255,0.12); color: #fff; }
 
-        /* PUSH MULTI DEVICES MODAL - styling */
-        #push-multi-modal .push-multi-body { display: flex; flex-direction: column; gap: 12px; }
-        #push-multi-modal .push-multi-row { display: flex; gap: 10px; align-items: center; }
-        #push-multi-modal .push-multi-label { color:#aaa; font-size:10px; margin-bottom:4px; font-weight:700; }
-        #push-multi-modal .push-multi-panel { border:1px solid #1a1a28; border-radius:8px; padding:10px; background: rgba(0,0,0,0.25); }
-        #push-multi-modal .push-multi-subtitle { color:#aaa; font-size:10px; font-weight:700; margin-bottom:8px; }
-        #push-multi-modal .push-multi-checkbox-label { display:flex; align-items:center; gap:8px; margin-bottom:8px; font-size:10px; color:#b0b0b0; }
-        #push-multi-modal .push-multi-device-list { max-height: 320px; overflow:auto; display:flex; flex-direction:column; gap:8px; }
-        #push-multi-modal .push-multi-result { color:#b0b0b0; font-size:11px; }
-        #push-multi-modal .push-multi-footer { padding:12px 18px; display:flex; justify-content:flex-end; gap:10px; border-top:1px solid #1a1a28; background: rgba(0,0,0,0.35); border-radius:0 0 10px 10px; }
+        /* PUSH/DELETE MULTI DEVICES MODAL - styling */
+        #push-multi-modal .push-multi-body, #delete-multi-modal .push-multi-body { display: flex; flex-direction: column; gap: 12px; }
+        #push-multi-modal .push-multi-row, #delete-multi-modal .push-multi-row { display: flex; gap: 10px; align-items: center; }
+        #push-multi-modal .push-multi-label, #delete-multi-modal .push-multi-label { color:#aaa; font-size:10px; margin-bottom:4px; font-weight:700; }
+        #push-multi-modal .push-multi-panel, #delete-multi-modal .push-multi-panel { border:1px solid #1a1a28; border-radius:8px; padding:10px; background: rgba(0,0,0,0.25); }
+        #push-multi-modal .push-multi-subtitle, #delete-multi-modal .push-multi-subtitle { color:#aaa; font-size:10px; font-weight:700; margin-bottom:8px; }
+        #push-multi-modal .push-multi-checkbox-label, #delete-multi-modal .push-multi-checkbox-label { display:flex; align-items:center; gap:8px; margin-bottom:8px; font-size:10px; color:#b0b0b0; }
+        #push-multi-modal .push-multi-device-list, #delete-multi-modal .push-multi-device-list { max-height: 320px; overflow:auto; display:flex; flex-direction:column; gap:8px; }
+        #push-multi-modal .push-multi-result, #delete-multi-modal .push-multi-result { color:#b0b0b0; font-size:11px; }
+        #push-multi-modal .push-multi-footer, #delete-multi-modal .push-multi-footer { padding:12px 18px; display:flex; justify-content:flex-end; gap:10px; border-top:1px solid #1a1a28; background: rgba(0,0,0,0.35); border-radius:0 0 10px 10px; }
         
         .log-item {
             margin-bottom: 8px; padding: 10px; background: rgba(20, 20, 30, 0.6); 
@@ -603,12 +730,66 @@
             display: flex;
             align-items: center;
             gap: clamp(6px, 1.2vw, 14px);
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             min-width: 0;
-            flex: 0 1 auto;
-            max-width: min(100%, 520px);
+            flex: 1 1 auto;
+            max-width: none;
+            width: 100%;
         }
-        .header-right { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; min-width: 0; }
+        .stage-ip-search-wrap {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            margin-right: 4px;
+        }
+        .stage-ip-search-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: #777;
+            letter-spacing: 0.4px;
+            white-space: nowrap;
+        }
+        .stage-ip-search-input {
+            width: min(148px, 28vw);
+            font-family: Consolas, 'Monaco', monospace;
+            font-size: 10px !important;
+        }
+        .header-right { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; min-width: 0; justify-self: end; }
+        .stage-zoom-controls {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 4px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 6px;
+            background: rgba(8, 8, 12, 0.8);
+        }
+        .stage-zoom-btn {
+            min-width: 24px;
+            padding: 2px 6px;
+            font-size: 10px;
+            line-height: 1.1;
+        }
+        .stage-zoom-value {
+            min-width: 44px;
+            text-align: center;
+            font-size: 10px;
+            font-family: Consolas, 'Monaco', monospace;
+            color: #bcefff;
+        }
+        .stage-zoom-fit.active {
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 8px rgba(0, 242, 255, 0.28);
+        }
+        .stage-zoom-overlay {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            z-index: 30;
+            pointer-events: auto;
+        }
         .btn-toggle-label-long { display: inline; }
         .btn-toggle-label-short { display: none; }
         .btn-reopen-label-long { display: inline; }
@@ -621,6 +802,10 @@
         }
         @media (max-width: 900px) {
             .site-header { padding: 6px 10px; }
+            .header-main-row {
+                display: flex;
+                flex-wrap: wrap;
+            }
             .header-main-row .header-left {
                 order: 1;
                 flex: 1 1 100%;
@@ -638,9 +823,9 @@
             .net-monitor-panel { min-width: 0; width: 100%; }
             .net-monitor-row {
                 min-width: 0;
-                grid-template-columns: 26px minmax(0, 1fr) 36px 20px 48px 32px;
+                grid-template-columns: 26px minmax(0, 1fr) 48px 20px 220px 32px;
             }
-            .net-graph-canvas { width: 48px; height: 13px; }
+            .net-graph-canvas { width: 220px; height: 13px; }
             .net-latency-txt { font-size: 7px; }
             .line-group { min-width: 140px; }
             .walk-line { width: 22px; font-size: 10px; letter-spacing: 4px; }
@@ -677,6 +862,17 @@
                 border-right: none;
                 border-bottom: 1px solid #1a1a25;
             }
+            .waiting-toolbar {
+                flex-wrap: wrap;
+                padding: 8px 10px;
+            }
+            .waiting-title {
+                font-size: 10px;
+            }
+            .waiting-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
             #log-panel {
                 order: 3;
                 width: 100% !important;
@@ -705,7 +901,7 @@
         <div class="header-left">
             <button class="cyber-btn" onclick="toggleSide('sidebar')">DEVICES</button>
             <div class="header-net-wrap">
-                <div class="net-monitor-panel" title="DNS + TCP từ máy chủ. SET = lưu cả hai dòng.">
+                <div class="net-monitor-panel" title="DNS + TCP từ máy chủ. SET = lưu LAN, WAN và dòng EXT (tùy chọn).">
                     <div class="net-monitor-head">
                         <span class="net-monitor-panel-title">Net</span>
                         <button type="button" id="btn-set-net" class="cyber-btn net-monitor-set" onclick="saveNetAll()">SET</button>
@@ -732,22 +928,41 @@
                         <canvas id="net-graph-remote" class="net-graph-canvas" aria-hidden="true"></canvas>
                         <span id="net-latency-remote" class="net-latency-txt">—</span>
                     </div>
+                    <div class="net-monitor-row" title="Host/port bổ sung (tùy chọn)">
+                        <span class="net-monitor-title">EXT</span>
+                        <input type="text" id="net-dns-extra" class="net-host-input" placeholder="Host" autocomplete="off">
+                        <input type="number" id="net-port-extra" class="net-port-input" placeholder="Pt" autocomplete="off">
+                        <div class="net-dots" title="DNS · TCP">
+                            <div class="dot" id="dot-dns-extra"></div>
+                            <div class="dot" id="dot-tcp-extra"></div>
+                        </div>
+                        <canvas id="net-graph-extra" class="net-graph-canvas" aria-hidden="true"></canvas>
+                        <span id="net-latency-extra" class="net-latency-txt">—</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <h1 class="main-title">ALAN MONITOR SYSTEM</h1>
+        <h1 class="main-title">MONITOR SYSTEM</h1>
         <div class="header-right">
+            <label class="stage-ip-search-wrap" title="Gõ một phần hoặc toàn bộ IP để tô sáng thiết bị trên Stage">
+                <span class="stage-ip-search-label">Stage IP</span>
+                <input type="text" id="stage-ip-search" class="net-host-input stage-ip-search-input" placeholder="Tìm IP…" autocomplete="off" spellcheck="false">
+            </label>
             <span id="ws-status" class="ws-status ws-status-connecting" title="Trạng thái kết nối">Đang kết nối…</span>
             <span id="role-badge" class="ws-status ws-status-connected" title="Quyền tài khoản">admin</span>
             <button id="btn-align-stage" class="cyber-btn header-action secondary" onclick="arrangeArenaGrid()" title="Xếp các máy trên Stage Map ngay hàng theo lưới">
                 Align Stage
             </button>
+            <button id="btn-group-stage" class="cyber-btn header-action secondary" onclick="arrangeArenaGrouped()" title="Gom nhóm theo tiền tố deviceName (ví dụ WAG.*, HEV.*)">
+                Group Stage
+            </button>
             <button id="btn-template-stage" class="cyber-btn header-action secondary" onclick="arrangeArenaTemplate()" title="Xếp Stage Map theo layout template (BH/TDE/ANT/TLE/...)">
                 Template Stage
             </button>
-            <button type="button" id="btn-restore-stage" class="cyber-btn header-action secondary" onclick="restoreStageLayout()" title="Khôi phục Stage Map từ backup gần nhất">
-                Restore Stage
+            <button id="btn-import-stage-csv" class="cyber-btn header-action secondary" onclick="openStageCsvImportPicker()" title="Import CSV để set vị trí stage theo deviceName">
+                Import CSV Stage
             </button>
+            <input type="file" id="stage-csv-input" accept=".csv,text/csv" style="display:none" onchange="handleStageCsvImport(event)">
             <button type="button" id="btn-reopen-violation-logs" class="cyber-btn header-action secondary" onclick="toggleSide('log-panel')" style="display:none" title="Hiện lại Violation Logs" aria-pressed="false">
                 <span class="btn-reopen-label-long">SHOW LOGS</span><span class="btn-reopen-label-short">LOGS</span>
             </button>
@@ -758,15 +973,29 @@
 
 <div id="container">
     <div id="sidebar" class="side-panel">
-        <div style="padding:15px; font-size:11px; font-weight:bold; border-bottom:1px solid #222; display:flex; align-items:center; justify-content:space-between; gap:12px;">
-            <span>WAITING LIST (<span id="count-wait">0</span>)</span>
-            <button id="btn-push-multi" class="cyber-btn header-action" onclick="openPushMultiModal()">Push multi devices</button>
+        <div class="waiting-toolbar">
+            <div class="waiting-title-wrap">
+                <span class="waiting-title">WAITING LIST</span>
+                <span id="count-wait" class="waiting-count-badge">0</span>
+            </div>
+            <div class="waiting-actions">
+                <button id="btn-push-multi" class="cyber-btn header-action" onclick="openPushMultiModal()">Push multi devices</button>
+                <button id="btn-delete-multi" class="cyber-btn header-action secondary" onclick="openDeleteMultiModal()">Delete multi devices</button>
+            </div>
         </div>
-        <div id="waiting-list" style="padding: 10px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; align-items: stretch; align-content: flex-start;" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'wait')"></div>
+        <div id="waiting-list" class="waiting-list-body" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'wait')"></div>
     </div>
 
     <div id="monitor-arena" ondrop="handleDropArena(event)" ondragover="allowDrop(event)">
         <!-- Nội dung stage do render() vẽ (có vùng cuộn trên màn nhỏ) -->
+        <div class="stage-zoom-overlay">
+            <div class="stage-zoom-controls" title="Zoom stage map">
+                <button type="button" class="cyber-btn header-action secondary stage-zoom-btn" onclick="zoomStageOut()">-</button>
+                <span id="stage-zoom-value" class="stage-zoom-value">FIT</span>
+                <button type="button" class="cyber-btn header-action secondary stage-zoom-btn" onclick="zoomStageIn()">+</button>
+                <button type="button" id="btn-stage-zoom-fit" class="cyber-btn header-action secondary stage-zoom-btn stage-zoom-fit" onclick="resetStageZoomFit()">FIT</button>
+            </div>
+        </div>
     </div>
 
     <div id="log-panel" class="side-panel">
@@ -851,10 +1080,57 @@
     </div>
 </div>
 
+<!-- DELETE MULTI DEVICES MODAL - LAN DEPLOYER -->
+<div id="delete-multi-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); backdrop-filter: blur(4px); z-index: 10000; justify-content:center; align-items:center;">
+    <div class="file-explorer" style="width:900px; max-width:95vw;">
+        <div class="explorer-header">
+            <div class="explorer-title-wrap">
+                <span class="explorer-badge">DELETE MULTI DEVICES</span>
+                <span class="explorer-device" id="delete-multi-device-count">0 devices</span>
+            </div>
+            <div class="explorer-actions">
+                <button class="explorer-close-btn" onclick="closeDeleteMultiModal()">CLOSE</button>
+            </div>
+        </div>
+        <div class="explorer-body push-multi-body">
+            <div class="push-multi-row">
+                <div style="flex:1; min-width: 240px;">
+                    <div class="push-multi-label">Target path (file or folder)</div>
+                    <input type="text" class="explorer-path" id="delete-multi-path" value="/storage/emulated/0/Download/sample.txt">
+                </div>
+                <div style="width:220px;">
+                    <div class="push-multi-label">Delete mode</div>
+                    <label class="push-multi-checkbox-label" style="margin-bottom:0;">
+                        <input id="delete-multi-isdir" type="checkbox" />
+                        Path là thư mục (rm -rf)
+                    </label>
+                </div>
+            </div>
+
+            <div class="push-multi-panel">
+                <div class="push-multi-subtitle">Select devices</div>
+                <label class="push-multi-checkbox-label">
+                    <input id="delete-multi-select-all" type="checkbox" onchange="toggleDeleteMultiSelectAll(this.checked)" />
+                    Select all
+                </label>
+                <div id="delete-multi-device-list" class="push-multi-device-list"></div>
+            </div>
+
+            <div id="delete-multi-result" class="push-multi-result"></div>
+        </div>
+
+        <div class="push-multi-footer">
+            <button class="upload-btn" onclick="submitDeleteMulti()">DELETE</button>
+        </div>
+    </div>
+</div>
+
 <script>
     // --- WEB CRYPTO API ---
     let wsSecretKey = 'MonitorTournamentSecretKey2026!';
     let wsCryptoKeyPromise = null;
+    let adbEnabled = true;
+    let deployMode = 'LAN';
     const wsCanEncrypt = !!(window.crypto && window.crypto.subtle);
 
     async function loadClientConfig() {
@@ -866,6 +1142,9 @@
                 wsSecretKey = cfg.wsSecretKey.trim();
                 wsCryptoKeyPromise = null;
             }
+            if (cfg && typeof cfg.deployMode === 'string') deployMode = cfg.deployMode;
+            if (cfg && cfg.adbEnabled === false) adbEnabled = false;
+            applyDeployModeUi();
         } catch (_) {
             // Keep fallback key to avoid blocking UI if config API fails.
         }
@@ -950,6 +1229,14 @@
         return false;
     }
 
+    function applyDeployModeUi() {
+        const live = deployMode === 'LIVE' || !adbEnabled;
+        ['btn-push-multi', 'btn-delete-multi'].forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = live ? 'none' : '';
+        });
+    }
+
     function applyRoleUi() {
         const badge = document.getElementById('role-badge');
         if (badge) {
@@ -959,9 +1246,11 @@
         const disabledIds = [
             'btn-set-net',
             'btn-align-stage',
+            'btn-group-stage',
             'btn-template-stage',
-            'btn-restore-stage',
+            'btn-import-stage-csv',
             'btn-push-multi',
+            'btn-delete-multi',
             'btn-upload-file',
         ];
         disabledIds.forEach((id) => {
@@ -1048,6 +1337,7 @@
     // Multi-select devices for batch ADB push (LAN Deployer).
     // Dùng checkbox trong modal "push multi devices".
     let selectedDeviceIds = new Set();
+    let selectedDeleteDeviceIds = new Set();
 
     function getSelectableDeviceIds() {
         const ids = [];
@@ -1096,6 +1386,154 @@
         document.getElementById('push-multi-modal').style.display = 'none';
     }
 
+    function updateDeleteMultiSelectAllCheckbox() {
+        const el = document.getElementById('delete-multi-select-all');
+        if (!el) return;
+        const allIds = getSelectableDeviceIds();
+        el.checked = allIds.length > 0 && allIds.every((id) => selectedDeleteDeviceIds.has(id));
+    }
+
+    function toggleDeleteMultiSelectAll(checked) {
+        if (checked) {
+            selectedDeleteDeviceIds = new Set(getSelectableDeviceIds());
+        } else {
+            selectedDeleteDeviceIds.clear();
+        }
+        document.getElementById('delete-multi-device-count').textContent = `${selectedDeleteDeviceIds.size} devices`;
+        renderDeleteMultiDeviceList();
+        updateDeleteMultiSelectAllCheckbox();
+    }
+
+    function openDeleteMultiModal() {
+        if (!ensureEditor('xóa file hàng loạt')) return;
+        selectedDeleteDeviceIds.clear();
+        document.getElementById('delete-multi-result').textContent = '';
+        renderDeleteMultiDeviceList();
+        document.getElementById('delete-multi-device-count').textContent = '0 devices';
+        const el = document.getElementById('delete-multi-select-all');
+        if (el) el.checked = false;
+        document.getElementById('delete-multi-modal').style.display = 'flex';
+    }
+
+    function closeDeleteMultiModal() {
+        document.getElementById('delete-multi-modal').style.display = 'none';
+    }
+
+    function renderDeleteMultiDeviceList() {
+        const listEl = document.getElementById('delete-multi-device-list');
+        if (!listEl) return;
+        listEl.innerHTML = '';
+
+        devices.forEach((d) => {
+            if (!d || !d.deviceId) return;
+            if (d.status === 'disconnected') return;
+            const ip = d.ipAddress || '';
+            const checked = selectedDeleteDeviceIds.has(d.deviceId);
+            const row = document.createElement('label');
+            row.style.display = 'flex';
+            row.style.alignItems = 'center';
+            row.style.gap = '10px';
+            row.style.padding = '6px 8px';
+            row.style.border = '1px solid rgba(255,255,255,0.06)';
+            row.style.borderRadius = '8px';
+            row.style.background = 'rgba(255,255,255,0.02)';
+
+            const cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.checked = checked;
+            cb.onchange = () => {
+                if (cb.checked) selectedDeleteDeviceIds.add(d.deviceId);
+                else selectedDeleteDeviceIds.delete(d.deviceId);
+                document.getElementById('delete-multi-device-count').textContent =
+                    `${selectedDeleteDeviceIds.size} devices`;
+                updateDeleteMultiSelectAllCheckbox();
+            };
+
+            const meta = document.createElement('div');
+            meta.style.display = 'flex';
+            meta.style.flexDirection = 'column';
+            meta.style.gap = '1px';
+            const name = document.createElement('div');
+            name.textContent = getDeviceDisplayName(d, d.deviceId.slice(-6));
+            name.style.fontWeight = '700';
+            const ipEl = document.createElement('div');
+            ipEl.textContent = ip ? `IP: ${ip}` : 'IP: (unknown)';
+            ipEl.style.fontSize = '10px';
+            ipEl.style.opacity = '0.8';
+            meta.appendChild(name);
+            meta.appendChild(ipEl);
+
+            row.appendChild(cb);
+            row.appendChild(meta);
+            listEl.appendChild(row);
+        });
+        updateDeleteMultiSelectAllCheckbox();
+    }
+
+    async function submitDeleteMulti() {
+        if (!ensureEditor('xóa file hàng loạt')) return;
+        const targetPath = (document.getElementById('delete-multi-path')?.value || '').trim();
+        const isDir = !!document.getElementById('delete-multi-isdir')?.checked;
+        if (!targetPath) {
+            alert('Please provide target path.');
+            return;
+        }
+        if (!selectedDeleteDeviceIds.size) {
+            alert('No device selected.');
+            return;
+        }
+        const kind = isDir ? 'thư mục (gồm mọi nội dung bên trong)' : 'file';
+        if (!confirm(`Xóa ${kind} trên ${selectedDeleteDeviceIds.size} thiết bị?\n\n${targetPath}`)) return;
+
+        const resultsEl = document.getElementById('delete-multi-result');
+        resultsEl.textContent = 'Deleting...';
+        resultsEl.style.color = '#b0b0b0';
+
+        const results = [];
+        for (const did of selectedDeleteDeviceIds) {
+            const dev = devices.find((d) => d.deviceId === did);
+            const ip = dev?.ipAddress;
+            if (!dev || !ip) {
+                results.push({ deviceName: getDeviceDisplayName(dev, did), ip: ip || '', ok: false, message: 'Missing IP' });
+                continue;
+            }
+            try {
+                const res = await fetch('/api/adb/delete', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        ip,
+                        path: targetPath,
+                        isDir: isDir ? '1' : '0',
+                    }),
+                });
+                const data = await res.json().catch(() => ({}));
+                if (res.ok && data.status === 'success') {
+                    results.push({ deviceName: getDeviceDisplayName(dev, did), ip, ok: true, message: 'success' });
+                } else {
+                    results.push({
+                        deviceName: getDeviceDisplayName(dev, did),
+                        ip,
+                        ok: false,
+                        message: data.message || data.error || `HTTP ${res.status}`,
+                    });
+                }
+            } catch (e) {
+                results.push({ deviceName: getDeviceDisplayName(dev, did), ip, ok: false, message: e.message || String(e) });
+            }
+        }
+
+        const okCount = results.filter((r) => r.ok).length;
+        resultsEl.innerHTML = `
+            <div style="font-weight:700; margin-bottom:6px;">Done: ${okCount}/${results.length} success</div>
+            ${results.map((r) => `
+                <div style="margin:4px 0; font-size:11px; opacity:0.9; color:${r.ok ? '#39ff14' : 'var(--warn)'};">
+                    ${r.deviceName} (${r.ip || 'no-ip'}): ${r.ok ? 'OK' : r.message}
+                </div>
+            `).join('')}
+        `;
+    }
+
     function renderPushMultiDeviceList() {
         const listEl = document.getElementById('push-multi-device-list');
         if (!listEl) return;
@@ -1131,7 +1569,7 @@
             meta.style.flexDirection = 'column';
             meta.style.gap = '1px';
             const name = document.createElement('div');
-            name.textContent = d.deviceName || d.deviceId.slice(-6);
+            name.textContent = getDeviceDisplayName(d, d.deviceId.slice(-6));
             name.style.fontWeight = '700';
             const ipEl = document.createElement('div');
             ipEl.textContent = ip ? `IP: ${ip}` : 'IP: (unknown)';
@@ -1183,14 +1621,14 @@
             const dev = devices.find((d) => d.deviceId === did);
             const ip = dev?.ipAddress;
             if (!dev || !ip) {
-                results.push({ deviceName: dev?.deviceName || did, ip: ip || '', ok: false, message: 'Missing IP' });
+                results.push({ deviceName: getDeviceDisplayName(dev, did), ip: ip || '', ok: false, message: 'Missing IP' });
                 continue;
             }
 
             const dirRes = await checkDirExists(ip, dir);
             if (!dirRes.exists) {
                 results.push({
-                    deviceName: dev.deviceName || did,
+                    deviceName: getDeviceDisplayName(dev, did),
                     ip,
                     ok: false,
                     message: `Directory not found: ${dir}${dirRes.detail ? ' (' + dirRes.detail + ')' : ''}`
@@ -1208,17 +1646,17 @@
                 let data = {};
                 try { data = await res.json(); } catch (_) {}
                 if (res.ok && data.status === 'success') {
-                    results.push({ deviceName: dev.deviceName || did, ip, ok: true, message: 'success' });
+                    results.push({ deviceName: getDeviceDisplayName(dev, did), ip, ok: true, message: 'success' });
                 } else {
                     results.push({
-                        deviceName: dev.deviceName || did,
+                        deviceName: getDeviceDisplayName(dev, did),
                         ip,
                         ok: false,
                         message: data.message || data.error || `HTTP ${res.status}`
                     });
                 }
             } catch (e) {
-                results.push({ deviceName: dev.deviceName || did, ip, ok: false, message: e.message || String(e) });
+                results.push({ deviceName: getDeviceDisplayName(dev, did), ip, ok: false, message: e.message || String(e) });
             }
         }
 
@@ -1237,12 +1675,26 @@
 		expandedDeviceId = (expandedDeviceId === did) ? null : did;
 		render();
 	}
-    let devices = [], tableNames = {}, currentAlerts = [], currentNetLogs = [], historyData = [], historyDataRemote = [];
+    let devices = [], tableNames = {}, currentAlerts = [], currentNetLogs = [], historyData = [], historyDataRemote = [], historyDataExtra = [];
 
     function csvEscapeCell(val) {
         const s = val == null ? '' : String(val);
         if (/[",\n\r]/.test(s)) return `"${s.replace(/"/g, '""')}"`;
         return s;
+    }
+
+    function getRunningPackageSuffix(device) {
+        const raw = String((device && device.currentApp) || '').trim();
+        if (!raw) return '';
+        const upper = raw.toUpperCase();
+        if (upper === 'IDLE' || upper === 'SECURED' || upper === 'N/A') return '';
+        return raw;
+    }
+
+    function getDeviceDisplayName(device, fallbackId) {
+        const baseName = (device && (device.deviceName || device.deviceId)) || fallbackId || 'Unknown device';
+        const pkg = getRunningPackageSuffix(device);
+        return pkg ? `${baseName} · ${pkg}` : baseName;
     }
 
     function escapeHtml(s) {
@@ -1254,14 +1706,96 @@
             .replace(/"/g, '&quot;');
     }
 
+    function normalizeStageIpQuery(s) {
+        return String(s || '').trim().replace(/\s+/g, '').toLowerCase();
+    }
+
+    let stageIpHighlightScrollTimer = null;
+    function applyStageIpHighlight(opts) {
+        const doScroll = opts && opts.scroll;
+        const input = document.getElementById('stage-ip-search');
+        const qRaw = input ? input.value : '';
+        const q = normalizeStageIpQuery(qRaw);
+        const layer = document.getElementById('arena-layer');
+        if (stageIpHighlightScrollTimer) {
+            clearTimeout(stageIpHighlightScrollTimer);
+            stageIpHighlightScrollTimer = null;
+        }
+        if (!layer) return;
+        layer.querySelectorAll('.device-card').forEach((el) => {
+            const ip = (el.getAttribute('data-ip') || '').trim().toLowerCase();
+            const match = !!(q && ip && ip.includes(q));
+            el.classList.toggle('stage-ip-highlight', match);
+        });
+        if (!q || !doScroll) return;
+        const first = layer.querySelector('.device-card.stage-ip-highlight');
+        if (!first) return;
+        stageIpHighlightScrollTimer = setTimeout(() => {
+            stageIpHighlightScrollTimer = null;
+            first.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+        }, 220);
+    }
+
+    (function initStageIpSearch() {
+        const el = document.getElementById('stage-ip-search');
+        if (!el) return;
+        el.addEventListener('input', function () {
+            applyStageIpHighlight({ scroll: true });
+        });
+        el.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') applyStageIpHighlight({ scroll: true });
+        });
+    })();
+
     // Stage map transform (fit + center cards in one view)
     let arenaTransform = { scale: 1, tx: 0, ty: 0 };
+    let stageZoomMode = 'fit'; // 'fit' | 'manual'
+    let stageZoomFactor = 1;
     let stageTemplateCache = null;
+
+    function clampStageZoom(v) {
+        return Math.max(0.25, Math.min(3, Number(v) || 1));
+    }
+
+    function updateStageZoomUi() {
+        const valueEl = document.getElementById('stage-zoom-value');
+        const fitBtn = document.getElementById('btn-stage-zoom-fit');
+        if (valueEl) {
+            valueEl.textContent = stageZoomMode === 'fit'
+                ? 'FIT'
+                : `${Math.round(clampStageZoom(stageZoomFactor) * 100)}%`;
+        }
+        if (fitBtn) fitBtn.classList.toggle('active', stageZoomMode === 'fit');
+    }
+
+    function setStageZoom(nextZoom, manual) {
+        stageZoomFactor = clampStageZoom(nextZoom);
+        if (manual) stageZoomMode = 'manual';
+        updateStageZoomUi();
+        render();
+    }
+
+    function zoomStageIn() {
+        setStageZoom((stageZoomMode === 'fit' ? 1 : stageZoomFactor) + 0.1, true);
+    }
+
+    function zoomStageOut() {
+        setStageZoom((stageZoomMode === 'fit' ? 1 : stageZoomFactor) - 0.1, true);
+    }
+
+    function resetStageZoomFit() {
+        stageZoomMode = 'fit';
+        stageZoomFactor = 1;
+        updateStageZoomUi();
+        render();
+    }
 
     const canvas = document.getElementById('net-graph');
     const ctx = canvas && canvas.getContext('2d');
     const canvasRemote = document.getElementById('net-graph-remote');
     const ctxRemote = canvasRemote && canvasRemote.getContext('2d');
+    const canvasExtra = document.getElementById('net-graph-extra');
+    const ctxExtra = canvasExtra && canvasExtra.getContext('2d');
 
     function syncLogPanelToggleButton() {
         const btn = document.getElementById('btn-toggle-side-violations');
@@ -1371,6 +1905,47 @@
             historyDataRemote = data.history || [];
             drawGraph(ctxRemote, canvasRemote, historyDataRemote);
         }
+        if (data.type === 'net_status_extra') {
+            const dd = document.getElementById('dot-dns-extra');
+            const dt = document.getElementById('dot-tcp-extra');
+            const latEl = document.getElementById('net-latency-extra');
+            if (dd) {
+                dd.className = 'dot ' + (data.dns ? 'on' : '');
+                dd.title = data.dns
+                    ? 'DNS OK' + (data.dnsDetail ? ' — ' + data.dnsDetail : '')
+                    : 'DNS FAIL — ' + (data.dnsDetail || '(no detail)');
+            }
+            if (dt) {
+                dt.className = 'dot ' + (data.tcp ? 'on' : '');
+                dt.title = data.tcp
+                    ? 'TCP OK' + (data.tcpDetail ? ' — ' + data.tcpDetail : '')
+                    : 'TCP FAIL — ' + (data.tcpDetail || '(no detail)');
+            }
+            if (latEl) latEl.innerText = (data.latency || 0) + 'ms';
+            historyDataExtra = data.history || [];
+            drawGraph(ctxExtra, canvasExtra, historyDataExtra);
+        }
+
+        if (data.type === 'net_config_sync') {
+            if (data.netConfig) {
+                const dnsInput = document.getElementById('net-dns');
+                const portInput = document.getElementById('net-port');
+                if (dnsInput && document.activeElement !== dnsInput) dnsInput.value = data.netConfig.dns || '';
+                if (portInput && document.activeElement !== portInput) portInput.value = data.netConfig.port || '';
+            }
+            if (data.netConfigRemote) {
+                const dnsR = document.getElementById('net-dns-remote');
+                const portR = document.getElementById('net-port-remote');
+                if (dnsR && document.activeElement !== dnsR) dnsR.value = data.netConfigRemote.dns || '';
+                if (portR && document.activeElement !== portR) portR.value = data.netConfigRemote.port || '';
+            }
+            if (data.netConfigExtra) {
+                const dnsE = document.getElementById('net-dns-extra');
+                const portE = document.getElementById('net-port-extra');
+                if (dnsE && document.activeElement !== dnsE) dnsE.value = data.netConfigExtra.dns || '';
+                if (portE && document.activeElement !== portE) portE.value = data.netConfigExtra.port || '';
+            }
+        }
 
         if (data.type === 'init' || data.type === 'update_all') {
             devices = Array.isArray(data.devices) ? data.devices : [];
@@ -1387,6 +1962,12 @@
                 const portR = document.getElementById('net-port-remote');
                 if (dnsR && document.activeElement !== dnsR) dnsR.value = data.netConfigRemote.dns || '';
                 if (portR && document.activeElement !== portR) portR.value = data.netConfigRemote.port || '';
+            }
+            if ((data.type === 'init' || data.type === 'update_all') && data.netConfigExtra) {
+                const dnsE = document.getElementById('net-dns-extra');
+                const portE = document.getElementById('net-port-extra');
+                if (dnsE && document.activeElement !== dnsE) dnsE.value = data.netConfigExtra.dns || '';
+                if (portE && document.activeElement !== portE) portE.value = data.netConfigExtra.port || '';
             }
             render();
         }
@@ -1445,7 +2026,35 @@
     }
     }
 
+    function getStageDensitySpec(deviceCount) {
+        if (deviceCount >= 72) return { cardW: 190, cardH: 60, gapX: 8, gapY: 8, minScale: 0.08, densityClass: 'arena-density-ultra' };
+        if (deviceCount >= 48) return { cardW: 268, cardH: 88, gapX: 10, gapY: 8, minScale: 0.12, densityClass: 'arena-density-compact' };
+        if (deviceCount >= 32) return { cardW: 250, cardH: 82, gapX: 12, gapY: 10, minScale: 0.12, densityClass: 'arena-density-compact' };
+        return { cardW: 290, cardH: 92, gapX: 14, gapY: 12, minScale: 0.14, densityClass: '' };
+    }
+
+    function getStageGroupKey(deviceName) {
+        const raw = String(deviceName || '').trim().toUpperCase();
+        if (!raw) return 'UNNAMED';
+        const dotIdx = raw.indexOf('.');
+        if (dotIdx > 0) return raw.slice(0, dotIdx);
+        const dashIdx = raw.indexOf('-');
+        if (dashIdx > 0) return raw.slice(0, dashIdx);
+        const underIdx = raw.indexOf('_');
+        if (underIdx > 0) return raw.slice(0, underIdx);
+        return raw.split(/\s+/)[0] || 'UNNAMED';
+    }
+
     function render() {
+        const zoomOverlayHtml = `
+            <div class="stage-zoom-overlay">
+                <div class="stage-zoom-controls" title="Zoom stage map">
+                    <button type="button" class="cyber-btn header-action secondary stage-zoom-btn" onclick="zoomStageOut()">-</button>
+                    <span id="stage-zoom-value" class="stage-zoom-value">FIT</span>
+                    <button type="button" class="cyber-btn header-action secondary stage-zoom-btn" onclick="zoomStageIn()">+</button>
+                    <button type="button" id="btn-stage-zoom-fit" class="cyber-btn header-action secondary stage-zoom-btn stage-zoom-fit" onclick="resetStageZoomFit()">FIT</button>
+                </div>
+            </div>`;
         for (let tid in tableNames) {
             const el = document.getElementById(`name-${tid}`);
             if (el && document.activeElement !== el) el.value = tableNames[tid];
@@ -1457,8 +2066,7 @@
         const isPartialWarn = d.status === 'partial_warning';
         const overlayApp = d.overlayApp || '';
         const fgApp = d.currentApp || 'IDLE';
-		const rs = typeof d.rssi === 'number' ? d.rssi : -100;
-		const rssiIcon = rs > -60 ? '🟢' : (rs > -80 ? '🟡' : '🔴');
+        const appLabelRaw = (isDisc ? '' : (d.status === 'lock' ? 'SECURED' : fgApp));
         const formatBytes = (bytes) => {
             if (typeof bytes !== 'number' || !isFinite(bytes) || bytes < 0) return '0B';
             const units = ['B','KB','MB','GB','TB'];
@@ -1471,12 +2079,20 @@
         const netTransport = d.netTransport || 'UNKNOWN';
         const mobileBytesTotal = d.mobileBytesTotal || 0;
         const wifiBytesTotal = d.wifiBytesTotal || 0;
+        const hasMobileBytes = mobileBytesTotal > 0;
         // Theo yêu cầu:
         // netTransport=WIFI -> 🛜
         // netTransport=CELLULAR -> 📶
-        // UNKNOWN -> ❓
-        const transportIcon = netTransport === 'WIFI' ? '🛜' : (netTransport === 'CELLULAR' ? '📶' : '❓');
+        // UNKNOWN / khác -> icon cổng Ethernet RJ45 (Bootstrap Icons ethernet, MIT)
+        const transportIconLan =
+            '<svg class="transport-icon-lan" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">' +
+            '<path fill="currentColor" d="M14 13.5v-7a.5.5 0 0 0-.5-.5H12V4.5a.5.5 0 0 0-.5-.5h-1v-.5A.5.5 0 0 0 10 3H6a.5.5 0 0 0-.5.5V4h-1a.5.5 0 0 0-.5.5V6H2.5a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5M3.75 11h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-1.5a.25.25 0 0 1 .25-.25m2 0h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-1.5a.25.25 0 0 1 .25-.25m1.75.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zM9.75 11h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-1.5a.25.25 0 0 1 .25-.25m1.75.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25z"/>' +
+            '<path fill="currentColor" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1z"/>' +
+            '</svg>';
+        const transportIcon =
+            netTransport === 'WIFI' ? '🛜' : (netTransport === 'CELLULAR' ? '📶' : transportIconLan);
 		const styleIfMap = onMap ? `left: ${d.seatLayout?.x || 0}px; top: ${d.seatLayout?.y || 0}px;` : '';
+		const dataIpAttr = onMap ? ` data-ip="${escapeHtml(String(d.ipAddress || '').trim())}"` : '';
         
         // Icon FTP (thư mục) sẽ nhấp nháy / sáng liên tục nếu `isFtpOpen = true`
         const ftpIcon = (!isDisc && d.isFtpOpen) 
@@ -1484,7 +2100,7 @@
             : `<span style="font-size:14px; margin-left:5px; opacity:0.1; pointer-events: none;" title="FTP Đang Đóng">📁</span>`;
 
 		return `
-			<div class="device-card ${d.status} ${isDisc ? 'status-disconnected' : ''} ${onMap ? 'on-map' : ''}" 
+			<div class="device-card ${d.status} ${isDisc ? 'status-disconnected' : ''} ${onMap ? 'on-map' : ''}"${dataIpAttr}
 				 style="${styleIfMap}"
 				 draggable="true" 
 				 ondragstart="startDrag(event, '${d.deviceId}', ${onMap})" ondragend="endDrag(event)">
@@ -1492,11 +2108,9 @@
 				<div class="dev-info">
 					<span style="color:${isDisc ? '#666' : 'inherit'}; display:flex; align-items:center;">
 						${isDisc ? '[OFFLINE] ' : ''}${d.deviceName || d.deviceId.slice(-5)} ${ftpIcon}
-                        ${isDisc ? '' : `<span style="margin-left:6px; font-size:12px; opacity:0.9;" title="netTransport=${netTransport}\nwifiBytesTotal=${formatBytes(wifiBytesTotal)}\nmobileBytesTotal=${formatBytes(mobileBytesTotal)}">${transportIcon}</span>`}
+                        ${isDisc ? '' : `<span style="margin-left:6px; font-size:12px; opacity:0.9;" title="netTransport=${netTransport}\nwifiBytesTotal=${formatBytes(wifiBytesTotal)}${hasMobileBytes ? `\nmobileBytesTotal=${formatBytes(mobileBytesTotal)}` : ''}">${transportIcon}</span>`}
 					</span>
 					<span>
-                        ${isDisc ? '' : `${rssiIcon} ${rs}dBm`}
-                        ${isDisc ? '' : ' · '}
                         ${isDisc ? '--' : (d.isCharging ? '⚡' : '') + d.battery + '%'}
                     </span>
 				</div>
@@ -1504,10 +2118,10 @@
 				<div class="dev-sub">
 					<span class="dev-sub-main" style="color:${isDisc ? '#444' : (isWarn ? 'var(--warn)' : (isPartialWarn ? 'var(--midwarn)' : 'inherit'))};">
 						<span class="dev-sub-top" style="color:${isDisc ? '#444' : (isWarn ? (d.foregroundViolation ? 'var(--warn)' : 'var(--safe)') : 'inherit')};">
-							${isDisc ? 'Lost Signal' : (d.status === 'lock' ? 'SECURED' : fgApp)}
+							${isDisc ? 'Lost Signal' : appLabelRaw}
 						</span>
 						<span class="dev-sub-meta" style="color:${isDisc ? 'inherit' : (isWarn && overlayApp ? 'var(--warn)' : 'inherit')};">
-							${isDisc ? '' : (overlayApp ? `OVERLAY: ${overlayApp}` : `mobileBytesTotal: ${formatBytes(mobileBytesTotal)}`)}
+							${isDisc ? '' : (overlayApp ? `OVERLAY: ${overlayApp}` : (hasMobileBytes ? `mobileBytesTotal: ${formatBytes(mobileBytesTotal)}` : ''))}
 						</span>
 						<span class="dev-ip" style="color:${isDisc ? '#444' : '#9ad'};">
 							IP: ${isDisc ? '—' : escapeHtml(d.ipAddress || '—')}
@@ -1536,13 +2150,15 @@
             const arenaW = Math.max(0, Math.floor(rect.width));
             const arenaH = Math.max(0, Math.floor(rect.height));
 
-            const CARD_W = 290;
-            const CARD_H = 92;
+            const stageSpec = getStageDensitySpec(onMapDevices.length);
+            const CARD_W = stageSpec.cardW;
+            const CARD_H = stageSpec.cardH;
             const PAD = 18;
 
             const placed = onMapDevices.filter(d => d && d.seatLayout && typeof d.seatLayout.x === 'number' && typeof d.seatLayout.y === 'number');
             const narrowArena = arenaW < 768 || arenaH < 420;
-            const minScale = narrowArena ? 0.14 : 0.5;
+            const minScaleFloor = onMapDevices.length >= 48 ? 0.35 : 0.5;
+            const minScale = narrowArena ? stageSpec.minScale : Math.max(minScaleFloor, stageSpec.minScale);
 
             let uw = 520;
             let uh = 400;
@@ -1560,7 +2176,10 @@
                 const contentH = Math.max(1, (maxY - minY));
                 const scaleW = (arenaW - PAD * 2) / contentW;
                 const scaleH = (arenaH - PAD * 2) / contentH;
-                const scale = Math.max(minScale, Math.min(1, scaleW, scaleH));
+                const fitScale = Math.max(minScale, Math.min(1, scaleW, scaleH));
+                const scale = stageZoomMode === 'manual'
+                    ? Math.max(0.1, fitScale * clampStageZoom(stageZoomFactor))
+                    : fitScale;
 
                 const tx = Math.max(0, Math.floor((arenaW - contentW * scale) / 2 - minX * scale));
                 const ty = Math.max(0, Math.floor((arenaH - contentH * scale) / 2 - minY * scale));
@@ -1583,20 +2202,24 @@
             const bboxBottom = ty + uh * s;
             const scrollW = Math.max(arenaW, Math.ceil(bboxRight + PAD));
             const scrollH = Math.max(arenaH, Math.ceil(bboxBottom + PAD));
-
-            const hintHtml = '<div class="arena-map-hint">STAGE MAP · Kéo thả thiết bị · Cuộn để xem hết trên màn nhỏ</div>';
+            const needScrollX = scrollW > arenaW + 2;
+            const needScrollY = scrollH > arenaH + 2;
+            arenaEl.style.overflowX = needScrollX ? 'auto' : 'hidden';
+            arenaEl.style.overflowY = needScrollY ? 'auto' : 'hidden';
 
             if (!onMapDevices.length) {
-                arenaEl.innerHTML = hintHtml + `<div class="arena-scroll-surface" style="min-width:100%;min-height:${Math.max(arenaH, 200)}px;"></div>`;
+                arenaEl.innerHTML = `<div class="arena-scroll-surface" style="min-width:100%;min-height:${Math.max(arenaH, 200)}px;"></div>${zoomOverlayHtml}`;
             } else {
                 arenaEl.innerHTML = `
                 <div class="arena-scroll-surface" style="min-width:${scrollW}px;min-height:${scrollH}px;">
-                    ${hintHtml}
-                    <div id="arena-layer" style="position:relative;width:${uw}px;height:${uh}px;transform:translate(${tx}px,${ty}px) scale(${s});transform-origin:0 0;">
+                    <div id="arena-layer" class="${stageSpec.densityClass}" style="position:relative;width:${uw}px;height:${uh}px;transform:translate(${tx}px,${ty}px) scale(${s});transform-origin:0 0;--stage-card-w:${CARD_W}px;--stage-card-h:${CARD_H}px;">
                         ${onMapDevices.map(d => createCard(d, true)).join('')}
                     </div>
-                </div>`;
+                </div>
+                ${zoomOverlayHtml}`;
             }
+            updateStageZoomUi();
+            applyStageIpHighlight({ scroll: false });
         }
 
 // HIỂN THỊ LOGS
@@ -1624,7 +2247,7 @@ if (currentAlerts && currentAlerts.length > 0) {
     const group = groups[did];
     const isExpanded = (expandedDeviceId === did);
     const sortedLogs = [...group.logs].reverse();
-    const isNetError = did === 'SYSTEM_NET' || did === 'SYSTEM_NET_REMOTE';
+    const isNetError = did === 'SYSTEM_NET' || did === 'SYSTEM_NET_REMOTE' || did === 'SYSTEM_NET_EXTRA';
 
     // KIỂM TRA TRẠNG THÁI KẾT NỐI THỰC TẾ
     const deviceData = devices.find(d => d.deviceId === did);
@@ -1690,14 +2313,25 @@ if (currentAlerts && currentAlerts.length > 0) {
     }
 
     // Một SET → một tin WS lưu cả hai + server chạy đo mạng ngay (runNow)
+    function netInputVal(id) {
+        const el = document.getElementById(id);
+        return el && 'value' in el ? el.value : '';
+    }
+
     async function saveNetAll() {
         if (!ensureEditor('lưu cấu hình monitor mạng')) return;
+        if (!socket || socket.readyState !== WebSocket.OPEN) {
+            alert('WebSocket chưa kết nối — không gửi được SET. Đợi trạng thái "Đã kết nối" rồi thử lại.');
+            return;
+        }
         await safeSend({
             type: 'update_net_config_both',
-            dns: document.getElementById('net-dns').value,
-            port: document.getElementById('net-port').value,
-            dnsRemote: document.getElementById('net-dns-remote').value,
-            portRemote: document.getElementById('net-port-remote').value,
+            dns: netInputVal('net-dns'),
+            port: netInputVal('net-port'),
+            dnsRemote: netInputVal('net-dns-remote'),
+            portRemote: netInputVal('net-port-remote'),
+            dnsExtra: netInputVal('net-dns-extra'),
+            portExtra: netInputVal('net-port-extra'),
         });
     }
 
@@ -1714,6 +2348,8 @@ if (currentAlerts && currentAlerts.length > 0) {
         const lanPort = (document.getElementById('net-port') && document.getElementById('net-port').value) || '';
         const wanHost = (document.getElementById('net-dns-remote') && document.getElementById('net-dns-remote').value) || '';
         const wanPort = (document.getElementById('net-port-remote') && document.getElementById('net-port-remote').value) || '';
+        const extHost = (document.getElementById('net-dns-extra') && document.getElementById('net-dns-extra').value) || '';
+        const extPort = (document.getElementById('net-port-extra') && document.getElementById('net-port-extra').value) || '';
 
         let csv = '\uFEFF';
         csv += '--- EXPORT META ---\n';
@@ -1740,15 +2376,19 @@ if (currentAlerts && currentAlerts.length > 0) {
             'LAN_port',
             'WAN_host',
             'WAN_port',
+            'EXT_host',
+            'EXT_port',
         ].join(',') + '\n';
         csv += [
             csvEscapeCell(lanHost),
             csvEscapeCell(lanPort),
             csvEscapeCell(wanHost),
             csvEscapeCell(wanPort),
+            csvEscapeCell(extHost),
+            csvEscapeCell(extPort),
         ].join(',') + '\n';
 
-        const netAlertIds = new Set(['SYSTEM_NET', 'SYSTEM_NET_REMOTE']);
+        const netAlertIds = new Set(['SYSTEM_NET', 'SYSTEM_NET_REMOTE', 'SYSTEM_NET_EXTRA']);
         const netAlerts = currentAlerts.filter((a) => a && netAlertIds.has(a.deviceId));
         const deviceAlerts = currentAlerts.filter((a) => a && !netAlertIds.has(a.deviceId));
 
@@ -1814,8 +2454,6 @@ if (currentAlerts && currentAlerts.length > 0) {
 
     function arrangeArenaGrid() {
         if (!ensureEditor('xếp stage')) return;
-        // Backup current layout so we can restore quickly if needed.
-        safeSendEditor({ type: 'backup_stage_state' }, 'backup stage');
 
         const arena = document.getElementById('monitor-arena');
         if (!arena) return;
@@ -1824,11 +2462,11 @@ if (currentAlerts && currentAlerts.length > 0) {
         const arenaW = Math.max(0, Math.floor(rect.width));
         const arenaH = Math.max(0, Math.floor(rect.height));
 
-        // Must match card sizing used in CSS.
-        const CARD_W = 290;
-        const CARD_H = 92; // approximate rendered height (avoid overlap)
-        const GAP_X = 14;
-        const GAP_Y = 12;
+        const stageSpec = getStageDensitySpec(devices.filter((d) => d && d.deviceId && d.slotId === 'arena').length);
+        const CARD_W = stageSpec.cardW;
+        const CARD_H = stageSpec.cardH; // approximate rendered height (avoid overlap)
+        const GAP_X = stageSpec.gapX;
+        const GAP_Y = stageSpec.gapY;
         const MARGIN_X = 16;
         const MARGIN_Y = 16;
 
@@ -1844,8 +2482,25 @@ if (currentAlerts && currentAlerts.length > 0) {
         });
 
         const usableW = Math.max(0, arenaW - MARGIN_X * 2);
-        const cols = Math.max(1, Math.floor((usableW + GAP_X) / (CARD_W + GAP_X)));
-        const rows = Math.ceil(sorted.length / cols);
+        const usableH = Math.max(0, arenaH - MARGIN_Y * 2);
+
+        let bestCols = 1;
+        let bestScore = Infinity;
+        for (let cols = 1; cols <= sorted.length; cols++) {
+            const rows = Math.ceil(sorted.length / cols);
+            const requiredW = cols * CARD_W + Math.max(0, cols - 1) * GAP_X;
+            const requiredH = rows * CARD_H + Math.max(0, rows - 1) * GAP_Y;
+            const fitScaleW = usableW > 0 ? (usableW / requiredW) : 1;
+            const fitScaleH = usableH > 0 ? (usableH / requiredH) : 1;
+            const fitScale = Math.min(fitScaleW, fitScaleH);
+            const aspectPenalty = Math.abs((requiredW / Math.max(1, requiredH)) - (usableW / Math.max(1, usableH)));
+            const score = (1 / Math.max(0.0001, fitScale)) + aspectPenalty;
+            if (score < bestScore) {
+                bestScore = score;
+                bestCols = cols;
+            }
+        }
+        const cols = Math.max(1, bestCols);
 
         sorted.forEach((d, idx) => {
             const col = idx % cols;
@@ -1860,10 +2515,74 @@ if (currentAlerts && currentAlerts.length > 0) {
         render();
     }
 
+    function arrangeArenaGrouped() {
+        if (!ensureEditor('gom nhóm stage')) return;
+
+        const arena = document.getElementById('monitor-arena');
+        if (!arena) return;
+
+        const rect = arena.getBoundingClientRect();
+        const arenaW = Math.max(0, Math.floor(rect.width));
+
+        const onMap = devices.filter((d) => d && d.deviceId && d.slotId === 'arena');
+        if (!onMap.length) return;
+
+        const stageSpec = getStageDensitySpec(onMap.length);
+        const CARD_W = stageSpec.cardW;
+        const CARD_H = stageSpec.cardH;
+        const GAP_X = stageSpec.gapX;
+        const GAP_Y = stageSpec.gapY;
+        const GROUP_GAP_Y = GAP_Y + 22;
+        const MARGIN_X = 16;
+        const MARGIN_Y = 16;
+
+        const grouped = new Map();
+        onMap.forEach((d) => {
+            const key = getStageGroupKey(d.deviceName);
+            if (!grouped.has(key)) grouped.set(key, []);
+            grouped.get(key).push(d);
+        });
+
+        const groupKeys = Array.from(grouped.keys()).sort((a, b) => a.localeCompare(b));
+        groupKeys.forEach((key) => {
+            grouped.get(key).sort((a, b) => {
+                const an = String(a.deviceName || '').toUpperCase();
+                const bn = String(b.deviceName || '').toUpperCase();
+                if (an !== bn) return an.localeCompare(bn);
+                return String(a.deviceId).localeCompare(String(b.deviceId));
+            });
+        });
+
+        const usableW = Math.max(0, arenaW - MARGIN_X * 2);
+        const maxCols = Math.max(1, Math.floor((usableW + GAP_X) / (CARD_W + GAP_X)));
+        let yCursor = MARGIN_Y;
+
+        groupKeys.forEach((key) => {
+            const list = grouped.get(key) || [];
+            if (!list.length) return;
+
+            const cols = Math.max(1, Math.min(maxCols, list.length));
+            const rows = Math.ceil(list.length / cols);
+            const rowWidth = cols * CARD_W + Math.max(0, cols - 1) * GAP_X;
+            const xStart = MARGIN_X + Math.max(0, Math.floor((usableW - rowWidth) / 2));
+
+            list.forEach((d, idx) => {
+                const col = idx % cols;
+                const row = Math.floor(idx / cols);
+                const x = xStart + col * (CARD_W + GAP_X);
+                const y = yCursor + row * (CARD_H + GAP_Y);
+                d.seatLayout = { ...(d.seatLayout || {}), x, y };
+                safeSendEditor({ type: 'update_seat_layout', deviceId: d.deviceId, seatLayout: { x, y } }, `xếp nhóm ${key}`);
+            });
+
+            yCursor += rows * (CARD_H + GAP_Y) + GROUP_GAP_Y;
+        });
+
+        render();
+    }
+
     function arrangeArenaTemplate() {
         if (!ensureEditor('xếp stage theo template')) return;
-        // Backup current layout so we can restore quickly if needed.
-        safeSendEditor({ type: 'backup_stage_state' }, 'backup stage');
 
         const arena = document.getElementById('monitor-arena');
         if (!arena) return;
@@ -1875,7 +2594,7 @@ if (currentAlerts && currentAlerts.length > 0) {
         function defaultTemplate() {
             return {
                 card: { w: 250, h: 76 },
-                spacing: { gapY: 12, gapCol: 14, gapBlock: 120, gapRow: 28, marginX: 16, marginY: 16 },
+                spacing: { gapY: 12, gapCol: 14, gapBlock: 32, gapRow: 28, marginX: 16, marginY: 16 },
                 seatOrder: [4, 3, 2, 1],
                 rows: [
                     [['BH', 'TDE'], ['ANT', 'TLE']],
@@ -1910,11 +2629,12 @@ if (currentAlerts && currentAlerts.length > 0) {
         });
 
         const applyTemplate = (tpl) => {
-            const CARD_W = tpl?.card?.w ?? 290;
-            const CARD_H = tpl?.card?.h ?? 92;
-            const GAP_Y = tpl?.spacing?.gapY ?? 12;
-            const GAP_COL = tpl?.spacing?.gapCol ?? 14;
-            const GAP_BLOCK = tpl?.spacing?.gapBlock ?? 120;
+            const stageSpec = getStageDensitySpec(onMap.length);
+            const CARD_W = stageSpec.cardW;
+            const CARD_H = stageSpec.cardH;
+            const GAP_Y = tpl?.spacing?.gapY ?? stageSpec.gapY;
+            const GAP_COL = tpl?.spacing?.gapCol ?? stageSpec.gapX;
+            const GAP_BLOCK = tpl?.spacing?.gapBlock ?? 32;
             const GAP_ROW = tpl?.spacing?.gapRow ?? 28;
             const MARGIN_X = tpl?.spacing?.marginX ?? 16;
             const MARGIN_Y = tpl?.spacing?.marginY ?? 16;
@@ -2014,10 +2734,185 @@ if (currentAlerts && currentAlerts.length > 0) {
         getStageTemplate().then(applyTemplate);
     }
 
-    function restoreStageLayout() {
-        if (!ensureEditor('restore stage')) return;
-        if (!confirm('Restore Stage layout from last backup?')) return;
-        safeSendEditor({ type: 'restore_stage_state' }, 'restore stage');
+    function parseCsvLine(line, delimiter = ',') {
+        const out = [];
+        let cur = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+            const ch = line[i];
+            if (ch === '"') {
+                if (inQuotes && line[i + 1] === '"') {
+                    cur += '"';
+                    i++;
+                } else {
+                    inQuotes = !inQuotes;
+                }
+                continue;
+            }
+            if (ch === delimiter && !inQuotes) {
+                out.push(cur);
+                cur = '';
+                continue;
+            }
+            cur += ch;
+        }
+        out.push(cur);
+        return out.map((s) => String(s || '').trim());
+    }
+
+    function detectCsvDelimiter(lines) {
+        let commaScore = 0;
+        let semicolonScore = 0;
+        lines.slice(0, 6).forEach((line) => {
+            let inQuotes = false;
+            for (let i = 0; i < line.length; i++) {
+                const ch = line[i];
+                if (ch === '"') {
+                    if (inQuotes && line[i + 1] === '"') {
+                        i++;
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                    continue;
+                }
+                if (inQuotes) continue;
+                if (ch === ',') commaScore++;
+                if (ch === ';') semicolonScore++;
+            }
+        });
+        return semicolonScore > commaScore ? ';' : ',';
+    }
+
+    function normalizeDeviceNameKey(name) {
+        return String(name || '')
+            .trim()
+            .replace(/\s*\.\s*/g, '.')
+            .replace(/\s+/g, ' ')
+            .toUpperCase();
+    }
+
+    function openStageCsvImportPicker() {
+        if (!ensureEditor('import CSV stage')) return;
+        const input = document.getElementById('stage-csv-input');
+        if (!input) return;
+        input.value = '';
+        input.click();
+    }
+
+    async function handleStageCsvImport(e) {
+        if (!ensureEditor('import CSV stage')) return;
+        const file = e && e.target && e.target.files && e.target.files[0];
+        if (!file) return;
+        let text = '';
+        try {
+            text = await file.text();
+        } catch (err) {
+            alert(`Không đọc được file CSV: ${err.message || String(err)}`);
+            return;
+        }
+        const lines = String(text || '')
+            .replace(/^\uFEFF/, '')
+            .split(/\r?\n/)
+            .map((l) => l.trim())
+            .filter(Boolean);
+        if (lines.length < 2) {
+            alert('CSV không hợp lệ. Cần ít nhất 1 dòng header và 1 dòng dữ liệu.');
+            return;
+        }
+
+        const delimiter = detectCsvDelimiter(lines);
+        const rows = lines.map((l) => parseCsvLine(l, delimiter));
+        const header = rows[0].map((h) => h.toLowerCase());
+        const idxDevice = header.indexOf('devicename');
+        const idxX = header.indexOf('x');
+        const idxY = header.indexOf('y');
+        const idxSlot = header.indexOf('slotid');
+        const isListMode = idxDevice !== -1 && idxX !== -1 && idxY !== -1;
+
+        const byName = new Map();
+        devices.forEach((d) => {
+            const key = normalizeDeviceNameKey(d && d.deviceName);
+            if (!key || byName.has(key)) return;
+            byName.set(key, d);
+        });
+
+        let ok = 0;
+        const missing = [];
+        const invalid = [];
+        const seen = new Set();
+        if (isListMode) {
+            for (let i = 1; i < rows.length; i++) {
+                const cols = rows[i];
+                const deviceName = String(cols[idxDevice] || '').trim();
+                const xRaw = cols[idxX];
+                const yRaw = cols[idxY];
+                const slotRaw = idxSlot >= 0 ? String(cols[idxSlot] || '').trim() : '';
+                if (!deviceName) continue;
+                const x = Number(xRaw);
+                const y = Number(yRaw);
+                if (!Number.isFinite(x) || !Number.isFinite(y)) {
+                    invalid.push(`${deviceName} (x=${xRaw}, y=${yRaw})`);
+                    continue;
+                }
+                const dev = byName.get(normalizeDeviceNameKey(deviceName));
+                if (!dev) {
+                    missing.push(deviceName);
+                    continue;
+                }
+                if (seen.has(dev.deviceId)) continue;
+                seen.add(dev.deviceId);
+                const slotId = slotRaw || 'arena';
+                if (dev.slotId !== slotId) {
+                    safeSendEditor({ type: 'assign_slot', deviceId: dev.deviceId, slotId }, 'import slot từ CSV');
+                    dev.slotId = slotId;
+                }
+                safeSendEditor({ type: 'update_seat_layout', deviceId: dev.deviceId, seatLayout: { x, y } }, 'import layout từ CSV');
+                dev.seatLayout = { ...(dev.seatLayout || {}), x, y };
+                ok++;
+            }
+        } else {
+            // Matrix seatmap mode: mỗi ô CSV là 1 deviceName (giống Excel seat map).
+            const activeCount = devices.filter((d) => d && d.deviceId && d.status !== 'disconnected').length;
+            const stageSpec = getStageDensitySpec(Math.max(1, activeCount));
+            const CARD_W = Number(stageSpec && stageSpec.cardW) || 290;
+            const CARD_H = Number(stageSpec && stageSpec.cardH) || 92;
+            const GAP_X = Number(stageSpec && stageSpec.gapX) || 14;
+            const GAP_Y = Number(stageSpec && stageSpec.gapY) || 12;
+            const MARGIN_X = 16;
+            const MARGIN_Y = 16;
+            for (let rowIdx = 0; rowIdx < rows.length; rowIdx++) {
+                const cols = rows[rowIdx];
+                for (let colIdx = 0; colIdx < cols.length; colIdx++) {
+                    const cell = String(cols[colIdx] || '').trim();
+                    if (!cell) continue;
+                    const key = normalizeDeviceNameKey(cell);
+                    if (!key) continue;
+                    const dev = byName.get(key);
+                    if (!dev) {
+                        missing.push(cell);
+                        continue;
+                    }
+                    if (seen.has(dev.deviceId)) continue;
+                    seen.add(dev.deviceId);
+                    const x = MARGIN_X + colIdx * (CARD_W + GAP_X);
+                    const y = MARGIN_Y + rowIdx * (CARD_H + GAP_Y);
+                    if (dev.slotId !== 'arena') {
+                        safeSendEditor({ type: 'assign_slot', deviceId: dev.deviceId, slotId: 'arena' }, 'import seatmap CSV');
+                        dev.slotId = 'arena';
+                    }
+                    safeSendEditor({ type: 'update_seat_layout', deviceId: dev.deviceId, seatLayout: { x, y } }, 'import seatmap CSV');
+                    dev.seatLayout = { ...(dev.seatLayout || {}), x, y };
+                    ok++;
+                }
+            }
+        }
+
+        render();
+        const modeLabel = isListMode ? 'list mode (deviceName,x,y)' : 'seatmap matrix mode';
+        const parts = [`Import xong: ${ok} thiết bị (${modeLabel}).`];
+        if (missing.length) parts.push(`Không thấy deviceName (${missing.length}): ${missing.slice(0, 8).join(', ')}${missing.length > 8 ? ' ...' : ''}`);
+        if (invalid.length) parts.push(`Dòng lỗi x/y (${invalid.length}): ${invalid.slice(0, 8).join(', ')}${invalid.length > 8 ? ' ...' : ''}`);
+        alert(parts.join('\n'));
     }
 
     // Drag & Drop
@@ -2212,8 +3107,12 @@ if (currentAlerts && currentAlerts.length > 0) {
         if (!ip) return alert("Không xác định được IP LAN của thiết bị này.");
         explorerIp = ip;
         currentPath = '/storage/emulated/0'; // Default
+        const matched = devices.find((d) => d && d.ipAddress === ip) || null;
+        const resolvedName = devName || (matched && matched.deviceName) || 'Device';
+        const pkg = getRunningPackageSuffix(matched);
+        const nameWithPkg = pkg ? `${resolvedName} · ${pkg}` : resolvedName;
         document.getElementById('file-modal').style.display = 'flex';
-        document.getElementById('explorer-device-label').textContent = `${devName || 'Device'} · ${ip}`;
+        document.getElementById('explorer-device-label').textContent = `${nameWithPkg} · ${ip}`;
         document.getElementById('current-path').value = currentPath;
         loadDir(currentPath);
     }
@@ -2317,14 +3216,19 @@ if (currentAlerts && currentAlerts.length > 0) {
 
     window.onload = async () => {
         if (canvas) {
-            canvas.width = 52;
+            canvas.width = 300;
             canvas.height = 14;
         }
         if (canvasRemote) {
-            canvasRemote.width = 52;
+            canvasRemote.width = 300;
             canvasRemote.height = 14;
         }
+        if (canvasExtra) {
+            canvasExtra.width = 300;
+            canvasExtra.height = 14;
+        }
         syncLogPanelToggleButton();
+        updateStageZoomUi();
         await loadAuthMe();
         await loadClientConfig();
         setupFileExplorerInteractions();

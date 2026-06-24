@@ -25,6 +25,9 @@ const { encryptPayload, decryptPayload } = crypto;
 const app = express();
 const server = http.createServer(app);
 
+const deployMode = config.getDeployMode();
+const adbEnabled = !config.isLiveMode();
+
 const wss = new WebSocket.Server({ server });
 
 const getState = () => ({
@@ -36,6 +39,17 @@ const getState = () => ({
 const broadcast = createBroadcast(wss, encryptPayload, getState);
 
 app.use(express.json());
+
+app.get('/health', (_req, res) => {
+    res.json({
+        ok: true,
+        service: 'alan-monitor',
+        deployMode,
+        adbEnabled,
+        uptimeSec: Math.floor(process.uptime()),
+    });
+});
+
 app.post('/api/auth/login', loginRoute(config.getAuthPins));
 app.use(requireAuth(config.getAuthPins));
 app.get('/api/auth/me', meRoute(config.getAuthPins));
@@ -43,20 +57,25 @@ app.get('/api/auth/me', meRoute(config.getAuthPins));
 app.get('/api/client-config', (_req, res) => {
     res.json({
         wsSecretKey: config.getSecretKey(),
+        deployMode,
+        adbEnabled,
     });
 });
 
-const uploadDir = path.join(__dirname, 'uploads');
-// Prefer project-local platform-tools/adb.exe if present (portable host machines).
-const localAdb = path.join(__dirname, '..', 'platform-tools', 'adb.exe');
-const adbPath = process.env.ADB_PATH
-    ? process.env.ADB_PATH
-    : require('fs').existsSync(localAdb)
-        ? localAdb
-        : process.env.LOCALAPPDATA
-            ? path.join(process.env.LOCALAPPDATA, 'Android', 'Sdk', 'platform-tools', 'adb.exe')
-            : 'adb';
-app.use('/api/adb', createAdbRouter(uploadDir, adbPath));
+if (adbEnabled) {
+    const uploadDir = path.join(__dirname, 'uploads');
+    const localAdb = path.join(__dirname, '..', 'platform-tools', 'adb.exe');
+    const adbPath = process.env.ADB_PATH
+        ? process.env.ADB_PATH
+        : require('fs').existsSync(localAdb)
+            ? localAdb
+            : process.env.LOCALAPPDATA
+                ? path.join(process.env.LOCALAPPDATA, 'Android', 'Sdk', 'platform-tools', 'adb.exe')
+                : 'adb';
+    app.use('/api/adb', createAdbRouter(uploadDir, adbPath));
+} else {
+    console.log('[ALAN] DEPLOY_MODE=LIVE — /api/adb disabled');
+}
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -79,11 +98,13 @@ attachWsHandler(
 const onDisconnect = (deviceName) => {
     discordNotifyDisconnect(discordWebhookUrl, deviceName);
 };
-const disconnectCheck = startDisconnectCheck(store, broadcast, onDisconnect);
+const disconnectCheck = startDisconnectCheck(store, broadcast, onDisconnect, {
+    disconnectMs: config.getDisconnectMs(),
+});
 
 const PORT = config.PORT;
 const HOST = config.HOST;
 
 server.listen(PORT, HOST, () => {
-    console.log(`ALAN Server running at http://${HOST}:${PORT}`);
+    console.log(`ALAN Server running at http://${HOST}:${PORT} [${deployMode}]`);
 });

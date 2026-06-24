@@ -4,6 +4,21 @@
 const PORT = parseInt(process.env.PORT, 10) || 3333;
 const HOST = process.env.HOST || '0.0.0.0';
 
+function getDeployMode() {
+    const raw = (process.env.DEPLOY_MODE || 'LAN').toString().trim().toUpperCase();
+    return raw === 'LIVE' ? 'LIVE' : 'LAN';
+}
+
+function isLiveMode() {
+    return getDeployMode() === 'LIVE';
+}
+
+function getDisconnectMs() {
+    const n = parseInt(process.env.DISCONNECT_MS, 10);
+    if (Number.isFinite(n) && n >= 3000) return Math.min(n, 120000);
+    return isLiveMode() ? 12000 : 5000;
+}
+
 function getSecretKey() {
     const raw = process.env.SECRET_KEY;
     if (!raw || typeof raw !== 'string' || raw.trim() === '') {
@@ -16,6 +31,9 @@ function getSecretKey() {
 module.exports = {
     PORT,
     HOST,
+    getDeployMode,
+    isLiveMode,
+    getDisconnectMs,
     getSecretKey,
     /**
      * Auth theo role:
