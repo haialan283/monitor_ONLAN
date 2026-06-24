@@ -9,6 +9,7 @@ pnpm-debug.log*
 **/.env
 **/.env.*
 !.env.example
+!server/.env.production
 
 ## Runtime data
 server/data/
