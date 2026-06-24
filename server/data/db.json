@@ -1,0 +1,4290 @@
+{
+  "alerts": [
+    {
+      "deviceId": "79a1b7b899f4547a",
+      "deviceName": "BTR.KOJAA",
+      "app": "com.android.settings",
+      "startTime": "09:47:28",
+      "endTime": "09:49:51"
+    },
+    {
+      "deviceId": "f5dbaa45fbdc3418",
+      "deviceName": "BACKUP.RRQ",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "09:47:36",
+      "endTime": "09:48:03"
+    },
+    {
+      "deviceId": "542812940412bef1",
+      "deviceName": "BTR.DHIKZ",
+      "app": "com.android.settings",
+      "startTime": "09:48:08",
+      "endTime": "09:48:14"
+    },
+    {
+      "deviceId": "542812940412bef1",
+      "deviceName": "BTR.DHIKZ",
+      "app": "com.android.settings",
+      "startTime": "09:48:16",
+      "endTime": "09:49:08"
+    },
+    {
+      "deviceId": "6fe381e2fec243a8",
+      "deviceName": "BACKUP.FLCN",
+      "app": "com.android.settings",
+      "startTime": "09:49:29",
+      "endTime": "09:55:11"
+    },
+    {
+      "deviceId": "d7156b0938023bd1",
+      "deviceName": "AUR.AZRIEL25",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "09:52:17",
+      "endTime": "09:52:23"
+    },
+    {
+      "deviceId": "c42c5d9405249804",
+      "deviceName": "AUR.THEAXEL",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "09:52:51",
+      "endTime": "09:52:57"
+    },
+    {
+      "deviceId": "316942b228609b2b",
+      "deviceName": "AG.SAIFA",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:54:20",
+      "endTime": "09:54:26"
+    },
+    {
+      "deviceId": "a50682fd4c5d85b8",
+      "deviceName": "TWIS.JUMP",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:54:32",
+      "endTime": "09:55:12"
+    },
+    {
+      "deviceId": "5707e0105d6282c5",
+      "deviceName": "TWIS.THEBAS",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:54:36",
+      "endTime": "09:55:28"
+    },
+    {
+      "deviceId": "2eef845648974f8f",
+      "deviceName": "AG.NAMELESS",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:54:36",
+      "endTime": "09:54:42"
+    },
+    {
+      "deviceId": "085b5126a2d3f9fd",
+      "deviceName": "TWIS.DIAMOND",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:54:38",
+      "endTime": "09:55:39"
+    },
+    {
+      "deviceId": "1e29978118477b5e",
+      "deviceName": "TWIS.XPOZY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:54:40",
+      "endTime": "09:55:44"
+    },
+    {
+      "deviceId": "fdf519b1e90aea3c",
+      "deviceName": "EVOS.AIMGOD",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:54:59",
+      "endTime": "09:55:05"
+    },
+    {
+      "deviceId": "9dbcaa3b6d5db294",
+      "deviceName": "GOW.DEATH",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:02",
+      "endTime": "09:55:08"
+    },
+    {
+      "deviceId": "e6d9be0af03abb38",
+      "deviceName": "FL.THEZOM",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:03",
+      "endTime": "09:55:09"
+    },
+    {
+      "deviceId": "dde5c0adfe292c02",
+      "deviceName": "EVOS.RASYAH",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:08",
+      "endTime": "09:55:17"
+    },
+    {
+      "deviceId": "ecfee0b99affe4ae",
+      "deviceName": "GOW.DYAN",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:10",
+      "endTime": "09:55:12"
+    },
+    {
+      "deviceId": "1258d6b3ca75a2f6",
+      "deviceName": "BRU.MOSHI",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:17",
+      "endTime": "09:55:23"
+    },
+    {
+      "deviceId": "9dbcaa3b6d5db294",
+      "deviceName": "GOW.DEATH",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:22",
+      "endTime": "09:55:24"
+    },
+    {
+      "deviceId": "a755313b138a2e5a",
+      "deviceName": "FLCN.PEENA",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:24",
+      "endTime": "09:55:46"
+    },
+    {
+      "deviceId": "c59ed3d940baa4e7",
+      "deviceName": "BTR.KYONGG",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:24",
+      "endTime": "09:56:57"
+    },
+    {
+      "deviceId": "3a7c3d57245a7c93",
+      "deviceName": "BTR.C1B3NK",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:26",
+      "endTime": "09:56:10"
+    },
+    {
+      "deviceId": "d59a8a2cdd8764cb",
+      "deviceName": "RRQ.18DEER",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:26",
+      "endTime": "09:55:32"
+    },
+    {
+      "deviceId": "c697289e7f5f10ba",
+      "deviceName": "EVOS.REYYY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:35",
+      "endTime": "09:55:41"
+    },
+    {
+      "deviceId": "79a1b7b899f4547a",
+      "deviceName": "BTR.KOJAA",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:35",
+      "endTime": "09:56:08"
+    },
+    {
+      "deviceId": "19d4a7435c15583f",
+      "deviceName": "BRU.JOENA",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:36",
+      "endTime": "09:55:44"
+    },
+    {
+      "deviceId": "ecfee0b99affe4ae",
+      "deviceName": "GOW.DYAN",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:36",
+      "endTime": "09:55:50"
+    },
+    {
+      "deviceId": "a79452842d73f62e",
+      "deviceName": "PE.LBT",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:38",
+      "endTime": "09:55:42"
+    },
+    {
+      "deviceId": "dac04c6c69afc340",
+      "deviceName": "EVOS.KOCEEL",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:43",
+      "endTime": "09:55:51"
+    },
+    {
+      "deviceId": "932b6ea5d490c250",
+      "deviceName": "RRQ.ABAY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:50",
+      "endTime": "09:55:57"
+    },
+    {
+      "deviceId": "542812940412bef1",
+      "deviceName": "BTR.DHIKZ",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:51",
+      "endTime": "09:56:05"
+    },
+    {
+      "deviceId": "4d53164bfd9307c9",
+      "deviceName": "BRU.WASANA",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:53",
+      "endTime": "09:55:59"
+    },
+    {
+      "deviceId": "5bddf96ea5f78e3a",
+      "deviceName": "FLCN.RATCHA",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:54",
+      "endTime": "09:56:17"
+    },
+    {
+      "deviceId": "47369335e623e8a6",
+      "deviceName": "BTR.JOOEEEL",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:57",
+      "endTime": "09:56:01"
+    },
+    {
+      "deviceId": "9b39fbd84f984fc8",
+      "deviceName": "PE.NOLAN",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:55:59",
+      "endTime": "09:56:05"
+    },
+    {
+      "deviceId": "d7156b0938023bd1",
+      "deviceName": "AUR.AZRIEL25",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:56:00",
+      "endTime": "09:56:04"
+    },
+    {
+      "deviceId": "5c633c71e92914ad",
+      "deviceName": "GOW.DEMON",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:56:01",
+      "endTime": "09:56:07"
+    },
+    {
+      "deviceId": "2eef845648974f8f",
+      "deviceName": "AG.NAMELESS",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:56:03",
+      "endTime": "09:56:13"
+    },
+    {
+      "deviceId": "4d53164bfd9307c9",
+      "deviceName": "BRU.WASANA",
+      "app": "com.samsung.android.game.gamehome",
+      "startTime": "09:56:05",
+      "endTime": "09:56:07"
+    },
+    {
+      "deviceId": "f5dbaa45fbdc3418",
+      "deviceName": "BACKUP.RRQ",
+      "app": "com.android.settings",
+      "startTime": "09:56:12",
+      "endTime": "09:56:15"
+    },
+    {
+      "deviceId": "2f8ce1fcfe8b4499",
+      "deviceName": "GOW.HANS",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:56:13",
+      "endTime": "09:56:17"
+    },
+    {
+      "deviceId": "2f8ce1fcfe8b4499",
+      "deviceName": "GOW.HANS",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:56:19",
+      "endTime": "09:56:23"
+    },
+    {
+      "deviceId": "8674db135f8e191f",
+      "deviceName": "FLCN.ONFIRE",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:56:24",
+      "endTime": "09:56:26"
+    },
+    {
+      "deviceId": "db839317b1cd83f7",
+      "deviceName": "FL.THEGOD",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:56:25",
+      "endTime": "09:56:35"
+    },
+    {
+      "deviceId": "9f63bd0ca8427435",
+      "deviceName": "WAG.HOANGM",
+      "app": "com.samsung.android.game.gamehome",
+      "startTime": "09:56:31",
+      "endTime": "09:56:33"
+    },
+    {
+      "deviceId": "9f63bd0ca8427435",
+      "deviceName": "WAG.HOANGM",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:56:33",
+      "endTime": "09:56:57"
+    },
+    {
+      "deviceId": "2d32e55b09891112",
+      "deviceName": "PE.NERO",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:56:36",
+      "endTime": "09:56:40"
+    },
+    {
+      "deviceId": "b5e5c3ede33f84a4",
+      "deviceName": "AUR.ZUEZZ",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:56:41",
+      "endTime": "09:56:47"
+    },
+    {
+      "deviceId": "d0f3bdb232df5f70",
+      "deviceName": "FL.ABCD",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:56:49",
+      "endTime": "09:56:55"
+    },
+    {
+      "deviceId": "dac04c6c69afc340",
+      "deviceName": "EVOS.KOCEEL",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:56:49",
+      "endTime": "09:56:54"
+    },
+    {
+      "deviceId": "d59a8a2cdd8764cb",
+      "deviceName": "RRQ.18DEER",
+      "app": "com.android.settings",
+      "startTime": "09:56:51",
+      "endTime": "09:56:57"
+    },
+    {
+      "deviceId": "c59ed3d940baa4e7",
+      "deviceName": "BTR.KYONGG",
+      "app": "com.android.settings",
+      "startTime": "09:56:59",
+      "endTime": "09:57:15"
+    },
+    {
+      "deviceId": "c697289e7f5f10ba",
+      "deviceName": "EVOS.REYYY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:57:05",
+      "endTime": "09:57:13"
+    },
+    {
+      "deviceId": "0c08f85fded8e6be",
+      "deviceName": "AUR.JUN",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:57:06",
+      "endTime": "09:57:10"
+    },
+    {
+      "deviceId": "7dd230962790bc22",
+      "deviceName": "PE.LAOHO",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:57:06",
+      "endTime": "09:57:12"
+    },
+    {
+      "deviceId": "c304cf7c2e386fd1",
+      "deviceName": "WAG.PLS1",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:57:13",
+      "endTime": "09:57:19"
+    },
+    {
+      "deviceId": "7dd230962790bc22",
+      "deviceName": "PE.LAOHO",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:57:14",
+      "endTime": "09:57:16"
+    },
+    {
+      "deviceId": "c42c5d9405249804",
+      "deviceName": "AUR.THEAXEL",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:57:21",
+      "endTime": "09:57:29"
+    },
+    {
+      "deviceId": "9dbcaa3b6d5db294",
+      "deviceName": "GOW.DEATH",
+      "app": "com.apowersoft.mirror",
+      "startTime": "09:57:21",
+      "endTime": "09:57:23"
+    },
+    {
+      "deviceId": "66926ad53b7be7a2",
+      "deviceName": "FL.MINHCUONG",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:57:32",
+      "endTime": "09:57:42"
+    },
+    {
+      "deviceId": "1700b99599db2909",
+      "deviceName": "BRU.GETHIGHXL",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:57:42",
+      "endTime": "09:57:48"
+    },
+    {
+      "deviceId": "52c0606232d8111a",
+      "deviceName": "RRQ.DUTZZ",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:57:51",
+      "endTime": "09:57:57"
+    },
+    {
+      "deviceId": "f5dbaa45fbdc3418",
+      "deviceName": "BACKUP.RRQ",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:58:05",
+      "endTime": "09:58:11"
+    },
+    {
+      "deviceId": "dde5c0adfe292c02",
+      "deviceName": "EVOS.RASYAH",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:58:22",
+      "endTime": "09:58:28"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:58:29",
+      "endTime": "09:59:20"
+    },
+    {
+      "deviceId": "d7156b0938023bd1",
+      "deviceName": "AUR.AZRIEL25",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:58:33",
+      "endTime": "09:58:37"
+    },
+    {
+      "deviceId": "dc0a56a61225f149",
+      "deviceName": "RRQ.MAALL77",
+      "app": "com.android.settings",
+      "startTime": "09:58:34",
+      "endTime": "09:58:37"
+    },
+    {
+      "deviceId": "fdf519b1e90aea3c",
+      "deviceName": "EVOS.AIMGOD",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:58:34",
+      "endTime": "09:58:36"
+    },
+    {
+      "deviceId": "dc0a56a61225f149",
+      "deviceName": "RRQ.MAALL77",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:58:43",
+      "endTime": "09:58:47"
+    },
+    {
+      "deviceId": "189693862366bb2c",
+      "deviceName": "WAG.NHAN7",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:58:44",
+      "endTime": "09:58:58"
+    },
+    {
+      "deviceId": "189693862366bb2c",
+      "deviceName": "WAG.NHAN7",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:59:39",
+      "endTime": "09:59:41"
+    },
+    {
+      "deviceId": "dd16574493cc6af3",
+      "deviceName": "AG.BAROS",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "09:59:59",
+      "endTime": "10:00:06"
+    },
+    {
+      "deviceId": "1700b99599db2909",
+      "deviceName": "BRU.GETHIGHXL",
+      "app": "com.android.settings",
+      "startTime": "10:01:08",
+      "endTime": "10:01:34"
+    },
+    {
+      "deviceId": "1700b99599db2909",
+      "deviceName": "BRU.GETHIGHXL",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:01:14",
+      "endTime": "10:01:16"
+    },
+    {
+      "deviceId": "db754a706d6a7a95",
+      "deviceName": "PE.DMH",
+      "app": "com.wssyncmldm",
+      "startTime": "10:09:01",
+      "endTime": "10:20:19"
+    },
+    {
+      "deviceId": "c304cf7c2e386fd1",
+      "deviceName": "WAG.PLS1",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:12:09",
+      "endTime": "10:12:14"
+    },
+    {
+      "deviceId": "c304cf7c2e386fd1",
+      "deviceName": "WAG.PLS1",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:12:34",
+      "endTime": "10:12:40"
+    },
+    {
+      "deviceId": "d0f3bdb232df5f70",
+      "deviceName": "FL.ABCD",
+      "app": "com.apowersoft.mirror",
+      "startTime": "10:14:45",
+      "endTime": "10:14:53"
+    },
+    {
+      "deviceId": "d0f3bdb232df5f70",
+      "deviceName": "FL.ABCD",
+      "app": "OVERLAY:com.apowersoft.mirror",
+      "startTime": "10:14:57",
+      "endTime": "10:43:51 (Lost)"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "com.apowersoft.mirror",
+      "startTime": "10:14:58",
+      "endTime": "10:15:04"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "com.apowersoft.mirror",
+      "startTime": "10:15:08",
+      "endTime": "10:15:16"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "com.apowersoft.mirror",
+      "startTime": "10:15:18",
+      "endTime": "10:15:20"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "OVERLAY:com.apowersoft.mirror",
+      "startTime": "10:15:28",
+      "endTime": "10:26:25 (Lost)"
+    },
+    {
+      "deviceId": "8674db135f8e191f",
+      "deviceName": "FLCN.ONFIRE",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:16:30",
+      "endTime": "10:16:32"
+    },
+    {
+      "deviceId": "6fe381e2fec243a8",
+      "deviceName": "BACKUP.FLCN",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:16:38",
+      "endTime": "10:16:40"
+    },
+    {
+      "deviceId": "ee581e8cce126eec",
+      "deviceName": "FLCN.KERORO",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:16:53",
+      "endTime": "10:17:23"
+    },
+    {
+      "deviceId": "8d4a8b5a0e98fcd2",
+      "deviceName": "FLCN.LIMITX7",
+      "app": "com.android.settings",
+      "startTime": "10:17:05",
+      "endTime": "10:17:15"
+    },
+    {
+      "deviceId": "c697289e7f5f10ba",
+      "deviceName": "EVOS.REYYY",
+      "app": "com.wssyncmldm",
+      "startTime": "10:17:11",
+      "endTime": "10:17:35"
+    },
+    {
+      "deviceId": "8d4a8b5a0e98fcd2",
+      "deviceName": "FLCN.LIMITX7",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:17:19",
+      "endTime": "10:17:31"
+    },
+    {
+      "deviceId": "ce61c305b9ab4aab",
+      "deviceName": "BRU.TERNA",
+      "app": "com.wssyncmldm",
+      "startTime": "10:18:01",
+      "endTime": "17:18:31 (Lost)"
+    },
+    {
+      "deviceId": "542812940412bef1",
+      "deviceName": "BTR.DHIKZ",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:18:08",
+      "endTime": "10:18:12"
+    },
+    {
+      "deviceId": "5bddf96ea5f78e3a",
+      "deviceName": "FLCN.RATCHA",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:18:11",
+      "endTime": "10:18:15"
+    },
+    {
+      "deviceId": "a755313b138a2e5a",
+      "deviceName": "FLCN.PEENA",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:18:23",
+      "endTime": "10:18:25"
+    },
+    {
+      "deviceId": "74f97b96ae8be07d",
+      "deviceName": "BACKUP.EVOS",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:19:08",
+      "endTime": "10:19:10"
+    },
+    {
+      "deviceId": "f5dbaa45fbdc3418",
+      "deviceName": "BACKUP.RRQ",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:19:52",
+      "endTime": "10:19:54"
+    },
+    {
+      "deviceId": "4d53164bfd9307c9",
+      "deviceName": "BRU.WASANA",
+      "app": "com.samsung.android.game.gamehome",
+      "startTime": "10:20:36",
+      "endTime": "10:20:38"
+    },
+    {
+      "deviceId": "932b6ea5d490c250",
+      "deviceName": "RRQ.ABAY",
+      "app": "com.android.settings",
+      "startTime": "10:21:11",
+      "endTime": "10:21:23"
+    },
+    {
+      "deviceId": "c59ed3d940baa4e7",
+      "deviceName": "BTR.KYONGG",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:21:06",
+      "endTime": "10:21:19"
+    },
+    {
+      "deviceId": "5c633c71e92914ad",
+      "deviceName": "GOW.DEMON",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:21:30",
+      "endTime": "10:21:32"
+    },
+    {
+      "deviceId": "4d53164bfd9307c9",
+      "deviceName": "BRU.WASANA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "10:21:35",
+      "endTime": "10:21:37"
+    },
+    {
+      "deviceId": "ecfee0b99affe4ae",
+      "deviceName": "GOW.DYAN",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:21:34",
+      "endTime": "10:21:38"
+    },
+    {
+      "deviceId": "19d4a7435c15583f",
+      "deviceName": "BRU.JOENA",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:21:36",
+      "endTime": "10:21:42"
+    },
+    {
+      "deviceId": "1700b99599db2909",
+      "deviceName": "BRU.GETHIGHXL",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:21:47",
+      "endTime": "10:21:49"
+    },
+    {
+      "deviceId": "2f8ce1fcfe8b4499",
+      "deviceName": "GOW.HANS",
+      "app": "com.android.settings",
+      "startTime": "10:21:52",
+      "endTime": "10:22:03"
+    },
+    {
+      "deviceId": "d59a8a2cdd8764cb",
+      "deviceName": "RRQ.18DEER",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:21:53",
+      "endTime": "10:21:55"
+    },
+    {
+      "deviceId": "1258d6b3ca75a2f6",
+      "deviceName": "BRU.MOSHI",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:21:51",
+      "endTime": "10:21:53"
+    },
+    {
+      "deviceId": "ecfee0b99affe4ae",
+      "deviceName": "GOW.DYAN",
+      "app": "com.android.settings",
+      "startTime": "10:22:04",
+      "endTime": "10:22:24"
+    },
+    {
+      "deviceId": "db839317b1cd83f7",
+      "deviceName": "FL.THEGOD",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:22:10",
+      "endTime": "10:22:12"
+    },
+    {
+      "deviceId": "d0f3bdb232df5f70",
+      "deviceName": "FL.ABCD",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:22:12",
+      "endTime": "10:22:14"
+    },
+    {
+      "deviceId": "1e29978118477b5e",
+      "deviceName": "TWIS.XPOZY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:22:17",
+      "endTime": "10:22:21"
+    },
+    {
+      "deviceId": "c77ddb2f362ad5da",
+      "deviceName": "AG.DEW",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:22:18",
+      "endTime": "10:22:22"
+    },
+    {
+      "deviceId": "5c633c71e92914ad",
+      "deviceName": "GOW.DEMON",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:22:21",
+      "endTime": "10:22:23"
+    },
+    {
+      "deviceId": "19d4a7435c15583f",
+      "deviceName": "BRU.JOENA",
+      "app": "com.android.settings",
+      "startTime": "10:22:22",
+      "endTime": "10:22:42"
+    },
+    {
+      "deviceId": "ecfee0b99affe4ae",
+      "deviceName": "GOW.DYAN",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:22:26",
+      "endTime": "10:22:31"
+    },
+    {
+      "deviceId": "19d4a7435c15583f",
+      "deviceName": "BRU.JOENA",
+      "app": "com.samsung.android.game.gamehome",
+      "startTime": "10:22:44",
+      "endTime": "10:22:48"
+    },
+    {
+      "deviceId": "1e29978118477b5e",
+      "deviceName": "TWIS.XPOZY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:23:40",
+      "endTime": "10:23:46"
+    },
+    {
+      "deviceId": "8d4a8b5a0e98fcd2",
+      "deviceName": "FLCN.LIMITX7",
+      "app": "com.android.settings",
+      "startTime": "10:24:07",
+      "endTime": "10:24:16"
+    },
+    {
+      "deviceId": "fdf519b1e90aea3c",
+      "deviceName": "EVOS.AIMGOD",
+      "app": "com.android.settings",
+      "startTime": "10:24:21",
+      "endTime": "10:24:38"
+    },
+    {
+      "deviceId": "a755313b138a2e5a",
+      "deviceName": "FLCN.PEENA",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:24:40",
+      "endTime": "10:24:43"
+    },
+    {
+      "deviceId": "dac04c6c69afc340",
+      "deviceName": "EVOS.KOCEEL",
+      "app": "com.android.settings",
+      "startTime": "10:25:40",
+      "endTime": "10:25:44"
+    },
+    {
+      "deviceId": "fdf519b1e90aea3c",
+      "deviceName": "EVOS.AIMGOD",
+      "app": "com.samsung.android.game.gametools",
+      "startTime": "10:25:42",
+      "endTime": "10:25:50"
+    },
+    {
+      "deviceId": "9f63bd0ca8427435",
+      "deviceName": "WAG.HOANGM",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:26:18",
+      "endTime": "10:26:20"
+    },
+    {
+      "deviceId": "189693862366bb2c",
+      "deviceName": "WAG.NHAN7",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:26:23",
+      "endTime": "10:26:25"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:26:22",
+      "endTime": "10:26:28"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "OVERLAY:com.apowersoft.mirror",
+      "startTime": "10:26:23",
+      "endTime": "10:26:27"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:29:10",
+      "endTime": "10:29:12"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "com.apowersoft.mirror",
+      "startTime": "10:29:18",
+      "endTime": "10:29:20"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:29:18",
+      "endTime": "10:29:20"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "com.apowersoft.mirror",
+      "startTime": "10:29:22",
+      "endTime": "10:29:30"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "com.apowersoft.mirror",
+      "startTime": "10:29:38",
+      "endTime": "10:29:40"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "OVERLAY:com.apowersoft.mirror",
+      "startTime": "10:29:42",
+      "endTime": "11:13:28"
+    },
+    {
+      "deviceId": "79a1b7b899f4547a",
+      "deviceName": "BTR.KOJAA",
+      "app": "com.android.settings",
+      "startTime": "10:30:10",
+      "endTime": "10:30:18"
+    },
+    {
+      "deviceId": "79a1b7b899f4547a",
+      "deviceName": "BTR.KOJAA",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:30:36",
+      "endTime": "10:30:38"
+    },
+    {
+      "deviceId": "1e29978118477b5e",
+      "deviceName": "TWIS.XPOZY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:31:18",
+      "endTime": "10:31:20"
+    },
+    {
+      "deviceId": "1e29978118477b5e",
+      "deviceName": "TWIS.XPOZY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:31:25",
+      "endTime": "10:31:29"
+    },
+    {
+      "deviceId": "1e29978118477b5e",
+      "deviceName": "TWIS.XPOZY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:31:53",
+      "endTime": "10:36:02"
+    },
+    {
+      "deviceId": "fdf519b1e90aea3c",
+      "deviceName": "EVOS.AIMGOD",
+      "app": "com.android.settings",
+      "startTime": "10:34:35",
+      "endTime": "10:34:57"
+    },
+    {
+      "deviceId": "19d4a7435c15583f",
+      "deviceName": "BRU.JOENA",
+      "app": "com.android.settings",
+      "startTime": "10:35:06",
+      "endTime": "10:35:14"
+    },
+    {
+      "deviceId": "fdf519b1e90aea3c",
+      "deviceName": "EVOS.AIMGOD",
+      "app": "com.samsung.android.game.gametools",
+      "startTime": "10:36:02",
+      "endTime": "10:36:12"
+    },
+    {
+      "deviceId": "d59a8a2cdd8764cb",
+      "deviceName": "RRQ.18DEER",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:36:18",
+      "endTime": "10:36:20"
+    },
+    {
+      "deviceId": "1e29978118477b5e",
+      "deviceName": "TWIS.XPOZY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:38:19",
+      "endTime": "10:38:43"
+    },
+    {
+      "deviceId": "a79452842d73f62e",
+      "deviceName": "PE.LBT",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:38:43",
+      "endTime": "10:38:57"
+    },
+    {
+      "deviceId": "1e29978118477b5e",
+      "deviceName": "TWIS.XPOZY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:40:54",
+      "endTime": "10:42:39"
+    },
+    {
+      "deviceId": "fdf519b1e90aea3c",
+      "deviceName": "EVOS.AIMGOD",
+      "app": "com.android.settings",
+      "startTime": "10:43:34",
+      "endTime": "10:44:16"
+    },
+    {
+      "deviceId": "d0f3bdb232df5f70",
+      "deviceName": "FL.ABCD",
+      "app": "OVERLAY:com.apowersoft.mirror",
+      "startTime": "10:43:47",
+      "endTime": "10:44:41"
+    },
+    {
+      "deviceId": "2f8ce1fcfe8b4499",
+      "deviceName": "GOW.HANS",
+      "app": "com.android.settings",
+      "startTime": "10:49:11",
+      "endTime": "10:49:19"
+    },
+    {
+      "deviceId": "2f8ce1fcfe8b4499",
+      "deviceName": "GOW.HANS",
+      "app": "com.google.android.gms",
+      "startTime": "10:50:50",
+      "endTime": "10:50:52"
+    },
+    {
+      "deviceId": "9b39fbd84f984fc8",
+      "deviceName": "PE.NOLAN",
+      "app": "com.android.settings",
+      "startTime": "10:52:49",
+      "endTime": "10:53:05"
+    },
+    {
+      "deviceId": "19d4a7435c15583f",
+      "deviceName": "BRU.JOENA",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "10:55:45",
+      "endTime": "10:55:47"
+    },
+    {
+      "deviceId": "dac04c6c69afc340",
+      "deviceName": "EVOS.KOCEEL",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "10:59:59",
+      "endTime": "11:00:03"
+    },
+    {
+      "deviceId": "085b5126a2d3f9fd",
+      "deviceName": "TWIS.DIAMOND",
+      "app": "com.android.settings",
+      "startTime": "11:12:49",
+      "endTime": "11:12:55"
+    },
+    {
+      "deviceId": "085b5126a2d3f9fd",
+      "deviceName": "TWIS.DIAMOND",
+      "app": "com.android.settings",
+      "startTime": "11:12:57",
+      "endTime": "11:12:59"
+    },
+    {
+      "deviceId": "e6d9be0af03abb38",
+      "deviceName": "FL.THEZOM",
+      "app": "com.sec.android.app.camera",
+      "startTime": "11:13:31",
+      "endTime": "11:39:01 (Lost)"
+    },
+    {
+      "deviceId": "fdf519b1e90aea3c",
+      "deviceName": "EVOS.AIMGOD",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "11:13:42",
+      "endTime": "11:13:44"
+    },
+    {
+      "deviceId": "47369335e623e8a6",
+      "deviceName": "BTR.JOOEEEL",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "11:25:58",
+      "endTime": "11:26:02"
+    },
+    {
+      "deviceId": "f5dbaa45fbdc3418",
+      "deviceName": "BACKUP.RRQ",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "11:26:58",
+      "endTime": "11:29:35"
+    },
+    {
+      "deviceId": "f5f74e94dd6f2554",
+      "deviceName": "RRQ.RANZEIEI",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "11:27:54",
+      "endTime": "11:29:41"
+    },
+    {
+      "deviceId": "d7156b0938023bd1",
+      "deviceName": "AUR.AZRIEL25",
+      "app": "com.wssyncmldm",
+      "startTime": "11:34:02",
+      "endTime": "11:59:28 (Lost)"
+    },
+    {
+      "deviceId": "3a7c3d57245a7c93",
+      "deviceName": "BTR.C1B3NK",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "11:50:20",
+      "endTime": "11:50:22"
+    },
+    {
+      "deviceId": "d7156b0938023bd1",
+      "deviceName": "AUR.AZRIEL25",
+      "app": "com.wssyncmldm",
+      "startTime": "11:59:24",
+      "endTime": "12:01:54 (Lost)"
+    },
+    {
+      "deviceId": "d7156b0938023bd1",
+      "deviceName": "AUR.AZRIEL25",
+      "app": "com.wssyncmldm",
+      "startTime": "12:01:51",
+      "endTime": "14:05:06"
+    },
+    {
+      "deviceId": "fdf519b1e90aea3c",
+      "deviceName": "EVOS.AIMGOD",
+      "app": "com.android.settings",
+      "startTime": "12:08:49",
+      "endTime": "12:08:53"
+    },
+    {
+      "deviceId": "f5dbaa45fbdc3418",
+      "deviceName": "BACKUP.RRQ",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "12:12:01",
+      "endTime": "12:13:39"
+    },
+    {
+      "deviceId": "f5dbaa45fbdc3418",
+      "deviceName": "BACKUP.RRQ",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "12:29:43",
+      "endTime": "12:32:25"
+    },
+    {
+      "deviceId": "5c633c71e92914ad",
+      "deviceName": "GOW.DEMON",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "12:53:18",
+      "endTime": "12:53:20"
+    },
+    {
+      "deviceId": "0c08f85fded8e6be",
+      "deviceName": "AUR.JUN",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "12:57:41",
+      "endTime": "12:57:43"
+    },
+    {
+      "deviceId": "5bddf96ea5f78e3a",
+      "deviceName": "FLCN.RATCHA",
+      "app": "com.wssyncmldm",
+      "startTime": "13:39:01",
+      "endTime": "14:12:25"
+    },
+    {
+      "deviceId": "189693862366bb2c",
+      "deviceName": "WAG.NHAN7",
+      "app": "com.wssyncmldm",
+      "startTime": "13:44:02",
+      "endTime": "14:12:43"
+    },
+    {
+      "deviceId": "c59ed3d940baa4e7",
+      "deviceName": "BTR.KYONGG",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "13:46:49",
+      "endTime": "13:47:07"
+    },
+    {
+      "deviceId": "f5dbaa45fbdc3418",
+      "deviceName": "BACKUP.RRQ",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "13:47:32",
+      "endTime": "13:47:46"
+    },
+    {
+      "deviceId": "d7156b0938023bd1",
+      "deviceName": "AUR.AZRIEL25",
+      "app": "com.sec.android.app.camera",
+      "startTime": "14:05:27",
+      "endTime": "14:05:29"
+    },
+    {
+      "deviceId": "d7156b0938023bd1",
+      "deviceName": "AUR.AZRIEL25",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:05:37",
+      "endTime": "14:05:41"
+    },
+    {
+      "deviceId": "1e29978118477b5e",
+      "deviceName": "TWIS.XPOZY",
+      "app": "com.android.settings",
+      "startTime": "14:09:21",
+      "endTime": "14:09:37"
+    },
+    {
+      "deviceId": "c42c5d9405249804",
+      "deviceName": "AUR.THEAXEL",
+      "app": "com.android.settings",
+      "startTime": "14:12:26",
+      "endTime": "14:12:28"
+    },
+    {
+      "deviceId": "c42c5d9405249804",
+      "deviceName": "AUR.THEAXEL",
+      "app": "com.android.settings.intelligence",
+      "startTime": "14:12:28",
+      "endTime": "14:12:30"
+    },
+    {
+      "deviceId": "c42c5d9405249804",
+      "deviceName": "AUR.THEAXEL",
+      "app": "com.samsung.android.lool",
+      "startTime": "14:12:30",
+      "endTime": "14:13:18"
+    },
+    {
+      "deviceId": "c42c5d9405249804",
+      "deviceName": "AUR.THEAXEL",
+      "app": "com.android.settings.intelligence",
+      "startTime": "14:13:18",
+      "endTime": "14:13:20"
+    },
+    {
+      "deviceId": "ecfee0b99affe4ae",
+      "deviceName": "GOW.DYAN",
+      "app": "com.android.settings",
+      "startTime": "14:13:19",
+      "endTime": "14:13:29"
+    },
+    {
+      "deviceId": "c42c5d9405249804",
+      "deviceName": "AUR.THEAXEL",
+      "app": "com.samsung.android.lool",
+      "startTime": "14:13:20",
+      "endTime": "14:13:22"
+    },
+    {
+      "deviceId": "b5e5c3ede33f84a4",
+      "deviceName": "AUR.ZUEZZ",
+      "app": "com.samsung.android.lool",
+      "startTime": "14:13:54",
+      "endTime": "14:13:58"
+    },
+    {
+      "deviceId": "1e29978118477b5e",
+      "deviceName": "TWIS.XPOZY",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "14:15:37",
+      "endTime": "14:15:39"
+    },
+    {
+      "deviceId": "1700b99599db2909",
+      "deviceName": "BRU.GETHIGHXL",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:04",
+      "endTime": "14:18:06"
+    },
+    {
+      "deviceId": "dc0a56a61225f149",
+      "deviceName": "RRQ.MAALL77",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:05",
+      "endTime": "14:18:09"
+    },
+    {
+      "deviceId": "a50682fd4c5d85b8",
+      "deviceName": "TWIS.JUMP",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:08",
+      "endTime": "14:18:10"
+    },
+    {
+      "deviceId": "d7156b0938023bd1",
+      "deviceName": "AUR.AZRIEL25",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:08",
+      "endTime": "14:18:10"
+    },
+    {
+      "deviceId": "2f8ce1fcfe8b4499",
+      "deviceName": "GOW.HANS",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:09",
+      "endTime": "14:18:15"
+    },
+    {
+      "deviceId": "db839317b1cd83f7",
+      "deviceName": "FL.THEGOD",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:10",
+      "endTime": "14:18:16"
+    },
+    {
+      "deviceId": "7dd230962790bc22",
+      "deviceName": "PE.LAOHO",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:11",
+      "endTime": "14:18:15"
+    },
+    {
+      "deviceId": "8d4a8b5a0e98fcd2",
+      "deviceName": "FLCN.LIMITX7",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:12",
+      "endTime": "14:18:16"
+    },
+    {
+      "deviceId": "fdf519b1e90aea3c",
+      "deviceName": "EVOS.AIMGOD",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:12",
+      "endTime": "14:18:16"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:14",
+      "endTime": "14:18:22"
+    },
+    {
+      "deviceId": "a50682fd4c5d85b8",
+      "deviceName": "TWIS.JUMP",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:18",
+      "endTime": "14:18:22"
+    },
+    {
+      "deviceId": "52c0606232d8111a",
+      "deviceName": "RRQ.DUTZZ",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:20",
+      "endTime": "14:18:24"
+    },
+    {
+      "deviceId": "3a7c3d57245a7c93",
+      "deviceName": "BTR.C1B3NK",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:21",
+      "endTime": "14:18:25"
+    },
+    {
+      "deviceId": "316942b228609b2b",
+      "deviceName": "AG.SAIFA",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:21",
+      "endTime": "14:18:29"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "com.apowersoft.mirror",
+      "startTime": "14:18:22",
+      "endTime": "14:18:31"
+    },
+    {
+      "deviceId": "d7156b0938023bd1",
+      "deviceName": "AUR.AZRIEL25",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:24",
+      "endTime": "14:18:30"
+    },
+    {
+      "deviceId": "ecfee0b99affe4ae",
+      "deviceName": "GOW.DYAN",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:27",
+      "endTime": "14:18:31"
+    },
+    {
+      "deviceId": "dde5c0adfe292c02",
+      "deviceName": "EVOS.RASYAH",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:29",
+      "endTime": "14:18:33"
+    },
+    {
+      "deviceId": "a755313b138a2e5a",
+      "deviceName": "FLCN.PEENA",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:30",
+      "endTime": "14:18:34"
+    },
+    {
+      "deviceId": "d0f3bdb232df5f70",
+      "deviceName": "FL.ABCD",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:32",
+      "endTime": "14:18:36"
+    },
+    {
+      "deviceId": "2d32e55b09891112",
+      "deviceName": "PE.NERO",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:33",
+      "endTime": "14:18:39"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "com.apowersoft.mirror",
+      "startTime": "14:18:35",
+      "endTime": "14:18:43"
+    },
+    {
+      "deviceId": "d59a8a2cdd8764cb",
+      "deviceName": "RRQ.18DEER",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:37",
+      "endTime": "14:18:39"
+    },
+    {
+      "deviceId": "79a1b7b899f4547a",
+      "deviceName": "BTR.KOJAA",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:40",
+      "endTime": "14:18:44"
+    },
+    {
+      "deviceId": "d0f3bdb232df5f70",
+      "deviceName": "FL.ABCD",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "14:18:40",
+      "endTime": "14:18:42"
+    },
+    {
+      "deviceId": "b5e5c3ede33f84a4",
+      "deviceName": "AUR.ZUEZZ",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:42",
+      "endTime": "14:18:48"
+    },
+    {
+      "deviceId": "d0f3bdb232df5f70",
+      "deviceName": "FL.ABCD",
+      "app": "com.apowersoft.mirror",
+      "startTime": "14:18:42",
+      "endTime": "14:18:48"
+    },
+    {
+      "deviceId": "5707e0105d6282c5",
+      "deviceName": "TWIS.THEBAS",
+      "app": "com.android.settings",
+      "startTime": "14:18:43",
+      "endTime": "14:18:47"
+    },
+    {
+      "deviceId": "ee581e8cce126eec",
+      "deviceName": "FLCN.KERORO",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:45",
+      "endTime": "14:18:51"
+    },
+    {
+      "deviceId": "2eef845648974f8f",
+      "deviceName": "AG.NAMELESS",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:45",
+      "endTime": "14:18:51"
+    },
+    {
+      "deviceId": "5c633c71e92914ad",
+      "deviceName": "GOW.DEMON",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:45",
+      "endTime": "14:18:49"
+    },
+    {
+      "deviceId": "085b5126a2d3f9fd",
+      "deviceName": "TWIS.DIAMOND",
+      "app": "com.android.settings",
+      "startTime": "14:18:47",
+      "endTime": "14:18:55"
+    },
+    {
+      "deviceId": "5707e0105d6282c5",
+      "deviceName": "TWIS.THEBAS",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:47",
+      "endTime": "14:18:55"
+    },
+    {
+      "deviceId": "c697289e7f5f10ba",
+      "deviceName": "EVOS.REYYY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:48",
+      "endTime": "14:18:50"
+    },
+    {
+      "deviceId": "932b6ea5d490c250",
+      "deviceName": "RRQ.ABAY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:51",
+      "endTime": "14:18:55"
+    },
+    {
+      "deviceId": "d0f3bdb232df5f70",
+      "deviceName": "FL.ABCD",
+      "app": "com.apowersoft.mirror",
+      "startTime": "14:18:52",
+      "endTime": "14:18:56"
+    },
+    {
+      "deviceId": "9b39fbd84f984fc8",
+      "deviceName": "PE.NOLAN",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:57",
+      "endTime": "14:18:59"
+    },
+    {
+      "deviceId": "542812940412bef1",
+      "deviceName": "BTR.DHIKZ",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:18:58",
+      "endTime": "14:19:04"
+    },
+    {
+      "deviceId": "d0f3bdb232df5f70",
+      "deviceName": "FL.ABCD",
+      "app": "OVERLAY:com.apowersoft.mirror",
+      "startTime": "14:18:58",
+      "endTime": "17:47:43"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "OVERLAY:com.apowersoft.mirror",
+      "startTime": "14:18:59",
+      "endTime": "17:46:47 (Lost)"
+    },
+    {
+      "deviceId": "a50682fd4c5d85b8",
+      "deviceName": "TWIS.JUMP",
+      "app": "com.android.settings",
+      "startTime": "14:19:00",
+      "endTime": "14:19:06"
+    },
+    {
+      "deviceId": "9b39fbd84f984fc8",
+      "deviceName": "PE.NOLAN",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:01",
+      "endTime": "14:19:05"
+    },
+    {
+      "deviceId": "dac04c6c69afc340",
+      "deviceName": "EVOS.KOCEEL",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:03",
+      "endTime": "14:19:07"
+    },
+    {
+      "deviceId": "5bddf96ea5f78e3a",
+      "deviceName": "FLCN.RATCHA",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:05",
+      "endTime": "14:19:09"
+    },
+    {
+      "deviceId": "9dbcaa3b6d5db294",
+      "deviceName": "GOW.DEATH",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:05",
+      "endTime": "14:19:11"
+    },
+    {
+      "deviceId": "0c08f85fded8e6be",
+      "deviceName": "AUR.JUN",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:07",
+      "endTime": "14:19:11"
+    },
+    {
+      "deviceId": "dd16574493cc6af3",
+      "deviceName": "AG.BAROS",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:08",
+      "endTime": "14:19:10"
+    },
+    {
+      "deviceId": "189693862366bb2c",
+      "deviceName": "WAG.NHAN7",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:09",
+      "endTime": "14:19:15"
+    },
+    {
+      "deviceId": "4d53164bfd9307c9",
+      "deviceName": "BRU.WASANA",
+      "app": "com.samsung.android.game.gamehome",
+      "startTime": "14:19:15",
+      "endTime": "14:19:19"
+    },
+    {
+      "deviceId": "0c08f85fded8e6be",
+      "deviceName": "AUR.JUN",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:15",
+      "endTime": "14:19:21"
+    },
+    {
+      "deviceId": "a79452842d73f62e",
+      "deviceName": "PE.LBT",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:15",
+      "endTime": "14:19:20"
+    },
+    {
+      "deviceId": "47369335e623e8a6",
+      "deviceName": "BTR.JOOEEEL",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:17",
+      "endTime": "14:19:21"
+    },
+    {
+      "deviceId": "085b5126a2d3f9fd",
+      "deviceName": "TWIS.DIAMOND",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:21",
+      "endTime": "14:19:27"
+    },
+    {
+      "deviceId": "e6d9be0af03abb38",
+      "deviceName": "FL.THEZOM",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:21",
+      "endTime": "14:19:25"
+    },
+    {
+      "deviceId": "c304cf7c2e386fd1",
+      "deviceName": "WAG.PLS1",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:26",
+      "endTime": "14:19:30"
+    },
+    {
+      "deviceId": "c77ddb2f362ad5da",
+      "deviceName": "AG.DEW",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:32",
+      "endTime": "14:19:36"
+    },
+    {
+      "deviceId": "c42c5d9405249804",
+      "deviceName": "AUR.THEAXEL",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:34",
+      "endTime": "14:19:48"
+    },
+    {
+      "deviceId": "1e29978118477b5e",
+      "deviceName": "TWIS.XPOZY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:41",
+      "endTime": "14:19:45"
+    },
+    {
+      "deviceId": "66926ad53b7be7a2",
+      "deviceName": "FL.MINHCUONG",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:43",
+      "endTime": "14:19:49"
+    },
+    {
+      "deviceId": "9f63bd0ca8427435",
+      "deviceName": "WAG.HOANGM",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "14:19:51",
+      "endTime": "14:19:55"
+    },
+    {
+      "deviceId": "085b5126a2d3f9fd",
+      "deviceName": "TWIS.DIAMOND",
+      "app": "com.android.settings",
+      "startTime": "15:15:10",
+      "endTime": "15:15:25"
+    },
+    {
+      "deviceId": "085b5126a2d3f9fd",
+      "deviceName": "TWIS.DIAMOND",
+      "app": "com.android.settings",
+      "startTime": "15:41:40",
+      "endTime": "15:41:50"
+    },
+    {
+      "deviceId": "dde5c0adfe292c02",
+      "deviceName": "EVOS.RASYAH",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "15:47:07",
+      "endTime": "15:47:09"
+    },
+    {
+      "deviceId": "52c0606232d8111a",
+      "deviceName": "RRQ.DUTZZ",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "15:47:12",
+      "endTime": "15:47:16"
+    },
+    {
+      "deviceId": "ee581e8cce126eec",
+      "deviceName": "FLCN.KERORO",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "15:47:21",
+      "endTime": "15:47:25"
+    },
+    {
+      "deviceId": "c697289e7f5f10ba",
+      "deviceName": "EVOS.REYYY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "15:47:21",
+      "endTime": "15:47:24"
+    },
+    {
+      "deviceId": "dac04c6c69afc340",
+      "deviceName": "EVOS.KOCEEL",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "15:47:27",
+      "endTime": "15:47:31"
+    },
+    {
+      "deviceId": "5bddf96ea5f78e3a",
+      "deviceName": "FLCN.RATCHA",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "15:47:29",
+      "endTime": "15:47:31"
+    },
+    {
+      "deviceId": "9dbcaa3b6d5db294",
+      "deviceName": "GOW.DEATH",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "15:47:35",
+      "endTime": "15:47:37"
+    },
+    {
+      "deviceId": "5c633c71e92914ad",
+      "deviceName": "GOW.DEMON",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "15:47:43",
+      "endTime": "15:47:45"
+    },
+    {
+      "deviceId": "ecfee0b99affe4ae",
+      "deviceName": "GOW.DYAN",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "15:48:35",
+      "endTime": "15:48:37"
+    },
+    {
+      "deviceId": "dc0a56a61225f149",
+      "deviceName": "RRQ.MAALL77",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "16:03:39",
+      "endTime": "16:03:41"
+    },
+    {
+      "deviceId": "932b6ea5d490c250",
+      "deviceName": "RRQ.ABAY",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "16:04:23",
+      "endTime": "16:04:25"
+    },
+    {
+      "deviceId": "c304cf7c2e386fd1",
+      "deviceName": "WAG.PLS1",
+      "app": "com.samsung.android.game.gametools",
+      "startTime": "16:05:16",
+      "endTime": "16:05:18"
+    },
+    {
+      "deviceId": "47369335e623e8a6",
+      "deviceName": "BTR.JOOEEEL",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "16:27:41",
+      "endTime": "16:27:43"
+    },
+    {
+      "deviceId": "c59ed3d940baa4e7",
+      "deviceName": "BTR.KYONGG",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "16:27:59",
+      "endTime": "16:28:13"
+    },
+    {
+      "deviceId": "db839317b1cd83f7",
+      "deviceName": "FL.THEGOD",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "16:28:28",
+      "endTime": "16:28:30"
+    },
+    {
+      "deviceId": "1700b99599db2909",
+      "deviceName": "BRU.GETHIGHXL",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "16:34:36",
+      "endTime": "16:34:38"
+    },
+    {
+      "deviceId": "4d53164bfd9307c9",
+      "deviceName": "BRU.WASANA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "16:34:36",
+      "endTime": "16:34:38"
+    },
+    {
+      "deviceId": "1258d6b3ca75a2f6",
+      "deviceName": "BRU.MOSHI",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "16:34:36",
+      "endTime": "16:34:38"
+    },
+    {
+      "deviceId": "19d4a7435c15583f",
+      "deviceName": "BRU.JOENA",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "16:34:36",
+      "endTime": "16:34:38"
+    },
+    {
+      "deviceId": "0c08f85fded8e6be",
+      "deviceName": "AUR.JUN",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "16:34:36",
+      "endTime": "16:34:40"
+    },
+    {
+      "deviceId": "c42c5d9405249804",
+      "deviceName": "AUR.THEAXEL",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "16:34:36",
+      "endTime": "16:34:42"
+    },
+    {
+      "deviceId": "d7156b0938023bd1",
+      "deviceName": "AUR.AZRIEL25",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "16:34:36",
+      "endTime": "16:34:42"
+    },
+    {
+      "deviceId": "db839317b1cd83f7",
+      "deviceName": "FL.THEGOD",
+      "app": "com.google.android.googlequicksearchbox",
+      "startTime": "16:39:29",
+      "endTime": "16:39:31"
+    },
+    {
+      "deviceId": "19d4a7435c15583f",
+      "deviceName": "BRU.JOENA",
+      "app": "com.samsung.android.game.gamehome",
+      "startTime": "16:42:26",
+      "endTime": "16:42:28"
+    },
+    {
+      "deviceId": "4d53164bfd9307c9",
+      "deviceName": "BRU.WASANA",
+      "app": "com.samsung.android.game.gamehome",
+      "startTime": "16:44:06",
+      "endTime": "16:44:08"
+    },
+    {
+      "deviceId": "9b39fbd84f984fc8",
+      "deviceName": "PE.NOLAN",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:11:00",
+      "endTime": "17:11:02"
+    },
+    {
+      "deviceId": "db754a706d6a7a95",
+      "deviceName": "PE.DMH",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "17:11:19",
+      "endTime": "17:11:23"
+    },
+    {
+      "deviceId": "db754a706d6a7a95",
+      "deviceName": "PE.DMH",
+      "app": "com.android.settings",
+      "startTime": "17:15:45",
+      "endTime": "17:15:49"
+    },
+    {
+      "deviceId": "f5f74e94dd6f2554",
+      "deviceName": "RRQ.RANZEIEI",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "17:15:49",
+      "endTime": "17:16:03"
+    },
+    {
+      "deviceId": "d59a8a2cdd8764cb",
+      "deviceName": "RRQ.18DEER",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:15:53",
+      "endTime": "17:15:55"
+    },
+    {
+      "deviceId": "f5f74e94dd6f2554",
+      "deviceName": "RRQ.RANZEIEI",
+      "app": "com.android.settings",
+      "startTime": "17:17:30",
+      "endTime": "17:18:36"
+    },
+    {
+      "deviceId": "ce61c305b9ab4aab",
+      "deviceName": "BRU.TERNA",
+      "app": "com.wssyncmldm",
+      "startTime": "17:18:32",
+      "endTime": "17:50:03"
+    },
+    {
+      "deviceId": "f5f74e94dd6f2554",
+      "deviceName": "RRQ.RANZEIEI",
+      "app": "com.android.settings",
+      "startTime": "17:19:16",
+      "endTime": "17:19:38"
+    },
+    {
+      "deviceId": "f5f74e94dd6f2554",
+      "deviceName": "RRQ.RANZEIEI",
+      "app": "com.android.settings",
+      "startTime": "17:20:37",
+      "endTime": "17:21:03"
+    },
+    {
+      "deviceId": "f5f74e94dd6f2554",
+      "deviceName": "RRQ.RANZEIEI",
+      "app": "vbaudio.vbanreceptor",
+      "startTime": "17:23:02",
+      "endTime": "17:23:04"
+    },
+    {
+      "deviceId": "f5f74e94dd6f2554",
+      "deviceName": "RRQ.RANZEIEI",
+      "app": "com.android.settings",
+      "startTime": "17:24:04",
+      "endTime": "17:24:12"
+    },
+    {
+      "deviceId": "79a1b7b899f4547a",
+      "deviceName": "BTR.KOJAA",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "dac04c6c69afc340",
+      "deviceName": "EVOS.KOCEEL",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "d7156b0938023bd1",
+      "deviceName": "AUR.AZRIEL25",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "19d4a7435c15583f",
+      "deviceName": "BRU.JOENA",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "ecfee0b99affe4ae",
+      "deviceName": "GOW.DYAN",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "542812940412bef1",
+      "deviceName": "BTR.DHIKZ",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "2eef845648974f8f",
+      "deviceName": "AG.NAMELESS",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "5707e0105d6282c5",
+      "deviceName": "TWIS.THEBAS",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "c77ddb2f362ad5da",
+      "deviceName": "AG.DEW",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "db754a706d6a7a95",
+      "deviceName": "PE.DMH",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "a755313b138a2e5a",
+      "deviceName": "FLCN.PEENA",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "5bddf96ea5f78e3a",
+      "deviceName": "FLCN.RATCHA",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "0c08f85fded8e6be",
+      "deviceName": "AUR.JUN",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "fdf519b1e90aea3c",
+      "deviceName": "EVOS.AIMGOD",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "dd16574493cc6af3",
+      "deviceName": "AG.BAROS",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "1700b99599db2909",
+      "deviceName": "BRU.GETHIGHXL",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "2d32e55b09891112",
+      "deviceName": "PE.NERO",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "9f63bd0ca8427435",
+      "deviceName": "WAG.HOANGM",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "dde5c0adfe292c02",
+      "deviceName": "EVOS.RASYAH",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "e6d9be0af03abb38",
+      "deviceName": "FL.THEZOM",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "932b6ea5d490c250",
+      "deviceName": "RRQ.ABAY",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "ee581e8cce126eec",
+      "deviceName": "FLCN.KERORO",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:03"
+    },
+    {
+      "deviceId": "db839317b1cd83f7",
+      "deviceName": "FL.THEGOD",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "52c0606232d8111a",
+      "deviceName": "RRQ.DUTZZ",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "c304cf7c2e386fd1",
+      "deviceName": "WAG.PLS1",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "9dbcaa3b6d5db294",
+      "deviceName": "GOW.DEATH",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "085b5126a2d3f9fd",
+      "deviceName": "TWIS.DIAMOND",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "1258d6b3ca75a2f6",
+      "deviceName": "BRU.MOSHI",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "c697289e7f5f10ba",
+      "deviceName": "EVOS.REYYY",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "7dd230962790bc22",
+      "deviceName": "PE.LAOHO",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "d0f3bdb232df5f70",
+      "deviceName": "FL.ABCD",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "316942b228609b2b",
+      "deviceName": "AG.SAIFA",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:38",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "8d4a8b5a0e98fcd2",
+      "deviceName": "FLCN.LIMITX7",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "3a7c3d57245a7c93",
+      "deviceName": "BTR.C1B3NK",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "f584fde5f3379905",
+      "deviceName": "EVOS.ABAAAX",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "2f8ce1fcfe8b4499",
+      "deviceName": "GOW.HANS",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "4e63e800ab0e37b6",
+      "deviceName": "WAG.SHYRU",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "c59ed3d940baa4e7",
+      "deviceName": "BTR.KYONGG",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:03"
+    },
+    {
+      "deviceId": "9b39fbd84f984fc8",
+      "deviceName": "PE.NOLAN",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "5c633c71e92914ad",
+      "deviceName": "GOW.DEMON",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "1e29978118477b5e",
+      "deviceName": "TWIS.XPOZY",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "a50682fd4c5d85b8",
+      "deviceName": "TWIS.JUMP",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:03"
+    },
+    {
+      "deviceId": "c42c5d9405249804",
+      "deviceName": "AUR.THEAXEL",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:03"
+    },
+    {
+      "deviceId": "b5e5c3ede33f84a4",
+      "deviceName": "AUR.ZUEZZ",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:03"
+    },
+    {
+      "deviceId": "4d53164bfd9307c9",
+      "deviceName": "BRU.WASANA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:03"
+    },
+    {
+      "deviceId": "47369335e623e8a6",
+      "deviceName": "BTR.JOOEEEL",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:03"
+    },
+    {
+      "deviceId": "66926ad53b7be7a2",
+      "deviceName": "FL.MINHCUONG",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:03"
+    },
+    {
+      "deviceId": "8674db135f8e191f",
+      "deviceName": "FLCN.ONFIRE",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:03"
+    },
+    {
+      "deviceId": "f5f74e94dd6f2554",
+      "deviceName": "RRQ.RANZEIEI",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:02"
+    },
+    {
+      "deviceId": "74f97b96ae8be07d",
+      "deviceName": "BACKUP.EVOS",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:03"
+    },
+    {
+      "deviceId": "189693862366bb2c",
+      "deviceName": "WAG.NHAN7",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:03"
+    },
+    {
+      "deviceId": "a79452842d73f62e",
+      "deviceName": "PE.LBT",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:04"
+    },
+    {
+      "deviceId": "dc0a56a61225f149",
+      "deviceName": "RRQ.MAALL77",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:04"
+    },
+    {
+      "deviceId": "d59a8a2cdd8764cb",
+      "deviceName": "RRQ.18DEER",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:03"
+    },
+    {
+      "deviceId": "ce61c305b9ab4aab",
+      "deviceName": "BRU.TERNA",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:04"
+    },
+    {
+      "deviceId": "6fe381e2fec243a8",
+      "deviceName": "BACKUP.FLCN",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:04"
+    },
+    {
+      "deviceId": "f5dbaa45fbdc3418",
+      "deviceName": "BACKUP.RRQ",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:40:39",
+      "endTime": "17:41:06"
+    },
+    {
+      "deviceId": "c304cf7c2e386fd1",
+      "deviceName": "WAG.PLS1",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:45:43",
+      "endTime": "17:45:45"
+    },
+    {
+      "deviceId": "3a7c3d57245a7c93",
+      "deviceName": "BTR.C1B3NK",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:45:47",
+      "endTime": "17:45:50"
+    },
+    {
+      "deviceId": "dc0a56a61225f149",
+      "deviceName": "RRQ.MAALL77",
+      "app": "com.sec.android.app.sbrowser",
+      "startTime": "17:46:04",
+      "endTime": "17:46:08"
+    },
+    {
+      "deviceId": "8d4a8b5a0e98fcd2",
+      "deviceName": "FLCN.LIMITX7",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:15",
+      "endTime": "17:46:18"
+    },
+    {
+      "deviceId": "1700b99599db2909",
+      "deviceName": "BRU.GETHIGHXL",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:18",
+      "endTime": "17:46:20"
+    },
+    {
+      "deviceId": "dac04c6c69afc340",
+      "deviceName": "EVOS.KOCEEL",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:18",
+      "endTime": "17:46:20"
+    },
+    {
+      "deviceId": "932b6ea5d490c250",
+      "deviceName": "RRQ.ABAY",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:19",
+      "endTime": "17:46:21"
+    },
+    {
+      "deviceId": "1e29978118477b5e",
+      "deviceName": "TWIS.XPOZY",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:20",
+      "endTime": "17:46:22"
+    },
+    {
+      "deviceId": "c42c5d9405249804",
+      "deviceName": "AUR.THEAXEL",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:22",
+      "endTime": "17:46:24"
+    },
+    {
+      "deviceId": "9dbcaa3b6d5db294",
+      "deviceName": "GOW.DEATH",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:26",
+      "endTime": "17:46:28"
+    },
+    {
+      "deviceId": "9dbcaa3b6d5db294",
+      "deviceName": "GOW.DEATH",
+      "app": "com.google.android.googlequicksearchbox",
+      "startTime": "17:46:27",
+      "endTime": "17:46:29"
+    },
+    {
+      "deviceId": "9f63bd0ca8427435",
+      "deviceName": "WAG.HOANGM",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:26",
+      "endTime": "17:46:28"
+    },
+    {
+      "deviceId": "c697289e7f5f10ba",
+      "deviceName": "EVOS.REYYY",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:31",
+      "endTime": "17:46:33"
+    },
+    {
+      "deviceId": "0c08f85fded8e6be",
+      "deviceName": "AUR.JUN",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:33",
+      "endTime": "17:46:35"
+    },
+    {
+      "deviceId": "542812940412bef1",
+      "deviceName": "BTR.DHIKZ",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:35",
+      "endTime": "17:46:37"
+    },
+    {
+      "deviceId": "5c633c71e92914ad",
+      "deviceName": "GOW.DEMON",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:34",
+      "endTime": "17:46:36"
+    },
+    {
+      "deviceId": "1258d6b3ca75a2f6",
+      "deviceName": "BRU.MOSHI",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:35",
+      "endTime": "17:46:37"
+    },
+    {
+      "deviceId": "7dd230962790bc22",
+      "deviceName": "PE.LAOHO",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:38",
+      "endTime": "17:46:40"
+    },
+    {
+      "deviceId": "79a1b7b899f4547a",
+      "deviceName": "BTR.KOJAA",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:38",
+      "endTime": "17:46:41"
+    },
+    {
+      "deviceId": "a755313b138a2e5a",
+      "deviceName": "FLCN.PEENA",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:38",
+      "endTime": "17:46:42"
+    },
+    {
+      "deviceId": "52c0606232d8111a",
+      "deviceName": "RRQ.DUTZZ",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:41",
+      "endTime": "17:46:43"
+    },
+    {
+      "deviceId": "e6d9be0af03abb38",
+      "deviceName": "FL.THEZOM",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:43",
+      "endTime": "17:46:45"
+    },
+    {
+      "deviceId": "085b5126a2d3f9fd",
+      "deviceName": "TWIS.DIAMOND",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "17:46:43",
+      "endTime": "17:46:45"
+    },
+    {
+      "deviceId": "dde5c0adfe292c02",
+      "deviceName": "EVOS.RASYAH",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:44",
+      "endTime": "17:46:46"
+    },
+    {
+      "deviceId": "ecfee0b99affe4ae",
+      "deviceName": "GOW.DYAN",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:46",
+      "endTime": "17:46:48"
+    },
+    {
+      "deviceId": "2d32e55b09891112",
+      "deviceName": "PE.NERO",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:48",
+      "endTime": "17:46:50"
+    },
+    {
+      "deviceId": "19d4a7435c15583f",
+      "deviceName": "BRU.JOENA",
+      "app": "com.google.android.youtube",
+      "startTime": "17:46:50",
+      "endTime": "17:48:09"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:44",
+      "endTime": "17:46:51"
+    },
+    {
+      "deviceId": "18d5477b3a99b1e8",
+      "deviceName": "WAG.TQUY",
+      "app": "OVERLAY:com.apowersoft.mirror",
+      "startTime": "17:46:45",
+      "endTime": "17:46:55 (Lost)"
+    },
+    {
+      "deviceId": "ee581e8cce126eec",
+      "deviceName": "FLCN.KERORO",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:51",
+      "endTime": "17:46:53"
+    },
+    {
+      "deviceId": "2eef845648974f8f",
+      "deviceName": "AG.NAMELESS",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:52",
+      "endTime": "17:46:54"
+    },
+    {
+      "deviceId": "dc0a56a61225f149",
+      "deviceName": "RRQ.MAALL77",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:55",
+      "endTime": "17:46:57"
+    },
+    {
+      "deviceId": "fdf519b1e90aea3c",
+      "deviceName": "EVOS.AIMGOD",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:56",
+      "endTime": "17:46:58"
+    },
+    {
+      "deviceId": "b5e5c3ede33f84a4",
+      "deviceName": "AUR.ZUEZZ",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:52",
+      "endTime": "17:46:59"
+    },
+    {
+      "deviceId": "db754a706d6a7a95",
+      "deviceName": "PE.DMH",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:46:58",
+      "endTime": "17:47:00"
+    },
+    {
+      "deviceId": "2f8ce1fcfe8b4499",
+      "deviceName": "GOW.HANS",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:47:00",
+      "endTime": "17:47:02"
+    },
+    {
+      "deviceId": "189693862366bb2c",
+      "deviceName": "WAG.NHAN7",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:47:02",
+      "endTime": "17:47:04"
+    },
+    {
+      "deviceId": "d7156b0938023bd1",
+      "deviceName": "AUR.AZRIEL25",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:47:04",
+      "endTime": "17:47:06"
+    },
+    {
+      "deviceId": "dd16574493cc6af3",
+      "deviceName": "AG.BAROS",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:47:06",
+      "endTime": "17:47:08"
+    },
+    {
+      "deviceId": "5bddf96ea5f78e3a",
+      "deviceName": "FLCN.RATCHA",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:47:07",
+      "endTime": "17:47:09"
+    },
+    {
+      "deviceId": "5707e0105d6282c5",
+      "deviceName": "TWIS.THEBAS",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:47:08",
+      "endTime": "17:47:10"
+    },
+    {
+      "deviceId": "47369335e623e8a6",
+      "deviceName": "BTR.JOOEEEL",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:47:12",
+      "endTime": "17:47:14"
+    },
+    {
+      "deviceId": "a79452842d73f62e",
+      "deviceName": "PE.LBT",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:47:21",
+      "endTime": "17:47:23"
+    },
+    {
+      "deviceId": "4d53164bfd9307c9",
+      "deviceName": "BRU.WASANA",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "17:47:22",
+      "endTime": "17:47:24"
+    },
+    {
+      "deviceId": "c77ddb2f362ad5da",
+      "deviceName": "AG.DEW",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:47:32",
+      "endTime": "17:47:34"
+    },
+    {
+      "deviceId": "a50682fd4c5d85b8",
+      "deviceName": "TWIS.JUMP",
+      "app": "DISCONNECTED (likely_intentional)",
+      "startTime": "17:47:34",
+      "endTime": "17:47:36"
+    },
+    {
+      "deviceId": "19d4a7435c15583f",
+      "deviceName": "BRU.JOENA",
+      "app": "DISCONNECTED (intentional)",
+      "startTime": "17:49:09",
+      "endTime": "17:49:11"
+    },
+    {
+      "deviceId": "SYSTEM_NET",
+      "deviceName": "NETWORK ERROR",
+      "app": "DNS:OK|TCP:FAIL",
+      "netDnsOk": true,
+      "netTcpOk": false,
+      "netDnsDetail": "",
+      "netTcpDetail": "ECONNREFUSED: connect ECONNREFUSED 10.21.243.200:39001",
+      "startTime": "17:56:36",
+      "endTime": null
+    }
+  ],
+  "tableNames": {},
+  "netConfig": {
+    "dns": "10.21.243.200",
+    "port": 39001
+  },
+  "stageState": {
+    "51b088d697de86ae": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 544,
+        "y": 104
+      }
+    },
+    "5f396d0444e0ed7d": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 544,
+        "y": 280
+      }
+    },
+    "fe2fee07729b0fd3": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 280,
+        "y": 16
+      }
+    },
+    "255400624da5252f": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 280,
+        "y": 104
+      }
+    },
+    "ee46b1793835307d": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 280,
+        "y": 456
+      }
+    },
+    "c333482abe5aaff3": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 808,
+        "y": 104
+      }
+    },
+    "537746b71ec1d0c9": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 808,
+        "y": 720
+      }
+    },
+    "c719f0e4b62d5f0a": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 544,
+        "y": 544
+      }
+    },
+    "7fe85f8ecc51454a": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 280,
+        "y": 368
+      }
+    },
+    "83336afc39c907a0": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 808,
+        "y": 808
+      }
+    },
+    "05555a8dbd11082c": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 544,
+        "y": 808
+      }
+    },
+    "cd7f7f093096f18e": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 104
+      }
+    },
+    "f49b62dd092818f1": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 808
+      }
+    },
+    "c9d43328935a0da1": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 544,
+        "y": 456
+      }
+    },
+    "c75b8753984c2711": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 280,
+        "y": 984
+      }
+    },
+    "0184fa724240e488": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 720
+      }
+    },
+    "59c699fc026cb30f": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 280,
+        "y": 896
+      }
+    },
+    "a64771943c1ae9e1": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 280
+      }
+    },
+    "57cbcb458792e4ec": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 280,
+        "y": 192
+      }
+    },
+    "57d5c192b31e5a03": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 544,
+        "y": 984
+      }
+    },
+    "f0d2ff917e1e2129": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 544,
+        "y": 720
+      }
+    },
+    "f925db01841209d9": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 368
+      }
+    },
+    "019866ab53420aef": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 280,
+        "y": 544
+      }
+    },
+    "6184192dc850f63e": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 544,
+        "y": 368
+      }
+    },
+    "8b78ee19caab4e41": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 984
+      }
+    },
+    "d23d0f2665ea742a": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 896
+      }
+    },
+    "ebe691c0a4c5e6bd": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 808,
+        "y": 192
+      }
+    },
+    "10459d248497bc3c": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 808,
+        "y": 984
+      }
+    },
+    "6acdbabf111cfb24": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 16
+      }
+    },
+    "b413c862bc04d6b4": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 808,
+        "y": 896
+      }
+    },
+    "164b0ada3fea9ddc": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 280,
+        "y": 280
+      }
+    },
+    "04323cb96334fa6a": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 808,
+        "y": 368
+      }
+    },
+    "daaced6314ad1506": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 192
+      }
+    },
+    "69696feeb0bda6d3": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 544,
+        "y": 896
+      }
+    },
+    "10cbd162ebc9023b": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 808,
+        "y": 456
+      }
+    },
+    "55524b4f9e970d13": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 280,
+        "y": 720
+      }
+    },
+    "b60ef61aa68d973e": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 808,
+        "y": 280
+      }
+    },
+    "d9c51fb7a76f5f76": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 456
+      }
+    },
+    "d1ed2a841d59eccd": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 544
+      }
+    },
+    "6441540606c0657f": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 808,
+        "y": 544
+      }
+    },
+    "28e4f3ab2757350e": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 280,
+        "y": 808
+      }
+    },
+    "09eb5665f566e985": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 808,
+        "y": 16
+      }
+    },
+    "c1127d588b355e1d": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 632
+      }
+    },
+    "45491909e2924485": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 808,
+        "y": 632
+      }
+    },
+    "d8f37110fb652618": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 280,
+        "y": 632
+      }
+    },
+    "2fafecdcff886fe8": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": -342.9111630884285,
+        "y": 101.25787443615818
+      }
+    },
+    "333eabdb9a60ca82": {
+      "slotId": "wait"
+    },
+    "9ad3af952a339d1e": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 544,
+        "y": 632
+      }
+    },
+    "8d27d59dc2100d05": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 544,
+        "y": 192
+      }
+    },
+    "d54df25f9e80220f": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 544,
+        "y": 16
+      }
+    },
+    "763cd6e7c5535321": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 169,
+        "y": 89.609375
+      }
+    },
+    "f8a5b243367e26a4": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 654,
+        "y": 16
+      }
+    },
+    "b11c80e90c413839": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 654,
+        "y": 16
+      }
+    },
+    "9cf45fdbe386a226": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 16,
+        "y": 120
+      }
+    },
+    "cbd200bf2a7a5808": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 46,
+        "y": 292
+      }
+    },
+    "d9ac5439311c79c9": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 502,
+        "y": 16
+      }
+    },
+    "c66b24e96b04e476": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 654,
+        "y": 154
+      }
+    },
+    "2fffe62cf4611b5d": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 350,
+        "y": 16
+      }
+    },
+    "6fe381e2fec243a8": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 1406,
+        "y": 112
+      }
+    },
+    "1528d0c34d6b6e86": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 350,
+        "y": 292
+      }
+    },
+    "a887570e8c7edc22": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 16,
+        "y": 16
+      }
+    },
+    "66967d21037c34e5": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 46,
+        "y": 154
+      }
+    },
+    "a4a74645bdc6efca": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 320,
+        "y": 120
+      }
+    },
+    "1f2c07c5615b78f9": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 320,
+        "y": 16
+      }
+    },
+    "0ad7c90ffde731f0": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 958,
+        "y": 16
+      }
+    },
+    "2f8ce1fcfe8b4499": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 802,
+        "y": 660
+      }
+    },
+    "74af54b8cb978db0": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 958,
+        "y": 154
+      }
+    },
+    "2c2eb73855565bcc": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 350,
+        "y": 16
+      }
+    },
+    "e60d661561993646": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 350,
+        "y": 16
+      }
+    },
+    "8172abe1e19c0438": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 624,
+        "y": 16
+      }
+    },
+    "8a144cac3c704847": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 350,
+        "y": 154
+      }
+    },
+    "085b5126a2d3f9fd": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 802,
+        "y": 844
+      }
+    },
+    "07d5ef64f8086a70": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 654,
+        "y": 16
+      }
+    },
+    "c30e87a5455e065d": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 502,
+        "y": 568
+      }
+    },
+    "de30474a60382fd0": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 46,
+        "y": 16
+      }
+    },
+    "f3e938f881e3d7e5": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 654,
+        "y": 154
+      }
+    },
+    "bee75d69acfbe797": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 502,
+        "y": 430
+      }
+    },
+    "fc9b2d64e5b0d4eb": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 46,
+        "y": 154
+      }
+    },
+    "72bb72a2d0a79c08": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 130,
+        "y": -105
+      }
+    },
+    "987d3cf64f974330": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 958,
+        "y": 154
+      }
+    },
+    "f5dbaa45fbdc3418": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 294,
+        "y": 112
+      }
+    },
+    "cb2e6ca25882ad91": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 294,
+        "y": 592
+      }
+    },
+    "ee581e8cce126eec": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 568
+      }
+    },
+    "c77ddb2f362ad5da": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 278,
+        "y": 16
+      }
+    },
+    "66926ad53b7be7a2": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 278,
+        "y": 476
+      }
+    },
+    "f584fde5f3379905": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 294,
+        "y": 304
+      }
+    },
+    "4d12d6f774872c2c": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 1128,
+        "y": 16
+      }
+    },
+    "1258d6b3ca75a2f6": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 540,
+        "y": 200
+      }
+    },
+    "d0f3bdb232df5f70": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 476
+      }
+    },
+    "4e63e800ab0e37b6": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 16,
+        "y": 660
+      }
+    },
+    "9b39fbd84f984fc8": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 16,
+        "y": 880
+      }
+    },
+    "5bddf96ea5f78e3a": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 802,
+        "y": 568
+      }
+    },
+    "f5f74e94dd6f2554": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 278,
+        "y": 568
+      }
+    },
+    "52c0606232d8111a": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 278,
+        "y": 844
+      }
+    },
+    "dac04c6c69afc340": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 278,
+        "y": 384
+      }
+    },
+    "8674db135f8e191f": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 572,
+        "y": 400
+      }
+    },
+    "0c08f85fded8e6be": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 278,
+        "y": 108
+      }
+    },
+    "3a7c3d57245a7c93": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 292
+      }
+    },
+    "db839317b1cd83f7": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 540,
+        "y": 476
+      }
+    },
+    "2d32e55b09891112": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 802,
+        "y": 752
+      }
+    },
+    "ecfee0b99affe4ae": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 540,
+        "y": 660
+      }
+    },
+    "0e3f21aa02d5ca0e": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 278,
+        "y": 384
+      }
+    },
+    "189693862366bb2c": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 1028
+      }
+    },
+    "f331867de6e2a1db": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 540,
+        "y": 108
+      }
+    },
+    "932b6ea5d490c250": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 844
+      }
+    },
+    "7dd230962790bc22": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 278,
+        "y": 752
+      }
+    },
+    "c697289e7f5f10ba": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 802,
+        "y": 384
+      }
+    },
+    "8d4a8b5a0e98fcd2": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 278,
+        "y": 568
+      }
+    },
+    "b5e5c3ede33f84a4": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 802,
+        "y": 108
+      }
+    },
+    "18d5477b3a99b1e8": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 540,
+        "y": 1028
+      }
+    },
+    "e6d9be0af03abb38": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 802,
+        "y": 476
+      }
+    },
+    "dc0a56a61225f149": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 540,
+        "y": 844
+      }
+    },
+    "5c633c71e92914ad": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 278,
+        "y": 660
+      }
+    },
+    "1b70fd0132bbc95b": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 802,
+        "y": 108
+      }
+    },
+    "dde5c0adfe292c02": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 540,
+        "y": 384
+      }
+    },
+    "c42c5d9405249804": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 540,
+        "y": 108
+      }
+    },
+    "a755313b138a2e5a": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 540,
+        "y": 568
+      }
+    },
+    "d59a8a2cdd8764cb": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 294,
+        "y": 880
+      }
+    },
+    "47369335e623e8a6": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 540,
+        "y": 292
+      }
+    },
+    "9f63bd0ca8427435": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 802,
+        "y": 936
+      }
+    },
+    "4d53164bfd9307c9": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 802,
+        "y": 200
+      }
+    },
+    "1700b99599db2909": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 200
+      }
+    },
+    "79a1b7b899f4547a": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 802,
+        "y": 292
+      }
+    },
+    "542812940412bef1": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 278,
+        "y": 292
+      }
+    },
+    "a70712967e3abc07": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 294,
+        "y": 112
+      }
+    },
+    "ce61c305b9ab4aab": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 294,
+        "y": 208
+      }
+    },
+    "1ecc59740c950f1e": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 572,
+        "y": 112
+      }
+    },
+    "dd16574493cc6af3": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 16
+      }
+    },
+    "fa839230e8f3e6c2": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 1128,
+        "y": 688
+      }
+    },
+    "2eef845648974f8f": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 540,
+        "y": 16
+      }
+    },
+    "316942b228609b2b": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 802,
+        "y": 16
+      }
+    },
+    "1e29978118477b5e": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 540,
+        "y": 936
+      }
+    },
+    "a79452842d73f62e": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 540,
+        "y": 752
+      }
+    },
+    "c304cf7c2e386fd1": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 278,
+        "y": 1028
+      }
+    },
+    "c59ed3d940baa4e7": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 1128,
+        "y": 208
+      }
+    },
+    "9dbcaa3b6d5db294": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 660
+      }
+    },
+    "74f97b96ae8be07d": {
+      "slotId": "wait",
+      "seatLayout": {
+        "x": 850,
+        "y": 112
+      }
+    },
+    "db754a706d6a7a95": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 752
+      }
+    },
+    "19d4a7435c15583f": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 278,
+        "y": 200
+      }
+    },
+    "fdf519b1e90aea3c": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 384
+      }
+    },
+    "5707e0105d6282c5": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 278,
+        "y": 936
+      }
+    },
+    "d7156b0938023bd1": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 108
+      }
+    },
+    "a50682fd4c5d85b8": {
+      "slotId": "arena",
+      "seatLayout": {
+        "x": 16,
+        "y": 936
+      }
+    }
+  },
+  "stageStateBackup": {
+    "savedAtMs": 1778313188979,
+    "stageState": {
+      "51b088d697de86ae": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 544,
+          "y": 104
+        }
+      },
+      "5f396d0444e0ed7d": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 544,
+          "y": 280
+        }
+      },
+      "fe2fee07729b0fd3": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 280,
+          "y": 16
+        }
+      },
+      "255400624da5252f": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 280,
+          "y": 104
+        }
+      },
+      "ee46b1793835307d": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 280,
+          "y": 456
+        }
+      },
+      "c333482abe5aaff3": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 808,
+          "y": 104
+        }
+      },
+      "537746b71ec1d0c9": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 808,
+          "y": 720
+        }
+      },
+      "c719f0e4b62d5f0a": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 544,
+          "y": 544
+        }
+      },
+      "7fe85f8ecc51454a": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 280,
+          "y": 368
+        }
+      },
+      "83336afc39c907a0": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 808,
+          "y": 808
+        }
+      },
+      "05555a8dbd11082c": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 544,
+          "y": 808
+        }
+      },
+      "cd7f7f093096f18e": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 104
+        }
+      },
+      "f49b62dd092818f1": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 808
+        }
+      },
+      "c9d43328935a0da1": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 544,
+          "y": 456
+        }
+      },
+      "c75b8753984c2711": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 280,
+          "y": 984
+        }
+      },
+      "0184fa724240e488": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 720
+        }
+      },
+      "59c699fc026cb30f": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 280,
+          "y": 896
+        }
+      },
+      "a64771943c1ae9e1": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 280
+        }
+      },
+      "57cbcb458792e4ec": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 280,
+          "y": 192
+        }
+      },
+      "57d5c192b31e5a03": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 544,
+          "y": 984
+        }
+      },
+      "f0d2ff917e1e2129": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 544,
+          "y": 720
+        }
+      },
+      "f925db01841209d9": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 368
+        }
+      },
+      "019866ab53420aef": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 280,
+          "y": 544
+        }
+      },
+      "6184192dc850f63e": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 544,
+          "y": 368
+        }
+      },
+      "8b78ee19caab4e41": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 984
+        }
+      },
+      "d23d0f2665ea742a": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 896
+        }
+      },
+      "ebe691c0a4c5e6bd": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 808,
+          "y": 192
+        }
+      },
+      "10459d248497bc3c": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 808,
+          "y": 984
+        }
+      },
+      "6acdbabf111cfb24": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 16
+        }
+      },
+      "b413c862bc04d6b4": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 808,
+          "y": 896
+        }
+      },
+      "164b0ada3fea9ddc": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 280,
+          "y": 280
+        }
+      },
+      "04323cb96334fa6a": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 808,
+          "y": 368
+        }
+      },
+      "daaced6314ad1506": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 192
+        }
+      },
+      "69696feeb0bda6d3": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 544,
+          "y": 896
+        }
+      },
+      "10cbd162ebc9023b": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 808,
+          "y": 456
+        }
+      },
+      "55524b4f9e970d13": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 280,
+          "y": 720
+        }
+      },
+      "b60ef61aa68d973e": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 808,
+          "y": 280
+        }
+      },
+      "d9c51fb7a76f5f76": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 456
+        }
+      },
+      "d1ed2a841d59eccd": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 544
+        }
+      },
+      "6441540606c0657f": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 808,
+          "y": 544
+        }
+      },
+      "28e4f3ab2757350e": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 280,
+          "y": 808
+        }
+      },
+      "09eb5665f566e985": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 808,
+          "y": 16
+        }
+      },
+      "c1127d588b355e1d": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 632
+        }
+      },
+      "45491909e2924485": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 808,
+          "y": 632
+        }
+      },
+      "d8f37110fb652618": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 280,
+          "y": 632
+        }
+      },
+      "2fafecdcff886fe8": {
+        "slotId": "wait",
+        "seatLayout": {
+          "x": -342.9111630884285,
+          "y": 101.25787443615818
+        }
+      },
+      "333eabdb9a60ca82": {
+        "slotId": "wait"
+      },
+      "9ad3af952a339d1e": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 544,
+          "y": 632
+        }
+      },
+      "8d27d59dc2100d05": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 544,
+          "y": 192
+        }
+      },
+      "d54df25f9e80220f": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 544,
+          "y": 16
+        }
+      },
+      "763cd6e7c5535321": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1840,
+          "y": 120
+        }
+      },
+      "f8a5b243367e26a4": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 624,
+          "y": 16
+        }
+      },
+      "b11c80e90c413839": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 2448,
+          "y": 328
+        }
+      },
+      "9cf45fdbe386a226": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1536,
+          "y": 16
+        }
+      },
+      "cbd200bf2a7a5808": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 2144,
+          "y": 224
+        }
+      },
+      "d9ac5439311c79c9": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 624,
+          "y": 120
+        }
+      },
+      "c66b24e96b04e476": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 2448,
+          "y": 224
+        }
+      },
+      "2fffe62cf4611b5d": {
+        "slotId": "wait",
+        "seatLayout": {
+          "x": 958,
+          "y": 534
+        }
+      },
+      "6fe381e2fec243a8": {
+        "slotId": "wait",
+        "seatLayout": {
+          "x": 1336,
+          "y": 368
+        }
+      },
+      "1528d0c34d6b6e86": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 2144,
+          "y": 328
+        }
+      },
+      "a887570e8c7edc22": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1536,
+          "y": 120
+        }
+      },
+      "66967d21037c34e5": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 928,
+          "y": 120
+        }
+      },
+      "a4a74645bdc6efca": {
+        "slotId": "wait",
+        "seatLayout": {
+          "x": 928,
+          "y": 328
+        }
+      },
+      "1f2c07c5615b78f9": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1840,
+          "y": 16
+        }
+      },
+      "0ad7c90ffde731f0": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1536,
+          "y": 224
+        }
+      },
+      "2f8ce1fcfe8b4499": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 928,
+          "y": 16
+        }
+      },
+      "74af54b8cb978db0": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 320,
+          "y": 328
+        }
+      },
+      "2c2eb73855565bcc": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1840,
+          "y": 328
+        }
+      },
+      "e60d661561993646": {
+        "slotId": "wait",
+        "seatLayout": {
+          "x": 502,
+          "y": 16
+        }
+      },
+      "8172abe1e19c0438": {
+        "slotId": "wait",
+        "seatLayout": {
+          "x": 502,
+          "y": 154
+        }
+      },
+      "8a144cac3c704847": {
+        "slotId": "wait",
+        "seatLayout": {
+          "x": 806,
+          "y": 16
+        }
+      },
+      "085b5126a2d3f9fd": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 624,
+          "y": 328
+        }
+      },
+      "07d5ef64f8086a70": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1536,
+          "y": 328
+        }
+      },
+      "c30e87a5455e065d": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 928,
+          "y": 328
+        }
+      },
+      "de30474a60382fd0": {
+        "slotId": "wait",
+        "seatLayout": {
+          "x": 638.381743520871,
+          "y": -298.75178404275016
+        }
+      },
+      "f3e938f881e3d7e5": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 16,
+          "y": 328
+        }
+      },
+      "bee75d69acfbe797": {
+        "slotId": "wait",
+        "seatLayout": {
+          "x": 16,
+          "y": 16
+        }
+      },
+      "fc9b2d64e5b0d4eb": {
+        "slotId": "arena",
+        "seatLayout": {
+          "x": 1840,
+          "y": 224
+        }
+      },
+      "72bb72a2d0a79c08": {
+        "slotId": "wait",
+        "seatLayout": {
+          "x": 130,
+          "y": -105
+        }
+      },
+      "987d3cf64f974330": {
+        "slotId": "wait",
+        "seatLayout": {
+          "x": 198,
+          "y": 16
+        }
+      },
+      "f5dbaa45fbdc3418": {
+        "slotId": "wait",
+        "seatLayout": {
+          "x": 2656,
+          "y": 192
+        }
+      }
+    }
+  },
+  "netConfigRemote": {
+    "dns": "8.8.8.8",
+    "port": 53
+  },
+  "netConfigExtra": {
+    "dns": "10.21.243.200",
+    "port": 8082
+  }
+}

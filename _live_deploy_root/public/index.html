@@ -1,0 +1,3239 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>MONITOR SYSTEM</title>
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12,1L3,5v6c0,5.55 3.84,10.74 9,12c5.16-1.26 9-6.45 9-12V5L12,1z' fill='rgba(0,242,255,0.1)'/><path d='M12,1L3,5v6c0,5.55 3.84,10.74 9,12c5.16-1.26 9-6.45 9-12V5L12,1z' stroke='%2300F2FF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M7,12h2l1-3l2,6l1-3h2' stroke='%2300F2FF' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>">
+    <style>
+        :root {
+            --bg: #050505; --panel: #0a0a0f; --accent: #00f2ff;
+            --safe: #39ff14; --warn: #ff003c; --midwarn: #ffc107; --lock: #444; --text: #00f2ff;
+            --neon-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+        }
+        * { box-sizing: border-box; font-family: 'Segoe UI', sans-serif; transition: 0.2s; }
+        body { 
+			margin: 0; 
+			background: var(--bg); 
+			color: var(--text); 
+			height: 100vh; 
+			width: 100vw;
+			overflow: hidden; 
+			display: flex; 
+			flex-direction: column; 
+		}
+
+        .site-header {
+            background: #000;
+            border-bottom: 2px solid var(--accent);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+            z-index: 1000;
+            flex-shrink: 0;
+            padding: 5px 14px 6px;
+        }
+        .header-main-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+            align-items: center;
+            gap: 8px;
+            flex-wrap: nowrap;
+            min-width: 0;
+        }
+        .header-main-row .main-title {
+            font-size: 23px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: var(--accent);
+            text-shadow: var(--neon-shadow);
+            text-transform: uppercase;
+            flex: 0 0 auto;
+            min-width: 0;
+            text-align: center;
+            justify-self: center;
+            margin: 0;
+            line-height: 1.15;
+        }
+        /* Thanh NET cạnh DEVICES, được nới rộng về phía tiêu đề */
+        .header-net-wrap {
+            flex: 1 1 auto;
+            min-width: 0;
+            max-width: none;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+        .net-monitor-panel {
+            width: max-content;
+            min-width: min(100%, 360px);
+            background: rgba(12, 12, 18, 0.95);
+            padding: 3px 6px 4px;
+            border-radius: 4px;
+            border: 1px solid #1a1a25;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            box-sizing: border-box;
+        }
+        .net-monitor-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            padding-bottom: 2px;
+            margin-bottom: 1px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .net-monitor-panel-title {
+            font-size: 7px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            color: #555;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .net-monitor-set {
+            padding: 1px 7px !important;
+            font-size: 8px !important;
+            line-height: 1.3 !important;
+            flex-shrink: 0;
+        }
+        .net-monitor-row {
+            display: grid;
+            grid-template-columns: 26px minmax(56px, 1fr) 52px 20px 300px 34px;
+            align-items: center;
+            gap: 4px 5px;
+            min-width: 300px;
+            min-height: 20px;
+        }
+        .net-monitor-title {
+            font-size: 7px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            color: #5c5c6c;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+        .net-host-input {
+            min-width: 0;
+            width: 100%;
+            background: #000;
+            border: 1px solid #2a2a32;
+            color: var(--accent);
+            font-size: 9px;
+            padding: 2px 4px;
+            border-radius: 2px;
+            outline: none;
+            box-sizing: border-box;
+        }
+        .net-port-input {
+            width: 100%;
+            max-width: 52px;
+            justify-self: start;
+            background: #000;
+            border: 1px solid #2a2a32;
+            color: var(--accent);
+            font-size: 9px;
+            padding: 2px 3px;
+            border-radius: 1px;
+            outline: none;
+            box-sizing: border-box;
+        }
+        .net-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+        }
+        .net-latency-txt {
+            font-size: 8px;
+            font-family: monospace;
+            text-align: right;
+            color: #8aa;
+            white-space: nowrap;
+        }
+        .dot { width: 6px; height: 6px; border-radius: 50%; background: #222; }
+        .dot.on { background: var(--safe); box-shadow: 0 0 6px var(--safe); }
+        .net-graph-canvas {
+            width: 300px;
+            height: 14px;
+            background: rgba(0,0,0,0.45);
+            border: 1px solid #151518;
+            display: block;
+            justify-self: start;
+        }
+
+		#container { 
+			display: flex; 
+			flex: 1; 
+			min-height: 0;
+			overflow: hidden; 
+			width: 100%;
+		}
+
+        .side-panel {
+            width: 260px;
+            background: var(--panel);
+            border-right: 1px solid #1a1a25;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            transition: opacity 0.18s ease;
+        }
+        .waiting-toolbar {
+            padding: 10px 12px;
+            border-bottom: 1px solid #222;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            background: linear-gradient(180deg, rgba(18,18,26,0.95), rgba(8,8,12,0.95));
+        }
+        .waiting-title-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
+        }
+        .waiting-title {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.4px;
+            color: #d9f9ff;
+            white-space: nowrap;
+        }
+        .waiting-count-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 28px;
+            height: 18px;
+            padding: 0 6px;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 242, 255, 0.28);
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--accent);
+            font-size: 10px;
+            font-weight: 800;
+            font-family: Consolas, 'Monaco', monospace;
+            line-height: 1;
+        }
+        .waiting-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        #sidebar .header-action {
+            padding: 4px 8px;
+            min-height: 24px;
+            border-radius: 6px;
+            font-size: 9px;
+            letter-spacing: 0.25px;
+            text-transform: uppercase;
+        }
+        .waiting-list-body {
+            padding: 10px;
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: stretch;
+            align-content: flex-start;
+            background: linear-gradient(180deg, rgba(4, 4, 8, 0.45) 0%, rgba(0, 0, 0, 0.08) 100%);
+        }
+        .waiting-list-body::-webkit-scrollbar {
+            width: 8px;
+        }
+        .waiting-list-body::-webkit-scrollbar-thumb {
+            background: rgba(0, 242, 255, 0.22);
+            border-radius: 999px;
+            border: 1px solid rgba(0, 242, 255, 0.1);
+        }
+        .waiting-list-body::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 999px;
+        }
+        /* Thu gọn card trong Waiting List để không cần kéo ngang */
+        #waiting-list .device-card {
+            width: 100%;
+            min-height: 62px;
+            padding: 5px 8px;
+        }
+        #waiting-list .dev-info {
+            font-size: 10px;
+        }
+        #waiting-list .dev-sub {
+            font-size: 8px;
+            margin-top: 1px;
+            gap: 6px;
+        }
+        #waiting-list .dev-sub-top {
+            font-size: 10px;
+        }
+        #waiting-list .dev-sub-meta,
+        #waiting-list .dev-ip,
+        #waiting-list .ram-tag {
+            font-size: 8px;
+        }
+        #waiting-list .ram-tag {
+            padding: 3px 6px;
+            margin-left: 6px;
+        }
+        /* Thu gọn hẳn khỏi flex row — #log-panel có width cố định nên cần !important */
+        .side-panel.hidden {
+            width: 0 !important;
+            min-width: 0 !important;
+            max-width: 0 !important;
+            flex: 0 0 0 !important;
+            opacity: 0;
+            pointer-events: none;
+            overflow: hidden !important;
+            border-width: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        #log-panel {
+            border-right: none;
+            border-left: 1px solid #1a1a25;
+            width: 320px;
+            max-width: min(320px, 100%);
+        }
+		
+		#monitor-arena { 
+			flex: 1 1 0%;
+			min-width: 0;
+			display: block; 
+			position: relative;
+			overflow: hidden; 
+			background: #000;
+			background-image: radial-gradient(rgba(0, 242, 255, 0.1) 1px, transparent 1px);
+			background-size: 20px 20px; /* Grid background */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge legacy */
+		}
+        #monitor-arena::-webkit-scrollbar { width: 0; height: 0; display: none; }
+        /* Màn nhỏ hoặc chiều cao ít (landscape phone): cuộn pan stage */
+        @media (max-width: 1024px), (max-height: 520px) {
+            #monitor-arena {
+                overflow: auto;
+                -webkit-overflow-scrolling: touch;
+                overscroll-behavior: contain;
+                touch-action: pan-x pan-y;
+            }
+        }
+        .arena-scroll-surface {
+            position: relative;
+            box-sizing: border-box;
+            background: #000;
+            background-image: radial-gradient(rgba(0, 242, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+		.line-group { 
+			flex: 1; 
+			min-width: 200px; 
+			display: flex; 
+			flex-direction: column; 
+			gap: 10px;
+			height: 100%; 
+		}
+        
+		.walk-line { 
+			width: 30px; 
+			display: flex; 
+			align-items: center; 
+			justify-content: center; 
+			font-size: 12px; 
+			writing-mode: vertical-lr; 
+			letter-spacing: 8px; 
+			color: var(--accent);
+			opacity: 0.5;
+			background: linear-gradient(to bottom, #000, #111, #000);
+			height: 100%;
+		}	
+
+		.table-box { 
+			flex: 1; 
+			display: flex; 
+			flex-direction: column; 
+			gap: 2px; /* Khoảng cách nhỏ giữa các slot */
+			background: var(--panel); 
+			padding: 6px;
+			border: 1px solid #1a1a25;
+			border-top: 3px solid var(--accent);
+		}
+
+        .table-title-input { background: transparent; border: none; color: #aaa; text-align: center; width: 100%; font-weight: bold; font-size: 10px; outline: none; margin-bottom: 5px; }
+
+		.slot-row { 
+			flex: 1; 
+			min-height: 45px; 
+			border: 1px solid rgba(255,255,255,0.05); 
+			margin: 2px 0; 
+			display: flex; 
+			align-items: stretch; /* Ép phần tử con (device-card) phải giãn cao bằng nó */
+			justify-content: center;
+			background: rgba(0,0,0,0.2);
+			border-radius: 4px;
+			overflow: hidden; /* Tránh card tràn ra ngoài bo góc */
+		}
+
+        .slot-row.drag-over { background: rgba(0, 242, 255, 0.1); border: 1px dashed var(--accent); }
+		/* CSS cho phần Log mở rộng */
+		.log-group {
+			border: 1px solid #1a1a25;
+			margin-bottom: 8px;
+			background: rgba(10, 10, 15, 0.8);
+			border-radius: 4px;
+			overflow: hidden;
+		}
+		.log-group.is-disconnected {
+			opacity: 0.5;
+			filter: grayscale(1);
+			border-left: 3px solid #222 !important;
+		}
+		.log-group.is-disconnected .status-indicator {
+			background: #444 !important;
+		}
+        .log-panel-toolbar {
+            padding: 10px 12px;
+            font-size: 11px;
+            font-weight: bold;
+            border-bottom: 1px solid #222;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .log-panel-toolbar .log-panel-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .log-header {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: rgba(20, 20, 30, 0.9);
+        }
+		.log-header:hover { background: rgba(30, 30, 45, 1); }
+		.log-details {
+			display: none; /* Mặc định ẩn */
+			padding: 5px 10px 10px 25px;
+			background: rgba(0, 0, 0, 0.3);
+			border-top: 1px solid #1a1a25;
+		}
+		.log-details.show { display: block; }
+		.sub-log-item {
+			font-size: 9px;
+			padding: 4px 0;
+			border-bottom: 1px solid rgba(255,255,255,0.05);
+			display: flex;
+			justify-content: space-between;
+		}
+		.status-indicator { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+
+		.dev-info { 
+			display: flex; 
+			justify-content: space-between; 
+			align-items: flex-start;
+			font-weight: bold; 
+			font-size: 11px; 
+			pointer-events: none;
+			width: 100%; /* Đảm bảo chiếm hết chiều ngang card */
+		}
+		.dev-sub span:first-child {
+			flex: 1;
+			word-break: break-all;
+			line-height: 1.2;
+		}
+		.status-col {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end; /* Căn lề phải cho Pin và RAM */
+			gap: 2px;
+		}
+		/* Thêm mới đoạn này để RAM có màu xanh Neon đặc trưng của bạn */
+		.ram-tag { 
+			color: var(--accent); 
+			font-size: 10px; 
+			font-family: monospace;
+			background: rgba(0, 242, 255, 0.3);
+			padding: 4px 8px;
+			border-radius: 2px;
+			margin-left: 10px; /* Khoảng cách với tên App */
+			margin-right:0px;
+		}
+		.device-card { 
+			width: 290px;
+			min-height: 72px;
+			margin: 0;
+			padding: 6px 10px;
+            position: relative;
+			display: flex; 
+			flex-direction: column; 
+			justify-content: center;
+			cursor: grab;
+			transition: all 0.2s;
+			background: rgba(10, 10, 15, 0.9);
+			border: 1px solid #1a1a25;
+			border-radius: 4px;
+			color: #fff;
+			box-shadow: 0 10px 26px rgba(0,0,0,0.35);
+			z-index: 1; /* Ensure cards render above team frames */
+		}
+        /* Push multi devices modal selection uses checkboxes, not inline badges. */
+		
+		/* Khi thẻ nằm trên bản đồ */
+		.device-card.on-map {
+		    position: absolute;
+		    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            width: var(--stage-card-w, 290px);
+            min-height: var(--stage-card-h, 92px);
+		}
+        #arena-layer.arena-density-compact .device-card.on-map {
+            padding: 5px 8px;
+        }
+        #arena-layer.arena-density-ultra .device-card.on-map {
+            padding: 4px 7px;
+        }
+        #arena-layer.arena-density-compact .dev-info,
+        #arena-layer.arena-density-ultra .dev-info { font-size: 10px; }
+        #arena-layer.arena-density-ultra .dev-info { font-size: 9px; }
+        #arena-layer.arena-density-compact .dev-sub { font-size: 8px; }
+        #arena-layer.arena-density-ultra .dev-sub { font-size: 7.5px; }
+        #arena-layer.arena-density-compact .dev-sub-top { font-size: 10px; }
+        #arena-layer.arena-density-ultra .dev-sub-top { font-size: 9px; }
+        #arena-layer.arena-density-compact .dev-sub-meta,
+        #arena-layer.arena-density-compact .dev-ip,
+        #arena-layer.arena-density-compact .ram-tag { font-size: 8px; }
+        #arena-layer.arena-density-ultra .dev-sub-meta,
+        #arena-layer.arena-density-ultra .dev-ip,
+        #arena-layer.arena-density-ultra .ram-tag { font-size: 7px; }
+        .device-card.on-map.stage-ip-highlight {
+            z-index: 99;
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            box-shadow:
+                0 0 0 4px rgba(0, 242, 255, 0.2),
+                0 8px 28px rgba(0, 242, 255, 0.25),
+                0 4px 10px rgba(0, 0, 0, 0.55);
+            animation: none; /* không nháy theo blink của warning */
+        }
+
+        .device-card.online { border-left: 4px solid var(--safe); color: var(--safe); background: rgba(0,120,60,0.3);}
+        .device-card.warning { border-left: 4px solid var(--warn); color: #fff; background: rgba(255,0,60,0.2); animation: blink 0.6s infinite alternate; }
+        .device-card.partial_warning { border-left: 4px solid var(--midwarn); color: #000; background: rgba(255,193,7,0.2); }
+        .device-card.lock { border-left: 4px solid var(--lock); color: #555; }
+        /* CSS cho thiết bị mất kết nối */
+		.status-disconnected { 
+			background: rgba(20, 20, 20, 0.8) !important; 
+			border-left: 4px solid #333 !important; 
+			opacity: 0.5; 
+			filter: grayscale(1);
+			cursor: not-allowed;
+		}
+
+		/* Hiệu ứng highlight cho dòng log đang active */
+		.sub-log-item.active-log {
+			background: rgba(255, 0, 60, 0.1);
+			border-radius: 2px;
+			font-weight: bold;
+		}
+        @keyframes blink { from { opacity: 1; } to { opacity: 0.5; } }
+
+        .dev-sub { 
+            font-size: 9px; 
+            opacity: 0.86; 
+            margin-top: 2px; 
+            pointer-events: none; 
+            display: flex;
+            justify-content: space-between; /* Đẩy App Name sang trái, RAM sang phải */
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .dev-sub-main { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start; 
+            gap: 2px;
+            line-height: 1.2;
+        }
+        .dev-sub-top { 
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.2px;
+        }
+        .dev-sub-meta { 
+            font-size: 9.5px; 
+            opacity: 0.8; 
+            font-family: monospace; 
+            line-height: 1.1;
+        }
+        .dev-ip {
+            font-size: 9px;
+            font-family: monospace;
+            opacity: 0.78;
+            margin-top: 3px;
+            letter-spacing: 0.02em;
+        }
+        .transport-icon-lan {
+            display: inline-block;
+            vertical-align: middle;
+            margin-bottom: 1px;
+        }
+
+        .cyber-btn { background: #000; border: 1px solid var(--accent); color: var(--accent); padding: 5px 10px; cursor: pointer; font-size: 10px; font-weight: bold; }
+        .cyber-btn:hover { background: var(--accent); color: #000; }
+        .header-action { padding: 3px 8px; font-size: 10px; }
+        .header-action.secondary { border-color: rgba(255,255,255,0.18); color: #cfcfcf; }
+        .header-action.secondary:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+        /* PUSH/DELETE MULTI DEVICES MODAL - styling */
+        #push-multi-modal .push-multi-body, #delete-multi-modal .push-multi-body { display: flex; flex-direction: column; gap: 12px; }
+        #push-multi-modal .push-multi-row, #delete-multi-modal .push-multi-row { display: flex; gap: 10px; align-items: center; }
+        #push-multi-modal .push-multi-label, #delete-multi-modal .push-multi-label { color:#aaa; font-size:10px; margin-bottom:4px; font-weight:700; }
+        #push-multi-modal .push-multi-panel, #delete-multi-modal .push-multi-panel { border:1px solid #1a1a28; border-radius:8px; padding:10px; background: rgba(0,0,0,0.25); }
+        #push-multi-modal .push-multi-subtitle, #delete-multi-modal .push-multi-subtitle { color:#aaa; font-size:10px; font-weight:700; margin-bottom:8px; }
+        #push-multi-modal .push-multi-checkbox-label, #delete-multi-modal .push-multi-checkbox-label { display:flex; align-items:center; gap:8px; margin-bottom:8px; font-size:10px; color:#b0b0b0; }
+        #push-multi-modal .push-multi-device-list, #delete-multi-modal .push-multi-device-list { max-height: 320px; overflow:auto; display:flex; flex-direction:column; gap:8px; }
+        #push-multi-modal .push-multi-result, #delete-multi-modal .push-multi-result { color:#b0b0b0; font-size:11px; }
+        #push-multi-modal .push-multi-footer, #delete-multi-modal .push-multi-footer { padding:12px 18px; display:flex; justify-content:flex-end; gap:10px; border-top:1px solid #1a1a28; background: rgba(0,0,0,0.35); border-radius:0 0 10px 10px; }
+        
+        .log-item {
+            margin-bottom: 8px; padding: 10px; background: rgba(20, 20, 30, 0.6); 
+            border-left: 3px solid var(--warn); border-radius: 2px;
+        }
+
+        /* Modal File Explorer - LAN DEPLOYER */
+        #file-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(4px); z-index: 9999;
+            justify-content: center; align-items: center;
+        }
+        .file-explorer {
+            width: 720px; min-height: 520px; max-height: 85vh;
+            background: linear-gradient(180deg, #0c0c12 0%, #08080d 100%);
+            border: 1px solid #1a1a28; border-radius: 10px;
+            display: flex; flex-direction: column;
+            box-shadow: 0 0 0 1px rgba(0, 242, 255, 0.15), 0 20px 50px rgba(0,0,0,0.6), 0 0 40px rgba(0, 242, 255, 0.08);
+        }
+        .explorer-header {
+            padding: 14px 18px; background: rgba(0,0,0,0.5);
+            border-bottom: 1px solid #1a1a28; border-radius: 10px 10px 0 0;
+            display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+        }
+        .explorer-title-wrap {
+            display: flex; align-items: center; gap: 10px; min-width: 0;
+        }
+        .explorer-title-wrap .explorer-badge {
+            font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: var(--accent);
+            background: rgba(0, 242, 255, 0.08); padding: 6px 12px; border-radius: 4px;
+            border: 1px solid rgba(0, 242, 255, 0.25); white-space: nowrap;
+        }
+        .explorer-title-wrap .explorer-device {
+            font-size: 13px; font-weight: 700; color: var(--accent);
+            font-family: 'Segoe UI', sans-serif; letter-spacing: 0.5px;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+            text-shadow: 0 0 12px rgba(0, 242, 255, 0.4);
+            padding: 4px 0;
+        }
+        .explorer-path-wrap {
+            flex: 1; min-width: 180px; display: flex; align-items: center; gap: 8px;
+        }
+        .explorer-path {
+            font-family: 'Consolas', 'Monaco', monospace; color: var(--safe);
+            font-size: 11px; flex: 1; background: #0a0a0f; padding: 8px 12px;
+            border-radius: 4px; border: 1px solid #1a1a28; outline: none;
+        }
+        .explorer-path:focus { border-color: rgba(0, 242, 255, 0.4); box-shadow: 0 0 0 2px rgba(0, 242, 255, 0.1); }
+        .explorer-actions {
+            display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+        }
+        .upload-btn {
+            background: linear-gradient(180deg, #2dd32d 0%, #1a9e1a 100%); color: #000;
+            font-weight: 700; font-size: 10px; letter-spacing: 0.5px;
+            border: none; padding: 8px 14px; border-radius: 4px; cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        .upload-btn:hover { filter: brightness(1.15); }
+        .explorer-body {
+            flex: 1; overflow-y: auto; padding: 16px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px;
+            align-content: start; min-height: 200px;
+        }
+        .file-item {
+            text-align: center; cursor: pointer; padding: 12px 8px; border-radius: 6px;
+            background: rgba(255,255,255,0.03); border: 1px solid transparent;
+            transition: background 0.15s, border-color 0.15s, transform 0.1s;
+        }
+        .file-item:hover {
+            background: rgba(0, 242, 255, 0.06); border-color: rgba(0, 242, 255, 0.2);
+            transform: translateY(-1px);
+        }
+        .file-item:active { transform: translateY(0); }
+        .file-icon { font-size: 28px; margin-bottom: 6px; line-height: 1; }
+        .file-name { font-size: 10px; word-break: break-all; max-height: 32px; overflow: hidden; color: #b0b0b0; line-height: 1.3; }
+        .file-item:hover .file-name { color: #e0e0e0; }
+        .explorer-close-btn {
+            background: transparent; border: 1px solid rgba(255, 0, 60, 0.5); color: var(--warn);
+            padding: 8px 14px; border-radius: 4px; cursor: pointer; font-size: 10px; font-weight: 700;
+        }
+        .explorer-close-btn:hover { background: rgba(255, 0, 60, 0.15); }
+        .file-item.file-item-back { background: rgba(0, 242, 255, 0.05); border-color: rgba(0, 242, 255, 0.15); }
+        .file-item.file-item-back .file-name { color: var(--accent); }
+        .explorer-status { grid-column: 1 / -1; padding: 12px; text-align: center; color: #888; font-size: 11px; }
+        .explorer-status.error { color: var(--warn); text-align: left; }
+        .file-context-menu {
+            display: none;
+            position: fixed;
+            z-index: 10050;
+            min-width: 140px;
+            padding: 4px 0;
+            background: linear-gradient(180deg, #12121a 0%, #0a0a10 100%);
+            border: 1px solid rgba(0, 242, 255, 0.25);
+            border-radius: 6px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.55), 0 0 0 1px rgba(0,0,0,0.4);
+        }
+        .file-context-menu-item {
+            display: block;
+            width: 100%;
+            margin: 0;
+            padding: 10px 14px;
+            border: none;
+            background: transparent;
+            color: #e8e8e8;
+            font-size: 11px;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+        }
+        .file-context-menu-item:hover { background: rgba(255, 0, 60, 0.12); color: var(--warn); }
+        .file-context-menu-item:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .ws-status { font-size: 10px; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
+        .ws-status-connecting { background: rgba(255,193,7,0.2); color: #ffc107; }
+        .ws-status-connected { background: rgba(57,255,20,0.2); color: var(--safe); }
+        .ws-status-disconnected { background: rgba(255,0,60,0.2); color: var(--warn); }
+
+        /* Header: không dùng gap cố định lớn trên màn nhỏ */
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: clamp(6px, 1.2vw, 14px);
+            flex-wrap: nowrap;
+            min-width: 0;
+            flex: 1 1 auto;
+            max-width: none;
+            width: 100%;
+        }
+        .stage-ip-search-wrap {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            margin-right: 4px;
+        }
+        .stage-ip-search-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: #777;
+            letter-spacing: 0.4px;
+            white-space: nowrap;
+        }
+        .stage-ip-search-input {
+            width: min(148px, 28vw);
+            font-family: Consolas, 'Monaco', monospace;
+            font-size: 10px !important;
+        }
+        .header-right { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; min-width: 0; justify-self: end; }
+        .stage-zoom-controls {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 4px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 6px;
+            background: rgba(8, 8, 12, 0.8);
+        }
+        .stage-zoom-btn {
+            min-width: 24px;
+            padding: 2px 6px;
+            font-size: 10px;
+            line-height: 1.1;
+        }
+        .stage-zoom-value {
+            min-width: 44px;
+            text-align: center;
+            font-size: 10px;
+            font-family: Consolas, 'Monaco', monospace;
+            color: #bcefff;
+        }
+        .stage-zoom-fit.active {
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 8px rgba(0, 242, 255, 0.28);
+        }
+        .stage-zoom-overlay {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            z-index: 30;
+            pointer-events: auto;
+        }
+        .btn-toggle-label-long { display: inline; }
+        .btn-toggle-label-short { display: none; }
+        .btn-reopen-label-long { display: inline; }
+        .btn-reopen-label-short { display: none; }
+
+        @media (max-width: 1200px) {
+            .side-panel { width: 220px; }
+            #log-panel { width: 260px; }
+            .device-card { width: min(290px, 100%); max-width: 100%; }
+        }
+        @media (max-width: 900px) {
+            .site-header { padding: 6px 10px; }
+            .header-main-row {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .header-main-row .header-left {
+                order: 1;
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+            .header-net-wrap { max-width: 100%; }
+            .header-main-row .header-right { order: 2; flex: 1 1 auto; justify-content: flex-end; }
+            .header-main-row .main-title {
+                order: 3;
+                flex: 1 1 100%;
+                font-size: 13px;
+                letter-spacing: 2px;
+                margin-top: 2px;
+            }
+            .net-monitor-panel { min-width: 0; width: 100%; }
+            .net-monitor-row {
+                min-width: 0;
+                grid-template-columns: 26px minmax(0, 1fr) 48px 20px 220px 32px;
+            }
+            .net-graph-canvas { width: 220px; height: 13px; }
+            .net-latency-txt { font-size: 7px; }
+            .line-group { min-width: 140px; }
+            .walk-line { width: 22px; font-size: 10px; letter-spacing: 4px; }
+        }
+        @media (max-width: 640px) {
+            .btn-toggle-label-long { display: none; }
+            .btn-toggle-label-short { display: inline; }
+            .btn-reopen-label-long { display: none; }
+            .btn-reopen-label-short { display: inline; }
+            .cyber-btn { padding: 4px 8px; font-size: 9px; }
+            .header-action { padding: 3px 6px; font-size: 9px; }
+            #container {
+                flex-direction: column;
+                height: auto;
+                min-height: 0;
+                flex: 1;
+                overflow: auto;
+            }
+            #monitor-arena {
+                order: 1;
+                flex: 1;
+                flex-shrink: 0;
+                min-height: min(50vh, 420px);
+                width: 100%;
+                overflow: auto;
+                -webkit-overflow-scrolling: touch;
+                overscroll-behavior: contain;
+                touch-action: pan-x pan-y;
+            }
+            #sidebar {
+                order: 2;
+                width: 100% !important;
+                max-height: 36vh;
+                border-right: none;
+                border-bottom: 1px solid #1a1a25;
+            }
+            .waiting-toolbar {
+                flex-wrap: wrap;
+                padding: 8px 10px;
+            }
+            .waiting-title {
+                font-size: 10px;
+            }
+            .waiting-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            #log-panel {
+                order: 3;
+                width: 100% !important;
+                max-height: 40vh;
+                border-left: none;
+                border-top: 1px solid #1a1a25;
+            }
+            .side-panel.hidden {
+                display: none !important;
+                width: 0 !important;
+                max-height: 0 !important;
+                min-height: 0 !important;
+                overflow: hidden !important;
+                border: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .slot-row { min-height: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-main-row">
+        <div class="header-left">
+            <button class="cyber-btn" onclick="toggleSide('sidebar')">DEVICES</button>
+            <div class="header-net-wrap">
+                <div class="net-monitor-panel" title="DNS + TCP từ máy chủ. SET = lưu LAN, WAN và dòng EXT (tùy chọn).">
+                    <div class="net-monitor-head">
+                        <span class="net-monitor-panel-title">Net</span>
+                        <button type="button" id="btn-set-net" class="cyber-btn net-monitor-set" onclick="saveNetAll()">SET</button>
+                    </div>
+                    <div class="net-monitor-row" title="Nội bộ / LAN">
+                        <span class="net-monitor-title">LAN</span>
+                        <input type="text" id="net-dns" class="net-host-input" placeholder="Host" autocomplete="off">
+                        <input type="number" id="net-port" class="net-port-input" placeholder="Pt" autocomplete="off">
+                        <div class="net-dots" title="DNS · TCP">
+                            <div class="dot" id="dot-dns"></div>
+                            <div class="dot" id="dot-tcp"></div>
+                        </div>
+                        <canvas id="net-graph" class="net-graph-canvas" aria-hidden="true"></canvas>
+                        <span id="net-latency" class="net-latency-txt">0ms</span>
+                    </div>
+                    <div class="net-monitor-row" title="Internet">
+                        <span class="net-monitor-title">WAN</span>
+                        <input type="text" id="net-dns-remote" class="net-host-input" placeholder="Host" autocomplete="off">
+                        <input type="number" id="net-port-remote" class="net-port-input" placeholder="Pt" autocomplete="off">
+                        <div class="net-dots" title="DNS · TCP">
+                            <div class="dot" id="dot-dns-remote"></div>
+                            <div class="dot" id="dot-tcp-remote"></div>
+                        </div>
+                        <canvas id="net-graph-remote" class="net-graph-canvas" aria-hidden="true"></canvas>
+                        <span id="net-latency-remote" class="net-latency-txt">—</span>
+                    </div>
+                    <div class="net-monitor-row" title="Host/port bổ sung (tùy chọn)">
+                        <span class="net-monitor-title">EXT</span>
+                        <input type="text" id="net-dns-extra" class="net-host-input" placeholder="Host" autocomplete="off">
+                        <input type="number" id="net-port-extra" class="net-port-input" placeholder="Pt" autocomplete="off">
+                        <div class="net-dots" title="DNS · TCP">
+                            <div class="dot" id="dot-dns-extra"></div>
+                            <div class="dot" id="dot-tcp-extra"></div>
+                        </div>
+                        <canvas id="net-graph-extra" class="net-graph-canvas" aria-hidden="true"></canvas>
+                        <span id="net-latency-extra" class="net-latency-txt">—</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 class="main-title">MONITOR SYSTEM</h1>
+        <div class="header-right">
+            <label class="stage-ip-search-wrap" title="Gõ một phần hoặc toàn bộ IP để tô sáng thiết bị trên Stage">
+                <span class="stage-ip-search-label">Stage IP</span>
+                <input type="text" id="stage-ip-search" class="net-host-input stage-ip-search-input" placeholder="Tìm IP…" autocomplete="off" spellcheck="false">
+            </label>
+            <span id="ws-status" class="ws-status ws-status-connecting" title="Trạng thái kết nối">Đang kết nối…</span>
+            <span id="role-badge" class="ws-status ws-status-connected" title="Quyền tài khoản">admin</span>
+            <button id="btn-align-stage" class="cyber-btn header-action secondary" onclick="arrangeArenaGrid()" title="Xếp các máy trên Stage Map ngay hàng theo lưới">
+                Align Stage
+            </button>
+            <button id="btn-group-stage" class="cyber-btn header-action secondary" onclick="arrangeArenaGrouped()" title="Gom nhóm theo tiền tố deviceName (ví dụ WAG.*, HEV.*)">
+                Group Stage
+            </button>
+            <button id="btn-template-stage" class="cyber-btn header-action secondary" onclick="arrangeArenaTemplate()" title="Xếp Stage Map theo layout template (BH/TDE/ANT/TLE/...)">
+                Template Stage
+            </button>
+            <button id="btn-import-stage-csv" class="cyber-btn header-action secondary" onclick="openStageCsvImportPicker()" title="Import CSV để set vị trí stage theo deviceName">
+                Import CSV Stage
+            </button>
+            <input type="file" id="stage-csv-input" accept=".csv,text/csv" style="display:none" onchange="handleStageCsvImport(event)">
+            <button type="button" id="btn-reopen-violation-logs" class="cyber-btn header-action secondary" onclick="toggleSide('log-panel')" style="display:none" title="Hiện lại Violation Logs" aria-pressed="false">
+                <span class="btn-reopen-label-long">SHOW LOGS</span><span class="btn-reopen-label-short">LOGS</span>
+            </button>
+            <button class="cyber-btn" onclick="exportLogsToCSV()">Download LOGS</button>
+        </div>
+    </div>
+</header>
+
+<div id="container">
+    <div id="sidebar" class="side-panel">
+        <div class="waiting-toolbar">
+            <div class="waiting-title-wrap">
+                <span class="waiting-title">WAITING LIST</span>
+                <span id="count-wait" class="waiting-count-badge">0</span>
+            </div>
+            <div class="waiting-actions">
+                <button id="btn-push-multi" class="cyber-btn header-action" onclick="openPushMultiModal()">Push multi devices</button>
+                <button id="btn-delete-multi" class="cyber-btn header-action secondary" onclick="openDeleteMultiModal()">Delete multi devices</button>
+            </div>
+        </div>
+        <div id="waiting-list" class="waiting-list-body" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'wait')"></div>
+    </div>
+
+    <div id="monitor-arena" ondrop="handleDropArena(event)" ondragover="allowDrop(event)">
+        <!-- Nội dung stage do render() vẽ (có vùng cuộn trên màn nhỏ) -->
+        <div class="stage-zoom-overlay">
+            <div class="stage-zoom-controls" title="Zoom stage map">
+                <button type="button" class="cyber-btn header-action secondary stage-zoom-btn" onclick="zoomStageOut()">-</button>
+                <span id="stage-zoom-value" class="stage-zoom-value">FIT</span>
+                <button type="button" class="cyber-btn header-action secondary stage-zoom-btn" onclick="zoomStageIn()">+</button>
+                <button type="button" id="btn-stage-zoom-fit" class="cyber-btn header-action secondary stage-zoom-btn stage-zoom-fit" onclick="resetStageZoomFit()">FIT</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="log-panel" class="side-panel">
+        <div class="log-panel-toolbar">
+            <span>VIOLATION LOGS</span>
+            <div class="log-panel-actions">
+                <button type="button" id="btn-toggle-side-violations" class="cyber-btn header-action secondary" onclick="toggleSide('log-panel')" title="Ẩn Violation Logs — stage map rộng toàn phần còn lại" aria-pressed="true">
+                    <span class="btn-toggle-label-long">FULL STAGE</span><span class="btn-toggle-label-short">STAGE</span>
+                </button>
+                <span id="btn-clear-logs" onclick="clearLogs()" style="color:var(--warn); cursor:pointer; font-size:10px; font-weight:800;">CLEAR</span>
+            </div>
+        </div>
+        <div id="log-list" style="padding:10px; overflow-y:auto; flex: 1; font-size:10px;"></div>
+    </div>
+</div>
+
+<!-- FILE EXPLORER MODAL - LAN DEPLOYER -->
+<div id="file-modal">
+    <div class="file-explorer">
+        <div class="explorer-header">
+            <div class="explorer-title-wrap">
+                <span class="explorer-badge">LAN DEPLOYER</span>
+                <span class="explorer-device" id="explorer-device-label">—</span>
+            </div>
+            <div class="explorer-path-wrap">
+                <input type="text" class="explorer-path" id="current-path" value="/storage/emulated/0" readonly title="Đường dẫn hiện tại">
+            </div>
+            <div class="explorer-actions">
+                <button id="btn-upload-file" class="upload-btn" onclick="openUploadPicker()">⬆ UPLOAD</button>
+                <input type="file" id="upload-input" style="display:none" onchange="uploadFile(event)">
+                <button class="explorer-close-btn" onclick="closeExplorer()">CLOSE</button>
+            </div>
+        </div>
+        <div class="explorer-body" id="explorer-content">
+            <!-- Files injected here -->
+        </div>
+        <div id="file-context-menu" class="file-context-menu" aria-hidden="true">
+            <button type="button" class="file-context-menu-item" id="file-context-delete-btn">Xóa</button>
+        </div>
+    </div>
+</div>
+
+<!-- PUSH MULTI DEVICES MODAL - LAN DEPLOYER -->
+<div id="push-multi-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); backdrop-filter: blur(4px); z-index: 10000; justify-content:center; align-items:center;">
+    <div class="file-explorer" style="width:900px; max-width:95vw;">
+        <div class="explorer-header">
+            <div class="explorer-title-wrap">
+                <span class="explorer-badge">PUSH MULTI DEVICES</span>
+                <span class="explorer-device" id="push-multi-device-count">0 devices</span>
+            </div>
+            <div class="explorer-actions">
+                <button class="explorer-close-btn" onclick="closePushMultiModal()">CLOSE</button>
+            </div>
+        </div>
+        <div class="explorer-body push-multi-body">
+            <div class="push-multi-row">
+                <div style="flex:1; min-width: 240px;">
+                    <div class="push-multi-label">Target directory</div>
+                    <input type="text" class="explorer-path" id="push-multi-dir" value="/storage/emulated/0">
+                </div>
+                <div style="flex:1; min-width: 240px;">
+                    <div class="push-multi-label">Choose file (local)</div>
+                    <input type="file" id="push-multi-file" />
+                </div>
+            </div>
+
+            <div class="push-multi-panel">
+                <div class="push-multi-subtitle">Select devices</div>
+                <label class="push-multi-checkbox-label">
+                    <input id="push-multi-select-all" type="checkbox" onchange="togglePushMultiSelectAll(this.checked)" />
+                    Select all
+                </label>
+                <div id="push-multi-device-list" class="push-multi-device-list"></div>
+            </div>
+
+            <div id="push-multi-result" class="push-multi-result"></div>
+        </div>
+
+        <div class="push-multi-footer">
+            <button class="upload-btn" onclick="submitPushMulti()">SUBMIT</button>
+        </div>
+    </div>
+</div>
+
+<!-- DELETE MULTI DEVICES MODAL - LAN DEPLOYER -->
+<div id="delete-multi-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); backdrop-filter: blur(4px); z-index: 10000; justify-content:center; align-items:center;">
+    <div class="file-explorer" style="width:900px; max-width:95vw;">
+        <div class="explorer-header">
+            <div class="explorer-title-wrap">
+                <span class="explorer-badge">DELETE MULTI DEVICES</span>
+                <span class="explorer-device" id="delete-multi-device-count">0 devices</span>
+            </div>
+            <div class="explorer-actions">
+                <button class="explorer-close-btn" onclick="closeDeleteMultiModal()">CLOSE</button>
+            </div>
+        </div>
+        <div class="explorer-body push-multi-body">
+            <div class="push-multi-row">
+                <div style="flex:1; min-width: 240px;">
+                    <div class="push-multi-label">Target path (file or folder)</div>
+                    <input type="text" class="explorer-path" id="delete-multi-path" value="/storage/emulated/0/Download/sample.txt">
+                </div>
+                <div style="width:220px;">
+                    <div class="push-multi-label">Delete mode</div>
+                    <label class="push-multi-checkbox-label" style="margin-bottom:0;">
+                        <input id="delete-multi-isdir" type="checkbox" />
+                        Path là thư mục (rm -rf)
+                    </label>
+                </div>
+            </div>
+
+            <div class="push-multi-panel">
+                <div class="push-multi-subtitle">Select devices</div>
+                <label class="push-multi-checkbox-label">
+                    <input id="delete-multi-select-all" type="checkbox" onchange="toggleDeleteMultiSelectAll(this.checked)" />
+                    Select all
+                </label>
+                <div id="delete-multi-device-list" class="push-multi-device-list"></div>
+            </div>
+
+            <div id="delete-multi-result" class="push-multi-result"></div>
+        </div>
+
+        <div class="push-multi-footer">
+            <button class="upload-btn" onclick="submitDeleteMulti()">DELETE</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- WEB CRYPTO API ---
+    let wsSecretKey = 'MonitorTournamentSecretKey2026!';
+    let wsCryptoKeyPromise = null;
+    let adbEnabled = true;
+    let deployMode = 'LAN';
+    const wsCanEncrypt = !!(window.crypto && window.crypto.subtle);
+
+    async function loadClientConfig() {
+        try {
+            const res = await fetch('/api/client-config', { cache: 'no-store' });
+            if (!res.ok) return;
+            const cfg = await res.json();
+            if (cfg && typeof cfg.wsSecretKey === 'string' && cfg.wsSecretKey.trim()) {
+                wsSecretKey = cfg.wsSecretKey.trim();
+                wsCryptoKeyPromise = null;
+            }
+            if (cfg && typeof cfg.deployMode === 'string') deployMode = cfg.deployMode;
+            if (cfg && cfg.adbEnabled === false) adbEnabled = false;
+            applyDeployModeUi();
+        } catch (_) {
+            // Keep fallback key to avoid blocking UI if config API fails.
+        }
+    }
+
+    async function getWsCryptoKey() {
+        if (!wsCanEncrypt) {
+            throw new Error('WebCrypto not available in this browser/context');
+        }
+        if (!wsCryptoKeyPromise) {
+            const enc = new TextEncoder();
+            wsCryptoKeyPromise = crypto.subtle
+                .digest("SHA-256", enc.encode(wsSecretKey))
+                .then((keyMat) => crypto.subtle.importKey("raw", keyMat, { name: "AES-CBC" }, false, ["encrypt", "decrypt"]));
+        }
+        return wsCryptoKeyPromise;
+    }
+
+    function isEncryptedFrameText(text) {
+        if (typeof text !== 'string' || !text) return false;
+        const sep = text.indexOf(':');
+        if (sep <= 0) return false;
+        const ivHex = text.slice(0, sep);
+        const b64 = text.slice(sep + 1);
+        return /^[0-9a-fA-F]{32}$/.test(ivHex) && b64.length > 0;
+    }
+
+    async function wsDataToText(raw) {
+        if (typeof raw === 'string') return raw;
+        if (raw instanceof Blob) return await raw.text();
+        if (raw instanceof ArrayBuffer) return new TextDecoder().decode(new Uint8Array(raw));
+        return '';
+    }
+
+    async function decryptPayload(text) {
+        const payloadText = typeof text === 'string' ? text : '';
+        if (!isEncryptedFrameText(payloadText)) {
+            throw new Error('WS payload is not encrypted frame format');
+        }
+        const parts = payloadText.split(':');
+        const ivHex = parts.shift();
+        const b64 = parts.join(':');
+        const ivPairs = ivHex.match(/.{1,2}/g) || [];
+        if (!ivPairs.length) throw new Error('Invalid IV format');
+        const ivArray = new Uint8Array(ivPairs.map(byte => parseInt(byte, 16)));
+        const encBytes = atob(b64);
+        const encArray = new Uint8Array(encBytes.length);
+        for(let i=0; i<encBytes.length; i++) encArray[i] = encBytes.charCodeAt(i);
+
+        const key = await getWsCryptoKey();
+        
+        const dec = await crypto.subtle.decrypt({ name: "AES-CBC", iv: ivArray }, key, encArray);
+        return JSON.parse(new TextDecoder().decode(dec));
+    }
+    
+    async function encryptPayload(dataObj) {
+        const enc = new TextEncoder();
+        const iv = crypto.getRandomValues(new Uint8Array(16));
+        const key = await getWsCryptoKey();
+        
+        const encrypted = await crypto.subtle.encrypt({ name: "AES-CBC", iv: iv }, key, enc.encode(JSON.stringify(dataObj)));
+        const bin = String.fromCharCode.apply(null, new Uint8Array(encrypted));
+        const ivHex = Array.from(iv).map(b => b.toString(16).padStart(2, '0')).join('');
+        return ivHex + ":" + btoa(bin);
+    }
+    
+    let socket = null;
+    const WS_STATUS = { CONNECTING: 'connecting', CONNECTED: 'connected', DISCONNECTED: 'disconnected' };
+    let wsState = WS_STATUS.DISCONNECTED;
+    let reconnectDelay = 1000;
+    const RECONNECT_MAX = 30000;
+    let reconnectTimer = null;
+    let currentUserRole = 'admin';
+
+    function isEditorRole() {
+        return currentUserRole === 'admin';
+    }
+
+    function ensureEditor(actionName) {
+        if (isEditorRole()) return true;
+        alert(`Viewer mode: không được phép ${actionName || 'chỉnh sửa'}.`);
+        return false;
+    }
+
+    function applyDeployModeUi() {
+        const live = deployMode === 'LIVE' || !adbEnabled;
+        ['btn-push-multi', 'btn-delete-multi'].forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = live ? 'none' : '';
+        });
+    }
+
+    function applyRoleUi() {
+        const badge = document.getElementById('role-badge');
+        if (badge) {
+            badge.textContent = currentUserRole === 'admin' ? 'admin' : 'viewer';
+            badge.className = `ws-status ${currentUserRole === 'admin' ? 'ws-status-connected' : 'ws-status-connecting'}`;
+        }
+        const disabledIds = [
+            'btn-set-net',
+            'btn-align-stage',
+            'btn-group-stage',
+            'btn-template-stage',
+            'btn-import-stage-csv',
+            'btn-push-multi',
+            'btn-delete-multi',
+            'btn-upload-file',
+        ];
+        disabledIds.forEach((id) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.disabled = !isEditorRole();
+            el.style.opacity = isEditorRole() ? '1' : '0.45';
+            el.style.cursor = isEditorRole() ? 'pointer' : 'not-allowed';
+        });
+        const clearEl = document.getElementById('btn-clear-logs');
+        if (clearEl) {
+            clearEl.style.pointerEvents = isEditorRole() ? 'auto' : 'none';
+            clearEl.style.opacity = isEditorRole() ? '1' : '0.45';
+        }
+    }
+
+    async function loadAuthMe() {
+        try {
+            const res = await fetch('/api/auth/me', { cache: 'no-store' });
+            if (res.status === 401) {
+                window.location.href = '/login.html';
+                return;
+            }
+            const data = await res.json().catch(() => ({}));
+            currentUserRole = data && data.role === 'viewer' ? 'viewer' : 'admin';
+        } catch (_) {
+            // Keep admin by default if auth endpoint is unavailable.
+            currentUserRole = 'admin';
+        }
+        applyRoleUi();
+    }
+
+    function setWsStatus(state) {
+        wsState = state;
+        const el = document.getElementById('ws-status');
+        if (!el) return;
+        el.className = 'ws-status ws-status-' + state;
+        el.textContent = state === WS_STATUS.CONNECTED ? 'Đã kết nối' : state === WS_STATUS.CONNECTING ? 'Đang kết nối…' : 'Mất kết nối';
+    }
+
+    function connect() {
+        if (socket && socket.readyState === WebSocket.OPEN) return;
+        setWsStatus(WS_STATUS.CONNECTING);
+        const wsProto = (window.location.protocol === 'https:' ? 'wss:' : 'ws:');
+        const modeQs = wsCanEncrypt ? '?enc=1' : '?enc=0';
+        const url = `${wsProto}//${window.location.host}/${modeQs}`;
+        socket = new WebSocket(url);
+
+        socket.onopen = () => {
+            reconnectDelay = 1000;
+            setWsStatus(WS_STATUS.CONNECTED);
+        };
+        socket.onclose = () => {
+            setWsStatus(WS_STATUS.DISCONNECTED);
+            if (reconnectTimer) clearTimeout(reconnectTimer);
+            reconnectTimer = setTimeout(() => {
+                connect();
+                reconnectDelay = Math.min(reconnectDelay * 2, RECONNECT_MAX);
+            }, reconnectDelay);
+        };
+        socket.onerror = () => { setWsStatus(WS_STATUS.DISCONNECTED); };
+        socket.onmessage = onWsMessage;
+    }
+
+    async function safeSend(dataObj) {
+        if (!socket || socket.readyState !== WebSocket.OPEN) {
+            console.warn('WebSocket chưa kết nối, bỏ qua gửi.');
+            return;
+        }
+        if (wsCanEncrypt) {
+            const payload = await encryptPayload(dataObj);
+            socket.send(payload);
+        } else {
+            socket.send(JSON.stringify(dataObj));
+        }
+    }
+
+    async function safeSendEditor(dataObj, actionName) {
+        if (!ensureEditor(actionName)) return;
+        return safeSend(dataObj);
+    }
+
+	let expandedDeviceId = null;
+    // Multi-select devices for batch ADB push (LAN Deployer).
+    // Dùng checkbox trong modal "push multi devices".
+    let selectedDeviceIds = new Set();
+    let selectedDeleteDeviceIds = new Set();
+
+    function getSelectableDeviceIds() {
+        const ids = [];
+        devices.forEach((d) => {
+            if (!d || !d.deviceId) return;
+            if (d.status === 'disconnected') return;
+            if (!d.ipAddress) return;
+            ids.push(d.deviceId);
+        });
+        return Array.from(new Set(ids));
+    }
+
+    function updatePushMultiSelectAllCheckbox() {
+        const el = document.getElementById('push-multi-select-all');
+        if (!el) return;
+        const allIds = getSelectableDeviceIds();
+        el.checked = allIds.length > 0 && allIds.every((id) => selectedDeviceIds.has(id));
+    }
+
+    function togglePushMultiSelectAll(checked) {
+        if (checked) {
+            selectedDeviceIds = new Set(getSelectableDeviceIds());
+        } else {
+            selectedDeviceIds.clear();
+        }
+        document.getElementById('push-multi-device-count').textContent = `${selectedDeviceIds.size} devices`;
+        renderPushMultiDeviceList();
+        updatePushMultiSelectAllCheckbox();
+    }
+
+    function openPushMultiModal() {
+        if (!ensureEditor('push file hàng loạt')) return;
+        selectedDeviceIds.clear();
+        document.getElementById('push-multi-result').textContent = '';
+        renderPushMultiDeviceList();
+        document.getElementById('push-multi-device-count').textContent = '0 devices';
+        const el = document.getElementById('push-multi-select-all');
+        if (el) el.checked = false;
+        document.getElementById('push-multi-modal').style.display = 'flex';
+        // reset file input
+        const f = document.getElementById('push-multi-file');
+        if (f) f.value = '';
+    }
+
+    function closePushMultiModal() {
+        document.getElementById('push-multi-modal').style.display = 'none';
+    }
+
+    function updateDeleteMultiSelectAllCheckbox() {
+        const el = document.getElementById('delete-multi-select-all');
+        if (!el) return;
+        const allIds = getSelectableDeviceIds();
+        el.checked = allIds.length > 0 && allIds.every((id) => selectedDeleteDeviceIds.has(id));
+    }
+
+    function toggleDeleteMultiSelectAll(checked) {
+        if (checked) {
+            selectedDeleteDeviceIds = new Set(getSelectableDeviceIds());
+        } else {
+            selectedDeleteDeviceIds.clear();
+        }
+        document.getElementById('delete-multi-device-count').textContent = `${selectedDeleteDeviceIds.size} devices`;
+        renderDeleteMultiDeviceList();
+        updateDeleteMultiSelectAllCheckbox();
+    }
+
+    function openDeleteMultiModal() {
+        if (!ensureEditor('xóa file hàng loạt')) return;
+        selectedDeleteDeviceIds.clear();
+        document.getElementById('delete-multi-result').textContent = '';
+        renderDeleteMultiDeviceList();
+        document.getElementById('delete-multi-device-count').textContent = '0 devices';
+        const el = document.getElementById('delete-multi-select-all');
+        if (el) el.checked = false;
+        document.getElementById('delete-multi-modal').style.display = 'flex';
+    }
+
+    function closeDeleteMultiModal() {
+        document.getElementById('delete-multi-modal').style.display = 'none';
+    }
+
+    function renderDeleteMultiDeviceList() {
+        const listEl = document.getElementById('delete-multi-device-list');
+        if (!listEl) return;
+        listEl.innerHTML = '';
+
+        devices.forEach((d) => {
+            if (!d || !d.deviceId) return;
+            if (d.status === 'disconnected') return;
+            const ip = d.ipAddress || '';
+            const checked = selectedDeleteDeviceIds.has(d.deviceId);
+            const row = document.createElement('label');
+            row.style.display = 'flex';
+            row.style.alignItems = 'center';
+            row.style.gap = '10px';
+            row.style.padding = '6px 8px';
+            row.style.border = '1px solid rgba(255,255,255,0.06)';
+            row.style.borderRadius = '8px';
+            row.style.background = 'rgba(255,255,255,0.02)';
+
+            const cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.checked = checked;
+            cb.onchange = () => {
+                if (cb.checked) selectedDeleteDeviceIds.add(d.deviceId);
+                else selectedDeleteDeviceIds.delete(d.deviceId);
+                document.getElementById('delete-multi-device-count').textContent =
+                    `${selectedDeleteDeviceIds.size} devices`;
+                updateDeleteMultiSelectAllCheckbox();
+            };
+
+            const meta = document.createElement('div');
+            meta.style.display = 'flex';
+            meta.style.flexDirection = 'column';
+            meta.style.gap = '1px';
+            const name = document.createElement('div');
+            name.textContent = getDeviceDisplayName(d, d.deviceId.slice(-6));
+            name.style.fontWeight = '700';
+            const ipEl = document.createElement('div');
+            ipEl.textContent = ip ? `IP: ${ip}` : 'IP: (unknown)';
+            ipEl.style.fontSize = '10px';
+            ipEl.style.opacity = '0.8';
+            meta.appendChild(name);
+            meta.appendChild(ipEl);
+
+            row.appendChild(cb);
+            row.appendChild(meta);
+            listEl.appendChild(row);
+        });
+        updateDeleteMultiSelectAllCheckbox();
+    }
+
+    async function submitDeleteMulti() {
+        if (!ensureEditor('xóa file hàng loạt')) return;
+        const targetPath = (document.getElementById('delete-multi-path')?.value || '').trim();
+        const isDir = !!document.getElementById('delete-multi-isdir')?.checked;
+        if (!targetPath) {
+            alert('Please provide target path.');
+            return;
+        }
+        if (!selectedDeleteDeviceIds.size) {
+            alert('No device selected.');
+            return;
+        }
+        const kind = isDir ? 'thư mục (gồm mọi nội dung bên trong)' : 'file';
+        if (!confirm(`Xóa ${kind} trên ${selectedDeleteDeviceIds.size} thiết bị?\n\n${targetPath}`)) return;
+
+        const resultsEl = document.getElementById('delete-multi-result');
+        resultsEl.textContent = 'Deleting...';
+        resultsEl.style.color = '#b0b0b0';
+
+        const results = [];
+        for (const did of selectedDeleteDeviceIds) {
+            const dev = devices.find((d) => d.deviceId === did);
+            const ip = dev?.ipAddress;
+            if (!dev || !ip) {
+                results.push({ deviceName: getDeviceDisplayName(dev, did), ip: ip || '', ok: false, message: 'Missing IP' });
+                continue;
+            }
+            try {
+                const res = await fetch('/api/adb/delete', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        ip,
+                        path: targetPath,
+                        isDir: isDir ? '1' : '0',
+                    }),
+                });
+                const data = await res.json().catch(() => ({}));
+                if (res.ok && data.status === 'success') {
+                    results.push({ deviceName: getDeviceDisplayName(dev, did), ip, ok: true, message: 'success' });
+                } else {
+                    results.push({
+                        deviceName: getDeviceDisplayName(dev, did),
+                        ip,
+                        ok: false,
+                        message: data.message || data.error || `HTTP ${res.status}`,
+                    });
+                }
+            } catch (e) {
+                results.push({ deviceName: getDeviceDisplayName(dev, did), ip, ok: false, message: e.message || String(e) });
+            }
+        }
+
+        const okCount = results.filter((r) => r.ok).length;
+        resultsEl.innerHTML = `
+            <div style="font-weight:700; margin-bottom:6px;">Done: ${okCount}/${results.length} success</div>
+            ${results.map((r) => `
+                <div style="margin:4px 0; font-size:11px; opacity:0.9; color:${r.ok ? '#39ff14' : 'var(--warn)'};">
+                    ${r.deviceName} (${r.ip || 'no-ip'}): ${r.ok ? 'OK' : r.message}
+                </div>
+            `).join('')}
+        `;
+    }
+
+    function renderPushMultiDeviceList() {
+        const listEl = document.getElementById('push-multi-device-list');
+        if (!listEl) return;
+        listEl.innerHTML = '';
+
+        devices.forEach((d) => {
+            if (!d || !d.deviceId) return;
+            if (d.status === 'disconnected') return;
+            const ip = d.ipAddress || '';
+            const checked = selectedDeviceIds.has(d.deviceId);
+            const row = document.createElement('label');
+            row.style.display = 'flex';
+            row.style.alignItems = 'center';
+            row.style.gap = '10px';
+            row.style.padding = '6px 8px';
+            row.style.border = '1px solid rgba(255,255,255,0.06)';
+            row.style.borderRadius = '8px';
+            row.style.background = 'rgba(255,255,255,0.02)';
+
+            const cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.checked = checked;
+            cb.onchange = () => {
+                if (cb.checked) selectedDeviceIds.add(d.deviceId);
+                else selectedDeviceIds.delete(d.deviceId);
+                document.getElementById('push-multi-device-count').textContent =
+                    `${selectedDeviceIds.size} devices`;
+                updatePushMultiSelectAllCheckbox();
+            };
+
+            const meta = document.createElement('div');
+            meta.style.display = 'flex';
+            meta.style.flexDirection = 'column';
+            meta.style.gap = '1px';
+            const name = document.createElement('div');
+            name.textContent = getDeviceDisplayName(d, d.deviceId.slice(-6));
+            name.style.fontWeight = '700';
+            const ipEl = document.createElement('div');
+            ipEl.textContent = ip ? `IP: ${ip}` : 'IP: (unknown)';
+            ipEl.style.fontSize = '10px';
+            ipEl.style.opacity = '0.8';
+            meta.appendChild(name);
+            meta.appendChild(ipEl);
+
+            row.appendChild(cb);
+            row.appendChild(meta);
+            listEl.appendChild(row);
+        });
+        updatePushMultiSelectAllCheckbox();
+    }
+
+    async function submitPushMulti() {
+        if (!ensureEditor('push file hàng loạt')) return;
+        const fInput = document.getElementById('push-multi-file');
+        if (!fInput || !fInput.files || !fInput.files.length) {
+            alert('Please choose a local file first.');
+            return;
+        }
+        const file = fInput.files[0];
+        const dir = document.getElementById('push-multi-dir')?.value || '/storage/emulated/0';
+        if (!selectedDeviceIds.size) {
+            alert('No device selected.');
+            return;
+        }
+
+        const resultsEl = document.getElementById('push-multi-result');
+        resultsEl.textContent = 'Uploading...';
+        resultsEl.style.color = '#b0b0b0';
+
+        const results = [];
+        async function checkDirExists(ip, dir) {
+            try {
+                const r = await fetch(
+                    `/api/adb/check-dir?ip=${encodeURIComponent(ip)}&dir=${encodeURIComponent(dir)}`
+                );
+                if (!r.ok) return false;
+                const j = await r.json().catch(() => ({}));
+                return { exists: !!j.exists, detail: j.detail || j.error || '' };
+            } catch (_) {
+                return { exists: false, detail: '' };
+            }
+        }
+        // Tuần tự để tránh spam server/adb.
+        for (const did of selectedDeviceIds) {
+            const dev = devices.find((d) => d.deviceId === did);
+            const ip = dev?.ipAddress;
+            if (!dev || !ip) {
+                results.push({ deviceName: getDeviceDisplayName(dev, did), ip: ip || '', ok: false, message: 'Missing IP' });
+                continue;
+            }
+
+            const dirRes = await checkDirExists(ip, dir);
+            if (!dirRes.exists) {
+                results.push({
+                    deviceName: getDeviceDisplayName(dev, did),
+                    ip,
+                    ok: false,
+                    message: `Directory not found: ${dir}${dirRes.detail ? ' (' + dirRes.detail + ')' : ''}`
+                });
+                continue;
+            }
+
+            const form = new FormData();
+            form.append('file', file);
+            form.append('ip', ip);
+            form.append('dir', dir);
+
+            try {
+                const res = await fetch('/api/adb/upload', { method: 'POST', body: form });
+                let data = {};
+                try { data = await res.json(); } catch (_) {}
+                if (res.ok && data.status === 'success') {
+                    results.push({ deviceName: getDeviceDisplayName(dev, did), ip, ok: true, message: 'success' });
+                } else {
+                    results.push({
+                        deviceName: getDeviceDisplayName(dev, did),
+                        ip,
+                        ok: false,
+                        message: data.message || data.error || `HTTP ${res.status}`
+                    });
+                }
+            } catch (e) {
+                results.push({ deviceName: getDeviceDisplayName(dev, did), ip, ok: false, message: e.message || String(e) });
+            }
+        }
+
+        const okCount = results.filter(r => r.ok).length;
+        resultsEl.innerHTML = `
+            <div style="font-weight:700; margin-bottom:6px;">Done: ${okCount}/${results.length} success</div>
+            ${results.map(r => `
+                <div style="margin:4px 0; font-size:11px; opacity:0.9; color:${r.ok ? '#39ff14' : 'var(--warn)'};">
+                    ${r.deviceName} (${r.ip || 'no-ip'}): ${r.ok ? 'OK' : r.message}
+                </div>
+            `).join('')}
+        `;
+    }
+
+	function toggleLog(did) {
+		expandedDeviceId = (expandedDeviceId === did) ? null : did;
+		render();
+	}
+    let devices = [], tableNames = {}, currentAlerts = [], currentNetLogs = [], historyData = [], historyDataRemote = [], historyDataExtra = [];
+
+    function csvEscapeCell(val) {
+        const s = val == null ? '' : String(val);
+        if (/[",\n\r]/.test(s)) return `"${s.replace(/"/g, '""')}"`;
+        return s;
+    }
+
+    function getRunningPackageSuffix(device) {
+        const raw = String((device && device.currentApp) || '').trim();
+        if (!raw) return '';
+        const upper = raw.toUpperCase();
+        if (upper === 'IDLE' || upper === 'SECURED' || upper === 'N/A') return '';
+        return raw;
+    }
+
+    function getDeviceDisplayName(device, fallbackId) {
+        const baseName = (device && (device.deviceName || device.deviceId)) || fallbackId || 'Unknown device';
+        const pkg = getRunningPackageSuffix(device);
+        return pkg ? `${baseName} · ${pkg}` : baseName;
+    }
+
+    function escapeHtml(s) {
+        if (s == null) return '';
+        return String(s)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    function normalizeStageIpQuery(s) {
+        return String(s || '').trim().replace(/\s+/g, '').toLowerCase();
+    }
+
+    let stageIpHighlightScrollTimer = null;
+    function applyStageIpHighlight(opts) {
+        const doScroll = opts && opts.scroll;
+        const input = document.getElementById('stage-ip-search');
+        const qRaw = input ? input.value : '';
+        const q = normalizeStageIpQuery(qRaw);
+        const layer = document.getElementById('arena-layer');
+        if (stageIpHighlightScrollTimer) {
+            clearTimeout(stageIpHighlightScrollTimer);
+            stageIpHighlightScrollTimer = null;
+        }
+        if (!layer) return;
+        layer.querySelectorAll('.device-card').forEach((el) => {
+            const ip = (el.getAttribute('data-ip') || '').trim().toLowerCase();
+            const match = !!(q && ip && ip.includes(q));
+            el.classList.toggle('stage-ip-highlight', match);
+        });
+        if (!q || !doScroll) return;
+        const first = layer.querySelector('.device-card.stage-ip-highlight');
+        if (!first) return;
+        stageIpHighlightScrollTimer = setTimeout(() => {
+            stageIpHighlightScrollTimer = null;
+            first.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+        }, 220);
+    }
+
+    (function initStageIpSearch() {
+        const el = document.getElementById('stage-ip-search');
+        if (!el) return;
+        el.addEventListener('input', function () {
+            applyStageIpHighlight({ scroll: true });
+        });
+        el.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') applyStageIpHighlight({ scroll: true });
+        });
+    })();
+
+    // Stage map transform (fit + center cards in one view)
+    let arenaTransform = { scale: 1, tx: 0, ty: 0 };
+    let stageZoomMode = 'fit'; // 'fit' | 'manual'
+    let stageZoomFactor = 1;
+    let stageTemplateCache = null;
+
+    function clampStageZoom(v) {
+        return Math.max(0.25, Math.min(3, Number(v) || 1));
+    }
+
+    function updateStageZoomUi() {
+        const valueEl = document.getElementById('stage-zoom-value');
+        const fitBtn = document.getElementById('btn-stage-zoom-fit');
+        if (valueEl) {
+            valueEl.textContent = stageZoomMode === 'fit'
+                ? 'FIT'
+                : `${Math.round(clampStageZoom(stageZoomFactor) * 100)}%`;
+        }
+        if (fitBtn) fitBtn.classList.toggle('active', stageZoomMode === 'fit');
+    }
+
+    function setStageZoom(nextZoom, manual) {
+        stageZoomFactor = clampStageZoom(nextZoom);
+        if (manual) stageZoomMode = 'manual';
+        updateStageZoomUi();
+        render();
+    }
+
+    function zoomStageIn() {
+        setStageZoom((stageZoomMode === 'fit' ? 1 : stageZoomFactor) + 0.1, true);
+    }
+
+    function zoomStageOut() {
+        setStageZoom((stageZoomMode === 'fit' ? 1 : stageZoomFactor) - 0.1, true);
+    }
+
+    function resetStageZoomFit() {
+        stageZoomMode = 'fit';
+        stageZoomFactor = 1;
+        updateStageZoomUi();
+        render();
+    }
+
+    const canvas = document.getElementById('net-graph');
+    const ctx = canvas && canvas.getContext('2d');
+    const canvasRemote = document.getElementById('net-graph-remote');
+    const ctxRemote = canvasRemote && canvasRemote.getContext('2d');
+    const canvasExtra = document.getElementById('net-graph-extra');
+    const ctxExtra = canvasExtra && canvasExtra.getContext('2d');
+
+    function syncLogPanelToggleButton() {
+        const btn = document.getElementById('btn-toggle-side-violations');
+        const reopen = document.getElementById('btn-reopen-violation-logs');
+        const panel = document.getElementById('log-panel');
+        if (!panel) return;
+        const logsVisible = !panel.classList.contains('hidden');
+        if (btn) {
+            btn.setAttribute('aria-pressed', logsVisible ? 'true' : 'false');
+            const longEl = btn.querySelector('.btn-toggle-label-long');
+            const shortEl = btn.querySelector('.btn-toggle-label-short');
+            if (longEl && shortEl) {
+                longEl.textContent = 'FULL STAGE';
+                shortEl.textContent = 'STAGE';
+            }
+            btn.title = 'Ẩn Violation Logs — stage map dùng hết chiều ngang còn lại';
+        }
+        if (reopen) {
+            reopen.style.display = logsVisible ? 'none' : '';
+            reopen.setAttribute('aria-pressed', logsVisible ? 'false' : 'true');
+            reopen.title = 'Hiện lại Violation Logs';
+        }
+    }
+
+    function toggleSide(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.toggle('hidden');
+        if (id === 'log-panel') syncLogPanelToggleButton();
+        // Refit stage immediately when panels change width
+        scheduleRender();
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                scheduleRender();
+            });
+        });
+    }
+
+    let renderTimer = null;
+    function scheduleRender() {
+        if (renderTimer) clearTimeout(renderTimer);
+        renderTimer = setTimeout(function() {
+            renderTimer = null;
+            render();
+        }, 150);
+    }
+
+    let decryptErrorShown = false;
+    async function onWsMessage(e) {
+    const rawText = await wsDataToText(e && e.data);
+    if (!rawText || rawText === "undefined") return;
+    try {
+        let data;
+        if (wsCanEncrypt) {
+            try {
+                data = await decryptPayload(rawText);
+            } catch (firstErr) {
+                // Key may have changed on server; reload runtime config then retry once.
+                await loadClientConfig();
+                wsCryptoKeyPromise = null;
+                data = await decryptPayload(rawText);
+            }
+        } else {
+            data = JSON.parse(rawText);
+        }
+        if (decryptErrorShown && document.getElementById('ws-decrypt-err')) {
+            document.getElementById('ws-decrypt-err').remove();
+            decryptErrorShown = false;
+        }
+        if(data.type === 'net_status') {
+            const dDns = document.getElementById('dot-dns');
+            const dTcp = document.getElementById('dot-tcp');
+            if (dDns) {
+                dDns.className = 'dot ' + (data.dns ? 'on' : '');
+                dDns.title = data.dns
+                    ? 'DNS OK' + (data.dnsDetail ? ' — ' + data.dnsDetail : '')
+                    : 'DNS FAIL — ' + (data.dnsDetail || '(no detail)');
+            }
+            if (dTcp) {
+                dTcp.className = 'dot ' + (data.tcp ? 'on' : '');
+                dTcp.title = data.tcp
+                    ? 'TCP OK' + (data.tcpDetail ? ' — ' + data.tcpDetail : '')
+                    : 'TCP FAIL — ' + (data.tcpDetail || '(no detail)');
+            }
+            document.getElementById('net-latency').innerText = (data.latency || 0) + 'ms';
+            historyData = data.history || [];
+            if (data.netLogs) currentNetLogs = data.netLogs;
+            drawGraph(ctx, canvas, historyData);
+        }
+        if (data.type === 'net_status_remote') {
+            const dd = document.getElementById('dot-dns-remote');
+            const dt = document.getElementById('dot-tcp-remote');
+            const latEl = document.getElementById('net-latency-remote');
+            if (dd) {
+                dd.className = 'dot ' + (data.dns ? 'on' : '');
+                dd.title = data.dns
+                    ? 'DNS OK' + (data.dnsDetail ? ' — ' + data.dnsDetail : '')
+                    : 'DNS FAIL — ' + (data.dnsDetail || '(no detail)');
+            }
+            if (dt) {
+                dt.className = 'dot ' + (data.tcp ? 'on' : '');
+                dt.title = data.tcp
+                    ? 'TCP OK' + (data.tcpDetail ? ' — ' + data.tcpDetail : '')
+                    : 'TCP FAIL — ' + (data.tcpDetail || '(no detail)');
+            }
+            if (latEl) latEl.innerText = (data.latency || 0) + 'ms';
+            historyDataRemote = data.history || [];
+            drawGraph(ctxRemote, canvasRemote, historyDataRemote);
+        }
+        if (data.type === 'net_status_extra') {
+            const dd = document.getElementById('dot-dns-extra');
+            const dt = document.getElementById('dot-tcp-extra');
+            const latEl = document.getElementById('net-latency-extra');
+            if (dd) {
+                dd.className = 'dot ' + (data.dns ? 'on' : '');
+                dd.title = data.dns
+                    ? 'DNS OK' + (data.dnsDetail ? ' — ' + data.dnsDetail : '')
+                    : 'DNS FAIL — ' + (data.dnsDetail || '(no detail)');
+            }
+            if (dt) {
+                dt.className = 'dot ' + (data.tcp ? 'on' : '');
+                dt.title = data.tcp
+                    ? 'TCP OK' + (data.tcpDetail ? ' — ' + data.tcpDetail : '')
+                    : 'TCP FAIL — ' + (data.tcpDetail || '(no detail)');
+            }
+            if (latEl) latEl.innerText = (data.latency || 0) + 'ms';
+            historyDataExtra = data.history || [];
+            drawGraph(ctxExtra, canvasExtra, historyDataExtra);
+        }
+
+        if (data.type === 'net_config_sync') {
+            if (data.netConfig) {
+                const dnsInput = document.getElementById('net-dns');
+                const portInput = document.getElementById('net-port');
+                if (dnsInput && document.activeElement !== dnsInput) dnsInput.value = data.netConfig.dns || '';
+                if (portInput && document.activeElement !== portInput) portInput.value = data.netConfig.port || '';
+            }
+            if (data.netConfigRemote) {
+                const dnsR = document.getElementById('net-dns-remote');
+                const portR = document.getElementById('net-port-remote');
+                if (dnsR && document.activeElement !== dnsR) dnsR.value = data.netConfigRemote.dns || '';
+                if (portR && document.activeElement !== portR) portR.value = data.netConfigRemote.port || '';
+            }
+            if (data.netConfigExtra) {
+                const dnsE = document.getElementById('net-dns-extra');
+                const portE = document.getElementById('net-port-extra');
+                if (dnsE && document.activeElement !== dnsE) dnsE.value = data.netConfigExtra.dns || '';
+                if (portE && document.activeElement !== portE) portE.value = data.netConfigExtra.port || '';
+            }
+        }
+
+        if (data.type === 'init' || data.type === 'update_all') {
+            devices = Array.isArray(data.devices) ? data.devices : [];
+            tableNames = data.tableNames && typeof data.tableNames === 'object' ? data.tableNames : tableNames;
+            currentAlerts = Array.isArray(data.alerts) ? data.alerts : [];
+            if ((data.type === 'init' || data.type === 'update_all') && data.netConfig) {
+                const dnsInput = document.getElementById('net-dns');
+                const portInput = document.getElementById('net-port');
+                if (dnsInput && document.activeElement !== dnsInput) dnsInput.value = data.netConfig.dns || '';
+                if (portInput && document.activeElement !== portInput) portInput.value = data.netConfig.port || '';
+            }
+            if ((data.type === 'init' || data.type === 'update_all') && data.netConfigRemote) {
+                const dnsR = document.getElementById('net-dns-remote');
+                const portR = document.getElementById('net-port-remote');
+                if (dnsR && document.activeElement !== dnsR) dnsR.value = data.netConfigRemote.dns || '';
+                if (portR && document.activeElement !== portR) portR.value = data.netConfigRemote.port || '';
+            }
+            if ((data.type === 'init' || data.type === 'update_all') && data.netConfigExtra) {
+                const dnsE = document.getElementById('net-dns-extra');
+                const portE = document.getElementById('net-port-extra');
+                if (dnsE && document.activeElement !== dnsE) dnsE.value = data.netConfigExtra.dns || '';
+                if (portE && document.activeElement !== portE) portE.value = data.netConfigExtra.port || '';
+            }
+            render();
+        }
+        if (data.type === 'device_updated') {
+            const idx = devices.findIndex(d => d.deviceId === data.device.deviceId);
+            if (idx !== -1) devices[idx] = data.device;
+            else devices.push(data.device);
+            scheduleRender();
+        }
+        if (data.type === 'alerts_updated') {
+            currentAlerts = data.alerts || [];
+            scheduleRender();
+        }
+        if (data.type === 'alerts_cleared') {
+            currentAlerts = [];
+            scheduleRender();
+        }
+        if (data.type === 'slot_assigned') {
+            const dev = devices.find(d => d.deviceId === data.deviceId);
+            if (dev) {
+                // Với slot thường (bàn/ghế), chỉ một device/slot → clear slot cũ.
+                // Với 'arena', cho phép nhiều device cùng lúc, không clear các device khác.
+                if (data.slotId !== 'arena') {
+                    devices.forEach(d => { if (d.slotId === data.slotId) d.slotId = null; });
+                }
+                dev.slotId = data.slotId;
+                scheduleRender();
+            }
+        }
+        if (data.type === 'seat_layout_updated') {
+            const dev = devices.find(d => d.deviceId === data.deviceId);
+            if (dev) {
+                dev.seatLayout = { ...dev.seatLayout, ...data.seatLayout };
+                scheduleRender();
+            }
+        }
+        if (data.type === 'table_name_updated') {
+            tableNames = data.tableNames || tableNames;
+            scheduleRender();
+        }
+    } catch (err) {
+        console.error("Decoyment Error:", err);
+        // Ignore non-encrypted WS frames quietly (proxy/noise), show banner only for real encrypted-frame decrypt failures.
+        if (wsCanEncrypt && !isEncryptedFrameText(rawText)) return;
+        if (!decryptErrorShown) {
+            decryptErrorShown = true;
+            const banner = document.createElement('div');
+            banner.id = 'ws-decrypt-err';
+            banner.style.cssText = 'position:fixed;top:70px;left:50%;transform:translateX(-50%);background:var(--warn);color:#000;padding:10px 20px;border-radius:6px;font-size:12px;z-index:9998;box-shadow:0 4px 12px rgba(0,0,0,0.4);';
+            banner.textContent = wsCanEncrypt
+                ? 'Lỗi giải mã dữ liệu. Hãy restart server để nạp SECRET_KEY mới và refresh trình duyệt (Ctrl+F5).'
+                : 'Trình duyệt không hỗ trợ WebCrypto trong ngữ cảnh hiện tại. Dashboard đã tự chuyển qua plaintext mode.';
+            document.body.appendChild(banner);
+            setTimeout(() => banner.remove(), 8000);
+        }
+    }
+    }
+
+    function getStageDensitySpec(deviceCount) {
+        if (deviceCount >= 72) return { cardW: 190, cardH: 60, gapX: 8, gapY: 8, minScale: 0.08, densityClass: 'arena-density-ultra' };
+        if (deviceCount >= 48) return { cardW: 268, cardH: 88, gapX: 10, gapY: 8, minScale: 0.12, densityClass: 'arena-density-compact' };
+        if (deviceCount >= 32) return { cardW: 250, cardH: 82, gapX: 12, gapY: 10, minScale: 0.12, densityClass: 'arena-density-compact' };
+        return { cardW: 290, cardH: 92, gapX: 14, gapY: 12, minScale: 0.14, densityClass: '' };
+    }
+
+    function getStageGroupKey(deviceName) {
+        const raw = String(deviceName || '').trim().toUpperCase();
+        if (!raw) return 'UNNAMED';
+        const dotIdx = raw.indexOf('.');
+        if (dotIdx > 0) return raw.slice(0, dotIdx);
+        const dashIdx = raw.indexOf('-');
+        if (dashIdx > 0) return raw.slice(0, dashIdx);
+        const underIdx = raw.indexOf('_');
+        if (underIdx > 0) return raw.slice(0, underIdx);
+        return raw.split(/\s+/)[0] || 'UNNAMED';
+    }
+
+    function render() {
+        const zoomOverlayHtml = `
+            <div class="stage-zoom-overlay">
+                <div class="stage-zoom-controls" title="Zoom stage map">
+                    <button type="button" class="cyber-btn header-action secondary stage-zoom-btn" onclick="zoomStageOut()">-</button>
+                    <span id="stage-zoom-value" class="stage-zoom-value">FIT</span>
+                    <button type="button" class="cyber-btn header-action secondary stage-zoom-btn" onclick="zoomStageIn()">+</button>
+                    <button type="button" id="btn-stage-zoom-fit" class="cyber-btn header-action secondary stage-zoom-btn stage-zoom-fit" onclick="resetStageZoomFit()">FIT</button>
+                </div>
+            </div>`;
+        for (let tid in tableNames) {
+            const el = document.getElementById(`name-${tid}`);
+            if (el && document.activeElement !== el) el.value = tableNames[tid];
+        }
+
+		const createCard = (d, onMap = false, teamIndex = null, teamColor = null) => {
+		const isDisc = d.status === 'disconnected';
+		const isWarn = d.status === 'warning';
+        const isPartialWarn = d.status === 'partial_warning';
+        const overlayApp = d.overlayApp || '';
+        const fgApp = d.currentApp || 'IDLE';
+        const appLabelRaw = (isDisc ? '' : (d.status === 'lock' ? 'SECURED' : fgApp));
+        const formatBytes = (bytes) => {
+            if (typeof bytes !== 'number' || !isFinite(bytes) || bytes < 0) return '0B';
+            const units = ['B','KB','MB','GB','TB'];
+            let v = bytes;
+            let i = 0;
+            while (v >= 1024 && i < units.length - 1) { v /= 1024; i++; }
+            const fixed = i <= 1 ? 0 : 1;
+            return `${v.toFixed(fixed)}${units[i]}`;
+        };
+        const netTransport = d.netTransport || 'UNKNOWN';
+        const mobileBytesTotal = d.mobileBytesTotal || 0;
+        const wifiBytesTotal = d.wifiBytesTotal || 0;
+        const hasMobileBytes = mobileBytesTotal > 0;
+        // Theo yêu cầu:
+        // netTransport=WIFI -> 🛜
+        // netTransport=CELLULAR -> 📶
+        // UNKNOWN / khác -> icon cổng Ethernet RJ45 (Bootstrap Icons ethernet, MIT)
+        const transportIconLan =
+            '<svg class="transport-icon-lan" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">' +
+            '<path fill="currentColor" d="M14 13.5v-7a.5.5 0 0 0-.5-.5H12V4.5a.5.5 0 0 0-.5-.5h-1v-.5A.5.5 0 0 0 10 3H6a.5.5 0 0 0-.5.5V4h-1a.5.5 0 0 0-.5.5V6H2.5a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5M3.75 11h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-1.5a.25.25 0 0 1 .25-.25m2 0h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-1.5a.25.25 0 0 1 .25-.25m1.75.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zM9.75 11h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-1.5a.25.25 0 0 1 .25-.25m1.75.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25z"/>' +
+            '<path fill="currentColor" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1z"/>' +
+            '</svg>';
+        const transportIcon =
+            netTransport === 'WIFI' ? '🛜' : (netTransport === 'CELLULAR' ? '📶' : transportIconLan);
+		const styleIfMap = onMap ? `left: ${d.seatLayout?.x || 0}px; top: ${d.seatLayout?.y || 0}px;` : '';
+		const dataIpAttr = onMap ? ` data-ip="${escapeHtml(String(d.ipAddress || '').trim())}"` : '';
+        
+        // Icon FTP (thư mục) sẽ nhấp nháy / sáng liên tục nếu `isFtpOpen = true`
+        const ftpIcon = (!isDisc && d.isFtpOpen) 
+            ? `<span style="cursor:pointer; font-size:14px; margin-left:5px; animation: blink 1s infinite; pointer-events: auto;" onclick="openExplorer('${d.ipAddress}', '${d.deviceName}')" title="Mở File Upload">📁</span>` 
+            : `<span style="font-size:14px; margin-left:5px; opacity:0.1; pointer-events: none;" title="FTP Đang Đóng">📁</span>`;
+
+		return `
+			<div class="device-card ${d.status} ${isDisc ? 'status-disconnected' : ''} ${onMap ? 'on-map' : ''}"${dataIpAttr}
+				 style="${styleIfMap}"
+				 draggable="true" 
+				 ondragstart="startDrag(event, '${d.deviceId}', ${onMap})" ondragend="endDrag(event)">
+				
+				<div class="dev-info">
+					<span style="color:${isDisc ? '#666' : 'inherit'}; display:flex; align-items:center;">
+						${isDisc ? '[OFFLINE] ' : ''}${d.deviceName || d.deviceId.slice(-5)} ${ftpIcon}
+                        ${isDisc ? '' : `<span style="margin-left:6px; font-size:12px; opacity:0.9;" title="netTransport=${netTransport}\nwifiBytesTotal=${formatBytes(wifiBytesTotal)}${hasMobileBytes ? `\nmobileBytesTotal=${formatBytes(mobileBytesTotal)}` : ''}">${transportIcon}</span>`}
+					</span>
+					<span>
+                        ${isDisc ? '--' : (d.isCharging ? '⚡' : '') + d.battery + '%'}
+                    </span>
+				</div>
+				
+				<div class="dev-sub">
+					<span class="dev-sub-main" style="color:${isDisc ? '#444' : (isWarn ? 'var(--warn)' : (isPartialWarn ? 'var(--midwarn)' : 'inherit'))};">
+						<span class="dev-sub-top" style="color:${isDisc ? '#444' : (isWarn ? (d.foregroundViolation ? 'var(--warn)' : 'var(--safe)') : 'inherit')};">
+							${isDisc ? 'Lost Signal' : appLabelRaw}
+						</span>
+						<span class="dev-sub-meta" style="color:${isDisc ? 'inherit' : (isWarn && overlayApp ? 'var(--warn)' : 'inherit')};">
+							${isDisc ? '' : (overlayApp ? `OVERLAY: ${overlayApp}` : (hasMobileBytes ? `mobileBytesTotal: ${formatBytes(mobileBytesTotal)}` : ''))}
+						</span>
+						<span class="dev-ip" style="color:${isDisc ? '#444' : '#9ad'};">
+							IP: ${isDisc ? '—' : escapeHtml(d.ipAddress || '—')}
+						</span>
+					</span>
+					<span class="ram-tag" style="${isDisc ? 'opacity: 0.3;' : ''}">
+						${isDisc ? 'N/A' : (d.ramInfo || '0/0')}
+					</span>
+				</div>
+			</div>`;
+	    };
+
+        const waiters = devices.filter(d => !d.slotId || d.slotId === 'wait')
+                       .sort((a, b) => {
+                           if (a.status === 'disconnected' && b.status !== 'disconnected') return 1;
+                           if (a.status !== 'disconnected' && b.status === 'disconnected') return -1;
+                           return 0;
+                       });
+		document.getElementById('waiting-list').innerHTML = waiters.map(d => createCard(d, false)).join('');
+		document.getElementById('count-wait').innerText = waiters.length;
+
+        const onMapDevices = devices.filter(d => d.slotId === 'arena');
+        const arenaEl = document.getElementById('monitor-arena');
+        if (arenaEl) {
+            const rect = arenaEl.getBoundingClientRect();
+            const arenaW = Math.max(0, Math.floor(rect.width));
+            const arenaH = Math.max(0, Math.floor(rect.height));
+
+            const stageSpec = getStageDensitySpec(onMapDevices.length);
+            const CARD_W = stageSpec.cardW;
+            const CARD_H = stageSpec.cardH;
+            const PAD = 18;
+
+            const placed = onMapDevices.filter(d => d && d.seatLayout && typeof d.seatLayout.x === 'number' && typeof d.seatLayout.y === 'number');
+            const narrowArena = arenaW < 768 || arenaH < 420;
+            const minScaleFloor = onMapDevices.length >= 48 ? 0.35 : 0.5;
+            const minScale = narrowArena ? stageSpec.minScale : Math.max(minScaleFloor, stageSpec.minScale);
+
+            let uw = 520;
+            let uh = 400;
+            if (placed.length) {
+                let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+                placed.forEach((d) => {
+                    const x = d.seatLayout.x;
+                    const y = d.seatLayout.y;
+                    minX = Math.min(minX, x);
+                    minY = Math.min(minY, y);
+                    maxX = Math.max(maxX, x + CARD_W);
+                    maxY = Math.max(maxY, y + CARD_H);
+                });
+                const contentW = Math.max(1, (maxX - minX));
+                const contentH = Math.max(1, (maxY - minY));
+                const scaleW = (arenaW - PAD * 2) / contentW;
+                const scaleH = (arenaH - PAD * 2) / contentH;
+                const fitScale = Math.max(minScale, Math.min(1, scaleW, scaleH));
+                const scale = stageZoomMode === 'manual'
+                    ? Math.max(0.1, fitScale * clampStageZoom(stageZoomFactor))
+                    : fitScale;
+
+                const tx = Math.max(0, Math.floor((arenaW - contentW * scale) / 2 - minX * scale));
+                const ty = Math.max(0, Math.floor((arenaH - contentH * scale) / 2 - minY * scale));
+                arenaTransform = { scale, tx, ty };
+                uw = Math.max(400, Math.ceil(maxX + PAD));
+                uh = Math.max(320, Math.ceil(maxY + PAD));
+            } else {
+                arenaTransform = { scale: 1, tx: 0, ty: 0 };
+                if (onMapDevices.length) {
+                    uw = 480;
+                    uh = 360;
+                }
+            }
+
+            const s = arenaTransform.scale;
+            const tx = arenaTransform.tx;
+            const ty = arenaTransform.ty;
+
+            const bboxRight = tx + uw * s;
+            const bboxBottom = ty + uh * s;
+            const scrollW = Math.max(arenaW, Math.ceil(bboxRight + PAD));
+            const scrollH = Math.max(arenaH, Math.ceil(bboxBottom + PAD));
+            const needScrollX = scrollW > arenaW + 2;
+            const needScrollY = scrollH > arenaH + 2;
+            arenaEl.style.overflowX = needScrollX ? 'auto' : 'hidden';
+            arenaEl.style.overflowY = needScrollY ? 'auto' : 'hidden';
+
+            if (!onMapDevices.length) {
+                arenaEl.innerHTML = `<div class="arena-scroll-surface" style="min-width:100%;min-height:${Math.max(arenaH, 200)}px;"></div>${zoomOverlayHtml}`;
+            } else {
+                arenaEl.innerHTML = `
+                <div class="arena-scroll-surface" style="min-width:${scrollW}px;min-height:${scrollH}px;">
+                    <div id="arena-layer" class="${stageSpec.densityClass}" style="position:relative;width:${uw}px;height:${uh}px;transform:translate(${tx}px,${ty}px) scale(${s});transform-origin:0 0;--stage-card-w:${CARD_W}px;--stage-card-h:${CARD_H}px;">
+                        ${onMapDevices.map(d => createCard(d, true)).join('')}
+                    </div>
+                </div>
+                ${zoomOverlayHtml}`;
+            }
+            updateStageZoomUi();
+            applyStageIpHighlight({ scroll: false });
+        }
+
+// HIỂN THỊ LOGS
+		const logContainer = document.getElementById('log-list');
+if (currentAlerts && currentAlerts.length > 0) {
+    const groups = {};
+    currentAlerts.forEach(a => {
+        if (!groups[a.deviceId]) groups[a.deviceId] = { 
+            name: a.deviceName, 
+            logs: [], 
+            hasActive: false 
+        };
+        groups[a.deviceId].logs.push(a);
+        if (!a.endTime) groups[a.deviceId].hasActive = true;
+    });
+
+    // Sắp xếp: Ưu tiên thiết bị ĐANG VI PHẠM lên đầu danh sách log
+    const sortedGroups = Object.keys(groups).sort((a, b) => {
+        if (groups[a].hasActive && !groups[b].hasActive) return -1;
+        if (!groups[a].hasActive && groups[b].hasActive) return 1;
+        return 0;
+    });
+
+    logContainer.innerHTML = sortedGroups.map(did => {
+    const group = groups[did];
+    const isExpanded = (expandedDeviceId === did);
+    const sortedLogs = [...group.logs].reverse();
+    const isNetError = did === 'SYSTEM_NET' || did === 'SYSTEM_NET_REMOTE' || did === 'SYSTEM_NET_EXTRA';
+
+    // KIỂM TRA TRẠNG THÁI KẾT NỐI THỰC TẾ
+    const deviceData = devices.find(d => d.deviceId === did);
+    const isOffline = deviceData && deviceData.status === 'disconnected';
+
+    return `
+        <div class="log-group ${isOffline ? 'is-disconnected' : ''}" 
+             style="border-left: 3px solid ${group.hasActive ? 'var(--warn)' : 'var(--safe)'}">
+            <div class="log-header" onclick="toggleLog('${did}')" style="${isExpanded ? 'background:rgba(0,242,255,0.1);' : ''}">
+                <div>
+                    <span class="status-indicator" style="background: ${isOffline ? '#444' : (group.hasActive ? 'var(--warn)' : 'var(--safe)')}"></span>
+                    <b style="color: ${isOffline ? '#666' : (group.hasActive ? (isNetError ? '#ff003c' : 'var(--accent)') : (isExpanded ? '#fff' : '#888'))}">
+                        ${isOffline ? '[OFFLINE] ' : ''}${group.name}
+                    </b>
+                </div>
+                <span style="font-size:10px; color:#555;">${isExpanded ? '▲ Thu gọn' : '▼ Xem (' + group.logs.length + ')'}</span>
+            </div>
+            <div class="log-details ${isExpanded ? 'show' : ''}">
+                ${sortedLogs.map((l) => {
+                    const appEsc = escapeHtml(String(l.app || ''));
+                    const dnsD = l.netDnsDetail ? escapeHtml(String(l.netDnsDetail)) : '';
+                    const tcpD = l.netTcpDetail ? escapeHtml(String(l.netTcpDetail)) : '';
+                    const netBlock =
+                        dnsD || tcpD
+                            ? `<div style="margin-top:3px;font-size:8px;line-height:1.25;opacity:0.92;color:#8ac;word-break:break-word;">
+                                ${dnsD ? `<div><b style="color:#6cf">DNS</b> ${dnsD}</div>` : ''}
+                                ${tcpD ? `<div><b style="color:#6cf">TCP</b> ${tcpD}</div>` : ''}
+                               </div>`
+                            : '';
+                    return `
+                    <div class="sub-log-item ${!l.endTime ? 'active-log' : ''}" style="color: ${!l.endTime ? '#fff' : '#777'}; flex-direction: column; align-items: stretch;">
+                        <div style="display:flex; justify-content: space-between; gap: 6px; width: 100%;">
+                            <span style="max-width: 60%; overflow: hidden; text-overflow: ellipsis;">• ${appEsc}</span>
+                            <span style="font-family: monospace; flex-shrink: 0;">${l.startTime} ${l.endTime ? '→ ' + l.endTime : '<b style="color:var(--warn)">● ACTIVE</b>'}</span>
+                        </div>
+                        ${netBlock}
+                    </div>`;
+                }).join('')}
+            </div>
+        </div>
+    `;
+}).join('');
+} else {
+    logContainer.innerHTML = `<div style="text-align:center; color:#333; padding:20px;">No logs recorded</div>`;
+}
+    }
+
+    // Canvas Draw
+    function drawGraph(c, cv, history) {
+        if (!c || !cv) return;
+        const hist = Array.isArray(history) ? history : [];
+        c.clearRect(0, 0, cv.width, cv.height);
+        c.strokeStyle = '#00f2ff';
+        c.lineWidth = 1.5;
+        c.beginPath();
+        const step = cv.width / 20;
+        hist.forEach((v, i) => {
+            const x = i * step;
+            const y = cv.height - (Math.min(v, 200) / 200 * cv.height);
+            i === 0 ? c.moveTo(x, y) : c.lineTo(x, y);
+        });
+        c.stroke();
+    }
+
+    // Một SET → một tin WS lưu cả hai + server chạy đo mạng ngay (runNow)
+    function netInputVal(id) {
+        const el = document.getElementById(id);
+        return el && 'value' in el ? el.value : '';
+    }
+
+    async function saveNetAll() {
+        if (!ensureEditor('lưu cấu hình monitor mạng')) return;
+        if (!socket || socket.readyState !== WebSocket.OPEN) {
+            alert('WebSocket chưa kết nối — không gửi được SET. Đợi trạng thái "Đã kết nối" rồi thử lại.');
+            return;
+        }
+        await safeSend({
+            type: 'update_net_config_both',
+            dns: netInputVal('net-dns'),
+            port: netInputVal('net-port'),
+            dnsRemote: netInputVal('net-dns-remote'),
+            portRemote: netInputVal('net-port-remote'),
+            dnsExtra: netInputVal('net-dns-extra'),
+            portExtra: netInputVal('net-port-extra'),
+        });
+    }
+
+	function exportLogsToCSV() {
+        const hasViolations = currentAlerts.length > 0;
+        const hasNetLogsLegacy = currentNetLogs.length > 0;
+        if (!hasViolations && !hasNetLogsLegacy) {
+            return alert('No data to export file.');
+        }
+
+        const exportedAtIso = new Date().toISOString();
+        const exportedAtLocal = new Date().toLocaleString('vi-VN');
+        const lanHost = (document.getElementById('net-dns') && document.getElementById('net-dns').value) || '';
+        const lanPort = (document.getElementById('net-port') && document.getElementById('net-port').value) || '';
+        const wanHost = (document.getElementById('net-dns-remote') && document.getElementById('net-dns-remote').value) || '';
+        const wanPort = (document.getElementById('net-port-remote') && document.getElementById('net-port-remote').value) || '';
+        const extHost = (document.getElementById('net-dns-extra') && document.getElementById('net-dns-extra').value) || '';
+        const extPort = (document.getElementById('net-port-extra') && document.getElementById('net-port-extra').value) || '';
+
+        let csv = '\uFEFF';
+        csv += '--- EXPORT META ---\n';
+        csv += [
+            'Field',
+            'Value',
+        ].join(',') + '\n';
+        csv += [
+            csvEscapeCell('exportedAt_ISO_UTC'),
+            csvEscapeCell(exportedAtIso),
+        ].join(',') + '\n';
+        csv += [
+            csvEscapeCell('exportedAt_local_VI'),
+            csvEscapeCell(exportedAtLocal),
+        ].join(',') + '\n';
+        csv += [
+            csvEscapeCell('note'),
+            csvEscapeCell('TCP fail = server could not complete TCP connect to host:port (refused, timeout 300ms, etc.). See DNS_error_detail / TCP_error_detail in network alerts when server provides them.'),
+        ].join(',') + '\n';
+
+        csv += '\n--- CURRENT NET TARGETS (form in header at export) ---\n';
+        csv += [
+            'LAN_host',
+            'LAN_port',
+            'WAN_host',
+            'WAN_port',
+            'EXT_host',
+            'EXT_port',
+        ].join(',') + '\n';
+        csv += [
+            csvEscapeCell(lanHost),
+            csvEscapeCell(lanPort),
+            csvEscapeCell(wanHost),
+            csvEscapeCell(wanPort),
+            csvEscapeCell(extHost),
+            csvEscapeCell(extPort),
+        ].join(',') + '\n';
+
+        const netAlertIds = new Set(['SYSTEM_NET', 'SYSTEM_NET_REMOTE', 'SYSTEM_NET_EXTRA']);
+        const netAlerts = currentAlerts.filter((a) => a && netAlertIds.has(a.deviceId));
+        const deviceAlerts = currentAlerts.filter((a) => a && !netAlertIds.has(a.deviceId));
+
+        csv += '\n--- NETWORK MONITOR ALERTS (DNS/TCP from server log store) ---\n';
+        csv += [
+            'Start Time',
+            'End Time',
+            'deviceId',
+            'Label',
+            'DNS_OK',
+            'TCP_OK',
+            'DNS_error_detail',
+            'TCP_error_detail',
+            'summary_line',
+        ].join(',') + '\n';
+        netAlerts.forEach((a) => {
+            const dnsOk = a.netDnsOk !== undefined ? !!a.netDnsOk : String(a.app || '').includes('DNS:OK');
+            const tcpOk = a.netTcpOk !== undefined ? !!a.netTcpOk : String(a.app || '').includes('TCP:OK');
+            csv += [
+                csvEscapeCell(a.startTime),
+                csvEscapeCell(a.endTime || 'ACTIVE'),
+                csvEscapeCell(a.deviceId),
+                csvEscapeCell(a.deviceName),
+                csvEscapeCell(dnsOk ? 'yes' : 'no'),
+                csvEscapeCell(tcpOk ? 'yes' : 'no'),
+                csvEscapeCell(a.netDnsDetail || ''),
+                csvEscapeCell(a.netTcpDetail || ''),
+                csvEscapeCell(a.app),
+            ].join(',') + '\n';
+        });
+
+        csv += '\n--- DEVICE APP VIOLATION LOGS ---\n';
+        csv += [
+            'Start Time',
+            'End Time',
+            'Device Name',
+            'deviceId',
+            'App / detail',
+        ].join(',') + '\n';
+        deviceAlerts.forEach((a) => {
+            csv += [
+                csvEscapeCell(a.startTime),
+                csvEscapeCell(a.endTime || 'Playing...'),
+                csvEscapeCell(a.deviceName),
+                csvEscapeCell(a.deviceId),
+                csvEscapeCell(a.app),
+            ].join(',') + '\n';
+        });
+
+        if (hasNetLogsLegacy) {
+            csv += '\n--- LEGACY NET LOGS (if sent by server) ---\n';
+            csv += csvEscapeCell(JSON.stringify(currentNetLogs)) + '\n';
+        }
+
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+
+        link.href = URL.createObjectURL(blob);
+        link.download = `Alan_System_Report_${timestamp}.csv`;
+        link.click();
+    }
+
+    function arrangeArenaGrid() {
+        if (!ensureEditor('xếp stage')) return;
+
+        const arena = document.getElementById('monitor-arena');
+        if (!arena) return;
+
+        const rect = arena.getBoundingClientRect();
+        const arenaW = Math.max(0, Math.floor(rect.width));
+        const arenaH = Math.max(0, Math.floor(rect.height));
+
+        const stageSpec = getStageDensitySpec(devices.filter((d) => d && d.deviceId && d.slotId === 'arena').length);
+        const CARD_W = stageSpec.cardW;
+        const CARD_H = stageSpec.cardH; // approximate rendered height (avoid overlap)
+        const GAP_X = stageSpec.gapX;
+        const GAP_Y = stageSpec.gapY;
+        const MARGIN_X = 16;
+        const MARGIN_Y = 16;
+
+        const onMap = devices.filter((d) => d && d.deviceId && d.slotId === 'arena');
+        if (!onMap.length) return;
+
+        // Sort stable: deviceName then deviceId.
+        const sorted = onMap.slice().sort((a, b) => {
+            const an = (a.deviceName || '').toLowerCase();
+            const bn = (b.deviceName || '').toLowerCase();
+            if (an !== bn) return an.localeCompare(bn);
+            return String(a.deviceId).localeCompare(String(b.deviceId));
+        });
+
+        const usableW = Math.max(0, arenaW - MARGIN_X * 2);
+        const usableH = Math.max(0, arenaH - MARGIN_Y * 2);
+
+        let bestCols = 1;
+        let bestScore = Infinity;
+        for (let cols = 1; cols <= sorted.length; cols++) {
+            const rows = Math.ceil(sorted.length / cols);
+            const requiredW = cols * CARD_W + Math.max(0, cols - 1) * GAP_X;
+            const requiredH = rows * CARD_H + Math.max(0, rows - 1) * GAP_Y;
+            const fitScaleW = usableW > 0 ? (usableW / requiredW) : 1;
+            const fitScaleH = usableH > 0 ? (usableH / requiredH) : 1;
+            const fitScale = Math.min(fitScaleW, fitScaleH);
+            const aspectPenalty = Math.abs((requiredW / Math.max(1, requiredH)) - (usableW / Math.max(1, usableH)));
+            const score = (1 / Math.max(0.0001, fitScale)) + aspectPenalty;
+            if (score < bestScore) {
+                bestScore = score;
+                bestCols = cols;
+            }
+        }
+        const cols = Math.max(1, bestCols);
+
+        sorted.forEach((d, idx) => {
+            const col = idx % cols;
+            const row = Math.floor(idx / cols);
+            const x = MARGIN_X + col * (CARD_W + GAP_X);
+            const y = MARGIN_Y + row * (CARD_H + GAP_Y);
+
+            d.seatLayout = { ...(d.seatLayout || {}), x, y };
+            safeSendEditor({ type: 'update_seat_layout', deviceId: d.deviceId, seatLayout: { x, y } }, 'xếp vị trí stage');
+        });
+
+        render();
+    }
+
+    function arrangeArenaGrouped() {
+        if (!ensureEditor('gom nhóm stage')) return;
+
+        const arena = document.getElementById('monitor-arena');
+        if (!arena) return;
+
+        const rect = arena.getBoundingClientRect();
+        const arenaW = Math.max(0, Math.floor(rect.width));
+
+        const onMap = devices.filter((d) => d && d.deviceId && d.slotId === 'arena');
+        if (!onMap.length) return;
+
+        const stageSpec = getStageDensitySpec(onMap.length);
+        const CARD_W = stageSpec.cardW;
+        const CARD_H = stageSpec.cardH;
+        const GAP_X = stageSpec.gapX;
+        const GAP_Y = stageSpec.gapY;
+        const GROUP_GAP_Y = GAP_Y + 22;
+        const MARGIN_X = 16;
+        const MARGIN_Y = 16;
+
+        const grouped = new Map();
+        onMap.forEach((d) => {
+            const key = getStageGroupKey(d.deviceName);
+            if (!grouped.has(key)) grouped.set(key, []);
+            grouped.get(key).push(d);
+        });
+
+        const groupKeys = Array.from(grouped.keys()).sort((a, b) => a.localeCompare(b));
+        groupKeys.forEach((key) => {
+            grouped.get(key).sort((a, b) => {
+                const an = String(a.deviceName || '').toUpperCase();
+                const bn = String(b.deviceName || '').toUpperCase();
+                if (an !== bn) return an.localeCompare(bn);
+                return String(a.deviceId).localeCompare(String(b.deviceId));
+            });
+        });
+
+        const usableW = Math.max(0, arenaW - MARGIN_X * 2);
+        const maxCols = Math.max(1, Math.floor((usableW + GAP_X) / (CARD_W + GAP_X)));
+        let yCursor = MARGIN_Y;
+
+        groupKeys.forEach((key) => {
+            const list = grouped.get(key) || [];
+            if (!list.length) return;
+
+            const cols = Math.max(1, Math.min(maxCols, list.length));
+            const rows = Math.ceil(list.length / cols);
+            const rowWidth = cols * CARD_W + Math.max(0, cols - 1) * GAP_X;
+            const xStart = MARGIN_X + Math.max(0, Math.floor((usableW - rowWidth) / 2));
+
+            list.forEach((d, idx) => {
+                const col = idx % cols;
+                const row = Math.floor(idx / cols);
+                const x = xStart + col * (CARD_W + GAP_X);
+                const y = yCursor + row * (CARD_H + GAP_Y);
+                d.seatLayout = { ...(d.seatLayout || {}), x, y };
+                safeSendEditor({ type: 'update_seat_layout', deviceId: d.deviceId, seatLayout: { x, y } }, `xếp nhóm ${key}`);
+            });
+
+            yCursor += rows * (CARD_H + GAP_Y) + GROUP_GAP_Y;
+        });
+
+        render();
+    }
+
+    function arrangeArenaTemplate() {
+        if (!ensureEditor('xếp stage theo template')) return;
+
+        const arena = document.getElementById('monitor-arena');
+        if (!arena) return;
+
+        const rect = arena.getBoundingClientRect();
+        const arenaW = Math.max(0, Math.floor(rect.width));
+        const arenaH = Math.max(0, Math.floor(rect.height));
+
+        function defaultTemplate() {
+            return {
+                card: { w: 250, h: 76 },
+                spacing: { gapY: 12, gapCol: 14, gapBlock: 32, gapRow: 28, marginX: 16, marginY: 16 },
+                seatOrder: [4, 3, 2, 1],
+                rows: [
+                    [['BH', 'TDE'], ['ANT', 'TLE']],
+                    [['BV', 'LG'], ['AMF', 'PTE']],
+                    [['NVT', 'WAGA'], ['FL', 'CTGM']],
+                ],
+            };
+        }
+
+        async function getStageTemplate() {
+            try {
+                const res = await fetch('/templates/stage-template.json', { cache: 'no-store' });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const j = await res.json();
+                stageTemplateCache = j;
+                return j;
+            } catch (_) {
+                stageTemplateCache = defaultTemplate();
+                return stageTemplateCache;
+            }
+        }
+
+        const onMap = devices.filter((d) => d && d.deviceId && d.slotId === 'arena');
+        if (!onMap.length) return;
+
+        // Index devices by normalized name => device
+        const byName = new Map();
+        onMap.forEach((d) => {
+            const n = (d.deviceName || '').toString().trim().toUpperCase();
+            if (!n) return;
+            if (!byName.has(n)) byName.set(n, d);
+        });
+
+        const applyTemplate = (tpl) => {
+            const stageSpec = getStageDensitySpec(onMap.length);
+            const CARD_W = stageSpec.cardW;
+            const CARD_H = stageSpec.cardH;
+            const GAP_Y = tpl?.spacing?.gapY ?? stageSpec.gapY;
+            const GAP_COL = tpl?.spacing?.gapCol ?? stageSpec.gapX;
+            const GAP_BLOCK = tpl?.spacing?.gapBlock ?? 32;
+            const GAP_ROW = tpl?.spacing?.gapRow ?? 28;
+            const MARGIN_X = tpl?.spacing?.marginX ?? 16;
+            const MARGIN_Y = tpl?.spacing?.marginY ?? 16;
+            const seatOrderDefault = Array.isArray(tpl?.seatOrder) && tpl.seatOrder.length ? tpl.seatOrder : [4, 3, 2, 1];
+            const seatOrderByPrefix = (tpl?.seatOrderByPrefix && typeof tpl.seatOrderByPrefix === 'object') ? tpl.seatOrderByPrefix : {};
+            const spacingByPrefix = (tpl?.spacingByPrefix && typeof tpl.spacingByPrefix === 'object') ? tpl.spacingByPrefix : {};
+            const templateRows = Array.isArray(tpl?.rows) && tpl.rows.length ? tpl.rows : defaultTemplate().rows;
+
+            const seatName = (prefix, seatKey) => {
+                const p = String(prefix).toUpperCase();
+                if (typeof seatKey === 'number') return `${p}${seatKey}`;
+                const raw = String(seatKey).trim().toUpperCase();
+                if (!raw) return p;
+                // Accept both styles in template:
+                // - suffix only: "HLAN" -> "WAGA.HLAN"
+                // - full name:   "WAGA.HLAN" (or "WAGA. HLAN") -> "WAGA.HLAN"
+                const normalizedDot = raw.replace(/\s*\.\s*/g, '.');
+                if (normalizedDot.startsWith(`${p}.`)) return normalizedDot;
+                if (normalizedDot.includes('.')) return normalizedDot;
+                return `${p}.${normalizedDot}`;
+            };
+
+            const blocksPerRow = Math.max(1, templateRows[0]?.length || 2);
+            const blockW = (CARD_W * 2) + GAP_COL;
+            const totalW = MARGIN_X * 2 + (blockW * blocksPerRow) + (GAP_BLOCK * (blocksPerRow - 1));
+
+            let seatsPerBlock = seatOrderDefault.length;
+            templateRows.forEach((rowBlocks) => {
+                rowBlocks.forEach((block) => {
+                    block.forEach((prefix) => {
+                        const arr = seatOrderByPrefix[String(prefix).toUpperCase()];
+                        const n = Array.isArray(arr) ? arr.length : seatOrderDefault.length;
+                        seatsPerBlock = Math.max(seatsPerBlock, n);
+                    });
+                });
+            });
+            const blockH = (CARD_H * seatsPerBlock) + (GAP_Y * Math.max(0, seatsPerBlock - 1));
+            const totalH = MARGIN_Y * 2 + (blockH * templateRows.length) + (GAP_ROW * Math.max(0, templateRows.length - 1));
+
+            const placements = [];
+
+            templateRows.forEach((rowBlocks, rowIndex) => {
+                const y0 = MARGIN_Y + rowIndex * (blockH + GAP_ROW);
+                rowBlocks.forEach((block, blockIndex) => {
+                    const x0 = MARGIN_X + blockIndex * (blockW + GAP_BLOCK);
+                    const leftPrefix = block[0];
+                    const rightPrefix = block[1];
+
+                    const leftOrder = Array.isArray(seatOrderByPrefix[String(leftPrefix).toUpperCase()])
+                        ? seatOrderByPrefix[String(leftPrefix).toUpperCase()]
+                        : seatOrderDefault;
+                    const rightOrder = Array.isArray(seatOrderByPrefix[String(rightPrefix).toUpperCase()])
+                        ? seatOrderByPrefix[String(rightPrefix).toUpperCase()]
+                        : seatOrderDefault;
+
+                    const maxSeats = Math.max(leftOrder.length, rightOrder.length);
+                    for (let seatIdx = 0; seatIdx < maxSeats; seatIdx++) {
+                        const leftSeatKey = leftOrder[seatIdx];
+                        const rightSeatKey = rightOrder[seatIdx];
+                        const leftGapY = spacingByPrefix[String(leftPrefix).toUpperCase()]?.gapY;
+                        const rightGapY = spacingByPrefix[String(rightPrefix).toUpperCase()]?.gapY;
+                        const gapYBlock = Math.min(
+                            GAP_Y,
+                            (typeof leftGapY === 'number' ? leftGapY : GAP_Y),
+                            (typeof rightGapY === 'number' ? rightGapY : GAP_Y)
+                        );
+                        const y = y0 + seatIdx * (CARD_H + gapYBlock);
+                        const nLeft = typeof leftSeatKey === 'undefined' ? null : seatName(leftPrefix, leftSeatKey);
+                        const nRight = typeof rightSeatKey === 'undefined' ? null : seatName(rightPrefix, rightSeatKey);
+
+                        // Fallback:
+                        // If template uses PREFIX.<suffix> but you haven't filled/renamed devices yet,
+                        // try PREFIX<1..4> (no dot) using default numeric seatOrder.
+                        const fallbackNum = typeof seatOrderDefault[seatIdx] === 'number' ? seatOrderDefault[seatIdx] : null;
+                        const fallbackLeftName =
+                            fallbackNum !== null ? `${String(leftPrefix).toUpperCase()}${fallbackNum}` : null;
+                        const fallbackRightName =
+                            fallbackNum !== null ? `${String(rightPrefix).toUpperCase()}${fallbackNum}` : null;
+
+                        const dLeft = nLeft ? (byName.get(nLeft) || (fallbackLeftName ? byName.get(fallbackLeftName) : null)) : null;
+                        const dRight = nRight ? (byName.get(nRight) || (fallbackRightName ? byName.get(fallbackRightName) : null)) : null;
+
+                        if (dLeft) placements.push({ d: dLeft, x: x0, y });
+                        if (dRight) placements.push({ d: dRight, x: x0 + CARD_W + GAP_COL, y });
+                    }
+                });
+            });
+
+            placements.forEach(({ d, x, y }) => {
+                d.seatLayout = { ...(d.seatLayout || {}), x, y };
+                safeSendEditor({ type: 'update_seat_layout', deviceId: d.deviceId, seatLayout: { x, y } }, 'xếp vị trí template');
+            });
+
+            render();
+        };
+
+        getStageTemplate().then(applyTemplate);
+    }
+
+    function parseCsvLine(line, delimiter = ',') {
+        const out = [];
+        let cur = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+            const ch = line[i];
+            if (ch === '"') {
+                if (inQuotes && line[i + 1] === '"') {
+                    cur += '"';
+                    i++;
+                } else {
+                    inQuotes = !inQuotes;
+                }
+                continue;
+            }
+            if (ch === delimiter && !inQuotes) {
+                out.push(cur);
+                cur = '';
+                continue;
+            }
+            cur += ch;
+        }
+        out.push(cur);
+        return out.map((s) => String(s || '').trim());
+    }
+
+    function detectCsvDelimiter(lines) {
+        let commaScore = 0;
+        let semicolonScore = 0;
+        lines.slice(0, 6).forEach((line) => {
+            let inQuotes = false;
+            for (let i = 0; i < line.length; i++) {
+                const ch = line[i];
+                if (ch === '"') {
+                    if (inQuotes && line[i + 1] === '"') {
+                        i++;
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                    continue;
+                }
+                if (inQuotes) continue;
+                if (ch === ',') commaScore++;
+                if (ch === ';') semicolonScore++;
+            }
+        });
+        return semicolonScore > commaScore ? ';' : ',';
+    }
+
+    function normalizeDeviceNameKey(name) {
+        return String(name || '')
+            .trim()
+            .replace(/\s*\.\s*/g, '.')
+            .replace(/\s+/g, ' ')
+            .toUpperCase();
+    }
+
+    function openStageCsvImportPicker() {
+        if (!ensureEditor('import CSV stage')) return;
+        const input = document.getElementById('stage-csv-input');
+        if (!input) return;
+        input.value = '';
+        input.click();
+    }
+
+    async function handleStageCsvImport(e) {
+        if (!ensureEditor('import CSV stage')) return;
+        const file = e && e.target && e.target.files && e.target.files[0];
+        if (!file) return;
+        let text = '';
+        try {
+            text = await file.text();
+        } catch (err) {
+            alert(`Không đọc được file CSV: ${err.message || String(err)}`);
+            return;
+        }
+        const lines = String(text || '')
+            .replace(/^\uFEFF/, '')
+            .split(/\r?\n/)
+            .map((l) => l.trim())
+            .filter(Boolean);
+        if (lines.length < 2) {
+            alert('CSV không hợp lệ. Cần ít nhất 1 dòng header và 1 dòng dữ liệu.');
+            return;
+        }
+
+        const delimiter = detectCsvDelimiter(lines);
+        const rows = lines.map((l) => parseCsvLine(l, delimiter));
+        const header = rows[0].map((h) => h.toLowerCase());
+        const idxDevice = header.indexOf('devicename');
+        const idxX = header.indexOf('x');
+        const idxY = header.indexOf('y');
+        const idxSlot = header.indexOf('slotid');
+        const isListMode = idxDevice !== -1 && idxX !== -1 && idxY !== -1;
+
+        const byName = new Map();
+        devices.forEach((d) => {
+            const key = normalizeDeviceNameKey(d && d.deviceName);
+            if (!key || byName.has(key)) return;
+            byName.set(key, d);
+        });
+
+        let ok = 0;
+        const missing = [];
+        const invalid = [];
+        const seen = new Set();
+        if (isListMode) {
+            for (let i = 1; i < rows.length; i++) {
+                const cols = rows[i];
+                const deviceName = String(cols[idxDevice] || '').trim();
+                const xRaw = cols[idxX];
+                const yRaw = cols[idxY];
+                const slotRaw = idxSlot >= 0 ? String(cols[idxSlot] || '').trim() : '';
+                if (!deviceName) continue;
+                const x = Number(xRaw);
+                const y = Number(yRaw);
+                if (!Number.isFinite(x) || !Number.isFinite(y)) {
+                    invalid.push(`${deviceName} (x=${xRaw}, y=${yRaw})`);
+                    continue;
+                }
+                const dev = byName.get(normalizeDeviceNameKey(deviceName));
+                if (!dev) {
+                    missing.push(deviceName);
+                    continue;
+                }
+                if (seen.has(dev.deviceId)) continue;
+                seen.add(dev.deviceId);
+                const slotId = slotRaw || 'arena';
+                if (dev.slotId !== slotId) {
+                    safeSendEditor({ type: 'assign_slot', deviceId: dev.deviceId, slotId }, 'import slot từ CSV');
+                    dev.slotId = slotId;
+                }
+                safeSendEditor({ type: 'update_seat_layout', deviceId: dev.deviceId, seatLayout: { x, y } }, 'import layout từ CSV');
+                dev.seatLayout = { ...(dev.seatLayout || {}), x, y };
+                ok++;
+            }
+        } else {
+            // Matrix seatmap mode: mỗi ô CSV là 1 deviceName (giống Excel seat map).
+            const activeCount = devices.filter((d) => d && d.deviceId && d.status !== 'disconnected').length;
+            const stageSpec = getStageDensitySpec(Math.max(1, activeCount));
+            const CARD_W = Number(stageSpec && stageSpec.cardW) || 290;
+            const CARD_H = Number(stageSpec && stageSpec.cardH) || 92;
+            const GAP_X = Number(stageSpec && stageSpec.gapX) || 14;
+            const GAP_Y = Number(stageSpec && stageSpec.gapY) || 12;
+            const MARGIN_X = 16;
+            const MARGIN_Y = 16;
+            for (let rowIdx = 0; rowIdx < rows.length; rowIdx++) {
+                const cols = rows[rowIdx];
+                for (let colIdx = 0; colIdx < cols.length; colIdx++) {
+                    const cell = String(cols[colIdx] || '').trim();
+                    if (!cell) continue;
+                    const key = normalizeDeviceNameKey(cell);
+                    if (!key) continue;
+                    const dev = byName.get(key);
+                    if (!dev) {
+                        missing.push(cell);
+                        continue;
+                    }
+                    if (seen.has(dev.deviceId)) continue;
+                    seen.add(dev.deviceId);
+                    const x = MARGIN_X + colIdx * (CARD_W + GAP_X);
+                    const y = MARGIN_Y + rowIdx * (CARD_H + GAP_Y);
+                    if (dev.slotId !== 'arena') {
+                        safeSendEditor({ type: 'assign_slot', deviceId: dev.deviceId, slotId: 'arena' }, 'import seatmap CSV');
+                        dev.slotId = 'arena';
+                    }
+                    safeSendEditor({ type: 'update_seat_layout', deviceId: dev.deviceId, seatLayout: { x, y } }, 'import seatmap CSV');
+                    dev.seatLayout = { ...(dev.seatLayout || {}), x, y };
+                    ok++;
+                }
+            }
+        }
+
+        render();
+        const modeLabel = isListMode ? 'list mode (deviceName,x,y)' : 'seatmap matrix mode';
+        const parts = [`Import xong: ${ok} thiết bị (${modeLabel}).`];
+        if (missing.length) parts.push(`Không thấy deviceName (${missing.length}): ${missing.slice(0, 8).join(', ')}${missing.length > 8 ? ' ...' : ''}`);
+        if (invalid.length) parts.push(`Dòng lỗi x/y (${invalid.length}): ${invalid.slice(0, 8).join(', ')}${invalid.length > 8 ? ' ...' : ''}`);
+        alert(parts.join('\n'));
+    }
+
+    // Drag & Drop
+    let dragOffset = {x: 0, y: 0};
+    let dragFromArena = false;
+    function startDrag(e, did, onMap) { 
+        e.dataTransfer.setData("text/did", did); 
+        e.target.style.opacity = "0.4"; 
+        dragFromArena = !!onMap;
+        if (onMap) {
+            const rect = e.target.getBoundingClientRect();
+            // Convert to unscaled coordinates if arena is transformed.
+            const s = (arenaTransform && arenaTransform.scale) ? arenaTransform.scale : 1;
+            dragOffset.x = (e.clientX - rect.left) / s;
+            dragOffset.y = (e.clientY - rect.top) / s;
+        } else {
+            dragOffset = {x: 60, y: 25}; // center the drop for new items
+        }
+    }
+    function endDrag(e) {
+        if (e && e.target) e.target.style.opacity = "1";
+    }
+    
+    function allowDrop(e) { e.preventDefault(); }
+    
+    function handleDrop(e, sid) {
+        if (!ensureEditor('gán slot')) return;
+        e.preventDefault();
+        const did = e.dataTransfer.getData("text/did");
+        if (did) {
+            safeSendEditor({ type: 'assign_slot', deviceId: did, slotId: sid }, 'gán thiết bị');
+        }
+    }
+
+    function handleDropArena(e) {
+        if (!ensureEditor('kéo thả stage')) return;
+        e.preventDefault();
+        const did = e.dataTransfer.getData("text/did");
+        if (!did) return;
+        
+        const arena = document.getElementById('monitor-arena');
+        const arenaRect = arena.getBoundingClientRect();
+        const s = (arenaTransform && arenaTransform.scale) ? arenaTransform.scale : 1;
+        const tx = (arenaTransform && typeof arenaTransform.tx === 'number') ? arenaTransform.tx : 0;
+        const ty = (arenaTransform && typeof arenaTransform.ty === 'number') ? arenaTransform.ty : 0;
+        const relX = e.clientX - arenaRect.left + (arena.scrollLeft || 0);
+        const relY = e.clientY - arenaRect.top + (arena.scrollTop || 0);
+        let dropX = (relX - tx) / s - dragOffset.x;
+        let dropY = (relY - ty) / s - dragOffset.y;
+
+        // Nếu đang kéo từ arena → chỉ đổi vị trí, không gửi assign_slot nữa để tránh đụng thiết bị khác.
+        if (!dragFromArena) {
+            safeSendEditor({ type: 'assign_slot', deviceId: did, slotId: 'arena' }, 'gán thiết bị vào stage');
+        }
+
+        // Single device move
+        safeSendEditor({ type: 'update_seat_layout', deviceId: did, seatLayout: { x: dropX, y: dropY } }, 'kéo thả vị trí');
+
+        // Optimistic UI Update for smoothness
+        const dev = devices.find(d => d.deviceId === did);
+        if (dev) {
+            dev.slotId = 'arena';
+            dev.seatLayout = { x: dropX, y: dropY };
+            render();
+        }
+    }
+
+    function clearLogs() {
+        if (!ensureEditor('xóa logs')) return;
+        // Một số trình duyệt/thiết lập kiosk chặn `prompt()` làm người dùng tưởng nút không hoạt động.
+        // Dùng 2 bước xác nhận bằng confirm() để đảm bảo chạy được.
+        if (!confirm("Clear all violation logs?")) return;
+        if (!confirm("Are you sure? This cannot be undone.")) return;
+        safeSendEditor({ type: 'clear_logs' }, 'xóa logs');
+    }
+    
+    // --- FILE EXPLORER LOGIC ---
+    let explorerIp = '';
+    let currentPath = '/storage/emulated/0';
+    let fileContextTarget = { path: '', isDir: false };
+
+    function hideFileContextMenu() {
+        const menu = document.getElementById('file-context-menu');
+        if (!menu) return;
+        menu.style.display = 'none';
+        menu.setAttribute('aria-hidden', 'true');
+        fileContextTarget = { path: '', isDir: false };
+    }
+
+    function showFileContextMenu(clientX, clientY, path, isDir) {
+        const menu = document.getElementById('file-context-menu');
+        if (!menu) return;
+        fileContextTarget = { path, isDir: !!isDir };
+        menu.style.display = 'block';
+        menu.style.left = '0px';
+        menu.style.top = '0px';
+        const w = menu.offsetWidth || 140;
+        const h = menu.offsetHeight || 40;
+        const maxX = Math.max(8, window.innerWidth - w - 8);
+        const maxY = Math.max(8, window.innerHeight - h - 8);
+        menu.style.left = Math.min(Math.max(8, clientX), maxX) + 'px';
+        menu.style.top = Math.min(Math.max(8, clientY), maxY) + 'px';
+        menu.setAttribute('aria-hidden', 'false');
+    }
+
+    async function deleteRemotePath(filePath, isDir) {
+        if (!ensureEditor('xóa file trên thiết bị')) return;
+        if (!explorerIp || !filePath) return;
+        const kind = isDir ? 'thư mục (gồm mọi nội dung bên trong)' : 'file';
+        if (!confirm(`Xóa ${kind} trên thiết bị?\n\n${filePath}`)) return;
+        try {
+            const res = await fetch('/api/adb/delete', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    ip: explorerIp,
+                    path: filePath,
+                    isDir: isDir ? '1' : '0',
+                }),
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok) throw new Error(data.message || data.error || `HTTP ${res.status}`);
+            loadDir(currentPath);
+        } catch (err) {
+            alert('Lỗi xóa: ' + (err.message || String(err)));
+        }
+    }
+
+    function setupFileExplorerInteractions() {
+        const body = document.getElementById('explorer-content');
+        const delBtn = document.getElementById('file-context-delete-btn');
+        if (!body) return;
+
+        body.addEventListener('click', (e) => {
+            const item = e.target.closest('.file-item');
+            if (!item) return;
+            hideFileContextMenu();
+            if (item.classList.contains('file-item-back')) {
+                const enc = item.getAttribute('data-parent');
+                if (enc) loadDir(decodeURIComponent(enc));
+                return;
+            }
+            const enc = item.getAttribute('data-path');
+            if (!enc) return;
+            const p = decodeURIComponent(enc);
+            const isDir = item.getAttribute('data-isdir') === '1';
+            if (isDir) loadDir(p);
+            else downloadFile(p);
+        });
+
+        body.addEventListener('contextmenu', (e) => {
+            const item = e.target.closest('.file-item');
+            if (!item || item.classList.contains('file-item-back')) {
+                hideFileContextMenu();
+                return;
+            }
+            const enc = item.getAttribute('data-path');
+            if (!enc) {
+                hideFileContextMenu();
+                return;
+            }
+            if (!isEditorRole()) return;
+            e.preventDefault();
+            e.stopPropagation();
+            const p = decodeURIComponent(enc);
+            const isDir = item.getAttribute('data-isdir') === '1';
+            showFileContextMenu(e.clientX, e.clientY, p, isDir);
+        });
+
+        if (delBtn) {
+            delBtn.addEventListener('click', (ev) => {
+                ev.stopPropagation();
+                const { path, isDir } = fileContextTarget;
+                hideFileContextMenu();
+                if (path) deleteRemotePath(path, isDir);
+            });
+        }
+
+        document.addEventListener('click', (e) => {
+            const menu = document.getElementById('file-context-menu');
+            if (!menu || menu.style.display === 'none') return;
+            if (e.target.closest && e.target.closest('#file-context-menu')) return;
+            hideFileContextMenu();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') hideFileContextMenu();
+        });
+        body.addEventListener('scroll', () => hideFileContextMenu(), { passive: true });
+    }
+    
+    function openExplorer(ip, devName) {
+        if (!ip) return alert("Không xác định được IP LAN của thiết bị này.");
+        explorerIp = ip;
+        currentPath = '/storage/emulated/0'; // Default
+        const matched = devices.find((d) => d && d.ipAddress === ip) || null;
+        const resolvedName = devName || (matched && matched.deviceName) || 'Device';
+        const pkg = getRunningPackageSuffix(matched);
+        const nameWithPkg = pkg ? `${resolvedName} · ${pkg}` : resolvedName;
+        document.getElementById('file-modal').style.display = 'flex';
+        document.getElementById('explorer-device-label').textContent = `${nameWithPkg} · ${ip}`;
+        document.getElementById('current-path').value = currentPath;
+        loadDir(currentPath);
+    }
+    
+    function closeExplorer() {
+        hideFileContextMenu();
+        document.getElementById('file-modal').style.display = 'none';
+        explorerIp = '';
+    }
+
+    function openUploadPicker() {
+        if (!ensureEditor('upload file')) return;
+        document.getElementById('upload-input').click();
+    }
+    
+    async function loadDir(path) {
+        currentPath = path;
+        document.getElementById('current-path').value = path;
+        const container = document.getElementById('explorer-content');
+        container.innerHTML = `<div class="explorer-status">Đang tải danh sách từ ${explorerIp}…</div>`;
+        
+        try {
+            const res = await fetch(`/api/adb/list?ip=${explorerIp}&dir=${encodeURIComponent(path)}`);
+            if (!res.ok) {
+                const txt = await res.text().catch(() => '');
+                throw new Error(txt || `ADB list failed (HTTP ${res.status})`);
+            }
+            const files = await res.json().catch(async () => {
+                const txt = await res.text().catch(() => '');
+                throw new Error(txt || 'Invalid JSON from /api/adb/list');
+            });
+            
+            let html = '';
+            // Nút Go Back
+            if (path !== '/storage/emulated/0' && path.includes('/')) {
+                const parent = path.substring(0, path.lastIndexOf('/')) || '/storage/emulated/0';
+                const parentEnc = encodeURIComponent(parent);
+                html += `<div class="file-item file-item-back" data-parent="${parentEnc}">
+                            <div class="file-icon">↩</div><div class="file-name">Thư mục cha</div>
+                         </div>`;
+            }
+
+            files.forEach((f) => {
+                const icon = f.isDir ? '📁' : '📄';
+                const pathEnc = encodeURIComponent(f.path);
+                const isDirAttr = f.isDir ? '1' : '0';
+                const safeName = escapeHtml(f.name);
+                html += `<div class="file-item" data-path="${pathEnc}" data-isdir="${isDirAttr}">
+                            <div class="file-icon">${icon}</div><div class="file-name">${safeName}</div>
+                         </div>`;
+            });
+            container.innerHTML = html;
+        } catch(e) {
+            let hint = `Không thể kết nối ADB đến thiết bị (${e.message}).<br>Đang gọi tới IP: <b>${explorerIp}:5555</b><br><br>`;
+            hint += `Hãy chắc chắn điện thoại đã bật <b>Gỡ lỗi Không dây</b> hoặc đã được cắm cáp gõ lệnh <b>adb tcpip 5555</b>.`;
+            container.innerHTML = `<div class="explorer-status error">${hint}</div>`;
+        }
+    }
+    
+    function downloadFile(filePath) {
+        window.open(`/api/adb/download?ip=${explorerIp}&file=${encodeURIComponent(filePath)}`, '_blank');
+    }
+    
+    async function uploadFile(e) {
+        if (!ensureEditor('upload file')) {
+            document.getElementById('upload-input').value = '';
+            return;
+        }
+        if (!e.target.files.length || !explorerIp) return;
+        const file = e.target.files[0];
+        
+        const form = new FormData();
+        form.append("file", file);
+        form.append("ip", explorerIp);
+        form.append("dir", currentPath);
+        
+        document.getElementById('current-path').value = "ĐANG UPLOAD: " + file.name + "...";
+
+        try {
+            const r = await fetch(`/api/adb/check-dir?ip=${encodeURIComponent(explorerIp)}&dir=${encodeURIComponent(currentPath)}`);
+            if (!r.ok) throw new Error('check-dir failed');
+            const j = await r.json().catch(() => ({}));
+            if (!j.exists) {
+                alert(`Target directory not found on device: ${currentPath}${j.detail ? ' (' + j.detail + ')' : ''}`);
+                return;
+            }
+            const res = await fetch(`/api/adb/upload`, {
+                method: 'POST',
+                body: form
+            });
+            const data = await res.json();
+            if(data.status === 'success') {
+                alert("Đã đẩy file thành công vào máy con!");
+                loadDir(currentPath); // Refresh
+            }
+        } catch(e) {
+            alert("Lỗi Upload: " + e.message);
+        }
+        document.getElementById('upload-input').value = '';
+    }
+
+    window.onload = async () => {
+        if (canvas) {
+            canvas.width = 300;
+            canvas.height = 14;
+        }
+        if (canvasRemote) {
+            canvasRemote.width = 300;
+            canvasRemote.height = 14;
+        }
+        if (canvasExtra) {
+            canvasExtra.width = 300;
+            canvasExtra.height = 14;
+        }
+        syncLogPanelToggleButton();
+        updateStageZoomUi();
+        await loadAuthMe();
+        await loadClientConfig();
+        setupFileExplorerInteractions();
+        connect();
+    };
+</script>
+</body>
+</html>

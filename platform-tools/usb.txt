@@ -1,0 +1,690 @@
+USB MANAGER STATE (dumpsys usb):
+{
+  device_manager={
+    handler={
+      current_functions=MTP
+      current_functions_applied=true
+      screen_locked=false
+      connected=true
+      configured=true
+      host_connected=true
+      source_power=false
+      sink_power=true
+      usb_charging=true
+      hide_usb_notification=false
+      audio_accessory_connected=false
+      kernel_state=CONFIGURED
+    }
+    USB Event Log=UsbDeviceManager activity
+    USB Event=[
+      06-10 15:21:26.515 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=13934, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3/wakeup/wakeup156}
+      06-10 15:21:26.516 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=13935, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/wakeup/wakeup157}
+      06-10 15:21:26.516 USB UEVENT: {SUBSYSTEM=platform, SEQNUM=13936, ACTION=bind, DRIVER=xhci-hcd, MODALIAS=platform:xhci-hcd, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto}
+      06-10 15:21:26.702 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x11000000 (has extras) }
+      06-10 15:21:34.177 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x11000000 (has extras) }
+      06-10 15:21:38.705 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=13958, ACTION=unbind, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3/3-0:1.0, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:21:38.706 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, MODALIAS=usb:v1D6Bp0003d0504dc09dsc00dp03ic09isc00ip00in00, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=13959, ACTION=remove, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3/3-0:1.0, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:21:38.710 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/003/001, DEVTYPE=usb_device, MINOR=256, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=003, SEQNUM=13960, ACTION=unbind, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:21:38.713 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=13961, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3/wakeup/wakeup156}
+      06-10 15:21:38.713 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/003/001, DEVTYPE=usb_device, MINOR=256, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=003, SEQNUM=13962, ACTION=remove, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:21:38.719 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=13963, ACTION=unbind, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-0:1.0, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:21:38.719 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, MODALIAS=usb:v1D6Bp0002d0504dc09dsc00dp01ic09isc00ip00in00, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=13964, ACTION=remove, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-0:1.0, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:21:38.723 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/002/001, DEVTYPE=usb_device, MINOR=128, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=002, SEQNUM=13965, ACTION=unbind, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:21:38.726 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=13966, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/wakeup/wakeup157}
+      06-10 15:21:38.726 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/002/001, DEVTYPE=usb_device, MINOR=128, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=002, SEQNUM=13967, ACTION=remove, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:21:38.734 USB UEVENT: {SUBSYSTEM=platform, SEQNUM=13968, ACTION=unbind, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto}
+      06-10 15:21:38.734 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=13969, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/wakeup/wakeup155}
+      06-10 15:21:38.734 USB UEVENT: {SUBSYSTEM=platform, SEQNUM=13970, ACTION=remove, MODALIAS=platform:xhci-hcd, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto}
+      06-10 15:21:39.652 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x11000000 (has extras) }
+      06-10 15:21:43.829 USB UEVENT: {SUBSYSTEM=platform, SEQNUM=13976, ACTION=add, MODALIAS=platform:xhci-hcd, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto}
+      06-10 15:21:43.829 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=13977, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/wakeup/wakeup155}
+      06-10 15:21:43.833 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/002/001, DEVTYPE=usb_device, MINOR=128, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=002, SEQNUM=13978, ACTION=add, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:21:43.835 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, MODALIAS=usb:v1D6Bp0002d0504dc09dsc00dp01ic09isc00ip00in00, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=13979, ACTION=add, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-0:1.0, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:21:43.838 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, DRIVER=hub, MODALIAS=usb:v1D6Bp0002d0504dc09dsc00dp01ic09isc00ip00in00, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=13980, ACTION=bind, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-0:1.0, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:21:43.848 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/002/001, DEVTYPE=usb_device, DRIVER=usb, MINOR=128, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=002, SEQNUM=13981, ACTION=bind, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:21:43.855 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/003/001, DEVTYPE=usb_device, MINOR=256, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=003, SEQNUM=13982, ACTION=add, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:21:43.856 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, MODALIAS=usb:v1D6Bp0003d0504dc09dsc00dp03ic09isc00ip00in00, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=13983, ACTION=add, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3/3-0:1.0, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:21:43.857 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, DRIVER=hub, MODALIAS=usb:v1D6Bp0003d0504dc09dsc00dp03ic09isc00ip00in00, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=13984, ACTION=bind, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3/3-0:1.0, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:21:43.864 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/003/001, DEVTYPE=usb_device, DRIVER=usb, MINOR=256, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=003, SEQNUM=13985, ACTION=bind, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:21:43.865 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=13986, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3/wakeup/wakeup156}
+      06-10 15:21:43.866 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=13987, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/wakeup/wakeup157}
+      06-10 15:21:43.866 USB UEVENT: {SUBSYSTEM=platform, SEQNUM=13988, ACTION=bind, DRIVER=xhci-hcd, MODALIAS=platform:xhci-hcd, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto}
+      06-10 15:21:51.475 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x11000000 (has extras) }
+      06-10 15:22:33.849 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=14021, ACTION=unbind, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3/3-0:1.0, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:22:33.849 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, MODALIAS=usb:v1D6Bp0003d0504dc09dsc00dp03ic09isc00ip00in00, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=14022, ACTION=remove, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3/3-0:1.0, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:22:33.852 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/003/001, DEVTYPE=usb_device, MINOR=256, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=003, SEQNUM=14023, ACTION=unbind, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:22:33.852 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14024, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3/wakeup/wakeup156}
+      06-10 15:22:33.853 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/003/001, DEVTYPE=usb_device, MINOR=256, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=003, SEQNUM=14025, ACTION=remove, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:22:33.927 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=14026, ACTION=unbind, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-0:1.0, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:22:33.927 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, MODALIAS=usb:v1D6Bp0002d0504dc09dsc00dp01ic09isc00ip00in00, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=14027, ACTION=remove, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-0:1.0, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:22:33.936 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/002/001, DEVTYPE=usb_device, MINOR=128, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=002, SEQNUM=14028, ACTION=unbind, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:22:33.937 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14029, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/wakeup/wakeup157}
+      06-10 15:22:33.938 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/002/001, DEVTYPE=usb_device, MINOR=128, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=002, SEQNUM=14030, ACTION=remove, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:22:33.949 USB UEVENT: {SUBSYSTEM=platform, SEQNUM=14031, ACTION=unbind, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto}
+      06-10 15:22:33.951 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14032, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/wakeup/wakeup155}
+      06-10 15:22:33.955 USB UEVENT: {SUBSYSTEM=platform, SEQNUM=14034, ACTION=remove, MODALIAS=platform:xhci-hcd, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto}
+      06-10 15:22:34.902 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x11000000 (has extras) }
+      06-10 15:22:37.110 USB UEVENT: {SUBSYSTEM=platform, SEQNUM=14060, ACTION=change, OF_FULLNAME=/soc/ssusb@a800000/dwc3@a800000, DRIVER=dwc3, UDC_NAME=a800000.dwc3, OF_COMPATIBLE_0=snps,dwc3, MODALIAS=of:Ndwc3T(null)Csnps,dwc3, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3, OF_NAME=dwc3, OF_COMPATIBLE_N=1}
+      06-10 15:22:38.101 USB UEVENT: {SUBSYSTEM=platform, SEQNUM=14066, ACTION=add, MODALIAS=platform:xhci-hcd, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto}
+      06-10 15:22:38.104 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14067, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/wakeup/wakeup155}
+      06-10 15:22:38.109 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/002/001, DEVTYPE=usb_device, MINOR=128, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=002, SEQNUM=14068, ACTION=add, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:22:38.110 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, MODALIAS=usb:v1D6Bp0002d0504dc09dsc00dp01ic09isc00ip00in00, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=14069, ACTION=add, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-0:1.0, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:22:38.112 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, DRIVER=hub, MODALIAS=usb:v1D6Bp0002d0504dc09dsc00dp01ic09isc00ip00in00, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=14070, ACTION=bind, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-0:1.0, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:22:38.128 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/002/001, DEVTYPE=usb_device, DRIVER=usb, MINOR=128, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=002, SEQNUM=14071, ACTION=bind, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:22:38.132 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/003/001, DEVTYPE=usb_device, MINOR=256, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=003, SEQNUM=14072, ACTION=add, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:22:38.133 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, MODALIAS=usb:v1D6Bp0003d0504dc09dsc00dp03ic09isc00ip00in00, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=14073, ACTION=add, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3/3-0:1.0, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:22:38.135 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, DRIVER=hub, MODALIAS=usb:v1D6Bp0003d0504dc09dsc00dp03ic09isc00ip00in00, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=14074, ACTION=bind, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3/3-0:1.0, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:22:38.148 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/003/001, DEVTYPE=usb_device, DRIVER=usb, MINOR=256, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=003, SEQNUM=14075, ACTION=bind, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:22:38.149 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14076, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3/wakeup/wakeup156}
+      06-10 15:22:38.150 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14077, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/wakeup/wakeup157}
+      06-10 15:22:38.151 USB UEVENT: {SUBSYSTEM=platform, SEQNUM=14078, ACTION=bind, DRIVER=xhci-hcd, MODALIAS=platform:xhci-hcd, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto}
+      06-10 15:22:38.487 USB UEVENT: {SUBSYSTEM=usb, MAJOR=189, BUSNUM=002, SEQNUM=14079, ACTION=add, DEVNAME=bus/usb/002/002, DEVTYPE=usb_device, PRODUCT=2109/2817/3d3, MINOR=129, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1, TYPE=9/0/2, DEVNUM=002}
+      06-10 15:22:38.547 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14080, ACTION=add, INTERFACE=9/0/1, DEVTYPE=usb_interface, PRODUCT=2109/2817/3d3, MODALIAS=usb:v2109p2817d03D3dc09dsc00dp02ic09isc00ip01in00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1:1.0, TYPE=9/0/2}
+      06-10 15:22:38.733 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14081, ACTION=bind, INTERFACE=9/0/2, DEVTYPE=usb_interface, PRODUCT=2109/2817/3d3, DRIVER=hub, MODALIAS=usb:v2109p2817d03D3dc09dsc00dp02ic09isc00ip02in00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1:1.0, TYPE=9/0/2}
+      06-10 15:22:38.738 USB UEVENT: {MAJOR=189, DEVNAME=bus/usb/002/002, DEVTYPE=usb_device, DRIVER=usb, MINOR=129, DEVNUM=002, SUBSYSTEM=usb, BUSNUM=002, SEQNUM=14082, ACTION=bind, PRODUCT=2109/2817/3d3, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1, TYPE=9/0/2}
+      06-10 15:22:38.738 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14083, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/wakeup/wakeup166}
+      06-10 15:22:39.097 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x11000000 (has extras) }
+      06-10 15:22:39.455 USB UEVENT: {SUBSYSTEM=usb, MAJOR=189, BUSNUM=002, SEQNUM=14084, ACTION=add, DEVNAME=bus/usb/002/003, DEVTYPE=usb_device, PRODUCT=2109/2817/3d3, MINOR=130, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1, TYPE=9/0/2, DEVNUM=003}
+      06-10 15:22:39.509 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14085, ACTION=add, INTERFACE=9/0/1, DEVTYPE=usb_interface, PRODUCT=2109/2817/3d3, MODALIAS=usb:v2109p2817d03D3dc09dsc00dp02ic09isc00ip01in00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1:1.0, TYPE=9/0/2}
+      06-10 15:22:39.696 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14086, ACTION=bind, INTERFACE=9/0/2, DEVTYPE=usb_interface, PRODUCT=2109/2817/3d3, DRIVER=hub, MODALIAS=usb:v2109p2817d03D3dc09dsc00dp02ic09isc00ip02in00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1:1.0, TYPE=9/0/2}
+      06-10 15:22:39.715 USB UEVENT: {MAJOR=189, DEVNAME=bus/usb/002/003, DEVTYPE=usb_device, DRIVER=usb, MINOR=130, DEVNUM=003, SUBSYSTEM=usb, BUSNUM=002, SEQNUM=14087, ACTION=bind, PRODUCT=2109/2817/3d3, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1, TYPE=9/0/2}
+      06-10 15:22:39.717 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14088, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/wakeup/wakeup167}
+      06-10 15:22:39.975 USB UEVENT: {SUBSYSTEM=usb, MAJOR=189, BUSNUM=002, SEQNUM=14089, ACTION=add, DEVNAME=bus/usb/002/004, DEVTYPE=usb_device, PRODUCT=bda/8153/3100, MINOR=131, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3, TYPE=0/0/0, DEVNUM=004}
+      06-10 15:22:40.020 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14091, ACTION=add, INTERFACE=2/6/0, DEVTYPE=usb_interface, PRODUCT=bda/8153/3100, MODALIAS=usb:v0BDAp8153d3100dc00dsc00dp00ic02isc06ip00in00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/2-1.3:2.0, TYPE=0/0/0}
+      06-10 15:22:40.021 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14092, ACTION=add, INTERFACE=10/0/0, DEVTYPE=usb_interface, PRODUCT=bda/8153/3100, MODALIAS=usb:v0BDAp8153d3100dc00dsc00dp00ic0Aisc00ip00in01, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/2-1.3:2.1, TYPE=0/0/0}
+      06-10 15:22:40.024 USB UEVENT: {MAJOR=189, DEVNAME=bus/usb/002/004, DEVTYPE=usb_device, DRIVER=usb, MINOR=131, DEVNUM=004, SUBSYSTEM=usb, BUSNUM=002, SEQNUM=14093, ACTION=bind, PRODUCT=bda/8153/3100, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3, TYPE=0/0/0}
+      06-10 15:22:40.025 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14094, ACTION=remove, INTERFACE=2/6/0, DEVTYPE=usb_interface, PRODUCT=bda/8153/3100, MODALIAS=usb:v0BDAp8153d3100dc00dsc00dp00ic02isc06ip00in00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/2-1.3:2.0, TYPE=0/0/0}
+      06-10 15:22:40.026 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14095, ACTION=remove, INTERFACE=10/0/0, DEVTYPE=usb_interface, PRODUCT=bda/8153/3100, MODALIAS=usb:v0BDAp8153d3100dc00dsc00dp00ic0Aisc00ip00in01, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/2-1.3:2.1, TYPE=0/0/0}
+      06-10 15:22:40.116 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14096, ACTION=add, INTERFACE=255/255/0, DEVTYPE=usb_interface, PRODUCT=bda/8153/3100, MODALIAS=usb:v0BDAp8153d3100dc00dsc00dp00icFFiscFFip00in00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/2-1.3:1.0, TYPE=0/0/0}
+      06-10 15:22:40.409 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14097, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/wakeup/wakeup168}
+      06-10 15:22:40.453 USB UEVENT: {SUBSYSTEM=net, SEQNUM=14098, ACTION=add, INTERFACE=eth0, IFINDEX=37, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/2-1.3:1.0/net/eth0}
+      06-10 15:22:40.453 USB UEVENT: {SUBSYSTEM=queues, SEQNUM=14099, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/2-1.3:1.0/net/eth0/queues/rx-0}
+      06-10 15:22:40.453 USB UEVENT: {SUBSYSTEM=queues, SEQNUM=14100, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/2-1.3:1.0/net/eth0/queues/tx-0}
+      06-10 15:22:40.457 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14101, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/wakeup/wakeup169}
+      06-10 15:22:40.459 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14102, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/wakeup/wakeup169}
+      06-10 15:22:40.459 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14103, ACTION=bind, INTERFACE=255/255/0, DEVTYPE=usb_interface, PRODUCT=bda/8153/3100, DRIVER=r8152, MODALIAS=usb:v0BDAp8153d3100dc00dsc00dp00icFFiscFFip00in00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/2-1.3:1.0, TYPE=0/0/0}
+      06-10 15:22:41.610 USB UEVENT: {SUBSYSTEM=usb, MAJOR=189, BUSNUM=002, SEQNUM=14104, ACTION=add, DEVNAME=bus/usb/002/005, DEVTYPE=usb_device, PRODUCT=18d1/5029/1, MINOR=132, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3, TYPE=0/0/0, DEVNUM=005}
+      06-10 15:22:41.651 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14105, ACTION=add, INTERFACE=3/0/0, DEVTYPE=usb_interface, PRODUCT=18d1/5029/1, MODALIAS=usb:v18D1p5029d0001dc00dsc00dp00ic03isc00ip00in00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3/2-1.1.3:1.0, TYPE=0/0/0}
+      06-10 15:22:41.656 USB UEVENT: {SUBSYSTEM=hid, HID_NAME=Generic USB-C to 3.5mm-Headphone Adapter, SEQNUM=14106, ACTION=add, HID_ID=0003:000018D1:00005029, MODALIAS=hid:b0003g0001v000018D1p00005029, HID_UNIQ=201701110001, HID_PHYS=usb-xhci-hcd.1.auto-1.1.3/input0, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3/2-1.1.3:1.0/0003:18D1:5029.0031}
+      06-10 15:22:41.656 USB UEVENT: {UNIQ="201701110001", PROP=0, MODALIAS=input:b0003v18D1p5029e0111-e0,1,4,k72,73,A4,246,ram4,lsfw, NAME="Generic USB-C to 3.5mm-Headphone Adapter", SUBSYSTEM=input, EV=13, SEQNUM=14107, ACTION=add, PRODUCT=3/18d1/5029/111, PHYS="usb-xhci-hcd.1.auto-1.1.3/input0", MSC=10, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3/2-1.1.3:1.0/0003:18D1:5029.0031/input/input26, KEY=40 0 0 0 0 0 0 1000000000 c000000000000 0}
+      06-10 15:22:41.713 USB UEVENT: {SUBSYSTEM=input, MAJOR=13, SEQNUM=14108, ACTION=add, DEVNAME=input/event9, MINOR=73, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3/2-1.1.3:1.0/0003:18D1:5029.0031/input/input26/event9}
+      06-10 15:22:41.713 USB UEVENT: {SUBSYSTEM=hidraw, MAJOR=500, SEQNUM=14109, ACTION=add, DEVNAME=hidraw0, MINOR=0, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3/2-1.1.3:1.0/0003:18D1:5029.0031/hidraw/hidraw0}
+      06-10 15:22:41.713 USB UEVENT: {SUBSYSTEM=hid, HID_NAME=Generic USB-C to 3.5mm-Headphone Adapter, SEQNUM=14110, ACTION=bind, HID_ID=0003:000018D1:00005029, DRIVER=hid-generic, MODALIAS=hid:b0003g0001v000018D1p00005029, HID_UNIQ=201701110001, HID_PHYS=usb-xhci-hcd.1.auto-1.1.3/input0, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3/2-1.1.3:1.0/0003:18D1:5029.0031}
+      06-10 15:22:41.713 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14111, ACTION=bind, INTERFACE=3/0/0, DEVTYPE=usb_interface, PRODUCT=18d1/5029/1, DRIVER=usbhid, MODALIAS=usb:v18D1p5029d0001dc00dsc00dp00ic03isc00ip00in00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3/2-1.1.3:1.0, TYPE=0/0/0}
+      06-10 15:22:41.720 USB UEVENT: {MAJOR=189, DEVNAME=bus/usb/002/005, DEVTYPE=usb_device, DRIVER=usb, MINOR=132, DEVNUM=005, SUBSYSTEM=usb, BUSNUM=002, SEQNUM=14113, ACTION=bind, PRODUCT=18d1/5029/1, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3, TYPE=0/0/0}
+      06-10 15:22:41.720 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14114, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3/wakeup/wakeup170}
+      06-10 15:22:41.980 USB UEVENT: {SUBSYSTEM=usb, MAJOR=189, BUSNUM=002, SEQNUM=14115, ACTION=add, DEVNAME=bus/usb/002/006, DEVTYPE=usb_device, PRODUCT=5e3/749/1538, MINOR=133, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4, TYPE=0/0/0, DEVNUM=006}
+      06-10 15:22:41.982 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14116, ACTION=add, INTERFACE=8/6/80, DEVTYPE=usb_interface, PRODUCT=5e3/749/1538, MODALIAS=usb:v05E3p0749d1538dc00dsc00dp00ic08isc06ip50in00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0, TYPE=0/0/0}
+      06-10 15:22:41.983 USB UEVENT: {SUBSYSTEM=scsi, SEQNUM=14117, ACTION=add, DEVTYPE=scsi_host, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1}
+      06-10 15:22:41.983 USB UEVENT: {SUBSYSTEM=scsi_host, SEQNUM=14118, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/scsi_host/host1}
+      06-10 15:22:41.983 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14119, ACTION=bind, INTERFACE=8/6/80, DEVTYPE=usb_interface, PRODUCT=5e3/749/1538, DRIVER=usb-storage, MODALIAS=usb:v05E3p0749d1538dc00dsc00dp00ic08isc06ip50in00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0, TYPE=0/0/0}
+      06-10 15:22:41.987 USB UEVENT: {MAJOR=189, DEVNAME=bus/usb/002/006, DEVTYPE=usb_device, DRIVER=usb, MINOR=133, DEVNUM=006, SUBSYSTEM=usb, BUSNUM=002, SEQNUM=14120, ACTION=bind, PRODUCT=5e3/749/1538, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4, TYPE=0/0/0}
+      06-10 15:22:43.005 USB UEVENT: {SUBSYSTEM=scsi, SEQNUM=14122, ACTION=add, DEVTYPE=scsi_target, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0}
+      06-10 15:22:43.009 USB UEVENT: {SUBSYSTEM=scsi, SEQNUM=14123, ACTION=add, DEVTYPE=scsi_device, MODALIAS=scsi:t-0x00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:0}
+      06-10 15:22:43.011 USB UEVENT: {SUBSYSTEM=scsi_device, SEQNUM=14124, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:0/scsi_device/1:0:0:0}
+      06-10 15:22:43.012 USB UEVENT: {SUBSYSTEM=scsi_disk, SEQNUM=14125, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:0/scsi_disk/1:0:0:0}
+      06-10 15:22:43.013 USB UEVENT: {SUBSYSTEM=scsi_generic, MAJOR=21, SEQNUM=14126, ACTION=add, DEVNAME=sg10, MINOR=10, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:0/scsi_generic/sg10}
+      06-10 15:22:43.015 USB UEVENT: {SUBSYSTEM=bsg, MAJOR=242, SEQNUM=14127, ACTION=add, DEVNAME=bsg/1:0:0:0, MINOR=11, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:0/bsg/1:0:0:0}
+      06-10 15:22:43.018 USB UEVENT: {SUBSYSTEM=scsi, SEQNUM=14129, ACTION=add, DEVTYPE=scsi_device, MODALIAS=scsi:t-0x00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:1}
+      06-10 15:22:43.020 USB UEVENT: {SUBSYSTEM=block, MAJOR=8, SEQNUM=14130, ACTION=add, DEVNAME=sdh, DEVTYPE=disk, MINOR=112, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:0/block/sdh}
+      06-10 15:22:43.024 USB UEVENT: {SUBSYSTEM=scsi_device, SEQNUM=14131, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:1/scsi_device/1:0:0:1}
+      06-10 15:22:43.025 USB UEVENT: {SUBSYSTEM=scsi_generic, MAJOR=21, SEQNUM=14132, ACTION=add, DEVNAME=sg11, MINOR=11, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:1/scsi_generic/sg11}
+      06-10 15:22:43.027 USB UEVENT: {SUBSYSTEM=scsi_disk, SEQNUM=14133, ACTION=add, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:1/scsi_disk/1:0:0:1}
+      06-10 15:22:43.030 USB UEVENT: {SUBSYSTEM=block, MAJOR=8, SEQNUM=14134, ACTION=change, DEVNAME=sdh, DEVTYPE=disk, MINOR=112, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:0/block/sdh, DISK_MEDIA_CHANGE=1}
+      06-10 15:22:43.030 USB UEVENT: {SUBSYSTEM=bsg, MAJOR=242, SEQNUM=14135, ACTION=add, DEVNAME=bsg/1:0:0:1, MINOR=12, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:1/bsg/1:0:0:1}
+      06-10 15:22:43.030 USB UEVENT: {SUBSYSTEM=scsi, SEQNUM=14136, ACTION=bind, DEVTYPE=scsi_device, DRIVER=sd, MODALIAS=scsi:t-0x00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:0}
+      06-10 15:22:43.234 USB UEVENT: {SUBSYSTEM=block, MAJOR=8, SEQNUM=14138, ACTION=add, DEVNAME=sdi, DEVTYPE=disk, MINOR=128, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:1/block/sdi}
+      06-10 15:22:43.236 USB UEVENT: {SUBSYSTEM=scsi, SEQNUM=14139, ACTION=bind, DEVTYPE=scsi_device, DRIVER=sd, MODALIAS=scsi:t-0x00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:1}
+      06-10 15:22:43.237 USB UEVENT: {SUBSYSTEM=block, MAJOR=8, SEQNUM=14140, ACTION=change, DEVNAME=sdi, DEVTYPE=disk, MINOR=128, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:1/block/sdi, DISK_MEDIA_CHANGE=1}
+      06-10 15:22:43.239 USB UEVENT: {SUBSYSTEM=block, MAJOR=8, SEQNUM=14141, ACTION=change, DEVNAME=sdh, DEVTYPE=disk, MINOR=112, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:0/block/sdh}
+      06-10 15:22:43.290 USB UEVENT: {SUBSYSTEM=block, MAJOR=8, SEQNUM=14142, ACTION=change, DEVNAME=sdi, DEVTYPE=disk, MINOR=128, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:1/block/sdi}
+      06-10 15:23:04.106 USB UEVENT: {SUBSYSTEM=platform, SEQNUM=14155, ACTION=change, OF_FULLNAME=/soc/ssusb@a600000/dwc3@a600000, DRIVER=dwc3, UDC_NAME=a600000.dwc3, OF_COMPATIBLE_0=snps,dwc3, MODALIAS=of:Ndwc3T(null)Csnps,dwc3, DEVPATH=/devices/platform/soc/a600000.ssusb/a600000.dwc3, OF_NAME=dwc3, OF_COMPATIBLE_N=1}
+      06-10 15:23:04.109 USB UEVENT: {SUBSYSTEM=udc, SEQNUM=14156, ACTION=change, USB_UDC_NAME=dwc3-gadget, USB_UDC_DRIVER=g1, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/udc/a800000.dwc3}
+      06-10 15:23:04.315 USB UEVENT: {SUBSYSTEM=udc, SEQNUM=14159, ACTION=change, USB_UDC_NAME=dwc3-gadget, USB_UDC_DRIVER=g1, DEVPATH=/devices/platform/soc/a600000.ssusb/a600000.dwc3/udc/a600000.dwc3}
+      06-10 15:23:04.366 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x11000000 (has extras) }
+      06-10 15:23:04.611 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=14162, ACTION=change, USB_STATE=CONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      06-10 15:23:04.619 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x11000000 (has extras) }
+      06-10 15:23:04.906 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=14163, ACTION=change, USB_STATE=CONFIGURED, DEVPATH=/devices/virtual/android_usb/android0}
+      06-10 15:23:04.907 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x11000000 (has extras) }
+      06-10 15:23:05.645 USB UEVENT: {SUBSYSTEM=udc, SEQNUM=14165, ACTION=change, USB_UDC_NAME=dwc3-gadget, USB_UDC_DRIVER=g1, DEVPATH=/devices/platform/soc/a600000.ssusb/a600000.dwc3/udc/a600000.dwc3}
+      06-10 15:23:05.739 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x11000000 (has extras) }
+      06-10 15:23:05.841 USB UEVENT: {SUBSYSTEM=udc, SEQNUM=14166, ACTION=change, USB_UDC_NAME=dwc3-gadget, USB_UDC_DRIVER=g1, DEVPATH=/devices/platform/soc/a600000.ssusb/a600000.dwc3/udc/a600000.dwc3}
+      06-10 15:23:05.842 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=14167, ACTION=change, USB_STATE=DISCONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      06-10 15:23:06.138 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=14170, ACTION=change, USB_STATE=CONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      06-10 15:23:06.139 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x11000000 (has extras) }
+      06-10 15:23:06.338 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=14171, ACTION=change, USB_STATE=CONFIGURED, DEVPATH=/devices/virtual/android_usb/android0}
+      06-10 15:23:06.339 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x11000000 (has extras) }
+      06-10 15:28:26.819 USB UEVENT: {SUBSYSTEM=input, MAJOR=13, SEQNUM=14219, ACTION=remove, DEVNAME=input/event9, MINOR=73, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3/2-1.1.3:1.0/0003:18D1:5029.0031/input/input26/event9}
+      06-10 15:28:26.823 USB UEVENT: {UNIQ="201701110001", PROP=0, MODALIAS=input:b0003v18D1p5029e0111-e0,1,4,k72,73,A4,246,ram4,lsfw, NAME="Generic USB-C to 3.5mm-Headphone Adapter", SUBSYSTEM=input, EV=13, SEQNUM=14221, ACTION=remove, PRODUCT=3/18d1/5029/111, PHYS="usb-xhci-hcd.1.auto-1.1.3/input0", MSC=10, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3/2-1.1.3:1.0/0003:18D1:5029.0031/input/input26, KEY=40 0 0 0 0 0 0 1000000000 c000000000000 0}
+      06-10 15:28:26.823 USB UEVENT: {SUBSYSTEM=hidraw, MAJOR=500, SEQNUM=14222, ACTION=remove, DEVNAME=hidraw0, MINOR=0, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3/2-1.1.3:1.0/0003:18D1:5029.0031/hidraw/hidraw0}
+      06-10 15:28:26.824 USB UEVENT: {SUBSYSTEM=hid, HID_NAME=Generic USB-C to 3.5mm-Headphone Adapter, SEQNUM=14223, ACTION=unbind, HID_ID=0003:000018D1:00005029, HID_UNIQ=201701110001, HID_PHYS=usb-xhci-hcd.1.auto-1.1.3/input0, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3/2-1.1.3:1.0/0003:18D1:5029.0031}
+      06-10 15:28:26.824 USB UEVENT: {SUBSYSTEM=hid, HID_NAME=Generic USB-C to 3.5mm-Headphone Adapter, SEQNUM=14224, ACTION=remove, HID_ID=0003:000018D1:00005029, MODALIAS=hid:b0003g0001v000018D1p00005029, HID_UNIQ=201701110001, HID_PHYS=usb-xhci-hcd.1.auto-1.1.3/input0, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3/2-1.1.3:1.0/0003:18D1:5029.0031}
+      06-10 15:28:26.824 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14225, ACTION=unbind, INTERFACE=3/0/0, DEVTYPE=usb_interface, PRODUCT=18d1/5029/1, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3/2-1.1.3:1.0, TYPE=0/0/0}
+      06-10 15:28:26.828 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14226, ACTION=remove, INTERFACE=3/0/0, DEVTYPE=usb_interface, PRODUCT=18d1/5029/1, MODALIAS=usb:v18D1p5029d0001dc00dsc00dp00ic03isc00ip00in00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3/2-1.1.3:1.0, TYPE=0/0/0}
+      06-10 15:28:26.830 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=14231, ACTION=unbind, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3/3-0:1.0, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:28:26.830 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, MODALIAS=usb:v1D6Bp0003d0504dc09dsc00dp03ic09isc00ip00in00, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=14232, ACTION=remove, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3/3-0:1.0, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:28:26.843 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/003/001, DEVTYPE=usb_device, MINOR=256, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=003, SEQNUM=14234, ACTION=unbind, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:28:26.845 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14235, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3/wakeup/wakeup156}
+      06-10 15:28:26.845 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/003/001, DEVTYPE=usb_device, MINOR=256, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=003, SEQNUM=14236, ACTION=remove, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/3/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb3, TYPE=9/0/3, OF_COMPATIBLE_N=1}
+      06-10 15:28:26.846 USB UEVENT: {SUBSYSTEM=usb, MAJOR=189, BUSNUM=002, SEQNUM=14237, ACTION=unbind, DEVNAME=bus/usb/002/005, DEVTYPE=usb_device, PRODUCT=18d1/5029/1, MINOR=132, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3, TYPE=0/0/0, DEVNUM=005}
+      06-10 15:28:26.846 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14238, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3/wakeup/wakeup170}
+      06-10 15:28:26.846 USB UEVENT: {SUBSYSTEM=usb, MAJOR=189, BUSNUM=002, SEQNUM=14239, ACTION=remove, DEVNAME=bus/usb/002/005, DEVTYPE=usb_device, PRODUCT=18d1/5029/1, MINOR=132, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.3, TYPE=0/0/0, DEVNUM=005}
+      06-10 15:28:26.846 USB UEVENT: {SUBSYSTEM=bsg, MAJOR=242, SEQNUM=14240, ACTION=remove, DEVNAME=bsg/1:0:0:0, MINOR=11, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:0/bsg/1:0:0:0}
+      06-10 15:28:26.846 USB UEVENT: {SUBSYSTEM=scsi_generic, MAJOR=21, SEQNUM=14241, ACTION=remove, DEVNAME=sg10, MINOR=10, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:0/scsi_generic/sg10}
+      06-10 15:28:26.846 USB UEVENT: {SUBSYSTEM=scsi_device, SEQNUM=14242, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:0/scsi_device/1:0:0:0}
+      06-10 15:28:26.846 USB UEVENT: {SUBSYSTEM=scsi_disk, SEQNUM=14243, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:0/scsi_disk/1:0:0:0}
+      06-10 15:28:26.848 USB UEVENT: {SUBSYSTEM=block, MAJOR=8, SEQNUM=14245, ACTION=remove, DEVNAME=sdh, DEVTYPE=disk, MINOR=112, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:0/block/sdh}
+      06-10 15:28:26.868 USB UEVENT: {SUBSYSTEM=scsi, SEQNUM=14246, ACTION=unbind, DEVTYPE=scsi_device, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:0}
+      06-10 15:28:26.869 USB UEVENT: {SUBSYSTEM=scsi, SEQNUM=14247, ACTION=remove, DEVTYPE=scsi_device, MODALIAS=scsi:t-0x00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:0}
+      06-10 15:28:26.905 USB UEVENT: {SUBSYSTEM=bsg, MAJOR=242, SEQNUM=14249, ACTION=remove, DEVNAME=bsg/1:0:0:1, MINOR=12, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:1/bsg/1:0:0:1}
+      06-10 15:28:26.905 USB UEVENT: {SUBSYSTEM=scsi_generic, MAJOR=21, SEQNUM=14250, ACTION=remove, DEVNAME=sg11, MINOR=11, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:1/scsi_generic/sg11}
+      06-10 15:28:26.905 USB UEVENT: {SUBSYSTEM=scsi_device, SEQNUM=14251, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:1/scsi_device/1:0:0:1}
+      06-10 15:28:26.906 USB UEVENT: {SUBSYSTEM=scsi_disk, SEQNUM=14252, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:1/scsi_disk/1:0:0:1}
+      06-10 15:28:26.909 USB UEVENT: {SUBSYSTEM=block, MAJOR=8, SEQNUM=14254, ACTION=remove, DEVNAME=sdi, DEVTYPE=disk, MINOR=128, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:1/block/sdi}
+      06-10 15:28:26.929 USB UEVENT: {SUBSYSTEM=scsi, SEQNUM=14255, ACTION=unbind, DEVTYPE=scsi_device, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:1}
+      06-10 15:28:26.929 USB UEVENT: {SUBSYSTEM=scsi, SEQNUM=14256, ACTION=remove, DEVTYPE=scsi_device, MODALIAS=scsi:t-0x00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0/1:0:0:1}
+      06-10 15:28:26.946 USB UEVENT: {SUBSYSTEM=scsi, SEQNUM=14257, ACTION=remove, DEVTYPE=scsi_target, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/target1:0:0}
+      06-10 15:28:26.947 USB UEVENT: {SUBSYSTEM=scsi_host, SEQNUM=14258, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1/scsi_host/host1}
+      06-10 15:28:26.949 USB UEVENT: {SUBSYSTEM=scsi, SEQNUM=14259, ACTION=remove, DEVTYPE=scsi_host, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0/host1}
+      06-10 15:28:26.961 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14260, ACTION=unbind, INTERFACE=8/6/80, DEVTYPE=usb_interface, PRODUCT=5e3/749/1538, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0, TYPE=0/0/0}
+      06-10 15:28:26.963 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14261, ACTION=remove, INTERFACE=8/6/80, DEVTYPE=usb_interface, PRODUCT=5e3/749/1538, MODALIAS=usb:v05E3p0749d1538dc00dsc00dp00ic08isc06ip50in00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4/2-1.1.4:1.0, TYPE=0/0/0}
+      06-10 15:28:26.969 USB UEVENT: {SUBSYSTEM=usb, MAJOR=189, BUSNUM=002, SEQNUM=14262, ACTION=unbind, DEVNAME=bus/usb/002/006, DEVTYPE=usb_device, PRODUCT=5e3/749/1538, MINOR=133, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4, TYPE=0/0/0, DEVNUM=006}
+      06-10 15:28:26.972 USB UEVENT: {SUBSYSTEM=usb, MAJOR=189, BUSNUM=002, SEQNUM=14263, ACTION=remove, DEVNAME=bus/usb/002/006, DEVTYPE=usb_device, PRODUCT=5e3/749/1538, MINOR=133, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1.4, TYPE=0/0/0, DEVNUM=006}
+      06-10 15:28:26.976 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14264, ACTION=unbind, INTERFACE=9/0/2, DEVTYPE=usb_interface, PRODUCT=2109/2817/3d3, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1:1.0, TYPE=9/0/2}
+      06-10 15:28:26.978 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14265, ACTION=remove, INTERFACE=9/0/2, DEVTYPE=usb_interface, PRODUCT=2109/2817/3d3, MODALIAS=usb:v2109p2817d03D3dc09dsc00dp02ic09isc00ip02in00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/2-1.1:1.0, TYPE=9/0/2}
+      06-10 15:28:26.984 USB UEVENT: {SUBSYSTEM=usb, MAJOR=189, BUSNUM=002, SEQNUM=14266, ACTION=unbind, DEVNAME=bus/usb/002/003, DEVTYPE=usb_device, PRODUCT=2109/2817/3d3, MINOR=130, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1, TYPE=9/0/2, DEVNUM=003}
+      06-10 15:28:26.987 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14267, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1/wakeup/wakeup167}
+      06-10 15:28:26.987 USB UEVENT: {SUBSYSTEM=usb, MAJOR=189, BUSNUM=002, SEQNUM=14268, ACTION=remove, DEVNAME=bus/usb/002/003, DEVTYPE=usb_device, PRODUCT=2109/2817/3d3, MINOR=130, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.1, TYPE=9/0/2, DEVNUM=003}
+      06-10 15:28:27.008 USB UEVENT: {SUBSYSTEM=queues, SEQNUM=14269, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/2-1.3:1.0/net/eth0/queues/rx-0}
+      06-10 15:28:27.010 USB UEVENT: {SUBSYSTEM=queues, SEQNUM=14270, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/2-1.3:1.0/net/eth0/queues/tx-0}
+      06-10 15:28:27.010 USB UEVENT: {SUBSYSTEM=net, SEQNUM=14271, ACTION=remove, INTERFACE=eth0, IFINDEX=37, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/2-1.3:1.0/net/eth0}
+      06-10 15:28:27.025 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14272, ACTION=unbind, INTERFACE=255/255/0, DEVTYPE=usb_interface, PRODUCT=bda/8153/3100, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/2-1.3:1.0, TYPE=0/0/0}
+      06-10 15:28:27.026 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14273, ACTION=remove, INTERFACE=255/255/0, DEVTYPE=usb_interface, PRODUCT=bda/8153/3100, MODALIAS=usb:v0BDAp8153d3100dc00dsc00dp00icFFiscFFip00in00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/2-1.3:1.0, TYPE=0/0/0}
+      06-10 15:28:27.036 USB UEVENT: {SUBSYSTEM=usb, MAJOR=189, BUSNUM=002, SEQNUM=14274, ACTION=unbind, DEVNAME=bus/usb/002/004, DEVTYPE=usb_device, PRODUCT=bda/8153/3100, MINOR=131, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3, TYPE=0/0/0, DEVNUM=004}
+      06-10 15:28:27.039 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14275, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3/wakeup/wakeup168}
+      06-10 15:28:27.040 USB UEVENT: {SUBSYSTEM=usb, MAJOR=189, BUSNUM=002, SEQNUM=14276, ACTION=remove, DEVNAME=bus/usb/002/004, DEVTYPE=usb_device, PRODUCT=bda/8153/3100, MINOR=131, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1.3, TYPE=0/0/0, DEVNUM=004}
+      06-10 15:28:27.061 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14277, ACTION=unbind, INTERFACE=9/0/2, DEVTYPE=usb_interface, PRODUCT=2109/2817/3d3, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1:1.0, TYPE=9/0/2}
+      06-10 15:28:27.062 USB UEVENT: {SUBSYSTEM=usb, SEQNUM=14278, ACTION=remove, INTERFACE=9/0/2, DEVTYPE=usb_interface, PRODUCT=2109/2817/3d3, MODALIAS=usb:v2109p2817d03D3dc09dsc00dp02ic09isc00ip02in00, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/2-1:1.0, TYPE=9/0/2}
+      06-10 15:28:27.066 USB UEVENT: {SUBSYSTEM=usb, MAJOR=189, BUSNUM=002, SEQNUM=14279, ACTION=unbind, DEVNAME=bus/usb/002/002, DEVTYPE=usb_device, PRODUCT=2109/2817/3d3, MINOR=129, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1, TYPE=9/0/2, DEVNUM=002}
+      06-10 15:28:27.069 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14280, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1/wakeup/wakeup166}
+      06-10 15:28:27.070 USB UEVENT: {SUBSYSTEM=usb, MAJOR=189, BUSNUM=002, SEQNUM=14281, ACTION=remove, DEVNAME=bus/usb/002/002, DEVTYPE=usb_device, PRODUCT=2109/2817/3d3, MINOR=129, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-1, TYPE=9/0/2, DEVNUM=002}
+      06-10 15:28:27.092 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=14282, ACTION=unbind, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-0:1.0, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:28:27.092 USB UEVENT: {OF_ALIAS_0=usb1, DEVTYPE=usb_interface, MODALIAS=usb:v1D6Bp0002d0504dc09dsc00dp01ic09isc00ip00in00, OF_NAME=ssusb, SUBSYSTEM=usb, SEQNUM=14283, ACTION=remove, INTERFACE=9/0/0, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/2-0:1.0, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:28:27.094 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/002/001, DEVTYPE=usb_device, MINOR=128, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=002, SEQNUM=14284, ACTION=unbind, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:28:27.094 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14285, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2/wakeup/wakeup157}
+      06-10 15:28:27.095 USB UEVENT: {OF_ALIAS_0=usb1, MAJOR=189, DEVNAME=bus/usb/002/001, DEVTYPE=usb_device, MINOR=128, OF_NAME=ssusb, DEVNUM=001, SUBSYSTEM=usb, BUSNUM=002, SEQNUM=14286, ACTION=remove, OF_FULLNAME=/soc/ssusb@a800000, PRODUCT=1d6b/2/504, OF_COMPATIBLE_0=qcom,dwc-usb3-msm, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/usb2, TYPE=9/0/1, OF_COMPATIBLE_N=1}
+      06-10 15:28:27.098 USB UEVENT: {SUBSYSTEM=platform, SEQNUM=14287, ACTION=unbind, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto}
+      06-10 15:28:27.099 USB UEVENT: {SUBSYSTEM=wakeup, SEQNUM=14288, ACTION=remove, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto/wakeup/wakeup155}
+      06-10 15:28:27.099 USB UEVENT: {SUBSYSTEM=platform, SEQNUM=14289, ACTION=remove, MODALIAS=platform:xhci-hcd, DEVPATH=/devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.1.auto}
+      06-10 15:28:33.680 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x11000000 (has extras) }
+    ]
+  }
+  host_manager={
+    num_connects=136
+    connections=[
+      {
+        device_address=/dev/bus/usb/002/006
+        mode=-1
+        timestamp=1781079654461
+      }
+      {
+        device_address=/dev/bus/usb/002/004
+        mode=-1
+        timestamp=1781079654552
+      }
+      {
+        device_address=/dev/bus/usb/002/009
+        mode=0
+        timestamp=1781079657229
+        manufacturer=3034
+        product=33107
+        is_headset={
+          in=false
+          out=false
+        }
+      }
+      {
+        device_address=/dev/bus/usb/002/010
+        mode=0
+        timestamp=1781079657534
+        manufacturer=6353
+        product=20521
+        is_headset={
+          in=false
+          out=false
+        }
+      }
+      {
+        device_address=/dev/bus/usb/002/011
+        mode=0
+        timestamp=1781079657784
+        manufacturer=1507
+        product=1865
+        is_headset={
+          in=false
+          out=false
+        }
+      }
+      {
+        device_address=/dev/bus/usb/002/010
+        mode=-1
+        timestamp=1781079659343
+      }
+      {
+        device_address=/dev/bus/usb/002/011
+        mode=-1
+        timestamp=1781079659491
+      }
+      {
+        device_address=/dev/bus/usb/002/009
+        mode=-1
+        timestamp=1781079659568
+      }
+      {
+        device_address=/dev/bus/usb/002/014
+        mode=0
+        timestamp=1781079662210
+        manufacturer=3034
+        product=33107
+        is_headset={
+          in=false
+          out=false
+        }
+      }
+      {
+        device_address=/dev/bus/usb/002/015
+        mode=0
+        timestamp=1781079662494
+        manufacturer=6353
+        product=20521
+        is_headset={
+          in=false
+          out=false
+        }
+      }
+      {
+        device_address=/dev/bus/usb/002/016
+        mode=0
+        timestamp=1781079662748
+        manufacturer=1507
+        product=1865
+        is_headset={
+          in=false
+          out=false
+        }
+      }
+      {
+        device_address=/dev/bus/usb/002/015
+        mode=-1
+        timestamp=1781079663432
+      }
+      {
+        device_address=/dev/bus/usb/002/016
+        mode=-1
+        timestamp=1781079663453
+      }
+      {
+        device_address=/dev/bus/usb/002/014
+        mode=-1
+        timestamp=1781079663528
+      }
+      {
+        device_address=/dev/bus/usb/002/019
+        mode=0
+        timestamp=1781079666032
+        manufacturer=3034
+        product=33107
+        is_headset={
+          in=false
+          out=false
+        }
+      }
+      {
+        device_address=/dev/bus/usb/002/020
+        mode=0
+        timestamp=1781079666334
+        manufacturer=6353
+        product=20521
+        is_headset={
+          in=false
+          out=false
+        }
+      }
+      {
+        device_address=/dev/bus/usb/002/021
+        mode=0
+        timestamp=1781079666585
+        manufacturer=1507
+        product=1865
+        is_headset={
+          in=false
+          out=false
+        }
+      }
+      {
+        device_address=/dev/bus/usb/002/020
+        mode=-1
+        timestamp=1781079667689
+      }
+      {
+        device_address=/dev/bus/usb/002/021
+        mode=-1
+        timestamp=1781079667844
+      }
+      {
+        device_address=/dev/bus/usb/002/019
+        mode=-1
+        timestamp=1781079667912
+      }
+      {
+        device_address=/dev/bus/usb/002/025
+        mode=0
+        timestamp=1781079671240
+        manufacturer=3034
+        product=33107
+        is_headset={
+          in=false
+          out=false
+        }
+      }
+      {
+        device_address=/dev/bus/usb/002/026
+        mode=0
+        timestamp=1781079671550
+        manufacturer=6353
+        product=20521
+        is_headset={
+          in=false
+          out=false
+        }
+      }
+      {
+        device_address=/dev/bus/usb/002/027
+        mode=0
+        timestamp=1781079671801
+        manufacturer=1507
+        product=1865
+        is_headset={
+          in=false
+          out=false
+        }
+      }
+      {
+        device_address=/dev/bus/usb/002/026
+        mode=-1
+        timestamp=1781079675800
+      }
+      {
+        device_address=/dev/bus/usb/002/027
+        mode=-1
+        timestamp=1781079675952
+      }
+      {
+        device_address=/dev/bus/usb/002/025
+        mode=-1
+        timestamp=1781079676031
+      }
+      {
+        device_address=/dev/bus/usb/002/004
+        mode=0
+        timestamp=1781079760498
+        manufacturer=3034
+        product=33107
+        is_headset={
+          in=false
+          out=false
+        }
+      }
+      {
+        device_address=/dev/bus/usb/002/005
+        mode=0
+        timestamp=1781079761742
+        manufacturer=6353
+        product=20521
+        is_headset={
+          in=false
+          out=false
+        }
+      }
+      {
+        device_address=/dev/bus/usb/002/006
+        mode=0
+        timestamp=1781079761992
+        manufacturer=1507
+        product=1865
+        is_headset={
+          in=false
+          out=false
+        }
+      }
+      {
+        device_address=/dev/bus/usb/002/005
+        mode=-1
+        timestamp=1781080106855
+      }
+      {
+        device_address=/dev/bus/usb/002/006
+        mode=-1
+        timestamp=1781080106977
+      }
+      {
+        device_address=/dev/bus/usb/002/004
+        mode=-1
+        timestamp=1781080107044
+      }
+    ]
+  }
+  port_manager={
+    is_simulation_active=false
+    usb_ports=[
+      {
+        port={
+          id=port0
+          supported_modes=dual
+        }
+        status={
+          connected=true
+          current_mode=dfp
+          power_role=sink
+          data_role=host
+          role_combinations=[
+            {
+              power_role=source
+              data_role=host
+            }
+            {
+              power_role=source
+              data_role=device
+            }
+            {
+              power_role=sink
+              data_role=host
+            }
+            {
+              power_role=sink
+              data_role=device
+            }
+          ]
+          contaminant_presence_status=not detected
+          usb_data_status=unknown
+          is_power_transfer_limited=false
+          usb_power_brick_status=unknown
+        }
+        can_change_mode=true
+        can_change_power_role=true
+        can_change_data_role=true
+        connected_at_millis=4632205
+        last_connect_duration_millis=0
+      }
+      {
+        port={
+          id=port1
+          supported_modes=dual
+        }
+        status={
+          connected=true
+          current_mode=ufp
+          power_role=sink
+          data_role=device
+          role_combinations=[
+            {
+              power_role=source
+              data_role=host
+            }
+            {
+              power_role=sink
+              data_role=device
+            }
+          ]
+          contaminant_presence_status=not-supported
+          usb_data_status=unknown
+          is_power_transfer_limited=false
+          usb_power_brick_status=unknown
+        }
+        can_change_mode=true
+        can_change_power_role=false
+        can_change_data_role=false
+        connected_at_millis=4302891
+        last_connect_duration_millis=0
+      }
+    ]
+    usb_hal_version=12
+  }
+  alsa_manager={
+    cards_parser=0
+  }
+  settings_manager={
+    user_settings={
+      user_id=0
+      device_attached_activities=[
+        {
+          activity={
+            package_name=com.android.mtp
+            class_name=com.android.mtp.ReceiverActivity
+          }
+          filters=[
+            {
+              vendor_id=-1
+              product_id=-1
+              class=255
+              subclass=255
+              protocol=0
+              manufacturer_name=null
+              product_name=null
+              serial_number=null
+            }
+            {
+              vendor_id=-1
+              product_id=-1
+              class=6
+              subclass=1
+              protocol=1
+              manufacturer_name=null
+              product_name=null
+              serial_number=null
+            }
+          ]
+        }
+        {
+          activity={
+            package_name=com.asus.gallery
+            class_name=com.asus.gallery.ingest.IngestActivity
+          }
+          filters={
+            vendor_id=-1
+            product_id=-1
+            class=6
+            subclass=1
+            protocol=1
+            manufacturer_name=null
+            product_name=null
+            serial_number=null
+          }
+        }
+        {
+          activity={
+            package_name=com.google.android.apps.photos
+            class_name=com.google.android.libraries.social.ingest.IngestActivity
+          }
+          filters={
+            vendor_id=-1
+            product_id=-1
+            class=6
+            subclass=1
+            protocol=1
+            manufacturer_name=null
+            product_name=null
+            serial_number=null
+          }
+        }
+      ]
+      accessory_attached_activities=[
+        {
+          activity={
+            package_name=com.google.android.gms
+            class_name=com.google.android.gms.backup.component.D2dSourceActivity
+          }
+          filters={
+            manufacturer=Google, Inc.
+            model=DeviceMigration
+            version=39842
+          }
+        }
+        {
+          activity={
+            package_name=com.google.android.projection.gearhead
+            class_name=com.google.android.apps.auto.carservice.gmscorecompatstub.StubFirstActivity
+          }
+          filters=[
+            {
+              manufacturer=Android
+              model=Android Open Automotive Protocol
+              version=null
+            }
+            {
+              manufacturer=Android
+              model=Android Auto
+              version=null
+            }
+            {
+              manufacturer=Android
+              model=Android
+              version=null
+            }
+          ]
+        }
+        {
+          activity={
+            package_name=com.android.chrome
+            class_name=org.chromium.chrome.browser.webauth.authenticator.CableAuthenticatorUSBActivity
+          }
+          filters={
+            manufacturer=null
+            model=12eba9f901039b36
+            version=null
+          }
+        }
+        {
+          activity={
+            package_name=com.asus.auraaoaclient
+            class_name=com.asus.auraaoaclient.HiddenActivity
+          }
+          filters={
+            manufacturer=ASUSTeK
+            model=AuraLighting
+            version=1.0
+          }
+        }
+      ]
+    }
+    profile_group_settings={
+      parent_user_id=0
+      USB Event Log=UsbProfileGroupSettingsManager activity
+    }
+  }
+  permissions_manager={
+    user_permissions={
+      user_id=0
+    }
+  }
+}

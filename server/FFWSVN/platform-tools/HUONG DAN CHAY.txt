@@ -1,0 +1,11 @@
+//Manual
+adb devices
+adb -s <serial_USB> tcpip 5555
+adb connect 10.24.37.176:5555
+adb -s 10.24.37.176:5555 devices
+
+//tcp 5555 đầu ngày de mo port gui file.
+powershell -ExecutionPolicy Bypass -File "C:\Users\PC 09\Desktop\ban obs\Monitor\platform-tools\Enable_Wifi_ADB_allUSB_autoIP.ps1"
+
+//Scan network sau khi doi sang LAN
+powershell -ExecutionPolicy Bypass -File "C:\Users\PC 09\Desktop\ban obs\Monitor\platform-tools\Reconnect_Wifi_ADB_scanLAN.ps1"

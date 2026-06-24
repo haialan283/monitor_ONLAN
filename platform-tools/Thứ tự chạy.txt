@@ -1,0 +1,15 @@
+//Manual
+adb devices
+adb -s <serial_USB> tcpip 5555
+adb connect 10.24.37.176:5555
+adb -s 10.24.37.176:5555 devices
+
+//tcp 5555 đầu ngày
+
+powershell -ExecutionPolicy Bypass -File "C:\ALAN\Monitor-heartbeat\platform-tools\Enable_Wifi_ADB_allUSB_autoIP.ps1"
+
+//Scan network
+powershell -ExecutionPolicy Bypass -File "C:\ALAN\Monitor-heartbeat\platform-tools\Reconnect_Wifi_ADB_scanLAN.ps1"
+
+//QR-code Scan
+npx adb-qr
