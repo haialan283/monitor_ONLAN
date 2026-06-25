@@ -68,7 +68,7 @@ if (fs.existsSync(configDir)) {
         if (!name.endsWith('.json') && !name.endsWith('.js')) continue;
         const src = path.join(configDir, name);
         const dest = path.join(configOut, name);
-        if (!fs.existsSync(dest)) fs.copyFileSync(src, dest);
+        fs.copyFileSync(src, dest);
     }
 }
 
@@ -80,7 +80,7 @@ if (fs.existsSync(servicesDir)) {
         if (!name.endsWith('.js')) continue;
         const src = path.join(servicesDir, name);
         const dest = path.join(servicesOut, name);
-        if (!fs.existsSync(dest)) fs.copyFileSync(src, dest);
+        fs.copyFileSync(src, dest);
     }
 }
 
@@ -106,12 +106,28 @@ app.use('/templates', express.static(path.join(dashboardDir, 'templates')));`;
 
 indexJs = indexJs.replace(/const publicDir = path\.join\(__dirname, 'public'\);\n\n?/, '');
 indexJs = indexJs.replace(
+    /const publicDir = path\.join\(__dirname, 'public'\);\r?\nconst sendPublic = \(file\) => \(_req, res\) => \{\r?\n    res\.type\('html'\);\r?\n    res\.sendFile\(path\.join\(publicDir, file\)\);\r?\n\};\r?\n/,
+    `${dashboardDirDecl}\n`
+);
+indexJs = indexJs.replace(
+    /app\.get\('\/login\.html', sendPublic\('login\.html'\)\);/,
+    `app.get('/login.html', sendDashboard('signin.view'));`
+);
+indexJs = indexJs.replace(
+    /sendPublic\('admin\.html'\)/,
+    `sendDashboard('admin.view')`
+);
+indexJs = indexJs.replace(
     /app\.get\('\/login\.html',[\s\S]*?login\.html'\)\);\s*\}\);/,
-    `${dashboardDirDecl}\napp.get('/login.html', sendDashboard('signin.view'));`
+    `app.get('/login.html', sendDashboard('signin.view'));`
 );
 indexJs = indexJs.replace(
     /app\.get\('\/admin\.html',[\s\S]*?admin\.html'\)\);\s*\}\);/,
     adminRoute
+);
+indexJs = indexJs.replace(
+    /app\.get\('\/', sendPublic\('index\.html'\)\);\r?\napp\.get\('\/index\.html',[\s\S]*?app\.use\(express\.static\(publicDir\)\);/,
+    dashboardTail
 );
 indexJs = indexJs.replace(
     /app\.get\('\/',[\s\S]*?app\.use\(express\.static\((?:path\.join\(__dirname, 'public'\)|publicDir)\)\);/,

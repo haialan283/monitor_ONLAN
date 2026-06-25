@@ -1,52 +1,30 @@
-const WebSocket = require('ws');
-
-const WHITELIST_APPS = [
-    'com.dts.freefireth',
-    'com.dts.freefiremax',
-    'com.android.chrome',
-    'com.ops.tournamentmonitor',
-    'com.sec.android.app.launcher',
-	'com.garena.game.fcmobilevn',
-//launcher samsung
-    '',
-];
-
-// Whitelist cho các app "overlay/pip" (draw-over) mà bạn muốn coi là hợp lệ.
-// Ví dụ: Samsung Deskin (tên package thực tế có thể là một biến thể khác tùy ROM/model).
-// Nếu overlay app thuộc danh sách này thì sẽ KHÔNG ghi vi phạm overlay.
-const OVERLAY_WHITELIST_APPS = [
-];
-const NOISE_PACKAGES = [
-    // Chỉ lọc "noise" thực sự (System UI, dịch vụ nền).
-    // Không lọc theo vendor/launcher (oppo/samsung/miui/...) vì khi người dùng thoát app whitelist
-    // về launcher, ta muốn coi đó là "đã rời whitelist" => warning.
-    'com.android.systemui',
-    'com.google.android.permissioncontroller',
-	'com.asus.launcher',
-    'com.android.permissioncontroller',
-];
+﻿const WebSocket = require('ws');
+const config = require('../config');
+const tournament = require('../config/tournamentLoader');
+const auditLog = require('../services/auditLog');
 
 function normalizePackageName(input) {
     const raw = (input || '').toString().trim().toLowerCase();
     if (!raw) return '';
 
-    // Android app có thể gửi "OVERLAY: <package>" khi phát hiện app overlay.
-    // Chuẩn hóa để chỉ còn package name.
+    // Android app cĂ³ thá»ƒ gá»­i "OVERLAY: <package>" khi phĂ¡t hiá»‡n app overlay.
+    // Chuáº©n hĂ³a Ä‘á»ƒ chá»‰ cĂ²n package name.
     const overlayMatch = raw.match(/^overlay\s*:\s*([a-z0-9._]+)\s*$/i);
     if (overlayMatch && overlayMatch[1]) return overlayMatch[1].toLowerCase();
 
-    // Một số trường hợp có thể có nhiều token/dấu phẩy; lấy token đầu tiên trông như package.
+    // Má»™t sá»‘ trÆ°á»ng há»£p cĂ³ thá»ƒ cĂ³ nhiá»u token/dáº¥u pháº©y; láº¥y token Ä‘áº§u tiĂªn trĂ´ng nhÆ° package.
     const firstToken = raw.split(/[,\s]+/).find(Boolean) || '';
     const pkgMatch = firstToken.match(/[a-z][a-z0-9_]*(\.[a-z0-9_]+)+/);
     return pkgMatch ? pkgMatch[0] : raw;
 }
 
 /**
- * Gắn xử lý WebSocket: init khi kết nối, xử lý message (hb, assign_slot, ...).
- * onViolation(deviceName, app) được gọi khi có vi phạm mới (để gửi Discord, v.v.).
+ * Gáº¯n xá»­ lĂ½ WebSocket: init khi káº¿t ná»‘i, xá»­ lĂ½ message (hb, assign_slot, ...).
+ * onViolation(deviceName, app) Ä‘Æ°á»£c gá»i khi cĂ³ vi pháº¡m má»›i (Ä‘á»ƒ gá»­i Discord, v.v.).
  */
-function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, onViolation, getRoleFromReq, runNetworkCheckNow) {
+function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, onViolation, getRoleFromReq, runNetworkCheckNow, tryAdbConnect) {
     const scheduleNetCheck = typeof runNetworkCheckNow === 'function' ? runNetworkCheckNow : () => {};
+    const lastAutoAdbConnectMs = new Map();
     wss.on('connection', (ws, req) => {
         const reqUrl = (req && req.url) ? String(req.url) : '/';
         const isPlainWs = reqUrl.includes('enc=0');
@@ -60,6 +38,8 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
                 tableNames: store.getTableNames(),
                 netConfig: store.getNetConfig(),
                 netConfigRemote: store.getNetConfigRemote(),
+                tournamentCode: store.getTournamentCode() || '',
+                deployMode: config.getDeployMode(),
             };
             ws.send(isPlainWs ? JSON.stringify(initData) : encryptPayload(initData));
         } catch (e) {
@@ -89,6 +69,16 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
                 let alertsChanged = false;
 
                 if (data.type === 'hb') {
+                    if (config.getTournamentCode() && !config.isTournamentCodeValid(data.tournamentCode)) {
+                        console.warn('[ArenaPulse] Reject heartbeat â€” invalid tournament code from', data.deviceName || data.deviceId);
+                        try {
+                            const reject = { type: 'auth_reject', reason: 'invalid_tournament_code' };
+                            ws.send(isPlainWs ? JSON.stringify(reject) : encryptPayload(reject));
+                        } catch (_) { /* ignore */ }
+                        ws.close(4003, 'invalid_tournament_code');
+                        return;
+                    }
+
                     const {
                         deviceId,
                         deviceName,
@@ -113,34 +103,34 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
                     const foregroundFallback = !hasOverlayPrefix ? normalizePackageName(currentAppStr) : '';
 
                     const rawForegroundApp = normalizePackageName(foregroundApp || foregroundFallback || '');
-                    const cleanForegroundApp = NOISE_PACKAGES.some((p) => rawForegroundApp.includes(p.toLowerCase())) ? '' : rawForegroundApp;
+                    const cleanForegroundApp = tournament.getNoisePackages().some((p) => rawForegroundApp.includes(p.toLowerCase())) ? '' : rawForegroundApp;
 
                     const overlayNormalized = normalizePackageName(overlayApp || overlayFallback || '');
-                    const isOverlayViolation = !!overlayNormalized && !OVERLAY_WHITELIST_APPS.includes(overlayNormalized);
+                    const isOverlayViolation = !!overlayNormalized && !tournament.getOverlayWhitelistApps().includes(overlayNormalized);
 
                     const isForegroundViolation =
-                        cleanForegroundApp !== '' && !WHITELIST_APPS.includes(cleanForegroundApp);
+                        cleanForegroundApp !== '' && !tournament.getWhitelistApps().includes(cleanForegroundApp);
                     const isForegroundWhitelisted =
-                        cleanForegroundApp !== '' && WHITELIST_APPS.includes(cleanForegroundApp);
+                        cleanForegroundApp !== '' && tournament.getWhitelistApps().includes(cleanForegroundApp);
 
-                    // App keys dùng cho violation logs (có thể lưu đồng thời cả overlay và foreground).
+                    // App keys dĂ¹ng cho violation logs (cĂ³ thá»ƒ lÆ°u Ä‘á»“ng thá»i cáº£ overlay vĂ  foreground).
                     const overlayAppKey = isOverlayViolation ? `OVERLAY:${overlayNormalized}` : null;
                     const foregroundAppKey = isForegroundViolation ? cleanForegroundApp : null;
 
-                    // Giá trị hiển thị cho dashboard:
-                    // - currentApp: foreground app (để operator biết user đang mở gì)
-                    // - overlayApp: chỉ hiển thị khi overlay thực sự bị coi là vi phạm
+                    // GiĂ¡ trá»‹ hiá»ƒn thá»‹ cho dashboard:
+                    // - currentApp: foreground app (Ä‘á»ƒ operator biáº¿t user Ä‘ang má»Ÿ gĂ¬)
+                    // - overlayApp: chá»‰ hiá»ƒn thá»‹ khi overlay thá»±c sá»± bá»‹ coi lĂ  vi pháº¡m
                     const foregroundAppDisplay = cleanForegroundApp || '';
                     const overlayAppDisplay = isOverlayViolation ? overlayNormalized : '';
 
-                    // Dùng timestamp từ client nếu có để ghi log đúng mốc thời gian
+                    // DĂ¹ng timestamp tá»« client náº¿u cĂ³ Ä‘á»ƒ ghi log Ä‘Ăºng má»‘c thá»i gian
                     const hbTimeNowStr =
                         typeof clientTimeMs === 'number' ? new Date(clientTimeMs).toLocaleTimeString('vi-VN') : serverTimeNowStr;
 
                     let status = 'online';
                     if (!isScreenOn) status = 'lock';
-                    else if (isOverlayViolation && isForegroundViolation) status = 'warning'; // đỏ: cả 2 đều vi phạm
-                    else if (isOverlayViolation || isForegroundViolation) status = 'partial_warning'; // vàng: chỉ 1 trong 2 vi phạm
+                    else if (isOverlayViolation && isForegroundViolation) status = 'warning'; // Ä‘á»: cáº£ 2 Ä‘á»u vi pháº¡m
+                    else if (isOverlayViolation || isForegroundViolation) status = 'partial_warning'; // vĂ ng: chá»‰ 1 trong 2 vi pháº¡m
                     if (process.env.DEBUG_HB === '1') {
                         console.log('[HB]', deviceName || deviceId, {
                             currentApp,
@@ -212,6 +202,18 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
                     };
                     if (idx !== -1) store.devices[idx] = deviceInfo;
                     else store.devices.push(deviceInfo);
+
+                    if (typeof store.setAdbEndpoint === 'function' && ipAddress && ipAddress.length > 5) {
+                        store.setAdbEndpoint(deviceId, ipAddress, 5555);
+                    }
+                    const prevFtpOpen = prev && prev.isFtpOpen;
+                    if (typeof tryAdbConnect === 'function' && isFtpOpen && !prevFtpOpen && ipAddress) {
+                        const lastMs = lastAutoAdbConnectMs.get(deviceId) || 0;
+                        if (Date.now() - lastMs > 30000) {
+                            lastAutoAdbConnectMs.set(deviceId, Date.now());
+                            Promise.resolve(tryAdbConnect(ipAddress)).catch(() => {});
+                        }
+                    }
 
                     const alerts = store.getAlerts();
                     let modified = false;
@@ -296,7 +298,7 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
                     if (store.getAlerts().length !== beforeTrim) alertsChanged = true;
                 }
 
-                // Khi app reconnect sau disconnect tạm thời, nó có thể gửi 1 sự kiện tổng hợp.
+                // Khi app reconnect sau disconnect táº¡m thá»i, nĂ³ cĂ³ thá»ƒ gá»­i 1 sá»± kiá»‡n tá»•ng há»£p.
                 if (data.type === 'net_event' && data.eventType === 'disconnect_summary') {
                     const deviceId = data.deviceId;
                     if (deviceId) {
@@ -340,8 +342,8 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
                 if (data.type === 'assign_slot') {
                     const dev = store.devices.find((d) => d.deviceId === data.deviceId);
                     if (dev) {
-                        // Với slot thông thường (bàn/ghế), mỗi slot chỉ 1 thiết bị → clear thiết bị cũ.
-                        // Riêng slot 'arena' là bản đồ tự do, cho phép nhiều thiết bị cùng lúc.
+                        // Vá»›i slot thĂ´ng thÆ°á»ng (bĂ n/gháº¿), má»—i slot chá»‰ 1 thiáº¿t bá»‹ â†’ clear thiáº¿t bá»‹ cÅ©.
+                        // RiĂªng slot 'arena' lĂ  báº£n Ä‘á»“ tá»± do, cho phĂ©p nhiá»u thiáº¿t bá»‹ cĂ¹ng lĂºc.
                         if (data.slotId !== 'arena') {
                             store.devices.forEach((d) => {
                                 if (d.slotId === data.slotId) d.slotId = null;
@@ -396,6 +398,7 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
                     }
                 }
                 if (data.type === 'clear_logs') {
+                    auditLog.appendAudit('clear_logs', 'XĂ³a violation logs', { role: ws._alanRole });
                     store.setAlerts([]);
                     broadcast.broadcast({ type: 'alerts_cleared' });
                 }

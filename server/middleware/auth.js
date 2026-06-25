@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+﻿const crypto = require('crypto');
 
 const COOKIE_NAME = 'alan_sid';
 const SESSION_MAX_AGE_MS = 24 * 60 * 60 * 1000; // 24h
@@ -37,27 +37,34 @@ function getRoleFromToken(token) {
     return s ? s.role : null;
 }
 
-function resolveRoleFromPins(getAuthPins, submittedRole, submittedPin) {
-    const pins = getAuthPins ? getAuthPins() : { admin: null, viewer: null };
-    const adminPin = pins && typeof pins.admin === 'string' && pins.admin ? pins.admin : null;
-    const viewerPin = pins && typeof pins.viewer === 'string' && pins.viewer ? pins.viewer : null;
-    const authEnabled = !!(adminPin || viewerPin);
-    if (!authEnabled) return { role: 'admin', authEnabled };
-
-    const requested = typeof submittedRole === 'string' ? submittedRole.trim().toLowerCase() : '';
-    if (requested === 'admin' && submittedPin === adminPin) return { role: 'admin', authEnabled };
-    if (requested === 'viewer' && submittedPin === viewerPin) return { role: 'viewer', authEnabled };
-
-    // Backward-compatible auto detect when role not selected.
-    if (submittedPin === adminPin) return { role: 'admin', authEnabled };
-    if (submittedPin === viewerPin) return { role: 'viewer', authEnabled };
-    return { role: null, authEnabled };
+function safeEqual(a, b) {
+    const sa = String(a ?? '');
+    const sb = String(b ?? '');
+    const bufA = Buffer.from(sa);
+    const bufB = Buffer.from(sb);
+    if (bufA.length !== bufB.length) return false;
+    return crypto.timingSafeEqual(bufA, bufB);
 }
 
-function getRoleFromRequest(req, getAuthPins) {
-    const pins = getAuthPins ? getAuthPins() : { admin: null, viewer: null };
-    const authEnabled = !!((pins && pins.admin) || (pins && pins.viewer));
-    if (!authEnabled) return 'admin';
+function resolveRoleFromCredentials(getAuthUsers, username, password) {
+    const users = getAuthUsers ? getAuthUsers() : { admin: null, viewer: null, authEnabled: false };
+    if (!users.authEnabled) return { role: null, authEnabled: false };
+
+    const u = String(username || '').trim();
+    const p = String(password || '');
+
+    if (users.admin && safeEqual(u, users.admin.username) && safeEqual(p, users.admin.password)) {
+        return { role: 'admin', authEnabled: true };
+    }
+    if (users.viewer && safeEqual(u, users.viewer.username) && safeEqual(p, users.viewer.password)) {
+        return { role: 'viewer', authEnabled: true };
+    }
+    return { role: null, authEnabled: true };
+}
+
+function getRoleFromRequest(req, getAuthUsers) {
+    const users = getAuthUsers ? getAuthUsers() : { authEnabled: false };
+    if (!users.authEnabled) return null;
     const token = getCookie(req, COOKIE_NAME);
     return getRoleFromToken(token);
 }
@@ -67,8 +74,8 @@ function requireEditor(req, res, next) {
     return res.status(403).json({ error: 'Viewer mode: read-only', needEditor: true });
 }
 
-function withRole(req, getAuthPins) {
-    req.userRole = getRoleFromRequest(req, getAuthPins);
+function withRole(req, getAuthUsers) {
+    req.userRole = getRoleFromRequest(req, getAuthUsers);
     return req.userRole;
 }
 
@@ -77,39 +84,53 @@ function clearSession(token) {
 }
 
 /**
- * Middleware: nếu có PIN thì yêu cầu đăng nhập (cookie alan_sid).
- * Nếu không đặt PIN thì luôn next() với role admin.
+ * Middleware: yĂªu cáº§u Ä‘Äƒng nháº­p (cookie alan_sid) khi Ä‘Ă£ cáº¥u hĂ¬nh tĂ i khoáº£n.
  */
-function requireAuth(getAuthPins) {
+function requireAuth(getAuthUsers) {
     return (req, res, next) => {
-        const role = withRole(req, getAuthPins);
+        const users = getAuthUsers ? getAuthUsers() : { authEnabled: false };
+        const role = withRole(req, getAuthUsers);
+
+        if (!users.authEnabled) {
+            if (req.path.startsWith('/api/')) {
+                return res.status(503).json({
+                    error: 'ChÆ°a cáº¥u hĂ¬nh tĂ i khoáº£n. Äáº·t DASHBOARD_ADMIN_USER vĂ  DASHBOARD_ADMIN_PASSWORD trĂªn server.',
+                    needSetup: true,
+                });
+            }
+            if (req.path === '/login.html') return next();
+            return res.redirect(302, '/login.html?setup=1');
+        }
+
         if (role) return next();
 
-        // API request → 401 JSON; trang HTML → redirect login
         if (req.path.startsWith('/api/')) {
             return res.status(401).json({ error: 'Unauthorized', needLogin: true });
         }
-        if (req.path === '/login.html' || req.path === '/api/auth/login') return next();
-        res.redirect(302, '/login.html');
+        if (req.path === '/login.html') return next();
+        return res.redirect(302, '/login.html');
     };
 }
 
 /**
- * POST /api/auth/login { pin, role? } — set cookie + role admin/viewer.
+ * POST /api/auth/login { username, password } â€” set cookie + role admin/viewer.
  */
-function loginRoute(getAuthPins) {
+function loginRoute(getAuthUsers) {
     return (req, res) => {
-        const submittedPin = ((req.body && req.body.pin) || (req.query && req.query.pin) || '').toString();
-        const submittedRole = ((req.body && req.body.role) || (req.query && req.query.role) || '').toString();
-        const resolved = resolveRoleFromPins(getAuthPins, submittedRole, submittedPin);
+        const username = ((req.body && req.body.username) || (req.query && req.query.username) || '').toString();
+        const password = ((req.body && req.body.password) || (req.query && req.query.password) || '').toString();
+        const resolved = resolveRoleFromCredentials(getAuthUsers, username, password);
         if (!resolved.authEnabled) {
             return res.status(400).json({ error: 'Auth not configured' });
         }
         if (!resolved.role) {
-            return res.status(401).json({ error: 'Invalid PIN', needLogin: true });
+            return res.status(401).json({ error: 'Sai tĂ i khoáº£n hoáº·c máº­t kháº©u', needLogin: true });
         }
         const token = createSession(resolved.role);
         res.setHeader('Set-Cookie', `${COOKIE_NAME}=${token}; Path=/; HttpOnly; Max-Age=${SESSION_MAX_AGE_MS / 1000}; SameSite=Strict`);
+        try {
+            require('../services/auditLog').appendAudit('login', `role=${resolved.role}`, {});
+        } catch (_) { /* ignore */ }
         res.json({ ok: true, role: resolved.role });
     };
 }
@@ -117,13 +138,12 @@ function loginRoute(getAuthPins) {
 /**
  * GET /api/auth/me
  */
-function meRoute(getAuthPins) {
+function meRoute(getAuthUsers) {
     return (req, res) => {
-        const pins = getAuthPins ? getAuthPins() : { admin: null, viewer: null };
-        const authEnabled = !!((pins && pins.admin) || (pins && pins.viewer));
-        const role = withRole(req, getAuthPins);
-        if (!authEnabled) {
-            return res.json({ ok: true, authEnabled: false, role: 'admin' });
+        const users = getAuthUsers ? getAuthUsers() : { authEnabled: false };
+        const role = withRole(req, getAuthUsers);
+        if (!users.authEnabled) {
+            return res.json({ ok: true, authEnabled: false, needSetup: true });
         }
         if (!role) {
             return res.status(401).json({ ok: false, authEnabled: true, needLogin: true });
@@ -132,11 +152,24 @@ function meRoute(getAuthPins) {
     };
 }
 
+/**
+ * POST /api/auth/logout â€” xĂ³a session + cookie HttpOnly.
+ */
+function logoutRoute() {
+    return (req, res) => {
+        const token = getCookie(req, COOKIE_NAME);
+        if (token) clearSession(token);
+        res.setHeader('Set-Cookie', `${COOKIE_NAME}=; Path=/; Max-Age=0; HttpOnly; SameSite=Strict`);
+        res.json({ ok: true });
+    };
+}
+
 module.exports = {
     requireAuth,
     requireEditor,
     loginRoute,
     meRoute,
+    logoutRoute,
     getRoleFromRequest,
     getCookie,
     isValidSession,

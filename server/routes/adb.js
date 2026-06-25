@@ -1,26 +1,29 @@
-const path = require('path');
+﻿const path = require('path');
 const fs = require('fs');
 const util = require('util');
 const express = require('express');
 const multer = require('multer');
 const { exec } = require('child_process');
+const { connectAdbDevice } = require('../services/adbConnect');
+const { createAdbQueue } = require('../services/adbQueue');
 
 const execPromise = util.promisify(exec);
 
 /**
- * Tạo router ADB (list, download, upload, delete). Cần uploadDir và adbPath.
+ * Táº¡o router ADB (list, download, upload, delete, reconnect). Cáº§n uploadDir vĂ  adbPath.
  */
-function createAdbRouter(uploadDir, adbPath) {
+function createAdbRouter(uploadDir, adbPath, store, adbService, adbQueue) {
     const router = express.Router();
+    const queue = adbQueue || createAdbQueue();
     if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
     const upload = multer({ dest: uploadDir });
 
     function escapeForSingleQuotes(s) {
-        // Nhúng chuỗi vào '...': escape dấu ' để shell không vỡ cú pháp.
+        // NhĂºng chuá»—i vĂ o '...': escape dáº¥u ' Ä‘á»ƒ shell khĂ´ng vá»¡ cĂº phĂ¡p.
         return String(s).replace(/'/g, `'\\''`);
     }
 
-    /** Từ chối path nguy hiểm / không hợp lệ trước khi đưa vào shell. */
+    /** Tá»« chá»‘i path nguy hiá»ƒm / khĂ´ng há»£p lá»‡ trÆ°á»›c khi Ä‘Æ°a vĂ o shell. */
     function assertSafeDevicePath(p) {
         const raw = String(p || '').trim();
         if (!raw) return { ok: false, error: 'Empty path' };
@@ -31,48 +34,40 @@ function createAdbRouter(uploadDir, adbPath) {
     }
 
     async function runAdbCommand(ip, command) {
+        return queue.enqueue(() => runAdbCommandInner(ip, command));
+    }
+
+    async function runAdbCommandInner(ip, command) {
         try {
-            const connectRes = await execPromise(`"${adbPath}" connect ${ip}:5555`, {
-                maxBuffer: 1024 * 1024 * 10,
-            });
-
-            const connectOut = (connectRes.stdout || '').toString().toLowerCase();
-            const connectErr = (connectRes.stderr || '').toString().toLowerCase();
-            const combined = `${connectOut}\n${connectErr}`;
-
-            const ok =
-                combined.includes('connected to') ||
-                combined.includes('already connected to') ||
-                (!combined.includes('failed') && !combined.includes('refused') && combined.includes(`${ip}:5555`));
-
-            if (!ok) {
+            const connectRes = await connectAdbDevice(adbPath, ip, 5555);
+            if (!connectRes.ok) {
                 return {
                     success: false,
-                    error: 'ADB connect failed',
-                    detail: connectRes.stdout || connectRes.stderr || '',
-                    stdout: connectRes.stdout || '',
-                    stderr: connectRes.stderr || '',
+                    error: connectRes.error || 'ADB connect failed',
+                    detail: connectRes.detail || '',
+                    stdout: '',
+                    stderr: connectRes.detail || '',
                     exitCode: null,
                 };
             }
+            const host = connectRes.ip;
             try {
-                const { stdout, stderr } = await execPromise(`"${adbPath}" -s ${ip}:5555 ${command}`, {
+                const { stdout, stderr } = await execPromise(`"${adbPath}" -s ${host}:5555 ${command}`, {
                     maxBuffer: 1024 * 1024 * 50,
                 });
                 return { success: true, stdout, stderr };
             } catch (e2) {
                 const errText = `${e2.stderr || ''}\n${e2.stdout || ''}\n${e2.message || ''}`.toLowerCase();
-                // Common flaky state: adb shows "already connected" but device is offline.
                 if (errText.includes('device offline') || errText.includes('offline')) {
                     try {
-                        await execPromise(`"${adbPath}" disconnect ${ip}:5555`);
-                        await execPromise(`"${adbPath}" connect ${ip}:5555`, { maxBuffer: 1024 * 1024 * 10 });
-                        const { stdout, stderr } = await execPromise(`"${adbPath}" -s ${ip}:5555 ${command}`, {
+                        await execPromise(`"${adbPath}" disconnect ${host}:5555`);
+                        await connectAdbDevice(adbPath, host, 5555);
+                        const { stdout, stderr } = await execPromise(`"${adbPath}" -s ${host}:5555 ${command}`, {
                             maxBuffer: 1024 * 1024 * 50,
                         });
                         return { success: true, stdout, stderr };
                     } catch (_) {
-                        // fall through to generic error return below
+                        // fall through
                     }
                 }
                 throw e2;
@@ -119,16 +114,16 @@ function createAdbRouter(uploadDir, adbPath) {
         res.json(files);
     });
 
-    // Check thư mục có tồn tại hay không (không tự tạo).
+    // Check thÆ° má»¥c cĂ³ tá»“n táº¡i hay khĂ´ng (khĂ´ng tá»± táº¡o).
     router.get('/check-dir', async (req, res) => {
         const { ip, dir } = req.query;
         if (!ip || !dir) return res.status(400).json({ exists: false, error: 'Missing ip/dir' });
 
         const targetDir = String(dir);
         const dirEsc = escapeForSingleQuotes(targetDir);
-        // Dùng ls -ld thay cho test -d để tránh false-negative do quyền thực thi.
-        // Đồng thời thêm `|| true` để lệnh "không tồn tại" vẫn trả exit code 0,
-        // tránh runAdbCommand coi là lỗi và trả 500.
+        // DĂ¹ng ls -ld thay cho test -d Ä‘á»ƒ trĂ¡nh false-negative do quyá»n thá»±c thi.
+        // Äá»“ng thá»i thĂªm `|| true` Ä‘á»ƒ lá»‡nh "khĂ´ng tá»“n táº¡i" váº«n tráº£ exit code 0,
+        // trĂ¡nh runAdbCommand coi lĂ  lá»—i vĂ  tráº£ 500.
         const cmd = `shell "ls -ld '${dirEsc}' 2>&1 || true"`;
 
         const result = await runAdbCommand(ip, cmd);
@@ -177,8 +172,8 @@ function createAdbRouter(uploadDir, adbPath) {
     });
 
     /**
-     * Xóa file hoặc thư mục trên thiết bị (adb shell rm). Chỉ admin.
-     * Nhận tham số từ query (DELETE) hoặc JSON body (POST) — POST dùng cho proxy/IIS hay client không gửi DELETE.
+     * XĂ³a file hoáº·c thÆ° má»¥c trĂªn thiáº¿t bá»‹ (adb shell rm). Chá»‰ admin.
+     * Nháº­n tham sá»‘ tá»« query (DELETE) hoáº·c JSON body (POST) â€” POST dĂ¹ng cho proxy/IIS hay client khĂ´ng gá»­i DELETE.
      */
     async function adbDeleteHandler(req, res) {
         if (req.userRole !== 'admin') {
@@ -217,6 +212,29 @@ function createAdbRouter(uploadDir, adbPath) {
 
     router.delete('/delete', adbDeleteHandler);
     router.post('/delete', adbDeleteHandler);
+
+    router.post('/reconnect-all', async (req, res) => {
+        if (req.userRole !== 'admin') {
+            return res.status(403).json({ error: 'Viewer mode: read-only' });
+        }
+        if (!adbService || !store) {
+            return res.status(503).json({ error: 'ADB service unavailable' });
+        }
+        const result = await adbService.reconnectAll(store.devices, store);
+        res.json(result);
+    });
+
+    router.post('/reconnect', async (req, res) => {
+        if (req.userRole !== 'admin') {
+            return res.status(403).json({ error: 'Viewer mode: read-only' });
+        }
+        const body = req.body && typeof req.body === 'object' ? req.body : {};
+        const ip = (req.query.ip || body.ip || '').toString().trim();
+        const port = parseInt(req.query.port || body.port || 5555, 10) || 5555;
+        if (!ip) return res.status(400).json({ error: 'Missing ip' });
+        const result = await connectAdbDevice(adbPath, ip, port);
+        res.json(result);
+    });
 
     return router;
 }

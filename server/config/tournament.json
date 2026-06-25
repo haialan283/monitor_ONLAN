@@ -1,0 +1,20 @@
+{
+  "whitelistApps": [
+    "com.dts.freefireth",
+    "com.dts.freefiremax",
+    "com.android.chrome",
+    "com.ops.tournamentmonitor",
+    "com.sec.android.app.launcher",
+    "com.garena.game.fcmobilevn"
+  ],
+  "overlayWhitelistApps": [],
+  "noisePackages": [
+    "com.android.systemui",
+    "com.google.android.permissioncontroller",
+    "com.asus.launcher",
+    "com.android.permissioncontroller",
+    "com.coloros.backuprestore"
+  ],
+  "heartbeatIntervalMs": 2000,
+  "disconnectMs": null
+}

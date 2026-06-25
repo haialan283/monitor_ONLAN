@@ -1,4 +1,4 @@
-const dns = require('dns').promises;
+﻿const dns = require('dns').promises;
 const net = require('net');
 
 function oneLineErr(err) {
@@ -10,9 +10,9 @@ function oneLineErr(err) {
 }
 
 /**
- * Probe song song DNS lookup + TCP handshake tới host:port (giống phiên bản cũ).
- * tcp fail = không kết nối được tới cổng (từ chối, timeout 300ms, reset, …).
- * port 0 = bỏ qua TCP, chỉ coi DNS.
+ * Probe song song DNS lookup + TCP handshake tá»›i host:port (giá»‘ng phiĂªn báº£n cÅ©).
+ * tcp fail = khĂ´ng káº¿t ná»‘i Ä‘Æ°á»£c tá»›i cá»•ng (tá»« chá»‘i, timeout 300ms, reset, â€¦).
+ * port 0 = bá» qua TCP, chá»‰ coi DNS.
  */
 async function probeTarget(host, port) {
     const start = Date.now();
@@ -71,7 +71,7 @@ async function probeTarget(host, port) {
 }
 
 /**
- * Khởi tạo và chạy kiểm tra mạng định kỳ. Trả về hàm stop() để dừng.
+ * Khá»Ÿi táº¡o vĂ  cháº¡y kiá»ƒm tra máº¡ng Ä‘á»‹nh ká»³. Tráº£ vá» hĂ m stop() Ä‘á»ƒ dá»«ng.
  */
 function startNetworkCheck(store, broadcast) {
     let netHistory = [];
@@ -148,7 +148,7 @@ function startNetworkCheck(store, broadcast) {
         stop() {
             clearInterval(intervalId);
         },
-        /** Gọi ngay sau khi client SET — không phải đợi hết chu kỳ interval */
+        /** Gá»i ngay sau khi client SET â€” khĂ´ng pháº£i Ä‘á»£i háº¿t chu ká»³ interval */
         runNow() {
             void checkNetwork();
         },

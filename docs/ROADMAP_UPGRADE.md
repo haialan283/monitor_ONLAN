@@ -122,7 +122,7 @@ flowchart LR
 - [ ] 100 thiết bị heartbeat, dashboard không lag (render throttle giữ nguyên)
 - [ ] Push file 10 máy đồng thời không treo server
 - [ ] Backup/restore phiên giữa hai ngày thi đấu
-- [ ] Đổi whitelist không cần sửa code + restart có hướng dẫn
+- [x] Đổi whitelist không cần sửa code + restart có hướng dẫn
 
 ---
 
@@ -234,8 +234,8 @@ flowchart TB
 ### Tiêu chí hoàn thành P2
 
 - [ ] Sau reboot + chạy batch USB: dashboard deploy file không cần gõ lệnh tay
-- [ ] Đổi IP trong LAN: một nút reconnect trên dashboard
-- [ ] Giám sát heartbeat vẫn chạy khi ADB chưa connect
+- [x] Đổi IP trong LAN: một nút reconnect trên dashboard
+- [x] Giám sát heartbeat vẫn chạy khi ADB chưa connect
 
 ---
 

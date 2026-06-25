@@ -1,14 +1,14 @@
-const https = require('https');
+﻿const https = require('https');
 const http = require('http');
 
 const DISCORD_WEBHOOK_TIMEOUT_MS = parseInt(process.env.DISCORD_WEBHOOK_TIMEOUT_MS, 10) || 20000;
 
 /**
- * Gửi thông báo vi phạm lên Discord qua Webhook.
- * Khi có thiết bị vi phạm (app không trong whitelist), gọi hàm này để nhắc trọng tài trong kênh.
- * @param {string} webhookUrl - URL webhook Discord (từ DISCORD_WEBHOOK_URL). Nếu rỗng thì bỏ qua.
- * @param {string} deviceName - Tên thiết bị
- * @param {string} app - Package/app đang vi phạm
+ * Gá»­i thĂ´ng bĂ¡o vi pháº¡m lĂªn Discord qua Webhook.
+ * Khi cĂ³ thiáº¿t bá»‹ vi pháº¡m (app khĂ´ng trong whitelist), gá»i hĂ m nĂ y Ä‘á»ƒ nháº¯c trá»ng tĂ i trong kĂªnh.
+ * @param {string} webhookUrl - URL webhook Discord (tá»« DISCORD_WEBHOOK_URL). Náº¿u rá»—ng thĂ¬ bá» qua.
+ * @param {string} deviceName - TĂªn thiáº¿t bá»‹
+ * @param {string} app - Package/app Ä‘ang vi pháº¡m
  */
 function notifyViolation(webhookUrl, deviceName, app) {
     if (!webhookUrl || !webhookUrl.startsWith('http')) return;
@@ -17,10 +17,10 @@ function notifyViolation(webhookUrl, deviceName, app) {
         content: null,
         embeds: [
             {
-                title: '⚠️ Vi phạm thiết bị',
-                description: `**Thiết bị:** ${deviceName || 'N/A'}\n**App:** \`${app || 'N/A'}\``,
+                title: 'â ï¸ Vi pháº¡m thiáº¿t bá»‹',
+                description: `**Thiáº¿t bá»‹:** ${deviceName || 'N/A'}\n**App:** \`${app || 'N/A'}\``,
                 color: 0xff6600,
-                footer: { text: 'ALAN Monitor • Giám sát giải đấu' },
+                footer: { text: 'ArenaPulse â€¢ GiĂ¡m sĂ¡t giáº£i Ä‘áº¥u' },
                 timestamp: new Date().toISOString(),
             },
         ],
@@ -59,7 +59,7 @@ function notifyViolation(webhookUrl, deviceName, app) {
 }
 
 /**
- * Gửi thông báo thiết bị mất kết nối lên Discord.
+ * Gá»­i thĂ´ng bĂ¡o thiáº¿t bá»‹ máº¥t káº¿t ná»‘i lĂªn Discord.
  */
 function notifyDisconnect(webhookUrl, deviceName) {
     if (!webhookUrl || !webhookUrl.startsWith('http')) return;
@@ -68,10 +68,10 @@ function notifyDisconnect(webhookUrl, deviceName) {
         content: null,
         embeds: [
             {
-                title: '🔌 Mất kết nối thiết bị',
-                description: `**Thiết bị:** ${deviceName || 'N/A'}`,
+                title: 'đŸ”Œ Máº¥t káº¿t ná»‘i thiáº¿t bá»‹',
+                description: `**Thiáº¿t bá»‹:** ${deviceName || 'N/A'}`,
                 color: 0x666666,
-                footer: { text: 'ALAN Monitor' },
+                footer: { text: 'ArenaPulse' },
                 timestamp: new Date().toISOString(),
             },
         ],

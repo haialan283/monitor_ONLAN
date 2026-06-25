@@ -1,6 +1,6 @@
 # Triển khai giải ONLINE (LIVE) — MCP Demo System
 
-Hướng dẫn deploy server ALAN Monitor lên Internet qua **MCP Demo System** (đã kết nối trong Cursor).
+Hướng dẫn deploy **ArenaPulse** lên Internet qua **MCP Demo System** (Cursor).
 
 ---
 
@@ -12,130 +12,74 @@ Dashboard    ──https/wss──►  cùng URL
 ```
 
 - Thiết bị thí sinh **chỉ kết nối ra** (outbound) — không cần mở port trên router nhà.
-- App: **IP** = domain public (vd. `xxx.demo-system.dev`), **Port** = `443` → `wss://`.
+- App: **Host** = domain public, **Port** = `443` → `wss://`.
 - `DEPLOY_MODE=LIVE` → **tắt `/api/adb`** (không deploy file qua Internet).
 
 ---
 
-## 2. Chuẩn bị code (local)
+## 2. Chuẩn bị code
 
-1. Đảm bảo có `Dockerfile` ở root repo (đã có).
-2. Commit & push lên GitHub (`master`): `https://github.com/haialan283/monitor_ONLAN.git`  
-   **Quan trọng:** Phải có `Dockerfile` ở root — nếu chưa push, platform sẽ detect nhầm `STATIC_HTML`.
-3. `import_repo` lại (branch `master`) sau mỗi lần push lớn.
+1. Phát triển trên branch **`master`** trong thư mục `server/`.
+2. Build branch deploy: `node scripts/build-live-server-min.js` → `_live_min_root/`
+3. Push branch **`live-server-min`** (layout phẳng, không file `.html` trong tree).
+4. Repo: `https://github.com/haialan283/monitor_ONLAN.git`
 
 ---
 
-## 3. Biến môi trường (bắt buộc trên platform)
+## 3. Biến môi trường (platform)
 
 | Biến | Mô tả | Ví dụ |
 |------|--------|-------|
-| `SECRET_KEY` | Trùng app Android + dashboard | `MonitorTournamentSecretKey2026!` |
+| `SECRET_KEY` | Trùng app Android | `MonitorTournamentSecretKey2026!` |
 | `DEPLOY_MODE` | `LIVE` tắt ADB | `LIVE` |
-| `PORT` | Port container (platform có thể inject) | `3333` |
-| `DASHBOARD_ADMIN_PIN` | PIN admin | `****` |
-| `DASHBOARD_VIEWER_PIN` | PIN viewer (tùy chọn) | `****` |
-| `DISCONNECT_MS` | Ngưỡng mất kết nối (ms), LIVE nên 12000+ | `12000` |
-| `NET_TCP_TIMEOUT_MS` | Probe mạng Internet | `8000` |
-| `DISCORD_WEBHOOK_URL` | Webhook Discord (tùy chọn) | `https://discord.com/api/webhooks/...` |
+| `PORT` | Port container | `3333` |
+| `DASHBOARD_ADMIN_USER` | Tài khoản admin | `admin` |
+| `DASHBOARD_ADMIN_PASSWORD` | Mật khẩu admin | `****` |
+| `DASHBOARD_VIEWER_USER` | Viewer (tùy chọn) | `viewer` |
+| `DASHBOARD_VIEWER_PASSWORD` | Mật khẩu viewer | `****` |
+| `TOURNAMENT_CODE` | Mã giải mặc định (Admin có thể đổi) | `FFWS2026` |
+| `CERT_PIN_SHA256` | SHA-256 pin TLS (tùy chọn) | `...` |
+| `DISCONNECT_MS` | Ngưỡng mất kết nối (ms) | `12000` |
+| `NET_TCP_TIMEOUT_MS` | Probe Internet | `8000` |
+| `DISCORD_WEBHOOK_URL` | Discord webhook | `https://discord.com/api/webhooks/...` |
+
+Không commit `server/.env` — cấu hình secret trên Demo System.
 
 ---
 
-## 4. Quy trình MCP (trong Cursor)
+## 4. Quy trình MCP
 
-Thứ tự gọi tool `user-demo-system`:
-
-```mermaid
-flowchart LR
-    A[create_project] --> B[import_repo hoặc upload_zip]
-    B --> C[set env trên platform UI]
-    C --> D[run_deployment_check]
-    D --> E[deploy]
-    E --> F[get_public_url]
-    F --> G[Test /health + dashboard]
-```
-
-### Bước 1 — Tạo project
+**Project LIVE:** `projectId = cmqrtdt40z4i1gc3gzfoi22fr`  
+**URL:** https://alan-monitor-live-v2.demo.ffol4.vn
 
 ```
-create_project
-  name: ALAN Monitor LIVE
-  slug: alan-monitor-live
-  sourceType: GITHUB
+import_repo  branch: live-server-min
+deploy
+get_public_url
 ```
 
-**Project đã tạo:** `projectId = cmqrt0mh2z2yhgc3gaa5ocs2o`
-
-### Bước 2 — Import code
-
-```
-import_repo
-  projectId: cmqrt0mh2z2yhgc3gaa5ocs2o
-  repoUrl: https://github.com/haialan283/monitor_ONLAN.git
-  branch: master
-```
-
-Hoặc `upload_zip` nếu chưa push GitHub (zip repo có `Dockerfile` ở root).
-
-Không commit `server/.env` — secrets cấu hình trên Demo System.
-
-### Bước 3 — Cấu hình env
-
-Trên UI Demo System (hoặc tool env nếu có): đặt các biến ở mục 3.
-
-`get_deployment_env_summary` — kiểm tra env đã inject (không lộ secret).
-
-### Bước 4 — Kiểm tra & deploy
-
-```
-run_deployment_check  projectId: <id>
-deploy                projectId: <id>
-get_deployment_status projectId: <id>
-get_logs              projectId: <id>
-get_public_url        projectId: <id>
-```
-
-### Bước 5 — Xác minh
-
-- `GET https://<public-url>/health` → `{ "ok": true, "deployMode": "LIVE", "adbEnabled": false }`
-- Mở dashboard → đăng nhập PIN → thấy WebSocket “Đã kết nối”
-- App Android: domain public, port `443`, cùng `SECRET_KEY`
+Sau sửa code: push `live-server-min` → `import_repo` → `deploy`.
 
 ---
 
-## 5. Cấu hình app Android (thí sinh)
+## 5. Xác minh
 
-| Trường | Giá trị |
-|--------|---------|
-| IP | Domain từ `get_public_url` (không `https://`) |
-| Port | `443` |
-| Tên thiết bị | Tên đội / bàn |
-
-Build APK với `wsSecretKey` trùng `SECRET_KEY` trên server (`gradle.properties` hoặc `-PwsSecretKey=...`).
+- `GET /health` → `{ "ok": true, "service": "arena-pulse", "deployMode": "LIVE", "adbEnabled": false }`
+- `/login.html` → đăng nhập username/password
+- `/admin.html` → cấu hình mã giải, whitelist (admin only)
+- App: domain, port `443`, mã giải, `wsSecretKey` trùng `SECRET_KEY`
 
 ---
 
-## 6. Vận hành sau deploy
+## 6. LAN vs LIVE
 
-| Lệnh MCP | Khi nào |
-|----------|---------|
-| `restart` | Sau khi đổi env hoặc redeploy |
-| `get_logs` | Debug lỗi WebSocket / crash |
-| `stop` | Tắt giải / bảo trì |
-
-Sau sửa code local: push GitHub → `import_repo` (hoặc upload) → `deploy` lại.
-
----
-
-## 7. LAN vs LIVE
-
-| | LAN | LIVE (Demo System) |
-|--|-----|---------------------|
-| `DEPLOY_MODE` | `LAN` (mặc định) | `LIVE` |
+| | LAN | LIVE |
+|--|-----|------|
+| `DEPLOY_MODE` | `LAN` | `LIVE` |
 | ADB | Bật | Tắt |
-| App URL | `ws://192.168.x.x:3333` | `wss://domain:443` |
-| `DISCONNECT_MS` | 5000 | 12000+ |
+| App | `ws://IP:3333` | `wss://domain:443` |
+| Auth | User/password hoặc PIN legacy | User/password bắt buộc |
 
 ---
 
-*Tài liệu đi kèm `docs/ROADMAP_UPGRADE.md` — Phase 1.*
+*Đi kèm `docs/ROADMAP_UPGRADE.md` — Phase 1.*
