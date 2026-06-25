@@ -1,0 +1,20 @@
+{
+  "name": "alan-monitor-server",
+  "version": "1.0.0",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "axios": "^1.13.5",
+    "dotenv": "^16.4.5",
+    "express": "^5.2.1",
+    "lowdb": "^1.0.0",
+    "multer": "^2.1.1",
+    "ws": "^8.19.0"
+  }
+}
