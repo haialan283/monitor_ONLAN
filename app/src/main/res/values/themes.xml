@@ -1,9 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.TournamentMonitor" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/monitor_accent</item>
+        <item name="colorPrimaryContainer">@color/monitor_surface</item>
+        <item name="android:colorBackground">@color/monitor_bg</item>
+        <item name="android:statusBarColor">@color/monitor_bg</item>
+        <item name="android:navigationBarColor">@color/monitor_bg</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
     </style>
-
     <style name="Theme.TournamentMonitor" parent="Base.Theme.TournamentMonitor" />
 </resources>

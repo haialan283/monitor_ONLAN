@@ -35,13 +35,16 @@ import java.util.concurrent.ScheduledFuture
 class HeartbeatService : Service() {
 
     companion object {
-        /** Key mã hóa WebSocket — phải trùng với SECRET_KEY trên server (.env). */
-        private const val WS_SECRET_KEY = "MonitorTournamentSecretKey2026!"
         private const val LOCAL_IP_CACHE_MS = 20_000L
-        // Giới hạn backoff reconnect để giảm thời gian server phát hiện re-connect.
         private const val RECONNECT_MAX_SEC = 10
-        private const val OFFLINE_RECORD_WINDOW_MS = 120_000L // 2 phút
+        private const val OFFLINE_RECORD_WINDOW_MS = 120_000L
+        private const val DEFAULT_HB_MS = 2_000L
     }
+
+    private var wsSecretKey: String = BuildConfig.WS_SECRET_KEY
+    private var certPinSha256: String = BuildConfig.TLS_PIN_SHA256.trim()
+    private var tournamentCode: String = ""
+    private var heartbeatIntervalMs: Long = DEFAULT_HB_MS
 
     private var client: OkHttpClient? = null
     private var webSocket: WebSocket? = null
@@ -123,6 +126,8 @@ class HeartbeatService : Service() {
         serverIp = intent?.getStringExtra("IP") ?: ""
         serverPort = intent?.getStringExtra("PORT") ?: "3000"
         deviceName = intent?.getStringExtra("DEVICE_NAME") ?: "Device"
+        tournamentCode = intent?.getStringExtra("TOURNAMENT_CODE")?.trim()?.uppercase() ?: ""
+        intent?.getStringExtra("CERT_PIN_SHA256")?.trim()?.takeIf { it.isNotEmpty() }?.let { certPinSha256 = it }
         val initialFtpOpen = intent?.getBooleanExtra("FTP_OPEN", false) ?: false
 
         if (serverIp.isNotEmpty()) {
@@ -163,7 +168,12 @@ class HeartbeatService : Service() {
         // Overlay check cần danh sách app đã filter.
         refreshInstalledAppsList()
 
-        heartbeatTask = scheduler.scheduleWithFixedDelay({ sendHeartbeat() }, 0, 2, TimeUnit.SECONDS)
+        heartbeatTask = scheduler.scheduleWithFixedDelay(
+            { sendHeartbeat() },
+            0,
+            heartbeatIntervalMs,
+            TimeUnit.MILLISECONDS
+        )
         overlayTask = scheduler.scheduleWithFixedDelay({ checkActiveOverlayRoutine() }, 5, 15, TimeUnit.SECONDS)
         installedAppsTask = scheduler.scheduleWithFixedDelay({ refreshInstalledAppsList() }, 5, 5, TimeUnit.MINUTES)
     }
@@ -358,8 +368,9 @@ class HeartbeatService : Service() {
                 put("currentApp", finalAppReport)
                 put("ramInfo", getRamStatus()) // Đính kèm thông tin RAM
                 put("rssi", getWifiRssi()) // Đính kèm cường độ WiFi
-                put("isFtpOpen", isFtpOpen) // Đính kèm trạng thái FTP
-                put("localIp", getLocalIpAddressCached()) // IP nội bộ (cache 20s để giảm tải)
+                put("isFtpOpen", isFtpOpen)
+                put("localIp", getLocalIpAddressCached())
+                if (tournamentCode.isNotEmpty()) put("tournamentCode", tournamentCode)
             }
 
             // Kích thước JSON trước mã hóa + kích thước chuỗi đã mã hóa
@@ -401,7 +412,7 @@ class HeartbeatService : Service() {
     private fun aesEncrypt(data: String): String {
         try {
             val md = MessageDigest.getInstance("SHA-256")
-            val keyBytes = md.digest(WS_SECRET_KEY.toByteArray(Charsets.UTF_8))
+            val keyBytes = md.digest(wsSecretKey.toByteArray(Charsets.UTF_8))
             val secretKey = SecretKeySpec(keyBytes, "AES")
 
             val ivBytes = ByteArray(16)
@@ -467,9 +478,48 @@ class HeartbeatService : Service() {
 
     private var reconnectDelaySec = 2
 
+    private fun buildOkHttpClient(readTimeoutMs: Long = 0): OkHttpClient {
+        val builder = OkHttpClient.Builder()
+        if (readTimeoutMs > 0) builder.readTimeout(readTimeoutMs, TimeUnit.MILLISECONDS)
+        else builder.readTimeout(0, TimeUnit.MILLISECONDS)
+        if (serverPort == "443") {
+            val pin = certPinSha256.trim()
+            if (pin.isNotEmpty()) {
+                val host = serverIp.trim()
+                builder.certificatePinner(
+                    CertificatePinner.Builder()
+                        .add(host, "sha256/$pin")
+                        .build()
+                )
+            }
+        }
+        return builder.build()
+    }
+
+    private fun fetchClientConfig() {
+        try {
+            val scheme = if (serverPort == "443") "https" else "http"
+            val url = if (serverPort == "443") "$scheme://$serverIp/api/client-config"
+            else "$scheme://$serverIp:$serverPort/api/client-config"
+            val request = Request.Builder().url(url).get().build()
+            buildOkHttpClient(15_000).newCall(request).execute().use { resp ->
+                if (!resp.isSuccessful) return
+                val body = resp.body?.string() ?: return
+                val json = JSONObject(body)
+                json.optString("wsSecretKey", "").trim().takeIf { it.isNotEmpty() }?.let { wsSecretKey = it }
+                val ms = json.optInt("heartbeatIntervalMs", 0)
+                if (ms in 1000..30000) heartbeatIntervalMs = ms.toLong()
+                json.optString("certPinSha256", "").trim().takeIf { it.isNotEmpty() }?.let { certPinSha256 = it }
+            }
+        } catch (e: Exception) {
+            Log.w(logTag, "client-config: ${e.message}")
+        }
+    }
+
     private fun connectWebSocket() {
         if (!reconnectEnabled || isWsConnected) return
-        client = OkHttpClient.Builder().readTimeout(0, TimeUnit.MILLISECONDS).build()
+        fetchClientConfig()
+        client = buildOkHttpClient()
         // Khi dùng ngrok/HTTPS (port 443) phải dùng wss://; LAN dùng ws://
         val wsUrl = if (serverPort == "443") "wss://$serverIp" else "ws://$serverIp:$serverPort"
         val request = Request.Builder().url(wsUrl).build()
@@ -494,6 +544,7 @@ class HeartbeatService : Service() {
 
             override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
                 isWsConnected = false
+                if (code == 4003) Log.w(logTag, "Server rejected: invalid tournament code")
                 val nowMs = System.currentTimeMillis()
                 startOfflineRecording(nowMs)
 

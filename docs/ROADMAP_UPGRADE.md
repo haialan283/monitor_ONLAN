@@ -1,4 +1,4 @@
-# ALAN Monitor — Roadmap nâng cấp 2026
+# ArenaPulse — Roadmap nâng cấp 2026
 
 Tài liệu tổng hợp lộ trình phát triển từ trạng thái hiện tại (Android + Node.js + WebSocket + LAN) hướng tới: **vận hành ổn định**, **giám sát giải online (LIVE)**, **ADB LAN tối ưu**, **nền tảng hiện đại**, **AI hỗ trợ vận hành**.
 
@@ -152,15 +152,15 @@ sequenceDiagram
 | 1.3 | **`GET /health`** | ✅ | Healthcheck container + monitoring |
 | 1.4 | **`DISCONNECT_MS` env** | ✅ | Ngưỡng LIVE (mặc định 12s khi LIVE) |
 | 1.5 | **`docs/DEPLOY_LIVE.md`** | ✅ | Quy trình MCP từng bước |
-| 1.6 | **MCP deploy** | 🔲 | `create_project` → `import_repo` → `deploy` → `get_public_url` |
-| 1.7 | **Đăng ký thiết bị** | 🔲 | `TOURNAMENT_CODE` + tên đội |
-| 1.8 | **Certificate pinning** | 🔲 | App Android (tùy chọn) |
+| 1.6 | **MCP deploy** | ✅ | https://alan-monitor-live-v2.demo.ffol4.vn |
+| 1.7 | **Đăng ký thiết bị** | ✅ | Mã giải LIVE + tên đội; Admin SET mã |
+| 1.8 | **Certificate pinning** | ✅ | App port 443 + `CERT_PIN_SHA256` / client-config |
 
 ### Quy trình MCP (tóm tắt)
 
 1. `create_project` — tạo project ALAN Monitor LIVE  
-2. `import_repo` — `https://github.com/haialan283/monitor_ONLAN.git` (branch `master`)  
-3. Cấu hình env trên platform (`SECRET_KEY`, `DEPLOY_MODE=LIVE`, PIN, …)  
+2. `import_repo` — `https://github.com/haialan283/monitor_ONLAN.git` (branch `live-server-min`)  
+3. Cấu hình env trên platform (`SECRET_KEY`, `DEPLOY_MODE=LIVE`, tài khoản admin/viewer, …)  
 4. `run_deployment_check` → `deploy` → `get_public_url`  
 5. App: domain public, port `443`  
 
@@ -172,20 +172,24 @@ Chi tiết: [`docs/DEPLOY_LIVE.md`](DEPLOY_LIVE.md)
 DEPLOY_MODE=LIVE
 PORT=3333
 SECRET_KEY=...
-DASHBOARD_ADMIN_PIN=...
+DASHBOARD_ADMIN_USER=admin
+DASHBOARD_ADMIN_PASSWORD=...
+DASHBOARD_VIEWER_USER=viewer
+DASHBOARD_VIEWER_PASSWORD=...
 DISCONNECT_MS=12000
 NET_TCP_TIMEOUT_MS=8000
 DISCORD_WEBHOOK_URL=...
+TOURNAMENT_CODE=FFWS2026
 ```
 
 ### Tiêu chí hoàn thành P1
 
 - [x] `Dockerfile` + `DEPLOY_MODE` + `/health` + tài liệu MCP
-- [ ] MCP: `deploy` thành công, `get_public_url` truy cập được
-- [ ] App kết nối `wss://domain:443` từ mạng 4G
-- [ ] Dashboard HTTPS, PIN login, viewer read-only
-- [ ] ADB API không hoạt động khi `DEPLOY_MODE=LIVE`
-- [ ] Discord báo vi phạm + disconnect qua LIVE
+- [x] MCP: `deploy` thành công, `get_public_url` truy cập được
+- [x] App: BuildConfig key, mã giải, client-config, cert pin (port 443) — cần test 4G
+- [x] Dashboard HTTPS, đăng nhập tài khoản, viewer read-only, trang Admin
+- [x] ADB API không hoạt động khi `DEPLOY_MODE=LIVE`
+- [ ] Discord báo vi phạm + disconnect qua LIVE (cần test thực tế)
 
 ---
 
@@ -215,12 +219,12 @@ flowchart TB
 
 | # | Hạng mục | Mô tả |
 |---|----------|--------|
-| 2.1 | **`POST /api/adb/reconnect-all`** | Thử `connect` tất cả `devices[].ipAddress:5555` |
-| 2.2 | **Auto-connect khi `isFtpOpen`** | Server connect ADB khi heartbeat báo mở cổng |
-| 2.3 | **Lưu `adbEndpoint` theo deviceId** | DB: last known IP + port (mặc định 5555) |
-| 2.4 | **Nút dashboard** | "Reconnect ADB" / "Reconnect all" |
-| 2.5 | **Tích hợp scan LAN** | Gọi logic từ `Reconnect_Wifi_ADB_scanLAN.ps1` qua API (tùy chọn) |
-| 2.6 | **`docs/ADB_LAN_OPS.md`** | Quy trình: hub → Task Scheduler → reconnect |
+| 2.1 | **`POST /api/adb/reconnect-all`** | ✅ |
+| 2.2 | **Auto-connect khi `isFtpOpen`** | ✅ |
+| 2.3 | **Lưu `adbEndpoint` theo deviceId** | ✅ |
+| 2.4 | **Nút dashboard** | ✅ |
+| 2.5 | **Tích hợp scan LAN** | 🔲 (tùy chọn) |
+| 2.6 | **`docs/ADB_LAN_OPS.md`** | ✅ |
 
 ### Không làm trong P2 (đã thống nhất)
 
@@ -261,7 +265,7 @@ flowchart LR
 | 3.4 | **Dashboard Vite** | Tách `index.html` → components (Stage, Logs, Net) |
 | 3.5 | **PWA** | Cache last state, cài trên tablet trọng tài |
 | 3.6 | **CI** | GitHub Actions: lint, test server, build APK |
-| 3.7 | **Audit log** | Ghi ai clear log, push file, đổi config |
+| 3.7 | **Audit log** | ✅ Ghi login, admin settings, clear logs, import phiên |
 
 ### Tiêu chí hoàn thành P3
 

@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="monitor_bg">#0B0D12</color>
+    <color name="monitor_surface">#12151C</color>
+    <color name="monitor_accent">#3D8BFD</color>
+    <color name="monitor_accent_dim">#2563EB</color>
+    <color name="monitor_text">#E8ECF4</color>
+    <color name="monitor_text_muted">#8B93A7</color>
+    <color name="monitor_input_bg">#181C26</color>
+    <color name="monitor_input_stroke">#252B38</color>
+    <color name="monitor_success">#22C55E</color>
 </resources>

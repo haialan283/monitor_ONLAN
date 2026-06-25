@@ -5,6 +5,7 @@ plugins {
 // Key WebSocket — trùng với server .env SECRET_KEY. Override: gradle.properties (wsSecretKey=...) hoặc -PwsSecretKey=...
 val wsSecretKeyForBuild: String = (project.findProperty("wsSecretKey") as String?).orEmpty()
     .ifBlank { "MonitorTournamentSecretKey2026!" }
+val tlsPinSha256ForBuild: String = (project.findProperty("tlsPinSha256") as String?).orEmpty()
 
 android {
     namespace = "com.ops.tournamentmonitor"
@@ -22,6 +23,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "WS_SECRET_KEY", "\"${wsSecretKeyForBuild.replace("\"", "\\\"")}\"")
+        buildConfigField("String", "TLS_PIN_SHA256", "\"${tlsPinSha256ForBuild.replace("\"", "\\\"")}\"")
     }
     buildFeatures {
         buildConfig = true
