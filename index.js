@@ -66,25 +66,27 @@ app.get('/api/client-config', (_req, res) => {
     });
 });
 
-const publicDir = path.join(__dirname, 'public');
 
 app.post('/api/auth/login', loginRoute(config.getAuthUsers));
 app.post('/api/auth/logout', logoutRoute());
-app.get('/login.html', (_req, res) => {
-    res.sendFile(path.join(publicDir, 'login.html'));
-});
+const dashboardDir = path.join(__dirname, 'dashboard');
+const sendDashboard = (file) => (_req, res) => {
+    res.type('html');
+    res.sendFile(path.join(dashboardDir, file));
+};
+app.get('/login.html', sendDashboard('signin.view'));
 
 app.use(requireAuth(config.getAuthUsers));
 
 app.get('/admin.html', (req, res) => {
     if (req.userRole !== 'admin') {
         return res.status(403).type('html').send(
-            '<!DOCTYPE html><html><body style="background:#050505;color:#888;font-family:sans-serif;padding:2rem">' +
-            '<p>Chỉ tài khoản <b style="color:#00f2ff">admin</b> mới vào được trang này.</p>' +
-            '<p><a href="/" style="color:#00ff88">← Quay lại Dashboard</a></p></body></html>'
+            '<!DOCTYPE html><html><body style="background:#0b0d12;color:#8b93a7;font-family:Inter,sans-serif;padding:2rem">' +
+            '<p>Chỉ tài khoản <b style="color:#3d8bfd">admin</b> mới vào được trang này.</p>' +
+            '<p><a href="/" style="color:#22c55e">← Quay lại Dashboard</a></p></body></html>'
         );
     }
-    res.sendFile(path.join(publicDir, 'admin.html'));
+    sendDashboard('admin.view')(req, res);
 });
 
 app.get('/api/auth/me', meRoute(config.getAuthUsers));
@@ -177,11 +179,9 @@ if (adbEnabled) {
     console.log('[ArenaPulse] DEPLOY_MODE=LIVE — /api/adb disabled');
 }
 
-app.get('/', (_req, res) => {
-    res.sendFile(path.join(publicDir, 'index.html'));
-});
+app.get('/', sendDashboard('monitor.view'));
 app.get('/index.html', (_req, res) => res.redirect('/'));
-app.use(express.static(publicDir));
+app.use('/templates', express.static(path.join(dashboardDir, 'templates')));
 
 const discordWebhookUrl = config.getDiscordWebhookUrl();
 const onViolation = (deviceName, app) => {
