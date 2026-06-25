@@ -23,6 +23,7 @@ db.defaults({
     stageStateBackup: null, // { savedAtMs, stageState }
     /** Last known ADB endpoint per device (LAN) */
     adbEndpoints: {}, // deviceId -> { ip, port, updatedAtMs }
+    auditLog: [],
 }).write();
 
 const devices = [];

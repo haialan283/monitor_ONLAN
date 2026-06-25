@@ -296,6 +296,48 @@
 
         .card-icon.advanced { background: rgba(168, 85, 247, 0.12); color: #a855f7; }
 
+        .card-icon.audit { background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
+
+        .audit-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }
+
+        table.audit-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+
+        table.audit-table th, table.audit-table td {
+
+            padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+
+        }
+
+        table.audit-table th {
+
+            background: var(--surface-2); color: var(--text-muted); font-weight: 600;
+
+            font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em;
+
+        }
+
+        table.audit-table tr:last-child td { border-bottom: none; }
+
+        table.audit-table td.mono { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); }
+
+        table.audit-table td.action { font-weight: 500; color: var(--accent); }
+
+        .audit-empty { padding: 24px; text-align: center; color: var(--text-dim); font-size: 13px; }
+
+        .audit-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 12px; }
+
+        .btn-sm {
+
+            padding: 6px 12px; font-size: 12px; border-radius: 6px;
+
+            background: var(--surface-2); border: 1px solid var(--border);
+
+            color: var(--text-muted); cursor: pointer; font-family: inherit;
+
+        }
+
+        .btn-sm:hover { border-color: var(--text-muted); color: var(--text); }
+
         .card-head h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
 
         .card-head .hint { font-size: 12px; color: var(--text-muted); line-height: 1.45; }
@@ -506,6 +548,8 @@
 
             <a class="nav-link" href="#sec-advanced"><span class="icon">⚙</span> Nâng cao</a>
 
+            <a class="nav-link" href="#sec-audit"><span class="icon">📋</span> Nhật ký</a>
+
         </nav>
 
         <div class="sidebar-footer">
@@ -639,6 +683,60 @@
                         <input type="number" id="disconnect-ms" min="3000" max="120000" step="1000" placeholder="12000">
 
                     </div>
+
+                </div>
+
+            </section>
+
+
+
+            <section id="sec-audit" class="card">
+
+                <div class="card-head">
+
+                    <div class="card-icon audit">📋</div>
+
+                    <div>
+
+                        <h3>Nhật ký thao tác</h3>
+
+                        <p class="hint">Đăng nhập, lưu cấu hình admin, xóa log vi phạm — tối đa 500 mục gần nhất.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="audit-toolbar">
+
+                    <span class="hint" id="audit-count"></span>
+
+                    <button type="button" class="btn-sm" onclick="loadAudit()">Làm mới</button>
+
+                </div>
+
+                <div class="audit-table-wrap" id="audit-wrap">
+
+                    <div class="audit-empty" id="audit-empty">Đang tải…</div>
+
+                    <table class="audit-table" id="audit-table" hidden>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Thời gian</th>
+
+                                <th>Hành động</th>
+
+                                <th>Chi tiết</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="audit-body"></tbody>
+
+                    </table>
 
                 </div>
 
@@ -816,6 +914,120 @@
 
 
 
+    const AUDIT_LABELS = {
+
+        login: 'Đăng nhập',
+
+        admin_settings: 'Lưu cấu hình',
+
+        session_import: 'Import phiên',
+
+        clear_logs: 'Xóa log vi phạm',
+
+    };
+
+
+
+    function formatAuditTime(iso) {
+
+        if (!iso) return '—';
+
+        try {
+
+            const d = new Date(iso);
+
+            return d.toLocaleString('vi-VN', { hour12: false });
+
+        } catch (_) {
+
+            return iso;
+
+        }
+
+    }
+
+
+
+    async function loadAudit() {
+
+        const empty = document.getElementById('audit-empty');
+
+        const table = document.getElementById('audit-table');
+
+        const body = document.getElementById('audit-body');
+
+        const countEl = document.getElementById('audit-count');
+
+        empty.hidden = false;
+
+        empty.textContent = 'Đang tải…';
+
+        table.hidden = true;
+
+        try {
+
+            const res = await fetch('/api/admin/audit?limit=50', { cache: 'no-store' });
+
+            if (res.status === 401) { window.location.href = '/login.html'; return; }
+
+            if (res.status === 403) { window.location.href = '/'; return; }
+
+            if (!res.ok) throw new Error('Không tải được nhật ký');
+
+            const data = await res.json();
+
+            const entries = Array.isArray(data.entries) ? data.entries : [];
+
+            countEl.textContent = entries.length ? `${entries.length} mục gần nhất` : 'Chưa có mục nào';
+
+            if (!entries.length) {
+
+                empty.textContent = 'Chưa có thao tác nào được ghi.';
+
+                empty.hidden = false;
+
+                table.hidden = true;
+
+                return;
+
+            }
+
+            body.innerHTML = entries.map((e) => {
+
+                const label = AUDIT_LABELS[e.action] || e.action || '—';
+
+                const detail = (e.detail || '').replace(/</g, '&lt;');
+
+                return `<tr>
+
+                    <td class="mono">${formatAuditTime(e.at)}</td>
+
+                    <td class="action">${label}</td>
+
+                    <td>${detail || '—'}</td>
+
+                </tr>`;
+
+            }).join('');
+
+            empty.hidden = true;
+
+            table.hidden = false;
+
+        } catch (err) {
+
+            empty.textContent = 'Lỗi: ' + (err.message || err);
+
+            empty.hidden = false;
+
+            table.hidden = true;
+
+        }
+
+    }
+
+
+
     async function logout() {
 
         try { await fetch('/api/auth/logout', { method: 'POST' }); } catch (_) { /* ignore */ }
@@ -828,7 +1040,13 @@
 
     (async () => {
 
-        if (await ensureAdmin()) await loadSettings();
+        if (await ensureAdmin()) {
+
+            await loadSettings();
+
+            await loadAudit();
+
+        }
 
     })();
 

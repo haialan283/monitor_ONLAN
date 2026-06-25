@@ -1,6 +1,7 @@
 const WebSocket = require('ws');
 const config = require('../config');
 const tournament = require('../config/tournamentLoader');
+const auditLog = require('../services/auditLog');
 
 function normalizePackageName(input) {
     const raw = (input || '').toString().trim().toLowerCase();
@@ -397,6 +398,7 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
                     }
                 }
                 if (data.type === 'clear_logs') {
+                    auditLog.appendAudit('clear_logs', 'Xóa violation logs', { role: ws._alanRole });
                     store.setAlerts([]);
                     broadcast.broadcast({ type: 'alerts_cleared' });
                 }

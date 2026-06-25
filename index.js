@@ -18,6 +18,7 @@ const { createAdbConnectService } = require('./services/adbConnect');
 const { createAdbQueue } = require('./services/adbQueue');
 const { attachWsHandler } = require('./ws/handler');
 const tournament = require('./config/tournamentLoader');
+const auditLog = require('./services/auditLog');
 
 // Fail fast nếu thiếu SECRET_KEY
 config.getSecretKey();
@@ -98,6 +99,7 @@ app.get('/api/session/export', requireEditor, (_req, res) => {
 app.post('/api/session/import', requireEditor, (req, res) => {
     const ok = store.importSessionSnapshot(req.body);
     if (!ok) return res.status(400).json({ error: 'Invalid session payload' });
+    auditLog.appendAudit('session_import', 'Khôi phục phiên từ JSON', {});
     broadcast.broadcast({
         type: 'update_all',
         devices: store.devices,
@@ -154,11 +156,21 @@ app.put('/api/admin/settings', requireEditor, (req, res) => {
         });
     }
 
+    auditLog.appendAudit('admin_settings', 'Cập nhật mã giải / whitelist / timing', {
+        codeChanged,
+        whitelistCount: Array.isArray(body.whitelistApps) ? body.whitelistApps.length : undefined,
+    });
+
     res.json({
         ok: true,
         tournamentCode: store.getTournamentCode() || '',
         tournament: savedTournament,
     });
+});
+
+app.get('/api/admin/audit', requireEditor, (req, res) => {
+    const limit = parseInt(req.query.limit, 10) || 50;
+    res.json({ ok: true, entries: auditLog.getRecent(limit) });
 });
 
 if (adbEnabled) {
