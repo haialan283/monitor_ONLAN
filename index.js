@@ -6,7 +6,7 @@ const express = require('express');
 const WebSocket = require('ws');
 
 const config = require('./config');
-const { requireAuth, requireEditor, loginRoute, meRoute, getRoleFromRequest } = require('./middleware/auth');
+const { requireAuth, requireEditor, loginRoute, meRoute, logoutRoute, getRoleFromRequest } = require('./middleware/auth');
 const { createCrypto } = require('./lib/crypto');
 const store = require('./db/store');
 const { createBroadcast } = require('./services/broadcast');
@@ -47,7 +47,7 @@ app.use(express.json());
 app.get('/health', (_req, res) => {
     res.json({
         ok: true,
-        service: 'alan-monitor',
+        service: 'arena-pulse',
         deployMode,
         adbEnabled,
         uptimeSec: Math.floor(process.uptime()),
@@ -61,15 +61,33 @@ app.get('/api/client-config', (_req, res) => {
         deployMode,
         adbEnabled,
         tournamentRegistration: !!config.getTournamentCode(),
-        tournamentCode: config.getTournamentCode() || '',
         heartbeatIntervalMs: tournament.getHeartbeatIntervalMs(),
         certPinSha256: certPin || '',
     });
 });
 
-app.post('/api/auth/login', loginRoute(config.getAuthPins));
-app.use(requireAuth(config.getAuthPins));
-app.get('/api/auth/me', meRoute(config.getAuthPins));
+const publicDir = path.join(__dirname, 'public');
+
+app.post('/api/auth/login', loginRoute(config.getAuthUsers));
+app.post('/api/auth/logout', logoutRoute());
+app.get('/login.html', (_req, res) => {
+    res.sendFile(path.join(publicDir, 'login.html'));
+});
+
+app.use(requireAuth(config.getAuthUsers));
+
+app.get('/admin.html', (req, res) => {
+    if (req.userRole !== 'admin') {
+        return res.status(403).type('html').send(
+            '<!DOCTYPE html><html><body style="background:#050505;color:#888;font-family:sans-serif;padding:2rem">' +
+            '<p>Chỉ tài khoản <b style="color:#00f2ff">admin</b> mới vào được trang này.</p>' +
+            '<p><a href="/" style="color:#00ff88">← Quay lại Dashboard</a></p></body></html>'
+        );
+    }
+    res.sendFile(path.join(publicDir, 'admin.html'));
+});
+
+app.get('/api/auth/me', meRoute(config.getAuthUsers));
 
 app.get('/api/session/export', requireEditor, (_req, res) => {
     res.json(store.exportSessionSnapshot());
@@ -98,6 +116,49 @@ app.post('/api/config/tournament/reload', requireEditor, (_req, res) => {
     res.json({ ok: true, config: tournament.reload() });
 });
 
+app.get('/api/admin/settings', requireEditor, (_req, res) => {
+    res.json({
+        tournamentCode: store.getTournamentCode() || '',
+        tournament: tournament.getConfig(),
+        deployMode,
+    });
+});
+
+app.put('/api/admin/settings', requireEditor, (req, res) => {
+    const body = req.body && typeof req.body === 'object' ? req.body : {};
+    let codeChanged = false;
+
+    if (typeof body.tournamentCode === 'string') {
+        const prev = store.getTournamentCode() || '';
+        const next = store.setTournamentCode(body.tournamentCode);
+        codeChanged = prev !== next;
+    }
+
+    const tourPatch = {};
+    if (Array.isArray(body.whitelistApps)) tourPatch.whitelistApps = body.whitelistApps;
+    if (Array.isArray(body.overlayWhitelistApps)) tourPatch.overlayWhitelistApps = body.overlayWhitelistApps;
+    if (Array.isArray(body.noisePackages)) tourPatch.noisePackages = body.noisePackages;
+    if (typeof body.heartbeatIntervalMs === 'number') tourPatch.heartbeatIntervalMs = body.heartbeatIntervalMs;
+    if (body.disconnectMs === null || typeof body.disconnectMs === 'number') {
+        tourPatch.disconnectMs = body.disconnectMs;
+    }
+
+    const savedTournament = Object.keys(tourPatch).length ? tournament.saveConfig(tourPatch) : tournament.getConfig();
+
+    if (codeChanged) {
+        broadcast.broadcast({
+            type: 'tournament_code_updated',
+            tournamentCode: store.getTournamentCode() || '',
+        });
+    }
+
+    res.json({
+        ok: true,
+        tournamentCode: store.getTournamentCode() || '',
+        tournament: savedTournament,
+    });
+});
+
 if (adbEnabled) {
     const uploadDir = path.join(__dirname, 'uploads');
     const localAdb = path.join(__dirname, '..', 'platform-tools', 'adb.exe');
@@ -113,18 +174,14 @@ if (adbEnabled) {
     tryAdbConnect = (ip) => adbService.connectAdbDevice(ip, 5555);
     app.use('/api/adb', createAdbRouter(uploadDir, adbPath, store, adbService, adbQueue));
 } else {
-    console.log('[ALAN] DEPLOY_MODE=LIVE — /api/adb disabled');
+    console.log('[ArenaPulse] DEPLOY_MODE=LIVE — /api/adb disabled');
 }
 
-const dashboardDir = path.join(__dirname, 'dashboard');
-const sendDashboard = (file) => (_req, res) => {
-    res.type('html');
-    res.sendFile(path.join(dashboardDir, file));
-};
-app.get('/', sendDashboard('monitor.view'));
+app.get('/', (_req, res) => {
+    res.sendFile(path.join(publicDir, 'index.html'));
+});
 app.get('/index.html', (_req, res) => res.redirect('/'));
-app.get('/login.html', sendDashboard('signin.view'));
-app.use('/templates', express.static(path.join(dashboardDir, 'templates')));
+app.use(express.static(publicDir));
 
 const discordWebhookUrl = config.getDiscordWebhookUrl();
 const onViolation = (deviceName, app) => {
@@ -139,7 +196,7 @@ attachWsHandler(
     decryptPayload,
     encryptPayload,
     onViolation,
-    (req) => getRoleFromRequest(req, config.getAuthPins),
+    (req) => getRoleFromRequest(req, config.getAuthUsers),
     networkCheck.runNow,
     tryAdbConnect
 );
@@ -154,5 +211,5 @@ const PORT = config.PORT;
 const HOST = config.HOST;
 
 server.listen(PORT, HOST, () => {
-    console.log(`ALAN Server running at http://${HOST}:${PORT} [${deployMode}]`);
+    console.log(`ArenaPulse server running at http://${HOST}:${PORT} [${deployMode}]`);
 });

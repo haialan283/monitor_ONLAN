@@ -62,24 +62,29 @@ module.exports = {
     getTournamentCode,
     isTournamentCodeValid,
     /**
-     * Auth theo role:
-     * - DASHBOARD_ADMIN_PIN: quyền chỉnh sửa
-     * - DASHBOARD_VIEWER_PIN: chỉ xem
-     * Tương thích ngược: DASHBOARD_PIN sẽ được dùng như admin PIN.
+     * Auth theo tài khoản:
+     * - DASHBOARD_ADMIN_USER + DASHBOARD_ADMIN_PASSWORD
+     * - DASHBOARD_VIEWER_USER + DASHBOARD_VIEWER_PASSWORD (tùy chọn)
+     * Tương thích cũ: nếu chưa có USER/PASSWORD thì dùng PIN (admin/viewer).
      */
-    getAuthPins() {
-        const legacy = process.env.DASHBOARD_PIN;
-        const admin = process.env.DASHBOARD_ADMIN_PIN || legacy;
-        const viewer = process.env.DASHBOARD_VIEWER_PIN;
+    getAuthUsers() {
+        const legacyPin = process.env.DASHBOARD_PIN;
+        const adminPin = process.env.DASHBOARD_ADMIN_PIN || legacyPin;
+        const viewerPin = process.env.DASHBOARD_VIEWER_PIN;
+
+        const adminUser = (process.env.DASHBOARD_ADMIN_USER || (adminPin ? 'admin' : '')).trim();
+        const adminPass = (process.env.DASHBOARD_ADMIN_PASSWORD || adminPin || '').trim();
+        const viewerUser = (process.env.DASHBOARD_VIEWER_USER || (viewerPin ? 'viewer' : '')).trim();
+        const viewerPass = (process.env.DASHBOARD_VIEWER_PASSWORD || viewerPin || '').trim();
+
+        const admin = adminUser && adminPass ? { username: adminUser, password: adminPass } : null;
+        const viewer = viewerUser && viewerPass ? { username: viewerUser, password: viewerPass } : null;
+
         return {
-            admin: admin && typeof admin === 'string' ? admin.trim() : null,
-            viewer: viewer && typeof viewer === 'string' ? viewer.trim() : null,
+            admin,
+            viewer,
+            authEnabled: !!(admin || viewer),
         };
-    },
-    /** Giữ lại cho code cũ; map vào admin pin. */
-    getDashboardPin() {
-        const pin = process.env.DASHBOARD_ADMIN_PIN || process.env.DASHBOARD_PIN;
-        return pin && typeof pin === 'string' ? pin.trim() : null;
     },
     /** URL webhook Discord để nhắc vi phạm (để trống = tắt). */
     getDiscordWebhookUrl() {

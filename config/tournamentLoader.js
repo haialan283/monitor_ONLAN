@@ -89,9 +89,19 @@ function getTournamentDisconnectMs() {
     return cached.disconnectMs;
 }
 
+function saveConfig(partial) {
+    const src = partial && typeof partial === 'object' ? partial : {};
+    const next = mergeDefaults({ ...cached, ...src });
+    fs.writeFileSync(CONFIG_PATH, `${JSON.stringify(next, null, 2)}\n`, 'utf8');
+    cached = next;
+    console.log('[tournament] config saved');
+    return next;
+}
+
 module.exports = {
     reload,
     getConfig,
+    saveConfig,
     getWhitelistApps,
     getOverlayWhitelistApps,
     getNoisePackages,

@@ -1,5 +1,5 @@
 {
-  "name": "alan-monitor-server",
+  "name": "arena-pulse-server",
   "version": "1.0.0",
   "private": true,
   "main": "server.js",

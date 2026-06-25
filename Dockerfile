@@ -1,4 +1,4 @@
-# ALAN Monitor — deploy from server/ (live-server-min)
+# ArenaPulse — deploy from server/ (live-server-min)
 FROM node:20-alpine
 WORKDIR /app
 COPY package.json package-lock.json ./

@@ -53,7 +53,6 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
                     'update_net_config',
                     'update_net_config_remote',
                     'update_net_config_both',
-                    'update_tournament_code',
                     'assign_slot',
                     'update_seat_layout',
                     'update_table_name',
@@ -70,7 +69,7 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
 
                 if (data.type === 'hb') {
                     if (config.getTournamentCode() && !config.isTournamentCodeValid(data.tournamentCode)) {
-                        console.warn('[ALAN] Reject heartbeat — invalid tournament code from', data.deviceName || data.deviceId);
+                        console.warn('[ArenaPulse] Reject heartbeat — invalid tournament code from', data.deviceName || data.deviceId);
                         try {
                             const reject = { type: 'auth_reject', reason: 'invalid_tournament_code' };
                             ws.send(isPlainWs ? JSON.stringify(reject) : encryptPayload(reject));
@@ -338,11 +337,6 @@ function attachWsHandler(wss, store, broadcast, decryptPayload, encryptPayload, 
                         port: parseInt(data.portRemote, 10) || 0,
                     });
                     scheduleNetCheck();
-                }
-                if (data.type === 'update_tournament_code') {
-                    const code = store.setTournamentCode(data.code);
-                    console.log('[ALAN] Tournament code updated via dashboard');
-                    broadcast.broadcast({ type: 'tournament_code_updated', tournamentCode: code });
                 }
                 if (data.type === 'assign_slot') {
                     const dev = store.devices.find((d) => d.deviceId === data.deviceId);
