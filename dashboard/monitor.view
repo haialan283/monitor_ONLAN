@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>ArenaPulse — Dashboard</title>
+    <title>ArenaPulse â€” Dashboard</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -80,7 +80,7 @@
             margin: 2px 0 0;
             text-align: center;
         }
-        /* Thanh NET cạnh DEVICES, được nới rộng về phía tiêu đề */
+        /* Thanh NET cáº¡nh DEVICES, Ä‘Æ°á»£c ná»›i rá»™ng vá» phĂ­a tiĂªu Ä‘á» */
         .header-net-wrap {
             flex: 1 1 auto;
             min-width: 0;
@@ -295,7 +295,7 @@
             background: rgba(255, 255, 255, 0.03);
             border-radius: 999px;
         }
-        /* Thu gọn card trong Waiting List để không cần kéo ngang */
+        /* Thu gá»n card trong Waiting List Ä‘á»ƒ khĂ´ng cáº§n kĂ©o ngang */
         #waiting-list .device-card {
             width: 100%;
             min-height: 62px;
@@ -321,7 +321,7 @@
             padding: 3px 6px;
             margin-left: 6px;
         }
-        /* Thu gọn hẳn khỏi flex row — #log-panel có width cố định nên cần !important */
+        /* Thu gá»n háº³n khá»i flex row â€” #log-panel cĂ³ width cá»‘ Ä‘á»‹nh nĂªn cáº§n !important */
         .side-panel.hidden {
             width: 0 !important;
             min-width: 0 !important;
@@ -354,7 +354,7 @@
             -ms-overflow-style: none; /* IE/Edge legacy */
 		}
         #monitor-arena::-webkit-scrollbar { width: 0; height: 0; display: none; }
-        /* Màn nhỏ hoặc chiều cao ít (landscape phone): cuộn pan stage */
+        /* MĂ n nhá» hoáº·c chiá»u cao Ă­t (landscape phone): cuá»™n pan stage */
         @media (max-width: 1024px), (max-height: 520px) {
             #monitor-arena {
                 overflow: auto;
@@ -413,15 +413,15 @@
 			border: 1px solid rgba(255,255,255,0.05); 
 			margin: 2px 0; 
 			display: flex; 
-			align-items: stretch; /* Ép phần tử con (device-card) phải giãn cao bằng nó */
+			align-items: stretch; /* Ă‰p pháº§n tá»­ con (device-card) pháº£i giĂ£n cao báº±ng nĂ³ */
 			justify-content: center;
 			background: rgba(0,0,0,0.2);
 			border-radius: 4px;
-			overflow: hidden; /* Tránh card tràn ra ngoài bo góc */
+			overflow: hidden; /* TrĂ¡nh card trĂ n ra ngoĂ i bo gĂ³c */
 		}
 
         .slot-row.drag-over { background: rgba(0, 242, 255, 0.1); border: 1px dashed var(--accent); }
-		/* CSS cho phần Log mở rộng */
+		/* CSS cho pháº§n Log má»Ÿ rá»™ng */
 		.log-group {
 			border: 1px solid #1a1a25;
 			margin-bottom: 8px;
@@ -510,7 +510,7 @@
         }
 		.log-header:hover { background: rgba(30, 30, 45, 1); }
 		.log-details {
-			display: none; /* Mặc định ẩn */
+			display: none; /* Máº·c Ä‘á»‹nh áº©n */
 			padding: 5px 10px 10px 25px;
 			background: rgba(0, 0, 0, 0.3);
 			border-top: 1px solid #1a1a25;
@@ -532,7 +532,7 @@
 			font-weight: bold; 
 			font-size: 11px; 
 			pointer-events: none;
-			width: 100%; /* Đảm bảo chiếm hết chiều ngang card */
+			width: 100%; /* Äáº£m báº£o chiáº¿m háº¿t chiá»u ngang card */
 		}
 		.dev-sub span:first-child {
 			flex: 1;
@@ -542,10 +542,10 @@
 		.status-col {
 			display: flex;
 			flex-direction: column;
-			align-items: flex-end; /* Căn lề phải cho Pin và RAM */
+			align-items: flex-end; /* CÄƒn lá» pháº£i cho Pin vĂ  RAM */
 			gap: 2px;
 		}
-		/* Thêm mới đoạn này để RAM có màu xanh Neon đặc trưng của bạn */
+		/* ThĂªm má»›i Ä‘oáº¡n nĂ y Ä‘á»ƒ RAM cĂ³ mĂ u xanh Neon Ä‘áº·c trÆ°ng cá»§a báº¡n */
 		.ram-tag { 
 			color: var(--accent); 
 			font-size: 10px; 
@@ -609,7 +609,7 @@
 		.device-card:hover { box-shadow: var(--shadow-md); }
         /* Push multi devices modal selection uses checkboxes, not inline badges. */
 		
-		/* Khi thẻ nằm trên bản đồ */
+		/* Khi tháº» náº±m trĂªn báº£n Ä‘á»“ */
 		.device-card.on-map {
 		    position: absolute;
 		    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
@@ -650,7 +650,7 @@
         .device-card.warning { border-left: 3px solid var(--warn); color: #fff; background: rgba(239, 68, 68, 0.12); animation: blink 0.8s infinite alternate; }
         .device-card.partial_warning { border-left: 3px solid var(--midwarn); color: var(--text); background: rgba(245, 158, 11, 0.1); }
         .device-card.lock { border-left: 3px solid var(--lock); color: var(--text-muted); opacity: 0.7; }
-        /* CSS cho thiết bị mất kết nối */
+        /* CSS cho thiáº¿t bá»‹ máº¥t káº¿t ná»‘i */
 		.status-disconnected { 
 			background: rgba(20, 20, 20, 0.8) !important; 
 			border-left: 4px solid #333 !important; 
@@ -659,7 +659,7 @@
 			cursor: not-allowed;
 		}
 
-		/* Hiệu ứng highlight cho dòng log đang active */
+		/* Hiá»‡u á»©ng highlight cho dĂ²ng log Ä‘ang active */
 		.sub-log-item.active-log {
 			background: rgba(255, 0, 60, 0.1);
 			border-radius: 2px;
@@ -673,7 +673,7 @@
             margin-top: 2px; 
             pointer-events: none; 
             display: flex;
-            justify-content: space-between; /* Đẩy App Name sang trái, RAM sang phải */
+            justify-content: space-between; /* Äáº©y App Name sang trĂ¡i, RAM sang pháº£i */
             align-items: flex-start;
             gap: 8px;
         }
@@ -854,7 +854,7 @@
         }
         .header-toolbar-group + .header-toolbar-group { margin-left: 2px; }
 
-        /* Header: không dùng gap cố định lớn trên màn nhỏ */
+        /* Header: khĂ´ng dĂ¹ng gap cá»‘ Ä‘á»‹nh lá»›n trĂªn mĂ n nhá» */
         .header-left {
             display: flex;
             align-items: center;
@@ -1029,16 +1029,16 @@
             <button class="cyber-btn header-action" onclick="toggleSide('sidebar')">Devices</button>
             <div class="header-net-wrap">
                 <div class="header-config-panels">
-                <div class="net-monitor-panel" title="DNS + TCP từ máy chủ. SET = lưu LAN, WAN và dòng EXT (tùy chọn).">
+                <div class="net-monitor-panel" title="DNS + TCP tá»« mĂ¡y chá»§. SET = lÆ°u LAN, WAN vĂ  dĂ²ng EXT (tĂ¹y chá»n).">
                     <div class="net-monitor-head">
                         <span class="net-monitor-panel-title">Net</span>
                         <button type="button" id="btn-set-net" class="cyber-btn net-monitor-set" onclick="saveNetAll()">SET</button>
                     </div>
-                    <div class="net-monitor-row" title="Nội bộ / LAN">
+                    <div class="net-monitor-row" title="Ná»™i bá»™ / LAN">
                         <span class="net-monitor-title">LAN</span>
                         <input type="text" id="net-dns" class="net-host-input" placeholder="Host" autocomplete="off">
                         <input type="number" id="net-port" class="net-port-input" placeholder="Pt" autocomplete="off">
-                        <div class="net-dots" title="DNS · TCP">
+                        <div class="net-dots" title="DNS Â· TCP">
                             <div class="dot" id="dot-dns"></div>
                             <div class="dot" id="dot-tcp"></div>
                         </div>
@@ -1049,23 +1049,23 @@
                         <span class="net-monitor-title">WAN</span>
                         <input type="text" id="net-dns-remote" class="net-host-input" placeholder="Host" autocomplete="off">
                         <input type="number" id="net-port-remote" class="net-port-input" placeholder="Pt" autocomplete="off">
-                        <div class="net-dots" title="DNS · TCP">
+                        <div class="net-dots" title="DNS Â· TCP">
                             <div class="dot" id="dot-dns-remote"></div>
                             <div class="dot" id="dot-tcp-remote"></div>
                         </div>
                         <canvas id="net-graph-remote" class="net-graph-canvas" aria-hidden="true"></canvas>
-                        <span id="net-latency-remote" class="net-latency-txt">—</span>
+                        <span id="net-latency-remote" class="net-latency-txt">â€”</span>
                     </div>
-                    <div class="net-monitor-row" title="Host/port bổ sung (tùy chọn)">
+                    <div class="net-monitor-row" title="Host/port bá»• sung (tĂ¹y chá»n)">
                         <span class="net-monitor-title">EXT</span>
                         <input type="text" id="net-dns-extra" class="net-host-input" placeholder="Host" autocomplete="off">
                         <input type="number" id="net-port-extra" class="net-port-input" placeholder="Pt" autocomplete="off">
-                        <div class="net-dots" title="DNS · TCP">
+                        <div class="net-dots" title="DNS Â· TCP">
                             <div class="dot" id="dot-dns-extra"></div>
                             <div class="dot" id="dot-tcp-extra"></div>
                         </div>
                         <canvas id="net-graph-extra" class="net-graph-canvas" aria-hidden="true"></canvas>
-                        <span id="net-latency-extra" class="net-latency-txt">—</span>
+                        <span id="net-latency-extra" class="net-latency-txt">â€”</span>
                     </div>
                 </div>
                 </div>
@@ -1077,34 +1077,34 @@
         </div>
         <div class="header-right">
             <div class="header-toolbar-group header-toolbar-status">
-            <a id="link-admin" href="/admin.html" class="cyber-btn header-action secondary" style="display:none" title="Cấu hình mã giải và whitelist">Admin</a>
-            <span id="ws-status" class="ws-status ws-status-connecting" title="Trạng thái kết nối">Đang kết nối…</span>
-            <span id="role-badge" class="ws-status ws-status-connected" title="Quyền tài khoản">admin</span>
+            <a id="link-admin" href="/admin.html" class="cyber-btn header-action secondary" style="display:none" title="Cáº¥u hĂ¬nh mĂ£ giáº£i vĂ  whitelist">Admin</a>
+            <span id="ws-status" class="ws-status ws-status-connecting" title="Tráº¡ng thĂ¡i káº¿t ná»‘i">Äang káº¿t ná»‘iâ€¦</span>
+            <span id="role-badge" class="ws-status ws-status-connected" title="Quyá»n tĂ i khoáº£n">admin</span>
             </div>
             <div class="header-toolbar-group header-toolbar-search">
-            <label class="stage-ip-search-wrap" title="Gõ một phần hoặc toàn bộ IP để tô sáng thiết bị trên Stage">
+            <label class="stage-ip-search-wrap" title="GĂµ má»™t pháº§n hoáº·c toĂ n bá»™ IP Ä‘á»ƒ tĂ´ sĂ¡ng thiáº¿t bá»‹ trĂªn Stage">
                 <span class="stage-ip-search-label">Stage IP</span>
-                <input type="text" id="stage-ip-search" class="net-host-input stage-ip-search-input" placeholder="Tìm IP…" autocomplete="off" spellcheck="false">
+                <input type="text" id="stage-ip-search" class="net-host-input stage-ip-search-input" placeholder="TĂ¬m IPâ€¦" autocomplete="off" spellcheck="false">
             </label>
             </div>
             <div class="header-toolbar-group header-toolbar-stage">
-            <button id="btn-align-stage" class="cyber-btn header-action secondary" onclick="arrangeArenaGrid()" title="Xếp các máy trên Stage Map ngay hàng theo lưới">Align</button>
-            <button id="btn-group-stage" class="cyber-btn header-action secondary" onclick="arrangeArenaGrouped()" title="Gom nhóm theo tiền tố deviceName">Group</button>
-            <button id="btn-template-stage" class="cyber-btn header-action secondary" onclick="arrangeArenaTemplate()" title="Xếp Stage Map theo layout template">Template</button>
-            <button id="btn-import-stage-csv" class="cyber-btn header-action secondary" onclick="openStageCsvImportPicker()" title="Import CSV để set vị trí stage theo deviceName">Import CSV</button>
+            <button id="btn-align-stage" class="cyber-btn header-action secondary" onclick="arrangeArenaGrid()" title="Xáº¿p cĂ¡c mĂ¡y trĂªn Stage Map ngay hĂ ng theo lÆ°á»›i">Align</button>
+            <button id="btn-group-stage" class="cyber-btn header-action secondary" onclick="arrangeArenaGrouped()" title="Gom nhĂ³m theo tiá»n tá»‘ deviceName">Group</button>
+            <button id="btn-template-stage" class="cyber-btn header-action secondary" onclick="arrangeArenaTemplate()" title="Xáº¿p Stage Map theo layout template">Template</button>
+            <button id="btn-import-stage-csv" class="cyber-btn header-action secondary" onclick="openStageCsvImportPicker()" title="Import CSV Ä‘á»ƒ set vá»‹ trĂ­ stage theo deviceName">Import CSV</button>
             <input type="file" id="stage-csv-input" accept=".csv,text/csv" style="display:none" onchange="handleStageCsvImport(event)">
             </div>
             <div class="header-toolbar-group header-toolbar-logs">
-            <button type="button" id="btn-reopen-violation-logs" class="cyber-btn header-action secondary" onclick="toggleSide('log-panel')" style="display:none" title="Hiện lại Violation Logs" aria-pressed="false">
+            <button type="button" id="btn-reopen-violation-logs" class="cyber-btn header-action secondary" onclick="toggleSide('log-panel')" style="display:none" title="Hiá»‡n láº¡i Violation Logs" aria-pressed="false">
                 <span class="btn-reopen-label-long">Logs</span><span class="btn-reopen-label-short">Logs</span>
             </button>
             <button class="cyber-btn primary-action header-action" onclick="exportLogsToCSV()">Export CSV</button>
-            <label class="stage-ip-search-wrap" title="Lọc export CSV theo giờ (HH:MM, cùng ngày)">
-                <span class="stage-ip-search-label">Từ</span>
+            <label class="stage-ip-search-wrap" title="Lá»c export CSV theo giá» (HH:MM, cĂ¹ng ngĂ y)">
+                <span class="stage-ip-search-label">Tá»«</span>
                 <input type="text" id="log-export-from" class="net-host-input stage-ip-search-input" placeholder="08:00" autocomplete="off" style="width:52px">
             </label>
             <label class="stage-ip-search-wrap">
-                <span class="stage-ip-search-label">Đến</span>
+                <span class="stage-ip-search-label">Äáº¿n</span>
                 <input type="text" id="log-export-to" class="net-host-input stage-ip-search-input" placeholder="22:00" autocomplete="off" style="width:52px">
             </label>
             </div>
@@ -1122,14 +1122,14 @@
             <div class="waiting-actions">
                 <button id="btn-push-multi" class="cyber-btn header-action" onclick="openPushMultiModal()">Push multi devices</button>
                 <button id="btn-delete-multi" class="cyber-btn header-action secondary" onclick="openDeleteMultiModal()">Delete multi devices</button>
-                <button id="btn-reconnect-adb" class="cyber-btn header-action secondary" onclick="reconnectAllAdb()" title="adb connect IP:5555 cho tất cả thiết bị có IP (heartbeat)">Reconnect ADB</button>
+                <button id="btn-reconnect-adb" class="cyber-btn header-action secondary" onclick="reconnectAllAdb()" title="adb connect IP:5555 cho táº¥t cáº£ thiáº¿t bá»‹ cĂ³ IP (heartbeat)">Reconnect ADB</button>
             </div>
         </div>
         <div id="waiting-list" class="waiting-list-body" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'wait')"></div>
     </div>
 
     <div id="monitor-arena" ondrop="handleDropArena(event)" ondragover="allowDrop(event)">
-        <!-- Nội dung stage do render() vẽ (có vùng cuộn trên màn nhỏ) -->
+        <!-- Ná»™i dung stage do render() váº½ (cĂ³ vĂ¹ng cuá»™n trĂªn mĂ n nhá») -->
         <div class="stage-zoom-overlay">
             <div class="stage-zoom-controls" title="Zoom stage map">
                 <button type="button" class="cyber-btn header-action secondary stage-zoom-btn" onclick="zoomStageOut()">-</button>
@@ -1144,20 +1144,20 @@
         <div class="log-panel-toolbar">
             <span>Violation Logs</span>
             <div class="log-panel-actions">
-                <button type="button" id="btn-toggle-side-violations" class="cyber-btn header-action secondary" onclick="toggleSide('log-panel')" title="Ẩn Violation Logs — stage map rộng toàn phần còn lại" aria-pressed="true">
+                <button type="button" id="btn-toggle-side-violations" class="cyber-btn header-action secondary" onclick="toggleSide('log-panel')" title="áº¨n Violation Logs â€” stage map rá»™ng toĂ n pháº§n cĂ²n láº¡i" aria-pressed="true">
                     <span class="btn-toggle-label-long">FULL STAGE</span><span class="btn-toggle-label-short">STAGE</span>
                 </button>
                 <span id="btn-clear-logs" onclick="clearLogs()" style="color:var(--warn); cursor:pointer; font-size:10px; font-weight:800;">CLEAR</span>
             </div>
         </div>
         <div class="log-panel-filters">
-            <button type="button" id="btn-log-filter-violations" class="cyber-btn header-action secondary log-filter-btn" onclick="toggleLogFilterViolations()" aria-pressed="false" title="Ẩn log mạng và disconnect — chỉ app vi phạm">Chỉ vi phạm</button>
-            <label class="log-sound-toggle" title="Beep khi có vi phạm app hoặc mất kết nối mới">
+            <button type="button" id="btn-log-filter-violations" class="cyber-btn header-action secondary log-filter-btn" onclick="toggleLogFilterViolations()" aria-pressed="false" title="áº¨n log máº¡ng vĂ  disconnect â€” chá»‰ app vi pháº¡m">Chá»‰ vi pháº¡m</button>
+            <label class="log-sound-toggle" title="Beep khi cĂ³ vi pháº¡m app hoáº·c máº¥t káº¿t ná»‘i má»›i">
                 <input type="checkbox" id="chk-alert-sound" onchange="toggleAlertSound(this.checked)">
-                Âm báo
+                Ă‚m bĂ¡o
             </label>
-            <button type="button" id="btn-export-session" class="cyber-btn header-action secondary log-filter-btn" onclick="exportSessionJson()" title="Tải JSON: devices, stage, alerts, net, mã giải">Export</button>
-            <button type="button" id="btn-import-session" class="cyber-btn header-action secondary log-filter-btn" onclick="openSessionImportPicker()" title="Khôi phục phiên từ file JSON">Import</button>
+            <button type="button" id="btn-export-session" class="cyber-btn header-action secondary log-filter-btn" onclick="exportSessionJson()" title="Táº£i JSON: devices, stage, alerts, net, mĂ£ giáº£i">Export</button>
+            <button type="button" id="btn-import-session" class="cyber-btn header-action secondary log-filter-btn" onclick="openSessionImportPicker()" title="KhĂ´i phá»¥c phiĂªn tá»« file JSON">Import</button>
             <input type="file" id="session-import-input" accept=".json,application/json" style="display:none" onchange="handleSessionImport(event)">
         </div>
         <div id="log-list" style="padding:10px; overflow-y:auto; flex: 1; font-size:10px;"></div>
@@ -1170,13 +1170,13 @@
         <div class="explorer-header">
             <div class="explorer-title-wrap">
                 <span class="explorer-badge">LAN DEPLOYER</span>
-                <span class="explorer-device" id="explorer-device-label">—</span>
+                <span class="explorer-device" id="explorer-device-label">â€”</span>
             </div>
             <div class="explorer-path-wrap">
-                <input type="text" class="explorer-path" id="current-path" value="/storage/emulated/0" readonly title="Đường dẫn hiện tại">
+                <input type="text" class="explorer-path" id="current-path" value="/storage/emulated/0" readonly title="ÄÆ°á»ng dáº«n hiá»‡n táº¡i">
             </div>
             <div class="explorer-actions">
-                <button id="btn-upload-file" class="upload-btn" onclick="openUploadPicker()">⬆ UPLOAD</button>
+                <button id="btn-upload-file" class="upload-btn" onclick="openUploadPicker()">â¬† UPLOAD</button>
                 <input type="file" id="upload-input" style="display:none" onchange="uploadFile(event)">
                 <button class="explorer-close-btn" onclick="closeExplorer()">CLOSE</button>
             </div>
@@ -1185,7 +1185,7 @@
             <!-- Files injected here -->
         </div>
         <div id="file-context-menu" class="file-context-menu" aria-hidden="true">
-            <button type="button" class="file-context-menu-item" id="file-context-delete-btn">Xóa</button>
+            <button type="button" class="file-context-menu-item" id="file-context-delete-btn">XĂ³a</button>
         </div>
     </div>
 </div>
@@ -1254,7 +1254,7 @@
                     <div class="push-multi-label">Delete mode</div>
                     <label class="push-multi-checkbox-label" style="margin-bottom:0;">
                         <input id="delete-multi-isdir" type="checkbox" />
-                        Path là thư mục (rm -rf)
+                        Path lĂ  thÆ° má»¥c (rm -rf)
                     </label>
                 </div>
             </div>
@@ -1379,7 +1379,7 @@
 
     function ensureEditor(actionName) {
         if (isEditorRole()) return true;
-        alert(`Viewer mode: không được phép ${actionName || 'chỉnh sửa'}.`);
+        alert(`Viewer mode: khĂ´ng Ä‘Æ°á»£c phĂ©p ${actionName || 'chá»‰nh sá»­a'}.`);
         return false;
     }
 
@@ -1456,7 +1456,7 @@
         const el = document.getElementById('ws-status');
         if (!el) return;
         el.className = 'ws-status ws-status-' + state;
-        el.textContent = state === WS_STATUS.CONNECTED ? 'Đã kết nối' : state === WS_STATUS.CONNECTING ? 'Đang kết nối…' : 'Mất kết nối';
+        el.textContent = state === WS_STATUS.CONNECTED ? 'ÄĂ£ káº¿t ná»‘i' : state === WS_STATUS.CONNECTING ? 'Äang káº¿t ná»‘iâ€¦' : 'Máº¥t káº¿t ná»‘i';
     }
 
     function connect() {
@@ -1485,7 +1485,7 @@
 
     async function safeSend(dataObj) {
         if (!socket || socket.readyState !== WebSocket.OPEN) {
-            console.warn('WebSocket chưa kết nối, bỏ qua gửi.');
+            console.warn('WebSocket chÆ°a káº¿t ná»‘i, bá» qua gá»­i.');
             return;
         }
         if (wsCanEncrypt) {
@@ -1596,11 +1596,11 @@
     }
 
     async function exportSessionJson() {
-        if (!ensureEditor('export phiên giải')) return;
+        if (!ensureEditor('export phiĂªn giáº£i')) return;
         try {
             const res = await fetch('/api/session/export', { cache: 'no-store' });
             if (!res.ok) {
-                alert('Export thất bại — kiểm tra quyền admin.');
+                alert('Export tháº¥t báº¡i â€” kiá»ƒm tra quyá»n admin.');
                 return;
             }
             const data = await res.json();
@@ -1613,12 +1613,12 @@
             a.click();
             URL.revokeObjectURL(url);
         } catch (e) {
-            alert('Export lỗi: ' + (e && e.message ? e.message : e));
+            alert('Export lá»—i: ' + (e && e.message ? e.message : e));
         }
     }
 
     function openSessionImportPicker() {
-        if (!ensureEditor('import phiên giải')) return;
+        if (!ensureEditor('import phiĂªn giáº£i')) return;
         const input = document.getElementById('session-import-input');
         if (input) {
             input.value = '';
@@ -1629,11 +1629,11 @@
     async function handleSessionImport(ev) {
         const file = ev.target && ev.target.files && ev.target.files[0];
         if (!file) return;
-        if (!ensureEditor('import phiên giải')) return;
+        if (!ensureEditor('import phiĂªn giáº£i')) return;
         try {
             const text = await file.text();
             const data = JSON.parse(text);
-            if (!confirm('Import phiên sẽ ghi đè alerts, stage, net config và mã giải trên server. Tiếp tục?')) return;
+            if (!confirm('Import phiĂªn sáº½ ghi Ä‘Ă¨ alerts, stage, net config vĂ  mĂ£ giáº£i trĂªn server. Tiáº¿p tá»¥c?')) return;
             const res = await fetch('/api/session/import', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -1641,12 +1641,12 @@
             });
             if (!res.ok) {
                 const err = await res.json().catch(() => ({}));
-                alert('Import thất bại: ' + (err.error || res.status));
+                alert('Import tháº¥t báº¡i: ' + (err.error || res.status));
                 return;
             }
-            alert('Import phiên thành công.');
+            alert('Import phiĂªn thĂ nh cĂ´ng.');
         } catch (e) {
-            alert('Import lỗi: ' + (e && e.message ? e.message : e));
+            alert('Import lá»—i: ' + (e && e.message ? e.message : e));
         }
     }
 
@@ -1656,28 +1656,28 @@
         const prevLabel = btn ? btn.textContent : '';
         if (btn) {
             btn.disabled = true;
-            btn.textContent = 'Connecting…';
+            btn.textContent = 'Connectingâ€¦';
         }
         try {
             const res = await fetch('/api/adb/reconnect-all', { method: 'POST' });
             const data = await res.json().catch(() => ({}));
             if (!res.ok) {
-                alert('Reconnect thất bại: ' + (data.error || res.status));
+                alert('Reconnect tháº¥t báº¡i: ' + (data.error || res.status));
                 return;
             }
             const failed = (data.results || []).filter((r) => !r.ok);
             if (!data.total) {
-                alert('Không có thiết bị nào có IP — đợi heartbeat hoặc bật FTP trên app.');
+                alert('KhĂ´ng cĂ³ thiáº¿t bá»‹ nĂ o cĂ³ IP â€” Ä‘á»£i heartbeat hoáº·c báº­t FTP trĂªn app.');
             } else if (failed.length) {
                 alert(
-                    `ADB: ${data.okCount}/${data.total} OK.\nLỗi:\n` +
+                    `ADB: ${data.okCount}/${data.total} OK.\nLá»—i:\n` +
                     failed.map((f) => `${f.deviceName || f.ip}: ${f.detail || f.error || 'fail'}`).join('\n')
                 );
             } else {
-                alert(`Reconnect ADB: ${data.okCount}/${data.total} thiết bị OK.`);
+                alert(`Reconnect ADB: ${data.okCount}/${data.total} thiáº¿t bá»‹ OK.`);
             }
         } catch (e) {
-            alert('Reconnect lỗi: ' + (e && e.message ? e.message : e));
+            alert('Reconnect lá»—i: ' + (e && e.message ? e.message : e));
         } finally {
             if (btn) {
                 btn.disabled = !isEditorRole();
@@ -1687,7 +1687,7 @@
     }
 
     // Multi-select devices for batch ADB push (LAN Deployer).
-    // Dùng checkbox trong modal "push multi devices".
+    // DĂ¹ng checkbox trong modal "push multi devices".
     let selectedDeviceIds = new Set();
     let selectedDeleteDeviceIds = new Set();
 
@@ -1721,7 +1721,7 @@
     }
 
     function openPushMultiModal() {
-        if (!ensureEditor('push file hàng loạt')) return;
+        if (!ensureEditor('push file hĂ ng loáº¡t')) return;
         selectedDeviceIds.clear();
         document.getElementById('push-multi-result').textContent = '';
         renderPushMultiDeviceList();
@@ -1757,7 +1757,7 @@
     }
 
     function openDeleteMultiModal() {
-        if (!ensureEditor('xóa file hàng loạt')) return;
+        if (!ensureEditor('xĂ³a file hĂ ng loáº¡t')) return;
         selectedDeleteDeviceIds.clear();
         document.getElementById('delete-multi-result').textContent = '';
         renderDeleteMultiDeviceList();
@@ -1823,7 +1823,7 @@
     }
 
     async function submitDeleteMulti() {
-        if (!ensureEditor('xóa file hàng loạt')) return;
+        if (!ensureEditor('xĂ³a file hĂ ng loáº¡t')) return;
         const targetPath = (document.getElementById('delete-multi-path')?.value || '').trim();
         const isDir = !!document.getElementById('delete-multi-isdir')?.checked;
         if (!targetPath) {
@@ -1834,8 +1834,8 @@
             alert('No device selected.');
             return;
         }
-        const kind = isDir ? 'thư mục (gồm mọi nội dung bên trong)' : 'file';
-        if (!confirm(`Xóa ${kind} trên ${selectedDeleteDeviceIds.size} thiết bị?\n\n${targetPath}`)) return;
+        const kind = isDir ? 'thÆ° má»¥c (gá»“m má»i ná»™i dung bĂªn trong)' : 'file';
+        if (!confirm(`XĂ³a ${kind} trĂªn ${selectedDeleteDeviceIds.size} thiáº¿t bá»‹?\n\n${targetPath}`)) return;
 
         const resultsEl = document.getElementById('delete-multi-result');
         resultsEl.textContent = 'Deleting...';
@@ -1938,7 +1938,7 @@
     }
 
     async function submitPushMulti() {
-        if (!ensureEditor('push file hàng loạt')) return;
+        if (!ensureEditor('push file hĂ ng loáº¡t')) return;
         const fInput = document.getElementById('push-multi-file');
         if (!fInput || !fInput.files || !fInput.files.length) {
             alert('Please choose a local file first.');
@@ -1968,7 +1968,7 @@
                 return { exists: false, detail: '' };
             }
         }
-        // Tuần tự để tránh spam server/adb.
+        // Tuáº§n tá»± Ä‘á»ƒ trĂ¡nh spam server/adb.
         for (const did of selectedDeviceIds) {
             const dev = devices.find((d) => d.deviceId === did);
             const ip = dev?.ipAddress;
@@ -2053,7 +2053,7 @@
     function getDeviceDisplayName(device, fallbackId) {
         const baseName = (device && (device.deviceName || device.deviceId)) || fallbackId || 'Unknown device';
         const pkg = getRunningPackageSuffix(device);
-        return pkg ? `${baseName} · ${pkg}` : baseName;
+        return pkg ? `${baseName} Â· ${pkg}` : baseName;
     }
 
     function escapeHtml(s) {
@@ -2170,12 +2170,12 @@
                 longEl.textContent = 'FULL STAGE';
                 shortEl.textContent = 'STAGE';
             }
-            btn.title = 'Ẩn Violation Logs — stage map dùng hết chiều ngang còn lại';
+            btn.title = 'áº¨n Violation Logs â€” stage map dĂ¹ng háº¿t chiá»u ngang cĂ²n láº¡i';
         }
         if (reopen) {
             reopen.style.display = logsVisible ? 'none' : '';
             reopen.setAttribute('aria-pressed', logsVisible ? 'false' : 'true');
-            reopen.title = 'Hiện lại Violation Logs';
+            reopen.title = 'Hiá»‡n láº¡i Violation Logs';
         }
     }
 
@@ -2230,14 +2230,14 @@
             if (dDns) {
                 dDns.className = 'dot ' + (data.dns ? 'on' : '');
                 dDns.title = data.dns
-                    ? 'DNS OK' + (data.dnsDetail ? ' — ' + data.dnsDetail : '')
-                    : 'DNS FAIL — ' + (data.dnsDetail || '(no detail)');
+                    ? 'DNS OK' + (data.dnsDetail ? ' â€” ' + data.dnsDetail : '')
+                    : 'DNS FAIL â€” ' + (data.dnsDetail || '(no detail)');
             }
             if (dTcp) {
                 dTcp.className = 'dot ' + (data.tcp ? 'on' : '');
                 dTcp.title = data.tcp
-                    ? 'TCP OK' + (data.tcpDetail ? ' — ' + data.tcpDetail : '')
-                    : 'TCP FAIL — ' + (data.tcpDetail || '(no detail)');
+                    ? 'TCP OK' + (data.tcpDetail ? ' â€” ' + data.tcpDetail : '')
+                    : 'TCP FAIL â€” ' + (data.tcpDetail || '(no detail)');
             }
             document.getElementById('net-latency').innerText = (data.latency || 0) + 'ms';
             historyData = data.history || [];
@@ -2251,14 +2251,14 @@
             if (dd) {
                 dd.className = 'dot ' + (data.dns ? 'on' : '');
                 dd.title = data.dns
-                    ? 'DNS OK' + (data.dnsDetail ? ' — ' + data.dnsDetail : '')
-                    : 'DNS FAIL — ' + (data.dnsDetail || '(no detail)');
+                    ? 'DNS OK' + (data.dnsDetail ? ' â€” ' + data.dnsDetail : '')
+                    : 'DNS FAIL â€” ' + (data.dnsDetail || '(no detail)');
             }
             if (dt) {
                 dt.className = 'dot ' + (data.tcp ? 'on' : '');
                 dt.title = data.tcp
-                    ? 'TCP OK' + (data.tcpDetail ? ' — ' + data.tcpDetail : '')
-                    : 'TCP FAIL — ' + (data.tcpDetail || '(no detail)');
+                    ? 'TCP OK' + (data.tcpDetail ? ' â€” ' + data.tcpDetail : '')
+                    : 'TCP FAIL â€” ' + (data.tcpDetail || '(no detail)');
             }
             if (latEl) latEl.innerText = (data.latency || 0) + 'ms';
             historyDataRemote = data.history || [];
@@ -2271,14 +2271,14 @@
             if (dd) {
                 dd.className = 'dot ' + (data.dns ? 'on' : '');
                 dd.title = data.dns
-                    ? 'DNS OK' + (data.dnsDetail ? ' — ' + data.dnsDetail : '')
-                    : 'DNS FAIL — ' + (data.dnsDetail || '(no detail)');
+                    ? 'DNS OK' + (data.dnsDetail ? ' â€” ' + data.dnsDetail : '')
+                    : 'DNS FAIL â€” ' + (data.dnsDetail || '(no detail)');
             }
             if (dt) {
                 dt.className = 'dot ' + (data.tcp ? 'on' : '');
                 dt.title = data.tcp
-                    ? 'TCP OK' + (data.tcpDetail ? ' — ' + data.tcpDetail : '')
-                    : 'TCP FAIL — ' + (data.tcpDetail || '(no detail)');
+                    ? 'TCP OK' + (data.tcpDetail ? ' â€” ' + data.tcpDetail : '')
+                    : 'TCP FAIL â€” ' + (data.tcpDetail || '(no detail)');
             }
             if (latEl) latEl.innerText = (data.latency || 0) + 'ms';
             historyDataExtra = data.history || [];
@@ -2362,8 +2362,8 @@
         if (data.type === 'slot_assigned') {
             const dev = devices.find(d => d.deviceId === data.deviceId);
             if (dev) {
-                // Với slot thường (bàn/ghế), chỉ một device/slot → clear slot cũ.
-                // Với 'arena', cho phép nhiều device cùng lúc, không clear các device khác.
+                // Vá»›i slot thÆ°á»ng (bĂ n/gháº¿), chá»‰ má»™t device/slot â†’ clear slot cÅ©.
+                // Vá»›i 'arena', cho phĂ©p nhiá»u device cĂ¹ng lĂºc, khĂ´ng clear cĂ¡c device khĂ¡c.
                 if (data.slotId !== 'arena') {
                     devices.forEach(d => { if (d.slotId === data.slotId) d.slotId = null; });
                 }
@@ -2392,8 +2392,8 @@
             banner.id = 'ws-decrypt-err';
             banner.style.cssText = 'position:fixed;top:70px;left:50%;transform:translateX(-50%);background:var(--warn);color:#000;padding:10px 20px;border-radius:6px;font-size:12px;z-index:9998;box-shadow:0 4px 12px rgba(0,0,0,0.4);';
             banner.textContent = wsCanEncrypt
-                ? 'Lỗi giải mã dữ liệu. Hãy restart server để nạp SECRET_KEY mới và refresh trình duyệt (Ctrl+F5).'
-                : 'Trình duyệt không hỗ trợ WebCrypto trong ngữ cảnh hiện tại. Dashboard đã tự chuyển qua plaintext mode.';
+                ? 'Lá»—i giáº£i mĂ£ dá»¯ liá»‡u. HĂ£y restart server Ä‘á»ƒ náº¡p SECRET_KEY má»›i vĂ  refresh trĂ¬nh duyá»‡t (Ctrl+F5).'
+                : 'TrĂ¬nh duyá»‡t khĂ´ng há»— trá»£ WebCrypto trong ngá»¯ cáº£nh hiá»‡n táº¡i. Dashboard Ä‘Ă£ tá»± chuyá»ƒn qua plaintext mode.';
             document.body.appendChild(banner);
             setTimeout(() => banner.remove(), 8000);
         }
@@ -2454,23 +2454,23 @@
         const mobileBytesTotal = d.mobileBytesTotal || 0;
         const wifiBytesTotal = d.wifiBytesTotal || 0;
         const hasMobileBytes = mobileBytesTotal > 0;
-        // Theo yêu cầu:
-        // netTransport=WIFI -> 🛜
-        // netTransport=CELLULAR -> 📶
-        // UNKNOWN / khác -> icon cổng Ethernet RJ45 (Bootstrap Icons ethernet, MIT)
+        // Theo yĂªu cáº§u:
+        // netTransport=WIFI -> đŸ›œ
+        // netTransport=CELLULAR -> đŸ“¶
+        // UNKNOWN / khĂ¡c -> icon cá»•ng Ethernet RJ45 (Bootstrap Icons ethernet, MIT)
         const transportIconLan =
             '<svg class="transport-icon-lan" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">' +
             '<path fill="currentColor" d="M14 13.5v-7a.5.5 0 0 0-.5-.5H12V4.5a.5.5 0 0 0-.5-.5h-1v-.5A.5.5 0 0 0 10 3H6a.5.5 0 0 0-.5.5V4h-1a.5.5 0 0 0-.5.5V6H2.5a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5M3.75 11h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-1.5a.25.25 0 0 1 .25-.25m2 0h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-1.5a.25.25 0 0 1 .25-.25m1.75.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zM9.75 11h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-1.5a.25.25 0 0 1 .25-.25m1.75.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25z"/>' +
             '<path fill="currentColor" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1z"/>' +
             '</svg>';
         const transportIcon =
-            netTransport === 'WIFI' ? '🛜' : (netTransport === 'CELLULAR' ? '📶' : transportIconLan);
+            netTransport === 'WIFI' ? 'đŸ›œ' : (netTransport === 'CELLULAR' ? 'đŸ“¶' : transportIconLan);
 		const styleIfMap = onMap ? `left: ${d.seatLayout?.x || 0}px; top: ${d.seatLayout?.y || 0}px;` : '';
 		const dataIpAttr = onMap ? ` data-ip="${escapeHtml(String(d.ipAddress || '').trim())}"` : '';
         
-        // Icon FTP (thư mục) sẽ nhấp nháy / sáng liên tục nếu `isFtpOpen = true`
+        // Icon FTP (thÆ° má»¥c) sáº½ nháº¥p nhĂ¡y / sĂ¡ng liĂªn tá»¥c náº¿u `isFtpOpen = true`
         const ftpIcon = (!isDisc && d.isFtpOpen && adbEnabled)
-            ? `<span style="cursor:pointer; font-size:14px; margin-left:5px; animation: blink 1s infinite; pointer-events: auto;" onclick="openExplorer('${d.ipAddress}', '${d.deviceName}')" title="Mở File Upload">📁</span>`
+            ? `<span style="cursor:pointer; font-size:14px; margin-left:5px; animation: blink 1s infinite; pointer-events: auto;" onclick="openExplorer('${d.ipAddress}', '${d.deviceName}')" title="Má»Ÿ File Upload">đŸ“</span>`
             : '';
 
 		return `
@@ -2485,7 +2485,7 @@
                         ${isDisc ? '' : `<span style="margin-left:6px; font-size:12px; opacity:0.9;" title="netTransport=${netTransport}\nwifiBytesTotal=${formatBytes(wifiBytesTotal)}${hasMobileBytes ? `\nmobileBytesTotal=${formatBytes(mobileBytesTotal)}` : ''}">${transportIcon}</span>`}
 					</span>
 					<span>
-                        ${isDisc ? '--' : (d.isCharging ? '⚡' : '') + d.battery + '%'}
+                        ${isDisc ? '--' : (d.isCharging ? 'â¡' : '') + d.battery + '%'}
                     </span>
 				</div>
 				
@@ -2498,7 +2498,7 @@
 							${isDisc ? '' : (overlayApp ? `OVERLAY: ${overlayApp}` : (hasMobileBytes ? `mobileBytesTotal: ${formatBytes(mobileBytesTotal)}` : ''))}
 						</span>
 						<span class="dev-ip" style="color:${isDisc ? '#444' : '#9ad'};">
-							IP: ${isDisc ? '—' : escapeHtml(d.ipAddress || '—')}
+							IP: ${isDisc ? 'â€”' : escapeHtml(d.ipAddress || 'â€”')}
 						</span>
 					</span>
 					<span class="ram-tag" style="${isDisc ? 'opacity: 0.3;' : ''}">
@@ -2596,7 +2596,7 @@
             applyStageIpHighlight({ scroll: false });
         }
 
-// HIỂN THỊ LOGS
+// HIá»‚N THá» LOGS
 		const logContainer = document.getElementById('log-list');
 const panelAlerts = filterAlertsForPanel(currentAlerts);
 if (panelAlerts && panelAlerts.length > 0) {
@@ -2611,7 +2611,7 @@ if (panelAlerts && panelAlerts.length > 0) {
         if (!a.endTime) groups[a.deviceId].hasActive = true;
     });
 
-    // Sắp xếp: Ưu tiên thiết bị ĐANG VI PHẠM lên đầu danh sách log
+    // Sáº¯p xáº¿p: Æ¯u tiĂªn thiáº¿t bá»‹ ÄANG VI PHáº M lĂªn Ä‘áº§u danh sĂ¡ch log
     const sortedGroups = Object.keys(groups).sort((a, b) => {
         if (groups[a].hasActive && !groups[b].hasActive) return -1;
         if (!groups[a].hasActive && groups[b].hasActive) return 1;
@@ -2627,7 +2627,7 @@ if (panelAlerts && panelAlerts.length > 0) {
     const sortedLogs = [...group.logs].reverse();
     const isNetError = did === 'SYSTEM_NET' || did === 'SYSTEM_NET_REMOTE' || did === 'SYSTEM_NET_EXTRA';
 
-    // KIỂM TRA TRẠNG THÁI KẾT NỐI THỰC TẾ
+    // KIá»‚M TRA TRáº NG THĂI Káº¾T Ná»I THá»°C Táº¾
     const deviceData = devices.find(d => d.deviceId === did);
     const isOffline = deviceData && deviceData.status === 'disconnected';
 
@@ -2641,7 +2641,7 @@ if (panelAlerts && panelAlerts.length > 0) {
                         ${isOffline ? '[OFFLINE] ' : ''}${group.name}
                     </b>
                 </div>
-                <span style="font-size:10px; color:#555;">${isExpanded ? '▲ Thu gọn' : '▼ Xem (' + group.logs.length + ')'}</span>
+                <span style="font-size:10px; color:#555;">${isExpanded ? 'â–² Thu gá»n' : 'â–¼ Xem (' + group.logs.length + ')'}</span>
             </div>
             <div class="log-details ${isExpanded ? 'show' : ''}">
                 ${sortedLogs.map((l) => {
@@ -2658,8 +2658,8 @@ if (panelAlerts && panelAlerts.length > 0) {
                     return `
                     <div class="sub-log-item ${!l.endTime ? 'active-log' : ''}" style="color: ${!l.endTime ? '#fff' : '#777'}; flex-direction: column; align-items: stretch;">
                         <div style="display:flex; justify-content: space-between; gap: 6px; width: 100%;">
-                            <span style="max-width: 60%; overflow: hidden; text-overflow: ellipsis;">• ${appEsc}</span>
-                            <span style="font-family: monospace; flex-shrink: 0;">${l.startTime} ${l.endTime ? '→ ' + l.endTime : '<b style="color:var(--warn)">● ACTIVE</b>'}</span>
+                            <span style="max-width: 60%; overflow: hidden; text-overflow: ellipsis;">â€¢ ${appEsc}</span>
+                            <span style="font-family: monospace; flex-shrink: 0;">${l.startTime} ${l.endTime ? 'â†’ ' + l.endTime : '<b style="color:var(--warn)">â— ACTIVE</b>'}</span>
                         </div>
                         ${netBlock}
                     </div>`;
@@ -2668,10 +2668,10 @@ if (panelAlerts && panelAlerts.length > 0) {
         </div>
     `;
 }).join('') + (hasMoreGroups
-    ? `<button type="button" class="log-show-more-btn" onclick="showMoreLogGroups()">Xem thêm (${sortedGroups.length - visibleGroups.length} nhóm)</button>`
+    ? `<button type="button" class="log-show-more-btn" onclick="showMoreLogGroups()">Xem thĂªm (${sortedGroups.length - visibleGroups.length} nhĂ³m)</button>`
     : '');
 } else {
-    logContainer.innerHTML = `<div style="text-align:center; color:#555; padding:20px;">${logFilterViolationsOnly ? 'Không có vi phạm app' : 'No logs recorded'}</div>`;
+    logContainer.innerHTML = `<div style="text-align:center; color:#555; padding:20px;">${logFilterViolationsOnly ? 'KhĂ´ng cĂ³ vi pháº¡m app' : 'No logs recorded'}</div>`;
 }
     }
 
@@ -2692,16 +2692,16 @@ if (panelAlerts && panelAlerts.length > 0) {
         c.stroke();
     }
 
-    // Một SET → một tin WS lưu cả hai + server chạy đo mạng ngay (runNow)
+    // Má»™t SET â†’ má»™t tin WS lÆ°u cáº£ hai + server cháº¡y Ä‘o máº¡ng ngay (runNow)
     function netInputVal(id) {
         const el = document.getElementById(id);
         return el && 'value' in el ? el.value : '';
     }
 
     async function saveNetAll() {
-        if (!ensureEditor('lưu cấu hình monitor mạng')) return;
+        if (!ensureEditor('lÆ°u cáº¥u hĂ¬nh monitor máº¡ng')) return;
         if (!socket || socket.readyState !== WebSocket.OPEN) {
-            alert('WebSocket chưa kết nối — không gửi được SET. Đợi trạng thái "Đã kết nối" rồi thử lại.');
+            alert('WebSocket chÆ°a káº¿t ná»‘i â€” khĂ´ng gá»­i Ä‘Æ°á»£c SET. Äá»£i tráº¡ng thĂ¡i "ÄĂ£ káº¿t ná»‘i" rá»“i thá»­ láº¡i.');
             return;
         }
         await safeSend({
@@ -2742,7 +2742,7 @@ if (panelAlerts && panelAlerts.length > 0) {
         const hasViolations = filteredAlerts.length > 0;
         const hasNetLogsLegacy = currentNetLogs.length > 0;
         if (!hasViolations && !hasNetLogsLegacy) {
-            return alert(fromStr || toStr ? 'Không có log trong khoảng thời gian đã chọn.' : 'No data to export file.');
+            return alert(fromStr || toStr ? 'KhĂ´ng cĂ³ log trong khoáº£ng thá»i gian Ä‘Ă£ chá»n.' : 'No data to export file.');
         }
 
         const exportedAtIso = new Date().toISOString();
@@ -2864,7 +2864,7 @@ if (panelAlerts && panelAlerts.length > 0) {
     }
 
     function arrangeArenaGrid() {
-        if (!ensureEditor('xếp stage')) return;
+        if (!ensureEditor('xáº¿p stage')) return;
 
         const arena = document.getElementById('monitor-arena');
         if (!arena) return;
@@ -2920,14 +2920,14 @@ if (panelAlerts && panelAlerts.length > 0) {
             const y = MARGIN_Y + row * (CARD_H + GAP_Y);
 
             d.seatLayout = { ...(d.seatLayout || {}), x, y };
-            safeSendEditor({ type: 'update_seat_layout', deviceId: d.deviceId, seatLayout: { x, y } }, 'xếp vị trí stage');
+            safeSendEditor({ type: 'update_seat_layout', deviceId: d.deviceId, seatLayout: { x, y } }, 'xáº¿p vá»‹ trĂ­ stage');
         });
 
         render();
     }
 
     function arrangeArenaGrouped() {
-        if (!ensureEditor('gom nhóm stage')) return;
+        if (!ensureEditor('gom nhĂ³m stage')) return;
 
         const arena = document.getElementById('monitor-arena');
         if (!arena) return;
@@ -2983,7 +2983,7 @@ if (panelAlerts && panelAlerts.length > 0) {
                 const x = xStart + col * (CARD_W + GAP_X);
                 const y = yCursor + row * (CARD_H + GAP_Y);
                 d.seatLayout = { ...(d.seatLayout || {}), x, y };
-                safeSendEditor({ type: 'update_seat_layout', deviceId: d.deviceId, seatLayout: { x, y } }, `xếp nhóm ${key}`);
+                safeSendEditor({ type: 'update_seat_layout', deviceId: d.deviceId, seatLayout: { x, y } }, `xáº¿p nhĂ³m ${key}`);
             });
 
             yCursor += rows * (CARD_H + GAP_Y) + GROUP_GAP_Y;
@@ -2993,7 +2993,7 @@ if (panelAlerts && panelAlerts.length > 0) {
     }
 
     function arrangeArenaTemplate() {
-        if (!ensureEditor('xếp stage theo template')) return;
+        if (!ensureEditor('xáº¿p stage theo template')) return;
 
         const arena = document.getElementById('monitor-arena');
         if (!arena) return;
@@ -3136,7 +3136,7 @@ if (panelAlerts && panelAlerts.length > 0) {
 
             placements.forEach(({ d, x, y }) => {
                 d.seatLayout = { ...(d.seatLayout || {}), x, y };
-                safeSendEditor({ type: 'update_seat_layout', deviceId: d.deviceId, seatLayout: { x, y } }, 'xếp vị trí template');
+                safeSendEditor({ type: 'update_seat_layout', deviceId: d.deviceId, seatLayout: { x, y } }, 'xáº¿p vá»‹ trĂ­ template');
             });
 
             render();
@@ -3218,7 +3218,7 @@ if (panelAlerts && panelAlerts.length > 0) {
         try {
             text = await file.text();
         } catch (err) {
-            alert(`Không đọc được file CSV: ${err.message || String(err)}`);
+            alert(`KhĂ´ng Ä‘á»c Ä‘Æ°á»£c file CSV: ${err.message || String(err)}`);
             return;
         }
         const lines = String(text || '')
@@ -3227,7 +3227,7 @@ if (panelAlerts && panelAlerts.length > 0) {
             .map((l) => l.trim())
             .filter(Boolean);
         if (lines.length < 2) {
-            alert('CSV không hợp lệ. Cần ít nhất 1 dòng header và 1 dòng dữ liệu.');
+            alert('CSV khĂ´ng há»£p lá»‡. Cáº§n Ă­t nháº¥t 1 dĂ²ng header vĂ  1 dĂ²ng dá»¯ liá»‡u.');
             return;
         }
 
@@ -3274,15 +3274,15 @@ if (panelAlerts && panelAlerts.length > 0) {
                 seen.add(dev.deviceId);
                 const slotId = slotRaw || 'arena';
                 if (dev.slotId !== slotId) {
-                    safeSendEditor({ type: 'assign_slot', deviceId: dev.deviceId, slotId }, 'import slot từ CSV');
+                    safeSendEditor({ type: 'assign_slot', deviceId: dev.deviceId, slotId }, 'import slot tá»« CSV');
                     dev.slotId = slotId;
                 }
-                safeSendEditor({ type: 'update_seat_layout', deviceId: dev.deviceId, seatLayout: { x, y } }, 'import layout từ CSV');
+                safeSendEditor({ type: 'update_seat_layout', deviceId: dev.deviceId, seatLayout: { x, y } }, 'import layout tá»« CSV');
                 dev.seatLayout = { ...(dev.seatLayout || {}), x, y };
                 ok++;
             }
         } else {
-            // Matrix seatmap mode: mỗi ô CSV là 1 deviceName (giống Excel seat map).
+            // Matrix seatmap mode: má»—i Ă´ CSV lĂ  1 deviceName (giá»‘ng Excel seat map).
             const activeCount = devices.filter((d) => d && d.deviceId && d.status !== 'disconnected').length;
             const stageSpec = getStageDensitySpec(Math.max(1, activeCount));
             const CARD_W = Number(stageSpec && stageSpec.cardW) || 290;
@@ -3320,9 +3320,9 @@ if (panelAlerts && panelAlerts.length > 0) {
 
         render();
         const modeLabel = isListMode ? 'list mode (deviceName,x,y)' : 'seatmap matrix mode';
-        const parts = [`Import xong: ${ok} thiết bị (${modeLabel}).`];
-        if (missing.length) parts.push(`Không thấy deviceName (${missing.length}): ${missing.slice(0, 8).join(', ')}${missing.length > 8 ? ' ...' : ''}`);
-        if (invalid.length) parts.push(`Dòng lỗi x/y (${invalid.length}): ${invalid.slice(0, 8).join(', ')}${invalid.length > 8 ? ' ...' : ''}`);
+        const parts = [`Import xong: ${ok} thiáº¿t bá»‹ (${modeLabel}).`];
+        if (missing.length) parts.push(`KhĂ´ng tháº¥y deviceName (${missing.length}): ${missing.slice(0, 8).join(', ')}${missing.length > 8 ? ' ...' : ''}`);
+        if (invalid.length) parts.push(`DĂ²ng lá»—i x/y (${invalid.length}): ${invalid.slice(0, 8).join(', ')}${invalid.length > 8 ? ' ...' : ''}`);
         alert(parts.join('\n'));
     }
 
@@ -3350,16 +3350,16 @@ if (panelAlerts && panelAlerts.length > 0) {
     function allowDrop(e) { e.preventDefault(); }
     
     function handleDrop(e, sid) {
-        if (!ensureEditor('gán slot')) return;
+        if (!ensureEditor('gĂ¡n slot')) return;
         e.preventDefault();
         const did = e.dataTransfer.getData("text/did");
         if (did) {
-            safeSendEditor({ type: 'assign_slot', deviceId: did, slotId: sid }, 'gán thiết bị');
+            safeSendEditor({ type: 'assign_slot', deviceId: did, slotId: sid }, 'gĂ¡n thiáº¿t bá»‹');
         }
     }
 
     function handleDropArena(e) {
-        if (!ensureEditor('kéo thả stage')) return;
+        if (!ensureEditor('kĂ©o tháº£ stage')) return;
         e.preventDefault();
         const did = e.dataTransfer.getData("text/did");
         if (!did) return;
@@ -3374,13 +3374,13 @@ if (panelAlerts && panelAlerts.length > 0) {
         let dropX = (relX - tx) / s - dragOffset.x;
         let dropY = (relY - ty) / s - dragOffset.y;
 
-        // Nếu đang kéo từ arena → chỉ đổi vị trí, không gửi assign_slot nữa để tránh đụng thiết bị khác.
+        // Náº¿u Ä‘ang kĂ©o tá»« arena â†’ chá»‰ Ä‘á»•i vá»‹ trĂ­, khĂ´ng gá»­i assign_slot ná»¯a Ä‘á»ƒ trĂ¡nh Ä‘á»¥ng thiáº¿t bá»‹ khĂ¡c.
         if (!dragFromArena) {
-            safeSendEditor({ type: 'assign_slot', deviceId: did, slotId: 'arena' }, 'gán thiết bị vào stage');
+            safeSendEditor({ type: 'assign_slot', deviceId: did, slotId: 'arena' }, 'gĂ¡n thiáº¿t bá»‹ vĂ o stage');
         }
 
         // Single device move
-        safeSendEditor({ type: 'update_seat_layout', deviceId: did, seatLayout: { x: dropX, y: dropY } }, 'kéo thả vị trí');
+        safeSendEditor({ type: 'update_seat_layout', deviceId: did, seatLayout: { x: dropX, y: dropY } }, 'kĂ©o tháº£ vá»‹ trĂ­');
 
         // Optimistic UI Update for smoothness
         const dev = devices.find(d => d.deviceId === did);
@@ -3392,12 +3392,12 @@ if (panelAlerts && panelAlerts.length > 0) {
     }
 
     function clearLogs() {
-        if (!ensureEditor('xóa logs')) return;
-        // Một số trình duyệt/thiết lập kiosk chặn `prompt()` làm người dùng tưởng nút không hoạt động.
-        // Dùng 2 bước xác nhận bằng confirm() để đảm bảo chạy được.
+        if (!ensureEditor('xĂ³a logs')) return;
+        // Má»™t sá»‘ trĂ¬nh duyá»‡t/thiáº¿t láº­p kiosk cháº·n `prompt()` lĂ m ngÆ°á»i dĂ¹ng tÆ°á»Ÿng nĂºt khĂ´ng hoáº¡t Ä‘á»™ng.
+        // DĂ¹ng 2 bÆ°á»›c xĂ¡c nháº­n báº±ng confirm() Ä‘á»ƒ Ä‘áº£m báº£o cháº¡y Ä‘Æ°á»£c.
         if (!confirm("Clear all violation logs?")) return;
         if (!confirm("Are you sure? This cannot be undone.")) return;
-        safeSendEditor({ type: 'clear_logs' }, 'xóa logs');
+        safeSendEditor({ type: 'clear_logs' }, 'xĂ³a logs');
     }
     
     // --- FILE EXPLORER LOGIC ---
@@ -3430,10 +3430,10 @@ if (panelAlerts && panelAlerts.length > 0) {
     }
 
     async function deleteRemotePath(filePath, isDir) {
-        if (!ensureEditor('xóa file trên thiết bị')) return;
+        if (!ensureEditor('xĂ³a file trĂªn thiáº¿t bá»‹')) return;
         if (!explorerIp || !filePath) return;
-        const kind = isDir ? 'thư mục (gồm mọi nội dung bên trong)' : 'file';
-        if (!confirm(`Xóa ${kind} trên thiết bị?\n\n${filePath}`)) return;
+        const kind = isDir ? 'thÆ° má»¥c (gá»“m má»i ná»™i dung bĂªn trong)' : 'file';
+        if (!confirm(`XĂ³a ${kind} trĂªn thiáº¿t bá»‹?\n\n${filePath}`)) return;
         try {
             const res = await fetch('/api/adb/delete', {
                 method: 'POST',
@@ -3448,7 +3448,7 @@ if (panelAlerts && panelAlerts.length > 0) {
             if (!res.ok) throw new Error(data.message || data.error || `HTTP ${res.status}`);
             loadDir(currentPath);
         } catch (err) {
-            alert('Lỗi xóa: ' + (err.message || String(err)));
+            alert('Lá»—i xĂ³a: ' + (err.message || String(err)));
         }
     }
 
@@ -3516,15 +3516,15 @@ if (panelAlerts && panelAlerts.length > 0) {
     
     function openExplorer(ip, devName) {
         if (!adbEnabled || deployMode === 'LIVE') return;
-        if (!ip) return alert("Không xác định được IP LAN của thiết bị này.");
+        if (!ip) return alert("KhĂ´ng xĂ¡c Ä‘á»‹nh Ä‘Æ°á»£c IP LAN cá»§a thiáº¿t bá»‹ nĂ y.");
         explorerIp = ip;
         currentPath = '/storage/emulated/0'; // Default
         const matched = devices.find((d) => d && d.ipAddress === ip) || null;
         const resolvedName = devName || (matched && matched.deviceName) || 'Device';
         const pkg = getRunningPackageSuffix(matched);
-        const nameWithPkg = pkg ? `${resolvedName} · ${pkg}` : resolvedName;
+        const nameWithPkg = pkg ? `${resolvedName} Â· ${pkg}` : resolvedName;
         document.getElementById('file-modal').style.display = 'flex';
-        document.getElementById('explorer-device-label').textContent = `${nameWithPkg} · ${ip}`;
+        document.getElementById('explorer-device-label').textContent = `${nameWithPkg} Â· ${ip}`;
         document.getElementById('current-path').value = currentPath;
         loadDir(currentPath);
     }
@@ -3544,7 +3544,7 @@ if (panelAlerts && panelAlerts.length > 0) {
         currentPath = path;
         document.getElementById('current-path').value = path;
         const container = document.getElementById('explorer-content');
-        container.innerHTML = `<div class="explorer-status">Đang tải danh sách từ ${explorerIp}…</div>`;
+        container.innerHTML = `<div class="explorer-status">Äang táº£i danh sĂ¡ch tá»« ${explorerIp}â€¦</div>`;
         
         try {
             const res = await fetch(`/api/adb/list?ip=${explorerIp}&dir=${encodeURIComponent(path)}`);
@@ -3558,17 +3558,17 @@ if (panelAlerts && panelAlerts.length > 0) {
             });
             
             let html = '';
-            // Nút Go Back
+            // NĂºt Go Back
             if (path !== '/storage/emulated/0' && path.includes('/')) {
                 const parent = path.substring(0, path.lastIndexOf('/')) || '/storage/emulated/0';
                 const parentEnc = encodeURIComponent(parent);
                 html += `<div class="file-item file-item-back" data-parent="${parentEnc}">
-                            <div class="file-icon">↩</div><div class="file-name">Thư mục cha</div>
+                            <div class="file-icon">â†©</div><div class="file-name">ThÆ° má»¥c cha</div>
                          </div>`;
             }
 
             files.forEach((f) => {
-                const icon = f.isDir ? '📁' : '📄';
+                const icon = f.isDir ? 'đŸ“' : 'đŸ“„';
                 const pathEnc = encodeURIComponent(f.path);
                 const isDirAttr = f.isDir ? '1' : '0';
                 const safeName = escapeHtml(f.name);
@@ -3578,8 +3578,8 @@ if (panelAlerts && panelAlerts.length > 0) {
             });
             container.innerHTML = html;
         } catch(e) {
-            let hint = `Không thể kết nối ADB đến thiết bị (${e.message}).<br>Đang gọi tới IP: <b>${explorerIp}:5555</b><br><br>`;
-            hint += `Hãy chắc chắn điện thoại đã bật <b>Gỡ lỗi Không dây</b> hoặc đã được cắm cáp gõ lệnh <b>adb tcpip 5555</b>.`;
+            let hint = `KhĂ´ng thá»ƒ káº¿t ná»‘i ADB Ä‘áº¿n thiáº¿t bá»‹ (${e.message}).<br>Äang gá»i tá»›i IP: <b>${explorerIp}:5555</b><br><br>`;
+            hint += `HĂ£y cháº¯c cháº¯n Ä‘iá»‡n thoáº¡i Ä‘Ă£ báº­t <b>Gá»¡ lá»—i KhĂ´ng dĂ¢y</b> hoáº·c Ä‘Ă£ Ä‘Æ°á»£c cáº¯m cĂ¡p gĂµ lá»‡nh <b>adb tcpip 5555</b>.`;
             container.innerHTML = `<div class="explorer-status error">${hint}</div>`;
         }
     }
@@ -3601,7 +3601,7 @@ if (panelAlerts && panelAlerts.length > 0) {
         form.append("ip", explorerIp);
         form.append("dir", currentPath);
         
-        document.getElementById('current-path').value = "ĐANG UPLOAD: " + file.name + "...";
+        document.getElementById('current-path').value = "ÄANG UPLOAD: " + file.name + "...";
 
         try {
             const r = await fetch(`/api/adb/check-dir?ip=${encodeURIComponent(explorerIp)}&dir=${encodeURIComponent(currentPath)}`);
@@ -3617,11 +3617,11 @@ if (panelAlerts && panelAlerts.length > 0) {
             });
             const data = await res.json();
             if(data.status === 'success') {
-                alert("Đã đẩy file thành công vào máy con!");
+                alert("ÄĂ£ Ä‘áº©y file thĂ nh cĂ´ng vĂ o mĂ¡y con!");
                 loadDir(currentPath); // Refresh
             }
         } catch(e) {
-            alert("Lỗi Upload: " + e.message);
+            alert("Lá»—i Upload: " + e.message);
         }
         document.getElementById('upload-input').value = '';
     }

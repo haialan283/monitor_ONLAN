@@ -1,9 +1,9 @@
-const path = require('path');
+﻿const path = require('path');
 const fs = require('fs');
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 
-// Runtime data (không nên commit). Tự tạo thư mục nếu thiếu.
+// Runtime data (khĂ´ng nĂªn commit). Tá»± táº¡o thÆ° má»¥c náº¿u thiáº¿u.
 const dataDir = path.join(__dirname, '..', 'data');
 if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
 const dbPath = path.join(dataDir, 'db.json');
@@ -13,9 +13,9 @@ db.defaults({
     alerts: [],
     tableNames: {},
     netConfig: { dns: '', port: 0 },
-    /** Thứ hai: kiểm tra tới host/port ngoài (Internet, máy chủ đối tác, …) */
+    /** Thá»© hai: kiá»ƒm tra tá»›i host/port ngoĂ i (Internet, mĂ¡y chá»§ Ä‘á»‘i tĂ¡c, â€¦) */
     netConfigRemote: { dns: '', port: 0 },
-    /** Mã giải — thiết bị app phải nhập đúng (ưu tiên DB, fallback env TOURNAMENT_CODE) */
+    /** MĂ£ giáº£i â€” thiáº¿t bá»‹ app pháº£i nháº­p Ä‘Ăºng (Æ°u tiĂªn DB, fallback env TOURNAMENT_CODE) */
     tournamentCode: '',
     /** Persist stage map placement across restarts */
     stageState: {}, // deviceId -> { slotId, seatLayout }
@@ -156,7 +156,7 @@ function restoreStageStateBackup() {
     return true;
 }
 
-/** Giới hạn alerts tối đa (trim khi vượt) */
+/** Giá»›i háº¡n alerts tá»‘i Ä‘a (trim khi vÆ°á»£t) */
 const MAX_ALERTS = 500;
 
 function trimAlertsIfNeeded() {

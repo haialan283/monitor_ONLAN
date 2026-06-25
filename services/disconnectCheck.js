@@ -1,6 +1,6 @@
-/**
- * Định kỳ đánh dấu thiết bị mất kết nối (quá 7s không heartbeat) và broadcast.
- * onDisconnect(deviceName) được gọi cho mỗi thiết bị vừa mất kết nối (để gửi Discord, v.v.).
+﻿/**
+ * Äá»‹nh ká»³ Ä‘Ă¡nh dáº¥u thiáº¿t bá»‹ máº¥t káº¿t ná»‘i (quĂ¡ 7s khĂ´ng heartbeat) vĂ  broadcast.
+ * onDisconnect(deviceName) Ä‘Æ°á»£c gá»i cho má»—i thiáº¿t bá»‹ vá»«a máº¥t káº¿t ná»‘i (Ä‘á»ƒ gá»­i Discord, v.v.).
  */
 const INTERVAL_MS = 2000;
 

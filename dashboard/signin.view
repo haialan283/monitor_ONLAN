@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="vi">
 
@@ -8,7 +8,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Đăng nhập — ArenaPulse</title>
+    <title>ÄÄƒng nháº­p â€” ArenaPulse</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -148,21 +148,21 @@
 
         </div>
 
-        <p id="setup-msg" class="setup-msg">Server chưa cấu hình tài khoản. Đặt <code>DASHBOARD_ADMIN_USER</code> và <code>DASHBOARD_ADMIN_PASSWORD</code> trên server rồi tải lại trang.</p>
+        <p id="setup-msg" class="setup-msg">Server chÆ°a cáº¥u hĂ¬nh tĂ i khoáº£n. Äáº·t <code>DASHBOARD_ADMIN_USER</code> vĂ  <code>DASHBOARD_ADMIN_PASSWORD</code> trĂªn server rá»“i táº£i láº¡i trang.</p>
 
-        <p class="subtitle">Nhập tài khoản và mật khẩu để truy cập Dashboard.</p>
+        <p class="subtitle">Nháº­p tĂ i khoáº£n vĂ  máº­t kháº©u Ä‘á»ƒ truy cáº­p Dashboard.</p>
 
         <form id="f" method="post" action="/api/auth/login">
 
-            <label for="username">Tài khoản</label>
+            <label for="username">TĂ i khoáº£n</label>
 
             <input type="text" name="username" id="username" placeholder="admin" autocomplete="username" autofocus>
 
-            <label for="password">Mật khẩu</label>
+            <label for="password">Máº­t kháº©u</label>
 
-            <input type="password" name="password" id="password" placeholder="••••••••" autocomplete="current-password">
+            <input type="password" name="password" id="password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" autocomplete="current-password">
 
-            <button type="submit">Đăng nhập</button>
+            <button type="submit">ÄÄƒng nháº­p</button>
 
         </form>
 
@@ -212,13 +212,13 @@
 
             if (res.status === 503) {
 
-                err.textContent = data.error || 'Chưa cấu hình tài khoản trên server.';
+                err.textContent = data.error || 'ChÆ°a cáº¥u hĂ¬nh tĂ i khoáº£n trĂªn server.';
 
                 return;
 
             }
 
-            err.textContent = data.error || 'Đăng nhập thất bại.';
+            err.textContent = data.error || 'ÄÄƒng nháº­p tháº¥t báº¡i.';
 
         });
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="vi">
 
@@ -8,7 +8,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Cấu hình giải — ArenaPulse</title>
+    <title>Cáº¥u hĂ¬nh giáº£i â€” ArenaPulse</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -508,7 +508,7 @@
 
         <div class="spinner"></div>
 
-        <div>Đang kiểm tra quyền admin…</div>
+        <div>Äang kiá»ƒm tra quyá»n adminâ€¦</div>
 
     </div>
 
@@ -530,7 +530,7 @@
 
                     <h1>ArenaPulse</h1>
 
-                    <p>Bảng điều khiển giải</p>
+                    <p>Báº£ng Ä‘iá»u khiá»ƒn giáº£i</p>
 
                 </div>
 
@@ -540,23 +540,23 @@
 
         <nav class="sidebar-nav">
 
-            <div class="nav-label">Cấu hình</div>
+            <div class="nav-label">Cáº¥u hĂ¬nh</div>
 
-            <a class="nav-link" href="#sec-tournament"><span class="icon">🏆</span> Mã giải</a>
+            <a class="nav-link" href="#sec-tournament"><span class="icon">đŸ†</span> MĂ£ giáº£i</a>
 
-            <a class="nav-link" href="#sec-whitelist"><span class="icon">✓</span> Whitelist app</a>
+            <a class="nav-link" href="#sec-whitelist"><span class="icon">âœ“</span> Whitelist app</a>
 
-            <a class="nav-link" href="#sec-advanced"><span class="icon">⚙</span> Nâng cao</a>
+            <a class="nav-link" href="#sec-advanced"><span class="icon">â™</span> NĂ¢ng cao</a>
 
-            <a class="nav-link" href="#sec-audit"><span class="icon">📋</span> Nhật ký</a>
+            <a class="nav-link" href="#sec-audit"><span class="icon">đŸ“‹</span> Nháº­t kĂ½</a>
 
         </nav>
 
         <div class="sidebar-footer">
 
-            <a href="/" class="btn-outline">← Quay lại Dashboard</a>
+            <a href="/" class="btn-outline">â† Quay láº¡i Dashboard</a>
 
-            <button type="button" id="btn-logout" class="btn-ghost" onclick="logout()">Đăng xuất</button>
+            <button type="button" id="btn-logout" class="btn-ghost" onclick="logout()">ÄÄƒng xuáº¥t</button>
 
         </div>
 
@@ -568,9 +568,9 @@
 
         <header class="topbar">
 
-            <h2>Cấu hình giải đấu</h2>
+            <h2>Cáº¥u hĂ¬nh giáº£i Ä‘áº¥u</h2>
 
-            <p>Quản lý mã giải, whitelist ứng dụng và thông số heartbeat — áp dụng ngay không cần restart.</p>
+            <p>Quáº£n lĂ½ mĂ£ giáº£i, whitelist á»©ng dá»¥ng vĂ  thĂ´ng sá»‘ heartbeat â€” Ă¡p dá»¥ng ngay khĂ´ng cáº§n restart.</p>
 
         </header>
 
@@ -582,13 +582,13 @@
 
                 <div class="card-head">
 
-                    <div class="card-icon tournament">🏆</div>
+                    <div class="card-icon tournament">đŸ†</div>
 
                     <div>
 
-                        <h3>Mã giải</h3>
+                        <h3>MĂ£ giáº£i</h3>
 
-                        <p class="hint">Thiết bị app phải nhập đúng mã khi kết nối LIVE. Để trống = tắt bắt buộc mã giải.</p>
+                        <p class="hint">Thiáº¿t bá»‹ app pháº£i nháº­p Ä‘Ăºng mĂ£ khi káº¿t ná»‘i LIVE. Äá»ƒ trá»‘ng = táº¯t báº¯t buá»™c mĂ£ giáº£i.</p>
 
                     </div>
 
@@ -596,7 +596,7 @@
 
                 <div class="field">
 
-                    <label class="field-label" for="tournament-code">Mã giải</label>
+                    <label class="field-label" for="tournament-code">MĂ£ giáº£i</label>
 
                     <input type="text" id="tournament-code" placeholder="VD: FFWS2026" maxlength="32" autocomplete="off" spellcheck="false">
 
@@ -610,13 +610,13 @@
 
                 <div class="card-head">
 
-                    <div class="card-icon whitelist">✓</div>
+                    <div class="card-icon whitelist">âœ“</div>
 
                     <div>
 
                         <h3>Whitelist app (foreground)</h3>
 
-                        <p class="hint">Một package Android mỗi dòng. App ngoài danh sách được coi là vi phạm.</p>
+                        <p class="hint">Má»™t package Android má»—i dĂ²ng. App ngoĂ i danh sĂ¡ch Ä‘Æ°á»£c coi lĂ  vi pháº¡m.</p>
 
                     </div>
 
@@ -638,13 +638,13 @@
 
                 <div class="card-head">
 
-                    <div class="card-icon advanced">⚙</div>
+                    <div class="card-icon advanced">â™</div>
 
                     <div>
 
                         <h3>Overlay, noise &amp; timing</h3>
 
-                        <p class="hint">Overlay whitelist: app vẽ đè hợp lệ. Noise: bỏ qua khi đọc foreground.</p>
+                        <p class="hint">Overlay whitelist: app váº½ Ä‘Ă¨ há»£p lá»‡. Noise: bá» qua khi Ä‘á»c foreground.</p>
 
                     </div>
 
@@ -678,7 +678,7 @@
 
                     <div class="field">
 
-                        <label class="field-label" for="disconnect-ms"><code>disconnectMs</code> (trống = env)</label>
+                        <label class="field-label" for="disconnect-ms"><code>disconnectMs</code> (trá»‘ng = env)</label>
 
                         <input type="number" id="disconnect-ms" min="3000" max="120000" step="1000" placeholder="12000">
 
@@ -694,13 +694,13 @@
 
                 <div class="card-head">
 
-                    <div class="card-icon audit">📋</div>
+                    <div class="card-icon audit">đŸ“‹</div>
 
                     <div>
 
-                        <h3>Nhật ký thao tác</h3>
+                        <h3>Nháº­t kĂ½ thao tĂ¡c</h3>
 
-                        <p class="hint">Đăng nhập, lưu cấu hình admin, xóa log vi phạm — tối đa 500 mục gần nhất.</p>
+                        <p class="hint">ÄÄƒng nháº­p, lÆ°u cáº¥u hĂ¬nh admin, xĂ³a log vi pháº¡m â€” tá»‘i Ä‘a 500 má»¥c gáº§n nháº¥t.</p>
 
                     </div>
 
@@ -710,13 +710,13 @@
 
                     <span class="hint" id="audit-count"></span>
 
-                    <button type="button" class="btn-sm" onclick="loadAudit()">Làm mới</button>
+                    <button type="button" class="btn-sm" onclick="loadAudit()">LĂ m má»›i</button>
 
                 </div>
 
                 <div class="audit-table-wrap" id="audit-wrap">
 
-                    <div class="audit-empty" id="audit-empty">Đang tải…</div>
+                    <div class="audit-empty" id="audit-empty">Äang táº£iâ€¦</div>
 
                     <table class="audit-table" id="audit-table" hidden>
 
@@ -724,11 +724,11 @@
 
                             <tr>
 
-                                <th>Thời gian</th>
+                                <th>Thá»i gian</th>
 
-                                <th>Hành động</th>
+                                <th>HĂ nh Ä‘á»™ng</th>
 
-                                <th>Chi tiết</th>
+                                <th>Chi tiáº¿t</th>
 
                             </tr>
 
@@ -748,7 +748,7 @@
 
         <div class="save-bar">
 
-            <button type="button" class="btn-primary" id="btn-save" onclick="saveSettings()">Lưu cấu hình</button>
+            <button type="button" class="btn-primary" id="btn-save" onclick="saveSettings()">LÆ°u cáº¥u hĂ¬nh</button>
 
             <span class="status" id="save-status"></span>
 
@@ -826,7 +826,7 @@
 
         if (res.status === 403) { window.location.href = '/'; return; }
 
-        if (!res.ok) throw new Error('Không tải được cấu hình');
+        if (!res.ok) throw new Error('KhĂ´ng táº£i Ä‘Æ°á»£c cáº¥u hĂ¬nh');
 
         const data = await res.json();
 
@@ -856,7 +856,7 @@
 
         btn.disabled = true;
 
-        status.textContent = 'Đang lưu…';
+        status.textContent = 'Äang lÆ°uâ€¦';
 
         status.className = 'status';
 
@@ -894,13 +894,13 @@
 
             if (!res.ok) throw new Error(data.error || res.status);
 
-            status.textContent = 'Đã lưu — áp dụng ngay (whitelist + mã giải).';
+            status.textContent = 'ÄĂ£ lÆ°u â€” Ă¡p dá»¥ng ngay (whitelist + mĂ£ giáº£i).';
 
             status.className = 'status ok';
 
         } catch (e) {
 
-            status.textContent = 'Lỗi: ' + (e.message || e);
+            status.textContent = 'Lá»—i: ' + (e.message || e);
 
             status.className = 'status err';
 
@@ -916,13 +916,13 @@
 
     const AUDIT_LABELS = {
 
-        login: 'Đăng nhập',
+        login: 'ÄÄƒng nháº­p',
 
-        admin_settings: 'Lưu cấu hình',
+        admin_settings: 'LÆ°u cáº¥u hĂ¬nh',
 
-        session_import: 'Import phiên',
+        session_import: 'Import phiĂªn',
 
-        clear_logs: 'Xóa log vi phạm',
+        clear_logs: 'XĂ³a log vi pháº¡m',
 
     };
 
@@ -930,7 +930,7 @@
 
     function formatAuditTime(iso) {
 
-        if (!iso) return '—';
+        if (!iso) return 'â€”';
 
         try {
 
@@ -960,7 +960,7 @@
 
         empty.hidden = false;
 
-        empty.textContent = 'Đang tải…';
+        empty.textContent = 'Äang táº£iâ€¦';
 
         table.hidden = true;
 
@@ -972,17 +972,17 @@
 
             if (res.status === 403) { window.location.href = '/'; return; }
 
-            if (!res.ok) throw new Error('Không tải được nhật ký');
+            if (!res.ok) throw new Error('KhĂ´ng táº£i Ä‘Æ°á»£c nháº­t kĂ½');
 
             const data = await res.json();
 
             const entries = Array.isArray(data.entries) ? data.entries : [];
 
-            countEl.textContent = entries.length ? `${entries.length} mục gần nhất` : 'Chưa có mục nào';
+            countEl.textContent = entries.length ? `${entries.length} má»¥c gáº§n nháº¥t` : 'ChÆ°a cĂ³ má»¥c nĂ o';
 
             if (!entries.length) {
 
-                empty.textContent = 'Chưa có thao tác nào được ghi.';
+                empty.textContent = 'ChÆ°a cĂ³ thao tĂ¡c nĂ o Ä‘Æ°á»£c ghi.';
 
                 empty.hidden = false;
 
@@ -994,7 +994,7 @@
 
             body.innerHTML = entries.map((e) => {
 
-                const label = AUDIT_LABELS[e.action] || e.action || '—';
+                const label = AUDIT_LABELS[e.action] || e.action || 'â€”';
 
                 const detail = (e.detail || '').replace(/</g, '&lt;');
 
@@ -1004,7 +1004,7 @@
 
                     <td class="action">${label}</td>
 
-                    <td>${detail || '—'}</td>
+                    <td>${detail || 'â€”'}</td>
 
                 </tr>`;
 
@@ -1016,7 +1016,7 @@
 
         } catch (err) {
 
-            empty.textContent = 'Lỗi: ' + (err.message || err);
+            empty.textContent = 'Lá»—i: ' + (err.message || err);
 
             empty.hidden = false;
 

@@ -1,4 +1,4 @@
-const db = require('../db/store').db;
+﻿const db = require('../db/store').db;
 
 const MAX_ENTRIES = 500;
 

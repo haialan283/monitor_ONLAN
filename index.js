@@ -20,7 +20,6 @@ const { attachWsHandler } = require('./ws/handler');
 const tournament = require('./config/tournamentLoader');
 const auditLog = require('./services/auditLog');
 
-// Fail fast nếu thiếu SECRET_KEY
 config.getSecretKey();
 
 const crypto = createCrypto(config.getSecretKey);
@@ -67,9 +66,9 @@ app.get('/api/client-config', (_req, res) => {
     });
 });
 
-
 app.post('/api/auth/login', loginRoute(config.getAuthUsers));
 app.post('/api/auth/logout', logoutRoute());
+
 const dashboardDir = path.join(__dirname, 'dashboard');
 const sendDashboard = (file) => (_req, res) => {
     res.type('html');

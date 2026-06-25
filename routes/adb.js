@@ -1,4 +1,4 @@
-const path = require('path');
+﻿const path = require('path');
 const fs = require('fs');
 const util = require('util');
 const express = require('express');
@@ -10,7 +10,7 @@ const { createAdbQueue } = require('../services/adbQueue');
 const execPromise = util.promisify(exec);
 
 /**
- * Tạo router ADB (list, download, upload, delete, reconnect). Cần uploadDir và adbPath.
+ * Táº¡o router ADB (list, download, upload, delete, reconnect). Cáº§n uploadDir vĂ  adbPath.
  */
 function createAdbRouter(uploadDir, adbPath, store, adbService, adbQueue) {
     const router = express.Router();
@@ -19,11 +19,11 @@ function createAdbRouter(uploadDir, adbPath, store, adbService, adbQueue) {
     const upload = multer({ dest: uploadDir });
 
     function escapeForSingleQuotes(s) {
-        // Nhúng chuỗi vào '...': escape dấu ' để shell không vỡ cú pháp.
+        // NhĂºng chuá»—i vĂ o '...': escape dáº¥u ' Ä‘á»ƒ shell khĂ´ng vá»¡ cĂº phĂ¡p.
         return String(s).replace(/'/g, `'\\''`);
     }
 
-    /** Từ chối path nguy hiểm / không hợp lệ trước khi đưa vào shell. */
+    /** Tá»« chá»‘i path nguy hiá»ƒm / khĂ´ng há»£p lá»‡ trÆ°á»›c khi Ä‘Æ°a vĂ o shell. */
     function assertSafeDevicePath(p) {
         const raw = String(p || '').trim();
         if (!raw) return { ok: false, error: 'Empty path' };
@@ -114,16 +114,16 @@ function createAdbRouter(uploadDir, adbPath, store, adbService, adbQueue) {
         res.json(files);
     });
 
-    // Check thư mục có tồn tại hay không (không tự tạo).
+    // Check thÆ° má»¥c cĂ³ tá»“n táº¡i hay khĂ´ng (khĂ´ng tá»± táº¡o).
     router.get('/check-dir', async (req, res) => {
         const { ip, dir } = req.query;
         if (!ip || !dir) return res.status(400).json({ exists: false, error: 'Missing ip/dir' });
 
         const targetDir = String(dir);
         const dirEsc = escapeForSingleQuotes(targetDir);
-        // Dùng ls -ld thay cho test -d để tránh false-negative do quyền thực thi.
-        // Đồng thời thêm `|| true` để lệnh "không tồn tại" vẫn trả exit code 0,
-        // tránh runAdbCommand coi là lỗi và trả 500.
+        // DĂ¹ng ls -ld thay cho test -d Ä‘á»ƒ trĂ¡nh false-negative do quyá»n thá»±c thi.
+        // Äá»“ng thá»i thĂªm `|| true` Ä‘á»ƒ lá»‡nh "khĂ´ng tá»“n táº¡i" váº«n tráº£ exit code 0,
+        // trĂ¡nh runAdbCommand coi lĂ  lá»—i vĂ  tráº£ 500.
         const cmd = `shell "ls -ld '${dirEsc}' 2>&1 || true"`;
 
         const result = await runAdbCommand(ip, cmd);
@@ -172,8 +172,8 @@ function createAdbRouter(uploadDir, adbPath, store, adbService, adbQueue) {
     });
 
     /**
-     * Xóa file hoặc thư mục trên thiết bị (adb shell rm). Chỉ admin.
-     * Nhận tham số từ query (DELETE) hoặc JSON body (POST) — POST dùng cho proxy/IIS hay client không gửi DELETE.
+     * XĂ³a file hoáº·c thÆ° má»¥c trĂªn thiáº¿t bá»‹ (adb shell rm). Chá»‰ admin.
+     * Nháº­n tham sá»‘ tá»« query (DELETE) hoáº·c JSON body (POST) â€” POST dĂ¹ng cho proxy/IIS hay client khĂ´ng gá»­i DELETE.
      */
     async function adbDeleteHandler(req, res) {
         if (req.userRole !== 'admin') {

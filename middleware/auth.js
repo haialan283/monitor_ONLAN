@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+﻿const crypto = require('crypto');
 
 const COOKIE_NAME = 'alan_sid';
 const SESSION_MAX_AGE_MS = 24 * 60 * 60 * 1000; // 24h
@@ -84,7 +84,7 @@ function clearSession(token) {
 }
 
 /**
- * Middleware: yêu cầu đăng nhập (cookie alan_sid) khi đã cấu hình tài khoản.
+ * Middleware: yĂªu cáº§u Ä‘Äƒng nháº­p (cookie alan_sid) khi Ä‘Ă£ cáº¥u hĂ¬nh tĂ i khoáº£n.
  */
 function requireAuth(getAuthUsers) {
     return (req, res, next) => {
@@ -94,7 +94,7 @@ function requireAuth(getAuthUsers) {
         if (!users.authEnabled) {
             if (req.path.startsWith('/api/')) {
                 return res.status(503).json({
-                    error: 'Chưa cấu hình tài khoản. Đặt DASHBOARD_ADMIN_USER và DASHBOARD_ADMIN_PASSWORD trên server.',
+                    error: 'ChÆ°a cáº¥u hĂ¬nh tĂ i khoáº£n. Äáº·t DASHBOARD_ADMIN_USER vĂ  DASHBOARD_ADMIN_PASSWORD trĂªn server.',
                     needSetup: true,
                 });
             }
@@ -113,7 +113,7 @@ function requireAuth(getAuthUsers) {
 }
 
 /**
- * POST /api/auth/login { username, password } — set cookie + role admin/viewer.
+ * POST /api/auth/login { username, password } â€” set cookie + role admin/viewer.
  */
 function loginRoute(getAuthUsers) {
     return (req, res) => {
@@ -124,7 +124,7 @@ function loginRoute(getAuthUsers) {
             return res.status(400).json({ error: 'Auth not configured' });
         }
         if (!resolved.role) {
-            return res.status(401).json({ error: 'Sai tài khoản hoặc mật khẩu', needLogin: true });
+            return res.status(401).json({ error: 'Sai tĂ i khoáº£n hoáº·c máº­t kháº©u', needLogin: true });
         }
         const token = createSession(resolved.role);
         res.setHeader('Set-Cookie', `${COOKIE_NAME}=${token}; Path=/; HttpOnly; Max-Age=${SESSION_MAX_AGE_MS / 1000}; SameSite=Strict`);
@@ -153,7 +153,7 @@ function meRoute(getAuthUsers) {
 }
 
 /**
- * POST /api/auth/logout — xóa session + cookie HttpOnly.
+ * POST /api/auth/logout â€” xĂ³a session + cookie HttpOnly.
  */
 function logoutRoute() {
     return (req, res) => {

@@ -1,5 +1,5 @@
-/**
- * Hàng đợi tuần tự cho lệnh ADB — tránh block event loop khi push/pull nhiều máy.
+﻿/**
+ * HĂ ng Ä‘á»£i tuáº§n tá»± cho lá»‡nh ADB â€” trĂ¡nh block event loop khi push/pull nhiá»u mĂ¡y.
  */
 function createAdbQueue() {
     const queue = [];

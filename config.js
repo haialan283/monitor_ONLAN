@@ -1,5 +1,5 @@
-/**
- * Cấu hình từ biến môi trường. Fail fast nếu thiếu SECRET_KEY.
+﻿/**
+ * Cáº¥u hĂ¬nh tá»« biáº¿n mĂ´i trÆ°á»ng. Fail fast náº¿u thiáº¿u SECRET_KEY.
  */
 const PORT = parseInt(process.env.PORT, 10) || 3333;
 const HOST = process.env.HOST || '0.0.0.0';
@@ -33,13 +33,13 @@ function getCertPinSha256() {
 function getSecretKey() {
     const raw = process.env.SECRET_KEY;
     if (!raw || typeof raw !== 'string' || raw.trim() === '') {
-        console.error('FATAL: SECRET_KEY phải được đặt trong môi trường (ví dụ .env).');
+        console.error('FATAL: SECRET_KEY pháº£i Ä‘Æ°á»£c Ä‘áº·t trong mĂ´i trÆ°á»ng (vĂ­ dá»¥ .env).');
         process.exit(1);
     }
     return raw.trim();
 }
 
-/** Mã giải — đọc từ DB (dashboard SET) hoặc env TOURNAMENT_CODE */
+/** MĂ£ giáº£i â€” Ä‘á»c tá»« DB (dashboard SET) hoáº·c env TOURNAMENT_CODE */
 function getTournamentCode() {
     return require('./db/store').getTournamentCode();
 }
@@ -62,10 +62,10 @@ module.exports = {
     getTournamentCode,
     isTournamentCodeValid,
     /**
-     * Auth theo tài khoản:
+     * Auth theo tĂ i khoáº£n:
      * - DASHBOARD_ADMIN_USER + DASHBOARD_ADMIN_PASSWORD
-     * - DASHBOARD_VIEWER_USER + DASHBOARD_VIEWER_PASSWORD (tùy chọn)
-     * Tương thích cũ: nếu chưa có USER/PASSWORD thì dùng PIN (admin/viewer).
+     * - DASHBOARD_VIEWER_USER + DASHBOARD_VIEWER_PASSWORD (tĂ¹y chá»n)
+     * TÆ°Æ¡ng thĂ­ch cÅ©: náº¿u chÆ°a cĂ³ USER/PASSWORD thĂ¬ dĂ¹ng PIN (admin/viewer).
      */
     getAuthUsers() {
         const legacyPin = process.env.DASHBOARD_PIN;
@@ -86,7 +86,7 @@ module.exports = {
             authEnabled: !!(admin || viewer),
         };
     },
-    /** URL webhook Discord để nhắc vi phạm (để trống = tắt). */
+    /** URL webhook Discord Ä‘á»ƒ nháº¯c vi pháº¡m (Ä‘á»ƒ trá»‘ng = táº¯t). */
     getDiscordWebhookUrl() {
         const url = process.env.DISCORD_WEBHOOK_URL;
         return url && typeof url === 'string' ? url.trim() : null;
